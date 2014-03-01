@@ -1,7 +1,7 @@
 {
   "name": "script",
   "main": "./lib/script",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "description": "Run some script from atom.",
   "activationEvents": [
