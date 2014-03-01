@@ -27,15 +27,23 @@ module.exports =
       if not code? or not code
         code = editor.getText()
 
-      if ! editor?
-        console.log("Where's my bloody editor?")
+      if not editor?
+        console.log("Editor unavailable")
         return
 
       grammar = editor.getGrammar()
 
       @lang = grammar.name
 
-      console.log("Here we go")
+      if grammar.name == "Null Grammar"
+        console.log("Need to select a language in the lower right or")
+        console.log("save your file with an appropriate extension.")
+        return
+
+      if grammar.name not in grammarMap
+        console.log("Interpreter not configured for " + @lang)
+        console.log("Send a pull request to add support!")
+        return
 
       atom.workspaceView.open(configUri, split: 'right')
       @scriptView.runit(code)
