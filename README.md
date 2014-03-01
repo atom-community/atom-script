@@ -2,20 +2,21 @@
 
 Run snippets of scripts from within Atom.
 
-:rotating_light: **Work in Progress** :rotating_light:
+Currently supports:
 
-**NOTE**: This is currently hardcoded to work only with coffeescript. The next
-issue to tackle is creating a mapping between languages, their interpreter, and
-how to handle a chunk of code (does it need any other formatting)
+  * Python
+  * CoffeeScript
+
+You only have to add a few lines in a PR to support another.
 
 To install simply run `apm install script`.
 
 To use simply select some code and hit `cmd-i`. Your code will get run in
 a fresh instance of the interpreter used by your scripting language.
 
-![](https://f.cloud.github.com/assets/836375/2300807/e6d04a3c-a109-11e3-93e2-94d86965546d.gif)
+![](https://f.cloud.github.com/assets/836375/2302319/b9ab8dec-a176-11e3-9073-a7d42c4fdf16.gif)
 
 ## TODO
 
-* Make mappings configurable
-* Add tests
+* Tests, tests, tests
+* Beautification
