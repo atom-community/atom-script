@@ -24,8 +24,8 @@ module.exports =
       editor = atom.workspace.getActiveEditor()
       code = editor.getSelectedText()
 
-      if ! code?
-        return
+      if not code? or not code
+        code = editor.getText()
 
       if ! editor?
         console.log("Where's my bloody editor?")
