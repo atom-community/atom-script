@@ -1,4 +1,4 @@
-# Script runner for atom
+# Run scripts in Atom!
 
 Run scripts from within Atom.
 
