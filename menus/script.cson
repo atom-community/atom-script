@@ -1,0 +1,16 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+'context-menu':
+  '.overlayer':
+      'Enable script': 'script:run-selection'
+
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'script'
+      'submenu': [
+        { 'label': 'Toggle', 'command': 'script:run-selection' }
+      ]
+    ]
+  }
+]

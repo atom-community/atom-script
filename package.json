@@ -1,0 +1,16 @@
+{
+  "name": "script",
+  "main": "./lib/script",
+  "version": "0.0.0",
+  "private": false,
+  "description": "Run some script from atom.",
+  "activationEvents": [
+    "script:run-selection"
+  ],
+  "repository": "https://github.com/rgbkrk/atom-script",
+  "license": "Apache 2",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {}
+}
