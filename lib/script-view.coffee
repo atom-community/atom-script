@@ -14,8 +14,7 @@ class ScriptView extends ScrollView
     @interpreter = interpreter
     @make_args = make_args
 
-  # TODO: Add language to title
-  getTitle: -> "Script"
+  getTitle: -> @interpreter
 
   addLine: (line, out_type) ->
     console.log(line)
