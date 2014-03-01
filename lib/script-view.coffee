@@ -19,7 +19,6 @@ class ScriptView extends ScrollView
 
   addLine: (line, out_type) ->
     console.log(line)
-    console.log("wat")
     @find("div.output").append("<pre class='line #{out_type}'>#{line}</pre>")
 
   runit: (code) ->
