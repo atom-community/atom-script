@@ -57,9 +57,11 @@ module.exports =
     #       with their language of choice
     else if ! (grammar.name of grammarMap)
       err =
-        "Interpreter not configured for " + @lang + "\n" +
-        "Create an issue or send a PR at https://github.com/rgbkrk/atom-script to add support"
+        "Interpreter not configured for " + @lang + "!\n\n" +
+        "Add an <a href='https://github.com/rgbkrk/atom-script/issues/" +
+        "new?title=Add%20support%20for%20" + @lang + "'>issue on GitHub" +
+        "</a> or send your own Pull Request"
 
     atom.workspaceView.open(configUri, split: 'right').done (scriptView) ->
       if scriptView instanceof ScriptView
-        scriptView.runit(err, code)
+        scriptView.runit(code, err)

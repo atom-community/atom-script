@@ -14,13 +14,17 @@ class ScriptView extends ScrollView
     @interpreter = interpreter
     @make_args = make_args
 
-  getTitle: -> @interpreter
+  getTitle: ->
+    if @interpreter?
+      @interpreter
+    else
+      ":("
 
   addLine: (line, out_type) ->
     #console.log(line)
     @find("div.output").append("<pre class='line #{out_type}'>#{line}</pre>")
 
-  runit: (err, code) ->
+  runit: (code, err) ->
 
     if err?
       @addLine(err, "err")
