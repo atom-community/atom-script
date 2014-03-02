@@ -15,11 +15,10 @@ module.exports =
   activate: ->
     atom.project.registerOpener (uri) =>
 
-      if @lang in grammarMap
-        interpreter = grammarMap[@lang]["interpreter"]
-        makeargs = grammarMap[@lang]["makeargs"]
+      interpreter = grammarMap[@lang]["interpreter"]
+      makeargs = grammarMap[@lang]["makeargs"]
 
-        @scriptView = new ScriptView(interpreter, makeargs) if uri is configUri
+      @scriptView = new ScriptView(interpreter, makeargs) if uri is configUri
 
     atom.workspaceView.command "script:run-selection", =>
       editor = atom.workspace.getActiveEditor()
@@ -41,7 +40,7 @@ module.exports =
         console.log("save your file with an appropriate extension.")
         return
 
-      if grammar.name not in grammarMap
+      if ! grammar.name in grammarMap
         console.log("Interpreter not configured for " + @lang)
         console.log("Send a pull request to add support!")
         return
