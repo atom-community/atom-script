@@ -48,7 +48,7 @@ module.exports =
     err = null;
 
     # Determine if no language is selected
-    if grammar.name == "Plain Text"
+    if grammar.name == "Null Grammar" or grammar.name == "Plain Text"
       err =
         "Must select a language in the lower left or " +
         "save the file with an appropriate extension."
