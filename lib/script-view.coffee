@@ -28,11 +28,12 @@ class ScriptView extends ScrollView
     # Default to where the user opened atom
     options =
       cwd: atom.project.getPath()
+      env: process.env
 
-    console.log("Running " + command + " " + args)
+    console.log("Running " + command + " " + args.join(" "))
 
     stdout = (output) => @addLine(output, "stdout")
     stderr = (output) => @addLine(output, "stderr")
     exit = (return_code) -> console.log("Exited with #{return_code}")
 
-    process = new BufferedProcess({command, args, options, stdout, stderr, exit})
+    bufferedProcess = new BufferedProcess({command, args, options, stdout, stderr, exit})
