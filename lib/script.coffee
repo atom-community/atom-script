@@ -21,26 +21,30 @@ module.exports =
       @scriptView = new ScriptView(interpreter, makeargs) if uri is configUri
 
     atom.workspaceView.command "script:run-selection", =>
+
       editor = atom.workspace.getActiveEditor()
 
       if not editor?
         console.log("Editor unavailable")
         return
 
+      # Get selected text
       code = editor.getSelectedText()
-
+      # If no text was selected, select ALL the code in the editor
       if not code? or not code
         code = editor.getText()
 
       grammar = editor.getGrammar()
-
       @lang = grammar.name
 
+      # Null Grammar is the name of the "Plain text" language
       if grammar.name == "Null Grammar"
         console.log("Need to select a language in the lower left or")
         console.log("save the file with an appropriate extension.")
         return
 
+      # TODO: Provide them a dialog to submit an issue on GH, prepopulated
+      #       with their language of choice
       if ! grammar.name in grammarMap
         console.log("Interpreter not configured for " + @lang)
         console.log("Send a pull request to add support!")
