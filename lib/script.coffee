@@ -15,7 +15,7 @@ module.exports =
   activate: ->
     atom.project.registerOpener (uri) =>
 
-      if @lang?
+      if @lang? and @lang of grammarMap
         interpreter = grammarMap[@lang]["interpreter"]
         makeargs = grammarMap[@lang]["makeargs"]
 
@@ -46,7 +46,7 @@ module.exports =
 
       # TODO: Provide them a dialog to submit an issue on GH, prepopulated
       #       with their language of choice
-      if ! grammar.name in grammarMap
+      if ! (grammar.name of grammarMap)
         console.log("Interpreter not configured for " + @lang)
         console.log("Send a pull request to add support!")
         return
