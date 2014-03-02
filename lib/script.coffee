@@ -14,6 +14,9 @@ grammarMap =
   JavaScript:
     interpreter: "node"
     makeargs: (code) -> ['-e', code]
+  Ruby:
+    interpreter: "ruby"
+    makeargs: (code) -> ['-e', code]
 
 module.exports =
 
