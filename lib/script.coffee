@@ -15,10 +15,11 @@ module.exports =
   activate: ->
     atom.project.registerOpener (uri) =>
 
-      interpreter = grammarMap[@lang]["interpreter"]
-      makeargs = grammarMap[@lang]["makeargs"]
+      if @lang?
+        interpreter = grammarMap[@lang]["interpreter"]
+        makeargs = grammarMap[@lang]["makeargs"]
 
-      @scriptView = new ScriptView(interpreter, makeargs) if uri is configUri
+        @scriptView = new ScriptView(interpreter, makeargs) if uri is configUri
 
     atom.workspaceView.command "script:run-selection", =>
 
