@@ -24,17 +24,24 @@ If you don't select any text, it will run the entire file by default.
 
 ## Development
 
-Use the atom [contributing guidelines](https://atom.io/docs/v0.64.0/contributing),
-a shortened form of which is below. Preferably, use
+Use the atom [contributing guidelines](https://atom.io/docs/v0.64.0/contributing).
+They're pretty sane.
+
+### Quick and dirty setup
 
 `apm develop script`
 
 This will clone the `script` repository to `~/github` unless you set the
 `ATOM_REPOS_HOME` environment variable.
 
+### I already cloned it!
+
 If you cloned it somewhere else, you'll want to use `apm link --dev` within the
 package directory, followed by `apm install` to get dependencies.
+
+### Workflow
 
 After pulling upstream changes, make sure to run `apm update`.
 
 To start hacking, make sure to run `atom dev` from the package directory.
+Cut a branch while you're working and submit a Pull Request.
