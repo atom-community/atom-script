@@ -64,4 +64,4 @@ module.exports =
 
     atom.workspaceView.open(configUri, split: 'right').done (scriptView) ->
       if scriptView instanceof ScriptView
-        scriptView.runit(code, err)
+        scriptView.runit(err, code)
