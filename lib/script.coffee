@@ -22,14 +22,15 @@ module.exports =
 
     atom.workspaceView.command "script:run-selection", =>
       editor = atom.workspace.getActiveEditor()
-      code = editor.getSelectedText()
-
-      if not code? or not code
-        code = editor.getText()
 
       if not editor?
         console.log("Editor unavailable")
         return
+
+      code = editor.getSelectedText()
+
+      if not code? or not code
+        code = editor.getText()
 
       grammar = editor.getGrammar()
 
