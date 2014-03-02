@@ -21,43 +21,45 @@ grammarMap =
 module.exports =
 
   activate: ->
+    atom.workspaceView.command "script:run-selection", => @show()
+
     atom.project.registerOpener (uri) =>
 
       if @lang? and @lang of grammarMap
         interpreter = grammarMap[@lang]["interpreter"]
         makeargs = grammarMap[@lang]["makeargs"]
 
-        @scriptView = new ScriptView(interpreter, makeargs) if uri is configUri
+      @scriptView = new ScriptView(interpreter, makeargs) if uri is configUri
 
-    atom.workspaceView.command "script:run-selection", =>
+  show: ->
+    editor = atom.workspace.getActiveEditor()
+    return unless editor?
 
-      editor = atom.workspace.getActiveEditor()
+    # Get selected text
+    code = editor.getSelectedText()
+    # If no text was selected, select ALL the code in the editor
+    if not code? or not code
+      code = editor.getText()
 
-      if not editor?
-        console.log("Editor unavailable")
-        return
+    grammar = editor.getGrammar()
+    @lang = grammar.name
 
-      # Get selected text
-      code = editor.getSelectedText()
-      # If no text was selected, select ALL the code in the editor
-      if not code? or not code
-        code = editor.getText()
+    # Set up errors
+    err = null;
 
-      grammar = editor.getGrammar()
-      @lang = grammar.name
+    # Determine if no language is selected
+    if grammar.name == "Plain Text"
+      err =
+        "Must select a language in the lower left or " +
+        "save the file with an appropriate extension."
 
-      # Null Grammar is the name of the "Plain text" language
-      if grammar.name == "Null Grammar"
-        console.log("Need to select a language in the lower left or")
-        console.log("save the file with an appropriate extension.")
-        return
+    # TODO: Provide them a dialog to submit an issue on GH, prepopulated
+    #       with their language of choice
+    else if ! (grammar.name of grammarMap)
+      err =
+        "Interpreter not configured for " + @lang + "\n" +
+        "Create an issue or send a PR at https://github.com/rgbkrk/atom-script to add support"
 
-      # TODO: Provide them a dialog to submit an issue on GH, prepopulated
-      #       with their language of choice
-      if ! (grammar.name of grammarMap)
-        console.log("Interpreter not configured for " + @lang)
-        console.log("Send a pull request to add support!")
-        return
-
-      atom.workspaceView.open(configUri, split: 'right')
-      @scriptView.runit(code)
+    atom.workspaceView.open(configUri, split: 'right').done (scriptView) ->
+      if scriptView instanceof ScriptView
+        scriptView.runit(err, code)
