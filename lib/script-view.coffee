@@ -27,7 +27,7 @@ class ScriptView extends ScrollView
   runit: (err, code) ->
 
     if err?
-      @addLine(err, "err")
+      @addLine(err, "error")
       return
 
     command = @interpreter
@@ -41,8 +41,8 @@ class ScriptView extends ScrollView
 
     console.log("Running " + command + " " + args.join(" "))
 
-    stdout = (output) => @addLine(output, "stdout")
-    stderr = (output) => @addLine(output, "stderr")
+    stdout = (output) => @addLine(output)
+    stderr = (output) => @addLine(output, "error")
     exit = (return_code) -> console.log("Exited with #{return_code}")
 
     bufferedProcess = new BufferedProcess({command, args, options, stdout, stderr, exit})
