@@ -15,10 +15,6 @@ module.exports =
   activate: ->
     atom.project.registerOpener (uri) =>
 
-      console.log(@lang?)
-      console.log(@lang in grammarMap)
-      console.log(grammarMap)
-
       if @lang? and @lang of grammarMap
         interpreter = grammarMap[@lang]["interpreter"]
         makeargs = grammarMap[@lang]["makeargs"]
