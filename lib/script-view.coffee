@@ -27,7 +27,7 @@ class ScriptView extends ScrollView
   runit: (err, code) ->
 
     if err?
-      @addLine(err, "err")
+      @addLine(err, "error")
       return
 
     command = @interpreter
