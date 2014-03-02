@@ -1,31 +1,7 @@
 ScriptView = require './script-view'
+grammarMap = require './grammars'
 
 configUri = "atom://script"
-
-# The grammarMap maps Atom Grammar names to the interpreter used by that language
-# As well as any special setup for arguments.
-grammarMap =
-  CoffeeScript:
-    interpreter: "coffee"
-    makeargs: (code) -> ['-e', code]
-  Python:
-    interpreter: "python"
-    makeargs: (code) -> ['-c', code]
-  JavaScript:
-    interpreter: "node"
-    makeargs: (code) -> ['-e', code]
-  Ruby:
-    interpreter: "ruby"
-    makeargs: (code) -> ['-e', code]
-  Perl:
-    interpreter: "perl"
-    makeargs: (code) -> ['-e', code]
-  PHP:
-    interpreter: "php"
-    makeargs: (code) -> ['-r', code]
-  'Shell Script (Bash)':
-    interpreter: "bash"
-    makeargs: (code) -> ['-c', code]
 
 module.exports =
 
