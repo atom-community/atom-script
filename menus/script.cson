@@ -7,9 +7,9 @@
   {
     'label': 'Packages'
     'submenu': [
-      'label': 'script'
+      'label': 'Script'
       'submenu': [
-        { 'label': 'Toggle', 'command': 'script:run-selection' }
+        { 'label': 'Run Script', 'command': 'script:run-selection' }
       ]
     ]
   }
