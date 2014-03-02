@@ -36,8 +36,8 @@ module.exports =
       @lang = grammar.name
 
       if grammar.name == "Null Grammar"
-        console.log("Need to select a language in the lower right or")
-        console.log("save your file with an appropriate extension.")
+        console.log("Need to select a language in the lower left or")
+        console.log("save the file with an appropriate extension.")
         return
 
       if ! grammar.name in grammarMap
