@@ -11,7 +11,7 @@ grammarMap =
   Python:
     interpreter: "python"
     makeargs: (code) -> ['-c', code]
-  Javascript:
+  JavaScript:
     interpreter: "node"
     makeargs: (code) -> ['-e', code]
 
