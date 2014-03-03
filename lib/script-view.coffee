@@ -45,4 +45,7 @@ class ScriptView extends ScrollView
     stderr = (output) => @addLine(output, "stderr")
     exit = (return_code) -> console.log("Exited with #{return_code}")
 
-    bufferedProcess = new BufferedProcess({command, args, options, stdout, stderr, exit})
+    @bufferedProcess = new BufferedProcess({command, args, options, stdout, stderr, exit})
+
+  stopit: ->
+    @bufferedProcess.kill() if @bufferedProcess.process?

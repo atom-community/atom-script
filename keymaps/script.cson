@@ -4,3 +4,4 @@
 # Only bind the keys in the editor
 '.editor':
   'cmd-i': 'script:run-selection'
+  'ctrl-c': 'script:kill-process'
