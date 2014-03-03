@@ -6,6 +6,7 @@ Currently supports:
 
   * Coffeescript
   * Javascript
+  * Perl
   * PHP
   * Python
   * Ruby
