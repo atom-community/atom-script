@@ -20,6 +20,9 @@ grammarMap =
   PHP:
     interpreter: "php"
     makeargs: (code) -> ['-r', code]
+  'Shell Script (Bash)':
+    interpreter: "bash"
+    makeargs: (code) -> ['-c', code]
 
 module.exports =
 
