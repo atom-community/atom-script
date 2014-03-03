@@ -20,6 +20,9 @@ grammarMap =
   PHP:
     interpreter: "php"
     makeargs: (code) -> ['-r', code]
+  'Shell Script (Bash)':
+    interpreter: "bash"
+    makeargs: (code) -> ['-c', code]
 
 module.exports =
 
@@ -59,6 +62,8 @@ module.exports =
     # TODO: Provide them a dialog to submit an issue on GH, prepopulated
     #       with their language of choice
     else if ! (grammar.name of grammarMap)
+      console.log('IVAN HERE_______________________________')
+      console.log(@lang)
       err =
         "Interpreter not configured for " + @lang + "!\n\n" +
         "Add an <a href='https://github.com/rgbkrk/atom-script/issues/" +
