@@ -7,7 +7,7 @@ class ScriptView extends ScrollView
 
   @content: ->
     @div class: 'script', tabindex: -1, =>
-      @div class: 'output'
+      @div class: 'output', outlet: 'output'
 
   constructor: (interpreter, make_args) ->
     super
@@ -22,7 +22,7 @@ class ScriptView extends ScrollView
 
   addLine: (line, out_type) ->
     #console.log(line)
-    @find("div.output").append("<pre class='line #{out_type}'>#{line}</pre>")
+    @output.append("<pre class='line #{out_type}'>#{line}</pre>")
 
   runit: (err, code) ->
 
