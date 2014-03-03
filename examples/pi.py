@@ -1,7 +1,5 @@
 '''Estimate Pi'''
 
-raise Exception("FAIL ON PURPOSE")
-
 def nth_term(n):
     return 4 / (2.0 * n + 1) * (-1) ** n
 
