@@ -8,6 +8,7 @@ Currently supports:
   * Javascript
   * Python
   * Ruby
+  * PHP
 
 You only have to add a few lines in a PR to support another.
 
