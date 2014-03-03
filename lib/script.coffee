@@ -17,6 +17,9 @@ grammarMap =
   Ruby:
     interpreter: "ruby"
     makeargs: (code) -> ['-e', code]
+  PHP:
+    interpreter: "php"
+    makeargs: (code) -> ['-r', code]
 
 module.exports =
 
