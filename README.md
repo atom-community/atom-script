@@ -25,6 +25,8 @@ a fresh instance of the interpreter used by your scripting language.
 
 If you don't select any text, it will run the entire file by default.
 
+`ctl-c` will kill the most recently run process ([#27](https://github.com/rgbkrk/atom-script/issues/27)).
+
 ## Development
 
 Use the atom [contributing guidelines](https://atom.io/docs/v0.64.0/contributing).
