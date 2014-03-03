@@ -6,9 +6,10 @@ Currently supports:
 
   * Coffeescript
   * Javascript
+  * PHP
   * Python
   * Ruby
-  * PHP
+  * Shell Script (Bash)
 
 You only have to add a few lines in a PR to support another.
 
