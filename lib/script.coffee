@@ -7,6 +7,7 @@ module.exports =
 
   activate: ->
     atom.workspaceView.command "script:run-selection", => @show()
+    atom.workspaceView.command "script:kill-process", => @stop()
 
     atom.project.registerOpener (uri) =>
 
@@ -50,3 +51,6 @@ module.exports =
     atom.workspaceView.open(configUri, split: 'right').done (scriptView) ->
       if scriptView instanceof ScriptView
         scriptView.runit(err, code)
+
+  stop: ->
+    @scriptView.stopit() if @scriptView?
