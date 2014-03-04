@@ -15,8 +15,8 @@ class ScriptView extends View
       @div class: 'panel-body padded output', outlet: 'output'
 
   initialize: (serializeState) ->
-    atom.workspaceView.command "script:run-selection", => @show()
-    atom.workspaceView.command "script:close-selection", => @close()
+    atom.workspaceView.command "script:run", => @show()
+    atom.workspaceView.command "script:close-view", => @close()
     atom.workspaceView.command "script:kill-process", => @stop()
 
   serialize: ->
