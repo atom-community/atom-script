@@ -15,22 +15,28 @@ class ScriptView extends View
       @div class: 'panel-body padded output', outlet: 'output'
 
   initialize: (serializeState) ->
-    atom.workspaceView.command "script:run-selection", => @toggle()
+    atom.workspaceView.command "script:run-selection", => @show()
+    atom.workspaceView.command "script:close-selection", => @close()
     atom.workspaceView.command "script:kill-process", => @stop()
 
   serialize: ->
 
   destroy: ->
     @detach()
+    @stop()
 
-  toggle: ->
+  show: ->
+    if not @hasParent()
+      atom.workspaceView.prependToBottom(this)
+    @heading.text("Loading...")
+    @output.empty()
+    @stop()
+    @start()
+
+  close: ->
     if @hasParent()
       @detach()
       @stop()
-    else
-      atom.workspaceView.prependToBottom(this)
-      @output.empty()
-      @start()
 
   start: ->
     @check()
@@ -59,7 +65,7 @@ class ScriptView extends View
       @bufferedProcess = new BufferedProcess({command, args, options, stdout, stderr, exit})
 
   stop: ->
-    @bufferedProcess.kill() if @bufferedProcess.process?
+    @bufferedProcess.kill() if @bufferedProcess? and @bufferedProcess.process?
 
   check: ->
     editor = atom.workspace.getActiveEditor()

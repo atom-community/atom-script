@@ -3,5 +3,6 @@
 
 # Only bind the keys in the editor
 '.editor':
-  'cmd-i': 'script:run-selection'
+  'ctrl-r': 'script:run-selection'
+  'ctrl-w': 'script:close-selection'
   'ctrl-c': 'script:kill-process'
