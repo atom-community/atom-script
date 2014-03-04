@@ -32,70 +32,67 @@ class ScriptView extends View
       @output.empty()
       @start()
 
-  addLine: (line, out_type) ->
-    #console.log(line)
-    @output.append("<pre class='line #{out_type}'>#{line}</pre>")
-
   start: ->
     @check()
 
     if @err?
-      @heading.html("Error")
-      @addLine(@err, "error")
+      @displayError()
       @err = null
       @stop()
-      return
+    else
+      if @lang? and @lang of grammarMap
+          interpreter = grammarMap[@lang]["interpreter"]
+          makeargs = grammarMap[@lang]["makeargs"]
 
-    if @lang? and @lang of grammarMap
-        interpreter = grammarMap[@lang]["interpreter"]
-        makeargs = grammarMap[@lang]["makeargs"]
+      command = interpreter
+      args = makeargs(@code)
 
-    command = interpreter
-    args = makeargs(@code)
+      # Default to where the user opened atom
+      options =
+        cwd: atom.project.getPath()
+        env: process.env
 
-    # Default to where the user opened atom
-    options =
-      cwd: atom.project.getPath()
-      env: process.env
+      stdout = (output) => @displayOutput(output, "stdout")
+      stderr = (output) => @displayOutput(output, "stderr")
+      exit = (return_code) -> console.log("Exited with #{return_code}")
 
-    @heading.html(@lang)
-    stdout = (output) => @addLine(output, "stdout")
-    stderr = (output) => @addLine(output, "stderr")
-    exit = (return_code) -> console.log("Exited with #{return_code}")
-
-    @bufferedProcess = new BufferedProcess({command, args, options, stdout, stderr, exit})
+      @bufferedProcess = new BufferedProcess({command, args, options, stdout, stderr, exit})
 
   stop: ->
     @bufferedProcess.kill() if @bufferedProcess.process?
 
   check: ->
-      editor = atom.workspace.getActiveEditor()
-      return unless editor?
+    editor = atom.workspace.getActiveEditor()
+    return unless editor?
 
-      # Get selected text
-      @code = editor.getSelectedText()
-      # If no text was selected, select ALL the code in the editor
-      if not @code? or not @code
-        @code = editor.getText()
+    # Get selected text
+    @code = editor.getSelectedText()
+    # If no text was selected, select ALL the code in the editor
+    if not @code? or not @code
+      @code = editor.getText()
 
-      grammar = editor.getGrammar()
-      @lang = grammar.name
+    grammar = editor.getGrammar()
+    @lang = grammar.name
 
-      # Determine if no language is selected
-      if grammar.name == "Null Grammar" or grammar.name == "Plain Text"
-        @err =
-          "Must select a language in the lower left or " +
-          "save the file with an appropriate extension."
+    # Determine if no language is selected
+    if grammar.name == "Null Grammar" or grammar.name == "Plain Text"
+      @err =
+        "Must select a language in the lower left or " +
+        "save the file with an appropriate extension."
 
-      # TODO: Provide them a dialog to submit an issue on GH, prepopulated
-      #       with their language of choice
-      else if ! (grammar.name of grammarMap)
-        @err =
-          "Interpreter not configured for " + @lang + "!\n\n" +
-          "Add an <a href='https://github.com/rgbkrk/atom-script/issues/" +
-          "new?title=Add%20support%20for%20" + @lang + "'>issue on GitHub" +
-          "</a> or send your own Pull Request"
+    # Provide them a dialog to submit an issue on GH, prepopulated
+    # with their language of choice
+    else if ! (grammar.name of grammarMap)
+      @err =
+        "Interpreter not configured for " + @lang + "!\n\n" +
+        "Add an <a href='https://github.com/rgbkrk/atom-script/issues/" +
+        "new?title=Add%20support%20for%20" + @lang + "'>issue on GitHub" +
+        "</a> or send your own Pull Request"
 
-  displayOutput: ->
+  displayOutput: (line, out_type)->
+    @heading.text(@lang)
+    @output.append("<pre class='line #{out_type}'>#{line}</pre>")
 
   displayError: ->
+    @heading.text("Error")
+    @output.append("<pre class='line error'>#{@err}</pre>")
