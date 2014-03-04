@@ -36,7 +36,7 @@ class ScriptView extends View
     @check()
 
     if @err?
-      @displayError()
+      @display("Error", "error", @err)
       @err = null
       @stop()
     else
@@ -52,8 +52,8 @@ class ScriptView extends View
         cwd: atom.project.getPath()
         env: process.env
 
-      stdout = (output) => @displayOutput(output, "stdout")
-      stderr = (output) => @displayOutput(output, "stderr")
+      stdout = (output) => @display(@lang, "stdout", output)
+      stderr = (output) => @display(@lang, "stderr", output)
       exit = (return_code) -> console.log("Exited with #{return_code}")
 
       @bufferedProcess = new BufferedProcess({command, args, options, stdout, stderr, exit})
@@ -89,10 +89,6 @@ class ScriptView extends View
         "new?title=Add%20support%20for%20" + @lang + "'>issue on GitHub" +
         "</a> or send your own Pull Request"
 
-  displayOutput: (line, out_type)->
-    @heading.text(@lang)
-    @output.append("<pre class='line #{out_type}'>#{line}</pre>")
-
-  displayError: ->
-    @heading.text("Error")
-    @output.append("<pre class='line error'>#{@err}</pre>")
+  display: (title, css, line)->
+    @heading.text(title)
+    @output.append("<pre class='line #{css}'>#{line}</pre>")
