@@ -27,10 +27,6 @@ If you don't select any text, it will run the entire file by default.
 
 `ctl-c` will kill the most recently run process ([#27](https://github.com/rgbkrk/atom-script/issues/27)).
 
-## Support
-
-If you wish to support this package and help further its development, feel free to use [![Gittip](http://img.shields.io/gittip/rgbkrk.png)](https://www.gittip.com/rgbkrk/).
-
 ## Development
 
 Use the atom [contributing guidelines](https://atom.io/docs/v0.64.0/contributing).
