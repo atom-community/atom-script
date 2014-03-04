@@ -1,51 +1,100 @@
-{ScrollView, BufferedProcess} = require 'atom'
+grammarMap = require './grammars'
+{View, BufferedProcess} = require 'atom'
 
 # Runs a portion of a script through an interpreter and displays it line by line
-
 module.exports =
-class ScriptView extends ScrollView
+class ScriptView extends View
+  @bufferedProcess: null
+  @lang: null
+  @code: null
+  @err: null
 
   @content: ->
-    @div class: 'script', tabindex: -1, =>
-      @div class: 'output', outlet: 'output'
+    @div class: 'tool-panel panel panel-bottom padding script', outlet: 'script', tabindex: -1, =>
+      @div class: 'panel-heading padded heading', outlet: 'heading'
+      @div class: 'panel-body padded output', outlet: 'output'
 
-  constructor: (interpreter, make_args) ->
-    super
-    @interpreter = interpreter
-    @make_args = make_args
+  initialize: (serializeState) ->
+    atom.workspaceView.command "script:run", => @show()
+    atom.workspaceView.command "script:close-view", => @close()
+    atom.workspaceView.command "script:kill-process", => @stop()
 
-  getTitle: ->
-    if @interpreter?
-      @interpreter
+  serialize: ->
+
+  destroy: ->
+    @detach()
+    @stop()
+
+  show: ->
+    if not @hasParent()
+      atom.workspaceView.prependToBottom(this)
+    @heading.text("Loading...")
+    @output.empty()
+    @stop()
+    @start()
+
+  close: ->
+    if @hasParent()
+      @detach()
+      @stop()
+
+  start: ->
+    @check()
+
+    if @err?
+      @display("Error", "error", @err)
+      @err = null
+      @stop()
     else
-      ":("
+      if @lang? and @lang of grammarMap
+          interpreter = grammarMap[@lang]["interpreter"]
+          makeargs = grammarMap[@lang]["makeargs"]
 
-  addLine: (line, out_type) ->
-    #console.log(line)
-    @output.append("<pre class='line #{out_type}'>#{line}</pre>")
+      command = interpreter
+      args = makeargs(@code)
 
-  runit: (err, code) ->
+      # Default to where the user opened atom
+      options =
+        cwd: atom.project.getPath()
+        env: process.env
 
-    if err?
-      @addLine(err, "error")
-      return
+      stdout = (output) => @display(@lang, "stdout", output)
+      stderr = (output) => @display(@lang, "stderr", output)
+      exit = (return_code) -> console.log("Exited with #{return_code}")
 
-    command = @interpreter
+      @bufferedProcess = new BufferedProcess({command, args, options, stdout, stderr, exit})
 
-    args = @make_args(code)
+  stop: ->
+    @bufferedProcess.kill() if @bufferedProcess? and @bufferedProcess.process?
 
-    # Default to where the user opened atom
-    options =
-      cwd: atom.project.getPath()
-      env: process.env
+  check: ->
+    editor = atom.workspace.getActiveEditor()
+    return unless editor?
 
-    console.log("Running " + command + " " + args.join(" "))
+    # Get selected text
+    @code = editor.getSelectedText()
+    # If no text was selected, select ALL the code in the editor
+    if not @code? or not @code
+      @code = editor.getText()
 
-    stdout = (output) => @addLine(output, "stdout")
-    stderr = (output) => @addLine(output, "stderr")
-    exit = (return_code) -> console.log("Exited with #{return_code}")
+    grammar = editor.getGrammar()
+    @lang = grammar.name
 
-    @bufferedProcess = new BufferedProcess({command, args, options, stdout, stderr, exit})
+    # Determine if no language is selected
+    if grammar.name == "Null Grammar" or grammar.name == "Plain Text"
+      @err =
+        "Must select a language in the lower left or " +
+        "save the file with an appropriate extension."
 
-  stopit: ->
-    @bufferedProcess.kill() if @bufferedProcess.process?
+    # Provide them a dialog to submit an issue on GH, prepopulated
+    # with their language of choice
+    else if ! (grammar.name of grammarMap)
+      @err =
+        "Interpreter not configured for " + @lang + "!\n\n" +
+        "Add an <a href='https://github.com/rgbkrk/atom-script/issues/" +
+        "new?title=Add%20support%20for%20" + @lang + "'>issue on GitHub" +
+        "</a> or send your own Pull Request"
+
+  display: (title, css, line)->
+    @heading.text(title)
+    @output.append("<pre class='line #{css}'>#{line}</pre>")

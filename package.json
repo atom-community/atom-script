@@ -5,7 +5,7 @@
   "private": false,
   "description": "Run scripts from atom.",
   "activationEvents": [
-    "script:run-selection"
+    "script:run"
   ],
   "repository": "https://github.com/rgbkrk/atom-script",
   "license": "Apache 2",

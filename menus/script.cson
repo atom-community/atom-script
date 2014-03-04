@@ -10,7 +10,8 @@
       'label': 'Script'
       'submenu': [
         { 'label': 'Run Script', 'command': 'script:run-selection' },
-        { 'label': 'Stop Script', 'command': 'script:kill-process'}
+        { 'label': 'Stop Script', 'command': 'script:kill-process' },
+        { 'label': 'Close Window and Stop Script', 'command': 'script:close-selection' }
       ]
     ]
   }
