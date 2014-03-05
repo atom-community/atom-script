@@ -49,7 +49,7 @@ class ScriptView extends View
     else
       if @lang? and @lang of grammarMap
           interpreter = grammarMap[@lang]["interpreter"]
-          makeargs = grammarMap[@lang]["makeargs"]
+          makeargs = grammarMap[@lang]["bySelectionArgs"]
 
       command = interpreter
       args = makeargs(@code)
