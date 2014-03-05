@@ -43,8 +43,7 @@ class ScriptView extends View
   close: ->
     # Dismiss window and stop any running process
     if @hasParent()
-      @detach()
-      @stop()
+      @destroy()
 
   start: ->
     # Display error or run script
