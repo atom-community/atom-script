@@ -84,18 +84,33 @@ class ScriptView extends View
       @handleError(err)
       return
 
+    # Precondition: @lang? and @lang of grammarMap
+    command = grammarMap[@lang]["command"]
+
     @filename = editor.getTitle()
 
     # Get selected text
-    @code = editor.getSelectedText()
-    # If no text was selected, select ALL the code in the editor
+    @selectedText = editor.getSelectedText()
+    @filepath = editor.getPath()
 
-    if not @code? or not @code
-      # TODO: Switch to full path mode
-      #@filename = editor.getPath()
-      @code = editor.getText()
+    # If no text was selected, either use the file
+    # or select ALL the code in the editor
 
-    @run()
+    # File not saved, text not selected, "select" ALL the text
+    if (not selectedText? or not @selectedText) and not filepath?
+      @selectedText = editor.getText()
+
+    # If we still don't have selected text, use the path
+    # TODO: Will probably bork on empty string
+    if (not selectedText? or not @selectedText)
+      @filename = editor.getPath()
+      makeargs = grammarmap[@lang]["byFileArgs"]
+      args = makeargs(@filename)
+    else
+      makeargs = grammarMap[@lang]["bySelectionArgs"]
+      args = makeargs(@code)
+
+    @run(command, args)
 
   handleError: (err) ->
     # Display error and kill process
@@ -103,13 +118,7 @@ class ScriptView extends View
     @display("error", err)
     @stop()
 
-  run: ->
-    # Precondition: @lang? and @lang of grammarMap
-    command = grammarMap[@lang]["command"]
-    makeargs = grammarMap[@lang]["bySelectionArgs"]
-
-    args = makeargs(@code)
-
+  run (command, args): ->
     # Default to where the user opened atom
     options =
       cwd: atom.project.getPath()
