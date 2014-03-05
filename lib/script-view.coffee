@@ -100,7 +100,7 @@ class ScriptView extends View
       @selectedText = editor.getText()
 
     # If we still don't have selected text, use the path
-    # TODO: Will probably bork on empty string
+    # TODO: Totally borks on empty string, valid lang
     if (not @selectedText? or not @selectedText)
       console.log("Down the file path")
       @filepath = editor.getPath()
