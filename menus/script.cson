@@ -9,9 +9,9 @@
     'submenu': [
       'label': 'Script'
       'submenu': [
-        { 'label': 'Run Script', 'command': 'script:run-selection' },
+        { 'label': 'Run Script', 'command': 'script:run' },
         { 'label': 'Stop Script', 'command': 'script:kill-process' },
-        { 'label': 'Close Window and Stop Script', 'command': 'script:close-selection' }
+        { 'label': 'Close Window and Stop Script', 'command': 'script:close-view' }
       ]
     ]
   }
