@@ -5,8 +5,6 @@ grammarMap = require './grammars'
 module.exports =
 class ScriptView extends View
   @bufferedProcess: null
-  @lang: null
-  @filename: null
 
   @content: ->
     # Display layout and outlets
@@ -59,34 +57,36 @@ class ScriptView extends View
     return lang
 
   setup: (editor) ->
-    # Get language and filename
-    @lang = @getlang(editor)
-
+    # Get language
+    lang = @getlang(editor)
 
     err = null
     # Determine if no language is selected
-    if @lang == "Null Grammar" or @lang == "Plain Text"
+    if lang == "Null Grammar" or lang == "Plain Text"
       err =
         "Must select a language in the lower left or " +
         "save the file with an appropriate extension."
 
     # Provide them a dialog to submit an issue on GH, prepopulated
     # with their language of choice
-    if ! (@lang of grammarMap)
+    if ! (lang of grammarMap)
       err =
-        "Command not configured for " + @lang + "!\n\n" +
+        "Command not configured for " + lang + "!\n\n" +
         "Add an <a href='https://github.com/rgbkrk/atom-script/issues/" +
-        "new?title=Add%20support%20for%20" + @lang + "'>issue on GitHub" +
+        "new?title=Add%20support%20for%20" + lang + "'>issue on GitHub" +
         "</a> or send your own Pull Request"
 
     if err?
       @handleError(err)
       return
 
-    # Precondition: @lang? and @lang of grammarMap
-    command = grammarMap[@lang]["command"]
+    # Precondition: lang? and lang of grammarMap
+    command = grammarMap[lang]["command"]
 
-    @filename = editor.getTitle()
+    filename = editor.getTitle()
+    
+    # Set up header
+    @heading.text(lang + " - " + filename)
 
     # Get selected text
     selectedText = editor.getSelectedText()
@@ -101,13 +101,11 @@ class ScriptView extends View
 
     # If we still don't have selected text, use the path
     if (not selectedText? or not selectedText) and filepath?
-      console.log("Down the file path")
       filepath = editor.getPath()
-      makeargs = grammarMap[@lang]["byFileArgs"]
+      makeargs = grammarMap[lang]["byFileArgs"]
       args = makeargs(filepath)
     else
-      console.log("Down the selection path")
-      makeargs = grammarMap[@lang]["bySelectionArgs"]
+      makeargs = grammarMap[lang]["bySelectionArgs"]
       args = makeargs(selectedText)
 
     @run(command, args)
@@ -124,8 +122,6 @@ class ScriptView extends View
       cwd: atom.project.getPath()
       env: process.env
 
-    # Set up process and output display
-    @heading.text(@lang + " - " + @filename)
     stdout = (output) => @display("stdout", output)
     stderr = (output) => @display("stderr", output)
     exit = (return_code) -> console.log "Exited with #{return_code}"
