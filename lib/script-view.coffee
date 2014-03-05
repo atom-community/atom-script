@@ -7,7 +7,6 @@ class ScriptView extends View
   @bufferedProcess: null
   @lang: null
   @code: null
-  @err: null
   @filename: null
 
   @content: ->
@@ -74,7 +73,7 @@ class ScriptView extends View
       err =
         "Must select a language in the lower left or " +
         "save the file with an appropriate extension."
-      handleError(err)
+      @handleError(err)
       return
 
     # Provide them a dialog to submit an issue on GH, prepopulated
@@ -85,16 +84,15 @@ class ScriptView extends View
         "Add an <a href='https://github.com/rgbkrk/atom-script/issues/" +
         "new?title=Add%20support%20for%20" + @lang + "'>issue on GitHub" +
         "</a> or send your own Pull Request"
-      handleError(err)
+      @handleError(err)
       return
 
     @run()
 
-  handleError: ->
+  handleError: (err) ->
     # Display error and kill process
     @heading.text("Error")
-    @display("error", @err)
-    @err = null
+    @display("error", err)
     @stop()
 
   run: ->
