@@ -14,42 +14,43 @@ class ScriptView extends View
 
   initialize: (serializeState) ->
     # Bind commands
-    atom.workspaceView.command "script:run", => @show()
+    atom.workspaceView.command "script:run", => @start()
     atom.workspaceView.command "script:close-view", => @close()
     atom.workspaceView.command "script:kill-process", => @stop()
 
   serialize: ->
 
-  destroy: ->
-    # Stop the running process (if necessary) and dismiss window
-    @stop()
-    @detach()
+  start: ->
+    # Get current editor
+    editor = atom.workspace.getActiveEditor()
 
-  show: ->
+    # No editor available, do nothing
+    if not editor?
+      return
+
+    @resetView()
+    info = @setup(editor)
+    if info then @run(info.command, info.args)
+
+  resetView: ->
     # Display window and load message
 
     # First run, create view
     if not @hasParent()
       atom.workspaceView.prependToBottom(this)
 
-    @heading.text("Loading...")
     # Close any existing process and start a new one
     @stop()
+
+    @heading.text("Loading...")
+
+    # Get script view ready
     @output.empty()
 
-    @start()
-
   close: ->
-    # Dismiss window and stop any running process
-    if @hasParent()
-      @destroy()
-
-  start: ->
-    # Get current editor
-    editor = atom.workspace.getActiveEditor()
-    return unless editor?
-
-    @setup(editor)
+    # Stop any running process and dismiss window
+    @stop()
+    if @hasParent() then @detach()
 
   getlang: (editor) ->
     grammar = editor.getGrammar()
@@ -57,6 +58,9 @@ class ScriptView extends View
     return lang
 
   setup: (editor) ->
+    # Info object
+    info = {}
+
     # Get language
     lang = @getlang(editor)
 
@@ -78,15 +82,12 @@ class ScriptView extends View
 
     if err?
       @handleError(err)
-      return
+      return false
 
     # Precondition: lang? and lang of grammarMap
-    command = grammarMap[lang]["command"]
+    info.command = grammarMap[lang]["command"]
 
     filename = editor.getTitle()
-
-    # Set up header
-    @heading.text(lang + " - " + filename)
 
     # Get selected text
     selectedText = editor.getSelectedText()
@@ -111,6 +112,7 @@ class ScriptView extends View
 
     try
       args = makeargs(arg)
+      info.args = args
     catch error
       err = argType + " Runner not available for " + lang + "\n\n" +
             "If it should exist add an " +
@@ -118,9 +120,12 @@ class ScriptView extends View
             "new?title=Add%20support%20for%20" + lang + "'>issue on GitHub" +
             "</a> or send your own Pull Request"
       @handleError(err)
-      return
+      return false
 
-    @run(command, args)
+    # Update header
+    @heading.text(lang + " - " + filename)
+    # Return setup information
+    return info
 
   handleError: (err) ->
     # Display error and kill process
