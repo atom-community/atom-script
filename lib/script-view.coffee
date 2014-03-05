@@ -47,9 +47,7 @@ class ScriptView extends View
   start: ->
     # Get current editor
     editor = atom.workspace.getActiveEditor()
-    return unless editor?
-
-    @setup(editor)
+    if editor? then @setup(editor) else @destroy()
 
   getlang: (editor) ->
     grammar = editor.getGrammar()
