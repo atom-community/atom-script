@@ -37,6 +37,7 @@ class ScriptView extends View
     @output.empty()
     # Close any existing process and start a new one
     @stop()
+    @output.empty()
     @start()
 
   close: ->
