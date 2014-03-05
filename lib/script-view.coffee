@@ -89,26 +89,26 @@ class ScriptView extends View
     @filename = editor.getTitle()
 
     # Get selected text
-    @selectedText = editor.getSelectedText()
-    @filepath = editor.getPath()
+    selectedText = editor.getSelectedText()
+    filepath = editor.getPath()
 
     # If no text was selected, either use the file
     # or select ALL the code in the editor
 
     # Brand new file, text not selected, "select" ALL the text
-    if (not @selectedText? or not @selectedText) and not @filepath?
-      @selectedText = editor.getText()
+    if (not selectedText? or not selectedText) and not filepath?
+      selectedText = editor.getText()
 
     # If we still don't have selected text, use the path
-    if (not @selectedText? or not @selectedText) and @filepath?
+    if (not selectedText? or not selectedText) and filepath?
       console.log("Down the file path")
-      @filepath = editor.getPath()
+      filepath = editor.getPath()
       makeargs = grammarMap[@lang]["byFileArgs"]
-      args = makeargs(@filepath)
+      args = makeargs(filepath)
     else
       console.log("Down the selection path")
       makeargs = grammarMap[@lang]["bySelectionArgs"]
-      args = makeargs(@selectedText)
+      args = makeargs(selectedText)
 
     @run(command, args)
 
