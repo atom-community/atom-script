@@ -1,24 +1,34 @@
-# Maps Atom Grammar names to the interpreter used by that language
+# Maps Atom Grammar names to the command used by that language
 # As well as any special setup for arguments.
+
+defaultFileArgs = (filename) -> [filename]
+
 module.exports =
   CoffeeScript:
-    interpreter: "coffee"
-    makeargs: (code) -> ['-e', code]
+    command: "coffee"
+    bySelectionArgs: (code) -> ['-e', code]
+    byFileArgs: defaultFileArgs
   JavaScript:
-    interpreter: "node"
-    makeargs: (code) -> ['-e', code]
+    command: "node"
+    selectionArgs: (code) -> ['-e', code]
+    byFileArgs: defaultFileArgs
   Ruby:
-    interpreter: "ruby"
-    makeargs: (code) -> ['-e', code]
+    command: "ruby"
+    selectionArgs: (code) -> ['-e', code]
+    byFileArgs: defaultFileArgs
   Perl:
-    interpreter: "perl"
-    makeargs: (code) -> ['-e', code]
+    command: "perl"
+    selectionArgs: (code) -> ['-e', code]
+    byFileArgs: defaultFileArgs
   PHP:
-    interpreter: "php"
-    makeargs: (code) -> ['-r', code]
+    command: "php"
+    selectionArgs: (code) -> ['-r', code]
+    byFileArgs: defaultFileArgs
   Python:
-    interpreter: "python"
-    makeargs: (code) -> ['-c', code]
+    command: "python"
+    selectionArgs: (code) -> ['-c', code]
+    byFileArgs: defaultFileArgs
   'Shell Script (Bash)':
-    interpreter: "bash"
-    makeargs: (code) -> ['-c', code]
+    command: "bash"
+    selectionArgs: (code) -> ['-c', code]
+    byFileArgs: defaultFileArgs
