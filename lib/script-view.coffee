@@ -14,18 +14,18 @@ class ScriptView extends View
 
   initialize: (serializeState) ->
     # Bind commands
-    atom.workspaceView.command "script:run", => @show()
+    atom.workspaceView.command "script:run", => @start()
     atom.workspaceView.command "script:close-view", => @close()
     atom.workspaceView.command "script:kill-process", => @stop()
 
   serialize: ->
 
-  destroy: ->
-    # Stop the running process (if necessary) and dismiss window
-    @stop()
-    @detach()
+  start: ->
+    # Get current editor
+    editor = atom.workspace.getActiveEditor()
+    if editor? then @show(editor) else @close()
 
-  show: ->
+  show: (editor) ->
     # Display window and load message
 
     # First run, create view
@@ -35,19 +35,14 @@ class ScriptView extends View
     @heading.text("Loading...")
     # Close any existing process and start a new one
     @stop()
+    # Get script view ready
     @output.empty()
-
-    @start()
+    @setup(editor)
 
   close: ->
-    # Dismiss window and stop any running process
-    if @hasParent()
-      @destroy()
-
-  start: ->
-    # Get current editor
-    editor = atom.workspace.getActiveEditor()
-    if editor? then @setup(editor) else @destroy()
+    # Stop any running process and dismiss window
+    @stop()
+    if @hasParent() then @detach()
 
   getlang: (editor) ->
     grammar = editor.getGrammar()
