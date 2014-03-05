@@ -6,7 +6,6 @@ module.exports =
 class ScriptView extends View
   @bufferedProcess: null
   @lang: null
-  @code: null
   @filename: null
 
   @content: ->
@@ -97,18 +96,20 @@ class ScriptView extends View
     # or select ALL the code in the editor
 
     # File not saved, text not selected, "select" ALL the text
-    if (not selectedText? or not @selectedText) and not filepath?
+    if (not @selectedText? or not @selectedText) and not @filepath?
       @selectedText = editor.getText()
 
     # If we still don't have selected text, use the path
     # TODO: Will probably bork on empty string
-    if (not selectedText? or not @selectedText)
-      @filename = editor.getPath()
-      makeargs = grammarmap[@lang]["byFileArgs"]
-      args = makeargs(@filename)
+    if (not @selectedText? or not @selectedText)
+      console.log("Down the file path")
+      @filepath = editor.getPath()
+      makeargs = grammarMap[@lang]["byFileArgs"]
+      args = makeargs(@filepath)
     else
+      console.log("Down the selection path")
       makeargs = grammarMap[@lang]["bySelectionArgs"]
-      args = makeargs(@code)
+      args = makeargs(@selectedText)
 
     @run(command, args)
 
@@ -118,7 +119,7 @@ class ScriptView extends View
     @display("error", err)
     @stop()
 
-  run (command, args): ->
+  run: (command, args) ->
     # Default to where the user opened atom
     options =
       cwd: atom.project.getPath()
