@@ -25,9 +25,9 @@ class ScriptView extends View
   serialize: ->
 
   destroy: ->
-    # Dismiss window and stop any running process
-    @detach()
+    # Stop the running process (if necessary) and dismiss window
     @stop()
+    @detach()
 
   show: ->
     # Display window and load message
