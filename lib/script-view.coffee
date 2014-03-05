@@ -148,7 +148,9 @@ class ScriptView extends View
 
   stop: ->
     # Kill existing process
-    @bufferedProcess.kill() if @bufferedProcess? and @bufferedProcess.process?
+    if @bufferedProcess? and @bufferedProcess.process?
+      @display("stdout", "^C")
+      @bufferedProcess.kill()
 
   display: (css, line) ->
     # For display
