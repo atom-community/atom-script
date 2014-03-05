@@ -54,38 +54,46 @@ class ScriptView extends View
 
     @setup(editor)
 
-  setup: (editor) ->
-    # Get selected text
-    @code = editor.getSelectedText()
-    # If no text was selected, select ALL the code in the editor
-    if not @code? or not @code
-      # TODO: Switch to full path mode
-      #@filename = editor.getPath()
-      @code = editor.getText()
-
-    # Get language and filename
+  getlang: (editor) ->
     grammar = editor.getGrammar()
-    @lang = grammar.name
-    @filename = editor.getTitle()
+    lang = grammar.name
+    return lang
 
+  setup: (editor) ->
+    # Get language and filename
+    @lang = @getlang(editor)
+
+
+    err = null
     # Determine if no language is selected
-    if grammar.name == "Null Grammar" or grammar.name == "Plain Text"
+    if @lang == "Null Grammar" or @lang == "Plain Text"
       err =
         "Must select a language in the lower left or " +
         "save the file with an appropriate extension."
-      @handleError(err)
-      return
 
     # Provide them a dialog to submit an issue on GH, prepopulated
     # with their language of choice
-    else if ! (grammar.name of grammarMap)
+    if ! (@lang of grammarMap)
       err =
         "Command not configured for " + @lang + "!\n\n" +
         "Add an <a href='https://github.com/rgbkrk/atom-script/issues/" +
         "new?title=Add%20support%20for%20" + @lang + "'>issue on GitHub" +
         "</a> or send your own Pull Request"
+
+    if err?
       @handleError(err)
       return
+
+    @filename = editor.getTitle()
+
+    # Get selected text
+    @code = editor.getSelectedText()
+    # If no text was selected, select ALL the code in the editor
+
+    if not @code? or not @code
+      # TODO: Switch to full path mode
+      #@filename = editor.getPath()
+      @code = editor.getText()
 
     @run()
 
