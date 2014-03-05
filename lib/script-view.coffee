@@ -47,11 +47,11 @@ class ScriptView extends View
       @err = null
       @stop()
     else
-      if @lang? and @lang of grammarMap
-          interpreter = grammarMap[@lang]["interpreter"]
-          makeargs = grammarMap[@lang]["makeargs"]
 
-      command = interpreter
+      # Precondition: @lang? and @lang of grammarMap
+      command = grammarMap[@lang]["command"]
+      makeargs = grammarMap[@lang]["bySelectionArgs"]
+
       args = makeargs(@code)
 
       # Default to where the user opened atom
@@ -76,7 +76,10 @@ class ScriptView extends View
     @code = editor.getSelectedText()
     # If no text was selected, select ALL the code in the editor
     if not @code? or not @code
+      # TODO: Switch to full path mode
+      #@filename = editor.getPath()
       @code = editor.getText()
+
 
     grammar = editor.getGrammar()
     @lang = grammar.name
@@ -92,10 +95,10 @@ class ScriptView extends View
     # with their language of choice
     else if ! (grammar.name of grammarMap)
       @err =
-        "Interpreter not configured for " + @lang + "!\n\n" +
+        "Command not configured for " + @lang + "!\n\n" +
         "Add an <a href='https://github.com/rgbkrk/atom-script/issues/" +
         "new?title=Add%20support%20for%20" + @lang + "'>issue on GitHub" +
-        "</a> or send your own Pull Request"
+        "</a> or send your own Pull Request if there should be."
 
   display: (title, css, line)->
     @heading.text(title)

@@ -1,24 +1,41 @@
-# Maps Atom Grammar names to the interpreter used by that language
+# Maps Atom Grammar names to the command used by that language
 # As well as any special setup for arguments.
+
 module.exports =
   CoffeeScript:
-    interpreter: "coffee"
-    makeargs: (code) -> ['-e', code]
+    command: "coffee"
+    bySelectionArgs: (code) -> ['-e', code]
+    byFileArgs: (filename) -> [filename]
+
   JavaScript:
-    interpreter: "node"
-    makeargs: (code) -> ['-e', code]
+    command: "node"
+    bySelectionArgs: (code) -> ['-e', code]
+    byFileArgs: (filename) -> [filename]
+
   Ruby:
-    interpreter: "ruby"
-    makeargs: (code) -> ['-e', code]
+    command: "ruby"
+    bySelectionArgs: (code) -> ['-e', code]
+    byFileArgs: (filename) -> [filename]
+
   Perl:
-    interpreter: "perl"
-    makeargs: (code) -> ['-e', code]
+    command: "perl"
+    bySelectionArgs: (code) -> ['-e', code]
+    byFileArgs: (filename) -> [filename]
+
   PHP:
-    interpreter: "php"
-    makeargs: (code) -> ['-r', code]
+    command: "php"
+    bySelectionArgs: (code) -> ['-r', code]
+    byFileArgs: (filename) -> [filename]
+
   Python:
-    interpreter: "python"
-    makeargs: (code) -> ['-c', code]
+    command: "python"
+    bySelectionArgs: (code) -> ['-c', code]
+    byFileArgs: (filename) -> [filename]
   'Shell Script (Bash)':
-    interpreter: "bash"
-    makeargs: (code) -> ['-c', code]
+    command: "bash"
+    bySelectionArgs: (code) -> ['-c', code]
+    byFileArgs: (filename) -> [filename]
+
+  #Go:
+  #  command: "go"
+  #  byFileArgs: (filename) -> ['run', filename]
