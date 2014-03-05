@@ -31,6 +31,7 @@ module.exports =
     command: "python"
     bySelectionArgs: (code) -> ['-c', code]
     byFileArgs: (filename) -> [filename]
+    
   'Shell Script (Bash)':
     command: "bash"
     bySelectionArgs: (code) -> ['-c', code]
