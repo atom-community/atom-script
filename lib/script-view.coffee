@@ -31,13 +31,16 @@ class ScriptView extends View
 
   show: ->
     # Display window and load message
+
+    # First run, create view
     if not @hasParent()
       atom.workspaceView.prependToBottom(this)
+
     @heading.text("Loading...")
-    @output.empty()
     # Close any existing process and start a new one
     @stop()
     @output.empty()
+    
     @start()
 
   close: ->
