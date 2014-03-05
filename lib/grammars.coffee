@@ -4,39 +4,40 @@
 module.exports =
   CoffeeScript:
     command: "coffee"
-    bySelectionArgs: (code) -> ['-e', code]
-    byFileArgs: (filename) -> [filename]
+    "Selection Based": (code) -> ['-e', code]
+    "File Based": (filename) -> [filename]
 
   JavaScript:
     command: "node"
-    bySelectionArgs: (code) -> ['-e', code]
-    byFileArgs: (filename) -> [filename]
+    "Selection Based": (code) -> ['-e', code]
+    "File Based": (filename) -> [filename]
 
   Ruby:
     command: "ruby"
-    bySelectionArgs: (code) -> ['-e', code]
-    byFileArgs: (filename) -> [filename]
+    "Selection Based": (code) -> ['-e', code]
+    "File Based": (filename) -> [filename]
 
   Perl:
     command: "perl"
-    bySelectionArgs: (code) -> ['-e', code]
-    byFileArgs: (filename) -> [filename]
+    "Selection Based": (code) -> ['-e', code]
+    "File Based": (filename) -> [filename]
 
   PHP:
     command: "php"
-    bySelectionArgs: (code) -> ['-r', code]
-    byFileArgs: (filename) -> [filename]
+    "Selection Based": (code) -> ['-r', code]
+    "File Based": (filename) -> [filename]
 
   Python:
     command: "python"
-    bySelectionArgs: (code) -> ['-c', code]
-    byFileArgs: (filename) -> [filename]
-    
+    "Selection Based": (code) -> ['-c', code]
+    "File Based": (filename) -> [filename]
+
   'Shell Script (Bash)':
     command: "bash"
-    bySelectionArgs: (code) -> ['-c', code]
-    byFileArgs: (filename) -> [filename]
+    "Selection Based": (code) -> ['-c', code]
+    "File Based": (filename) -> [filename]
 
-  #Go:
-  #  command: "go"
-  #  byFileArgs: (filename) -> ['run', filename]
+  Go:
+    command: "go"
+    #"Selection Based": (code) -> []
+    "File Based": (filename) -> ['run', filename]
