@@ -8,6 +8,7 @@ class ScriptView extends View
   @lang: null
   @code: null
   @err: null
+  @filename: null
 
   @content: ->
     @div class: 'tool-panel panel panel-bottom padding script', outlet: 'script', tabindex: -1, =>
@@ -58,8 +59,8 @@ class ScriptView extends View
         cwd: atom.project.getPath()
         env: process.env
 
-      stdout = (output) => @display(@lang, "stdout", output)
-      stderr = (output) => @display(@lang, "stderr", output)
+      stdout = (output) => @display(@lang + " - " + @filename, "stdout", output)
+      stderr = (output) => @display(@lang + " - " + @filename, "stderr", output)
       exit = (return_code) -> console.log("Exited with #{return_code}")
 
       @bufferedProcess = new BufferedProcess({command, args, options, stdout, stderr, exit})
@@ -79,6 +80,7 @@ class ScriptView extends View
 
     grammar = editor.getGrammar()
     @lang = grammar.name
+    @filename = editor.getTitle()
 
     # Determine if no language is selected
     if grammar.name == "Null Grammar" or grammar.name == "Plain Text"
