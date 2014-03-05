@@ -40,7 +40,7 @@ class ScriptView extends View
     # Close any existing process and start a new one
     @stop()
     @output.empty()
-    
+
     @start()
 
   close: ->
@@ -49,9 +49,46 @@ class ScriptView extends View
       @destroy()
 
   start: ->
-    # Display error or run script
-    @check()
-    if @err? then @handleError() else @run()
+    # Get current editor
+    editor = atom.workspace.getActiveEditor()
+    return unless editor?
+
+    @setup(editor)
+
+  setup: (editor) ->
+    # Get selected text
+    @code = editor.getSelectedText()
+    # If no text was selected, select ALL the code in the editor
+    if not @code? or not @code
+      # TODO: Switch to full path mode
+      #@filename = editor.getPath()
+      @code = editor.getText()
+
+    # Get language and filename
+    grammar = editor.getGrammar()
+    @lang = grammar.name
+    @filename = editor.getTitle()
+
+    # Determine if no language is selected
+    if grammar.name == "Null Grammar" or grammar.name == "Plain Text"
+      err =
+        "Must select a language in the lower left or " +
+        "save the file with an appropriate extension."
+      handleError(err)
+      return
+
+    # Provide them a dialog to submit an issue on GH, prepopulated
+    # with their language of choice
+    else if ! (grammar.name of grammarMap)
+      err =
+        "Command not configured for " + @lang + "!\n\n" +
+        "Add an <a href='https://github.com/rgbkrk/atom-script/issues/" +
+        "new?title=Add%20support%20for%20" + @lang + "'>issue on GitHub" +
+        "</a> or send your own Pull Request"
+      handleError(err)
+      return
+
+    @run()
 
   handleError: ->
     # Display error and kill process
@@ -88,36 +125,3 @@ class ScriptView extends View
   display: (css, line) ->
     # For display
     @output.append("<pre class='line #{css}'>#{line}</pre>")
-
-  check: ->
-    # Get current editor
-    editor = atom.workspace.getActiveEditor()
-    return unless editor?
-
-    # Get selected text
-    @code = editor.getSelectedText()
-    # If no text was selected, select ALL the code in the editor
-    if not @code? or not @code
-      # TODO: Switch to full path mode
-      #@filename = editor.getPath()
-      @code = editor.getText()
-
-    # Get language and filename
-    grammar = editor.getGrammar()
-    @lang = grammar.name
-    @filename = editor.getTitle()
-
-    # Determine if no language is selected
-    if grammar.name == "Null Grammar" or grammar.name == "Plain Text"
-      @err =
-        "Must select a language in the lower left or " +
-        "save the file with an appropriate extension."
-
-    # Provide them a dialog to submit an issue on GH, prepopulated
-    # with their language of choice
-    else if ! (grammar.name of grammarMap)
-      @err =
-        "Command not configured for " + @lang + "!\n\n" +
-        "Add an <a href='https://github.com/rgbkrk/atom-script/issues/" +
-        "new?title=Add%20support%20for%20" + @lang + "'>issue on GitHub" +
-        "</a> or send your own Pull Request"
