@@ -10,7 +10,8 @@ class ScriptView extends View
     # Display layout and outlets
     @div class: 'tool-panel panel panel-bottom padding script', outlet: 'script', tabindex: -1, =>
       @div class: 'panel-heading padded heading', outlet: 'heading'
-      @div class: 'panel-body padded output', outlet: 'output'
+      @div class: 'panel-body padded output', =>
+        @pre class: 'padded lines', outlet: 'lines'
 
   initialize: (serializeState) ->
     # Bind commands
@@ -45,7 +46,7 @@ class ScriptView extends View
     @heading.text("Loading...")
 
     # Get script view ready
-    @output.empty()
+    @lines.empty()
 
   close: ->
     # Stop any running process and dismiss window
@@ -139,8 +140,8 @@ class ScriptView extends View
       cwd: atom.project.getPath()
       env: process.env
 
-    stdout = (output) => @display("stdout", output)
-    stderr = (output) => @display("stderr", output)
+    stdout = (line) => @display("stdout", line)
+    stderr = (line) => @display("stderr", line)
     exit = (return_code) -> console.log "Exited with #{return_code}"
 
     # Run process
@@ -148,8 +149,10 @@ class ScriptView extends View
 
   stop: ->
     # Kill existing process
-    @bufferedProcess.kill() if @bufferedProcess? and @bufferedProcess.process?
+    if @bufferedProcess? and @bufferedProcess.process?
+      @display("stdout", "^C")
+      @bufferedProcess.kill()
 
   display: (css, line) ->
     # For display
-    @output.append("<pre class='line #{css}'>#{line}</pre>")
+    @lines.append("<pre class='line #{css}'>#{line}</pre>")
