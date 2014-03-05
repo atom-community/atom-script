@@ -11,11 +11,13 @@ class ScriptView extends View
   @filename: null
 
   @content: ->
+    # Display layout and outlets
     @div class: 'tool-panel panel panel-bottom padding script', outlet: 'script', tabindex: -1, =>
       @div class: 'panel-heading padded heading', outlet: 'heading'
       @div class: 'panel-body padded output', outlet: 'output'
 
   initialize: (serializeState) ->
+    # Bind commands
     atom.workspaceView.command "script:run", => @show()
     atom.workspaceView.command "script:close-view", => @close()
     atom.workspaceView.command "script:kill-process", => @stop()
@@ -23,52 +25,69 @@ class ScriptView extends View
   serialize: ->
 
   destroy: ->
+    # Dismiss window and stop any running process
     @detach()
     @stop()
 
   show: ->
+    # Display window and load message
     if not @hasParent()
       atom.workspaceView.prependToBottom(this)
     @heading.text("Loading...")
     @output.empty()
+    # Close any existing process and start a new one
     @stop()
     @start()
 
   close: ->
+    # Dismiss window and stop any running process
     if @hasParent()
       @detach()
       @stop()
 
   start: ->
+    # Display error or run script
     @check()
+    if @err? then @handleError() else @run()
 
-    if @err?
-      @display("Error", "error", @err)
-      @err = null
-      @stop()
-    else
+  handleError: ->
+    # Display error and kill process
+    @heading.text("Error")
+    @display("error", @err)
+    @err = null
+    @stop()
 
-      # Precondition: @lang? and @lang of grammarMap
-      command = grammarMap[@lang]["command"]
-      makeargs = grammarMap[@lang]["bySelectionArgs"]
+  run: ->
+    # Precondition: @lang? and @lang of grammarMap
+    command = grammarMap[@lang]["command"]
+    makeargs = grammarMap[@lang]["bySelectionArgs"]
 
-      args = makeargs(@code)
+    args = makeargs(@code)
 
-      # Default to where the user opened atom
-      options =
-        cwd: atom.project.getPath()
-        env: process.env
+    # Default to where the user opened atom
+    options =
+      cwd: atom.project.getPath()
+      env: process.env
 
-      stdout = (output) => @display(@lang + " - " + @filename, "stdout", output)
-      stderr = (output) => @display(@lang + " - " + @filename, "stderr", output)
-      exit = (return_code) -> console.log("Exited with #{return_code}")
+    # Set up process and output display
+    @heading.text(@lang + " - " + @filename)
+    stdout = (output) => @display("stdout", output)
+    stderr = (output) => @display("stderr", output)
+    exit = (return_code) -> console.log "Exited with #{return_code}"
 
-      @bufferedProcess = new BufferedProcess({command, args, options, stdout, stderr, exit})
+    # Run process
+    @bufferedProcess = new BufferedProcess({command, args, options, stdout, stderr, exit})
 
   stop: ->
+    # Kill existing process
     @bufferedProcess.kill() if @bufferedProcess? and @bufferedProcess.process?
 
+  display: (css, line) ->
+    # For display
+    @output.append("<pre class='line #{css}'>#{line}</pre>")
+
   check: ->
+    # Get current editor
     editor = atom.workspace.getActiveEditor()
     return unless editor?
 
@@ -80,7 +99,7 @@ class ScriptView extends View
       #@filename = editor.getPath()
       @code = editor.getText()
 
-
+    # Get language and filename
     grammar = editor.getGrammar()
     @lang = grammar.name
     @filename = editor.getTitle()
@@ -98,8 +117,4 @@ class ScriptView extends View
         "Command not configured for " + @lang + "!\n\n" +
         "Add an <a href='https://github.com/rgbkrk/atom-script/issues/" +
         "new?title=Add%20support%20for%20" + @lang + "'>issue on GitHub" +
-        "</a> or send your own Pull Request if there should be."
-
-  display: (title, css, line)->
-    @heading.text(title)
-    @output.append("<pre class='line #{css}'>#{line}</pre>")
+        "</a> or send your own Pull Request"
