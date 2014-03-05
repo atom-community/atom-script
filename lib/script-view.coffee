@@ -23,8 +23,9 @@ class ScriptView extends View
   start: ->
     # Get current editor
     editor = atom.workspace.getActiveEditor()
+
+    # No editor available, do nothing
     if not editor?
-      @close()
       return
 
     @resetView()
