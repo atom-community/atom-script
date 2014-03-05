@@ -23,11 +23,12 @@ class ScriptView extends View
   start: ->
     # Get current editor
     editor = atom.workspace.getActiveEditor()
-    if not editor? then @close()
+    if not editor?
+      @close()
+      return
 
     @resetView()
     @setup(editor)
-
 
   resetView: ->
     # Display window and load message
@@ -83,9 +84,6 @@ class ScriptView extends View
 
     filename = editor.getTitle()
 
-    # Set up header
-    @heading.text(lang + " - " + filename)
-
     # Get selected text
     selectedText = editor.getSelectedText()
     filepath = editor.getPath()
@@ -117,7 +115,9 @@ class ScriptView extends View
             "</a> or send your own Pull Request"
       @handleError(err)
       return false
-      
+
+    # Set up header
+    @heading.text(lang + " - " + filename)
     @run(command, args)
 
   handleError: (err) ->
