@@ -32,3 +32,6 @@ module.exports =
     command: "bash"
     selectionArgs: (code) -> ['-c', code]
     byFileArgs: defaultFileArgs
+  Go:
+    command: "go"
+    byFileArgs: (filename) -> ['run', filename]
