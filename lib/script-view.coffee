@@ -84,7 +84,7 @@ class ScriptView extends View
     command = grammarMap[lang]["command"]
 
     filename = editor.getTitle()
-    
+
     # Set up header
     @heading.text(lang + " - " + filename)
 
@@ -99,14 +99,26 @@ class ScriptView extends View
     if (not selectedText? or not selectedText) and not filepath?
       selectedText = editor.getText()
 
-    # If we still don't have selected text, use the path
+    # No selected text on a file that does exist, use filepath
     if (not selectedText? or not selectedText) and filepath?
-      filepath = editor.getPath()
-      makeargs = grammarMap[lang]["byFileArgs"]
-      args = makeargs(filepath)
+      argType = "File Based"
+      arg = filepath
     else
-      makeargs = grammarMap[lang]["bySelectionArgs"]
-      args = makeargs(selectedText)
+      argType = "Selection Based"
+      arg = selectedText
+
+    makeargs = grammarMap[lang][argType]
+
+    try
+      args = makeargs(arg)
+    catch error
+      err = argType + " Runner not available for " + lang + "\n\n" +
+            "If it should exist add an " +
+            "<a href='https://github.com/rgbkrk/atom-script/issues/" +
+            "new?title=Add%20support%20for%20" + lang + "'>issue on GitHub" +
+            "</a> or send your own Pull Request"
+      @handleError(err)
+      return
 
     @run(command, args)
 
