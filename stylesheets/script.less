@@ -3,11 +3,13 @@
 // See https://github.com/atom/atom-dark-ui/blob/master/stylesheets/ui-variables.less
 // for a full listing of what's available.
 @import "ui-variables";
+@import "ui-mixins";
 
 .script {
   overflow: scroll;
   height: 300px;
   margin-bottom: 0px;
+  background-color: @inset-panel-background-color;
 }
 
 .heading {
@@ -17,6 +19,7 @@
 
 .output {
   margin-top: 35px;
+  background-color: @inset-panel-background-color;
 }
 
 .stderr {
