@@ -4,13 +4,14 @@
 
 Currently supports:
 
+  * Bash
   * Coffeescript
+  * Go (only by file)
   * Javascript
   * Perl
   * PHP
   * Python
   * Ruby
-  * Shell Script (Bash)
 
 You only have to add a few lines in a PR to support another.
 
@@ -23,9 +24,11 @@ You only have to add a few lines in a PR to support another.
 Select some code and hit `cmd-i`. Your code will get run in
 a fresh instance of the interpreter used by your scripting language.
 
-If you don't select any text, it will run the entire file by default.
+If you don't select any text, it will run the entire file instead.
 
-`ctl-c` will kill the most recently run process ([#27](https://github.com/rgbkrk/atom-script/issues/27)).
+`ctl-c` will kill the process.
+
+`cmd-w` closes the pane.
 
 ## Development
 
