@@ -29,7 +29,8 @@ class ScriptView extends View
       return
 
     @resetView()
-    @setup(editor)
+    info = @setup(editor)
+    if info then @run(info.command, info.args)
 
   resetView: ->
     # Display window and load message
@@ -57,6 +58,9 @@ class ScriptView extends View
     return lang
 
   setup: (editor) ->
+    # Info object
+    info = {}
+
     # Get language
     lang = @getlang(editor)
 
@@ -78,10 +82,10 @@ class ScriptView extends View
 
     if err?
       @handleError(err)
-      return
+      return false
 
     # Precondition: lang? and lang of grammarMap
-    command = grammarMap[lang]["command"]
+    info.command = grammarMap[lang]["command"]
 
     filename = editor.getTitle()
 
@@ -108,6 +112,7 @@ class ScriptView extends View
 
     try
       args = makeargs(arg)
+      info.args = args
     catch error
       err = argType + " Runner not available for " + lang + "\n\n" +
             "If it should exist add an " +
@@ -117,9 +122,10 @@ class ScriptView extends View
       @handleError(err)
       return false
 
-    # Set up header
+    # Update header
     @heading.text(lang + " - " + filename)
-    @run(command, args)
+    # Return setup information
+    return info
 
   handleError: (err) ->
     # Display error and kill process
