@@ -23,21 +23,26 @@ class ScriptView extends View
   start: ->
     # Get current editor
     editor = atom.workspace.getActiveEditor()
-    if editor? then @show(editor) else @close()
+    if not editor? then @close()
 
-  show: (editor) ->
+    @resetView()
+    @setup(editor)
+
+
+  resetView: ->
     # Display window and load message
 
     # First run, create view
     if not @hasParent()
       atom.workspaceView.prependToBottom(this)
 
-    @heading.text("Loading...")
     # Close any existing process and start a new one
     @stop()
+
+    @heading.text("Loading...")
+
     # Get script view ready
     @output.empty()
-    @setup(editor)
 
   close: ->
     # Stop any running process and dismiss window
@@ -111,8 +116,8 @@ class ScriptView extends View
             "new?title=Add%20support%20for%20" + lang + "'>issue on GitHub" +
             "</a> or send your own Pull Request"
       @handleError(err)
-      return
-
+      return false
+      
     @run(command, args)
 
   handleError: (err) ->
