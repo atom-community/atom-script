@@ -26,13 +26,15 @@ a fresh instance of the interpreter used by your scripting language.
 
 If you don't select any text, it will run the entire file instead.
 
-`ctl-c` will kill the process.
+`ctrl-c` will kill the process.
 
-`cmd-w` closes the pane.
+`ctrl-w` closes the pane.
+
+You can also close the pane and kill the process by clicking the close icon in the upper left.
 
 ## Development
 
-Use the atom [contributing guidelines](https://atom.io/docs/v0.64.0/contributing).
+Use the atom [contributing guidelines](https://atom.io/docs/v0.68.0/contributing).
 They're pretty sane.
 
 #### Quick and dirty setup
