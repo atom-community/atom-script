@@ -16,5 +16,5 @@ class HeaderView extends View
     @status.removeClass('icon-hourglass icon-stop icon-check')
     switch status
       when "start" then @status.addClass('icon-hourglass')
-      when "err" then @status.addClass('icon-stop')
+      when "err" then @status.addClass('icon-alert')
       when "stop" then @status.addClass('icon-check')
