@@ -75,7 +75,7 @@ class ScriptView extends View
 
     # Provide them a dialog to submit an issue on GH, prepopulated
     # with their language of choice
-    if ! (lang of grammarMap)
+    else if ! (lang of grammarMap)
       err =
         "Command not configured for " + lang + "!\n\n" +
         "Add an <a href='https://github.com/rgbkrk/atom-script/issues/" +
