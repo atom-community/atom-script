@@ -149,8 +149,10 @@ class ScriptView extends View
     @bufferedProcess = new BufferedProcess({command, args, options, stdout, stderr, exit})
 
   stop: ->
-    # Kill existing process
-    @bufferedProcess.kill() if @bufferedProcess? and @bufferedProcess.process?
+    # Kill existing process if available
+    if @bufferedProcess? and @bufferedProcess.process?
+      @display("stdout", "^C")
+      @bufferedProcess.kill()
 
   display: (css, line) ->
     # For display
