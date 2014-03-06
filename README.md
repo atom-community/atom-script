@@ -26,9 +26,9 @@ a fresh instance of the interpreter used by your scripting language.
 
 If you don't select any text, it will run the entire file instead.
 
-`ctrl-c` will kill the process.
+`ctrl-c` will kill the process but leaves the pane open for viewing.
 
-`ctrl-w` closes the pane.
+`ctrl-w` closes the pane and kills the process.
 
 You can also close the pane and kill the process by clicking the close icon in the upper left.
 
