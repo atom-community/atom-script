@@ -155,7 +155,7 @@ class ScriptView extends View
     # Kill existing process if available
     if @bufferedProcess? and @bufferedProcess.process?
       @display("stdout", "^C")
-      @headerView.setStatus("err")
+      @headerView.setStatus("kill")
       @bufferedProcess.kill()
 
   display: (css, line) ->
