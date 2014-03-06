@@ -132,6 +132,7 @@ class ScriptView extends View
   handleError: (err) ->
     # Display error and kill process
     @headerView.title.text("Error")
+    @headerView.setStatus("err")
     @display("error", err)
     @stop()
 
@@ -143,7 +144,9 @@ class ScriptView extends View
 
     stdout = (output) => @display("stdout", output)
     stderr = (output) => @display("stderr", output)
-    exit = (return_code) -> console.log "Exited with #{return_code}"
+    exit = (return_code) =>
+      if return_code is 0 then @headerView.setStatus("stop") else @headerView.setStatus("err")
+      console.log "Exited with #{return_code}"
 
     # Run process
     @bufferedProcess = new BufferedProcess({command, args, options, stdout, stderr, exit})
