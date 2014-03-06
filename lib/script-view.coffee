@@ -1,5 +1,6 @@
 grammarMap = require './grammars'
 {View, BufferedProcess} = require 'atom'
+HeaderView = require './header-view'
 
 # Runs a portion of a script through an interpreter and displays it line by line
 module.exports =
@@ -9,7 +10,7 @@ class ScriptView extends View
   @content: ->
     # Display layout and outlets
     @div class: 'tool-panel panel panel-bottom padding script', outlet: 'script', tabindex: -1, =>
-      @div class: 'panel-heading padded heading', outlet: 'heading'
+      @subview 'headerView', new HeaderView()
       @div class: 'panel-body padded output', outlet: 'output'
 
   initialize: (serializeState) ->
@@ -42,7 +43,8 @@ class ScriptView extends View
     # Close any existing process and start a new one
     @stop()
 
-    @heading.text("Loading...")
+    @headerView.title.text("Loading...")
+    @headerView.setStatus("start")
 
     # Get script view ready
     @output.empty()
@@ -123,13 +125,13 @@ class ScriptView extends View
       return false
 
     # Update header
-    @heading.text(lang + " - " + filename)
+    @headerView.title.text(lang + " - " + filename)
     # Return setup information
     return info
 
   handleError: (err) ->
     # Display error and kill process
-    @heading.text("Error")
+    @headerView.title.text("Error")
     @display("error", err)
     @stop()
 
@@ -147,8 +149,10 @@ class ScriptView extends View
     @bufferedProcess = new BufferedProcess({command, args, options, stdout, stderr, exit})
 
   stop: ->
-    # Kill existing process
-    @bufferedProcess.kill() if @bufferedProcess? and @bufferedProcess.process?
+    # Kill existing process if available
+    if @bufferedProcess? and @bufferedProcess.process?
+      @display("stdout", "^C")
+      @bufferedProcess.kill()
 
   display: (css, line) ->
     # For display
