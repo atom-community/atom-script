@@ -44,6 +44,7 @@ class ScriptView extends View
     @stop()
 
     @headerView.title.text("Loading...")
+    @headerView.setStatus("start")
 
     # Get script view ready
     @output.empty()
