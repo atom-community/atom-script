@@ -11,7 +11,6 @@ class ScriptView extends View
     # Display layout and outlets
     @div class: 'tool-panel panel panel-bottom padding script', outlet: 'script', tabindex: -1, =>
       @subview 'headerView', new HeaderView()
-      # @div class: 'panel-heading padded heading', outlet: 'heading'
       @div class: 'panel-body padded output', outlet: 'output'
 
   initialize: (serializeState) ->
@@ -45,7 +44,6 @@ class ScriptView extends View
     @stop()
 
     @headerView.title.text("Loading...")
-    @headerView.closeButton.text("X")
 
     # Get script view ready
     @output.empty()
