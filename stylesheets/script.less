@@ -5,55 +5,55 @@
 @import "ui-variables";
 @import "ui-mixins";
 
-.script {
+.headerView {
+  position: fixed;
+  width: 100%;
+
+  .heading-close {
+    color: @text-color-highlight;
+  }
+
+  .heading-title {
+    padding-left: 6px;
+  }
+
+  .heading-status {
+    padding-left: 9px;
+  }
+
+  .icon-check {
+    color: @text-color-success;
+  }
+
+  .icon-hourglass {
+    color: @text-color;
+  }
+
+  .icon-alert {
+    color: @text-color-warning;
+  }
+}
+
+.scriptView {
   overflow: scroll;
   height: 300px;
   margin-bottom: 0px;
-}
 
-.heading {
-  position: fixed;
-  width: 100%;
-}
+  .panel-body pre{
+    background: @tool-panel-background-color;
+  }
 
-.heading-close {
-  color: white;
-}
+  .output {
+    margin-top: 35px;
+  }
 
-.heading-title {
-  padding-left: 6px;
-}
+  .stderr {
+    color: @text-color-error;
+  }
 
-.heading-status {
-  padding-left: 8px;
-}
-
-.icon-check {
-  color: green;
-}
-
-.icon-hourglass {
-  color: white;
-}
-
-.icon-stop {
-  color: red;
-}
-
-.panel-body pre{
-  background: #1d1f21;
-}
-
-.output {
-  margin-top: 35px;
-}
-
-.stderr {
-  color: red;
-}
-
-.line {
-  border-radius: 0px;
-  margin: 0px;
-  padding: 0px;
+  .line {
+    border-radius: 0px;
+    margin: 0px;
+    padding: 0px;
+  }
 }
