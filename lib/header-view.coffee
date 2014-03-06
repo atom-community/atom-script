@@ -4,10 +4,10 @@ module.exports =
 class HeaderView extends View
 
   @content: ->
-    @div class: 'panel-heading padded heading', =>
+    @div class: 'panel-heading padded heading headerView', =>
       @span class: 'heading-close icon-remove-close', outlet: 'closeButton', click: 'close'
       @span class: 'heading-title', outlet: 'title'
-      @span class: 'heading-status icon-tmp', outlet: 'status'
+      @span class: 'heading-status', outlet: 'status'
 
   close: ->
     atom.workspaceView.trigger "script:close-view"

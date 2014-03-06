@@ -9,7 +9,7 @@ class ScriptView extends View
 
   @content: ->
     # Display layout and outlets
-    @div class: 'tool-panel panel panel-bottom padding script', outlet: 'script', tabindex: -1, =>
+    @div class: 'tool-panel panel panel-bottom padding scriptView', outlet: 'script', tabindex: -1, =>
       @subview 'headerView', new HeaderView()
       @div class: 'panel-body padded output', outlet: 'output'
 
