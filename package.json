@@ -8,6 +8,16 @@
     "script:run"
   ],
   "repository": "https://github.com/rgbkrk/atom-script",
+  "keywords": [
+    "script", "runner",
+    "bash", "CoffeeScript",
+    "go", "F#",
+    "fsharp", "JavaScript",
+    "newLISP", "Perl",
+    "PHP", "Python",
+    "Ruby", "run",
+    "code"
+  ],
   "license": "Apache 2",
   "engines": {
     "atom": ">0.50.0"
