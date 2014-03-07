@@ -13,6 +13,7 @@ Currently supports:
   * Python
   * Ruby
   * F#
+  * newLISP
 
 You only have to add a few lines in a PR to support another.
 
