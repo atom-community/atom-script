@@ -6,16 +6,18 @@ Currently supports:
 
   * Bash
   * Coffeescript
-  * Go (only by file)
+  * Go *
+  * F# *
   * Javascript
+  * newLISP
   * Perl
   * PHP
   * Python
   * Ruby
-  * F#
-  * newLISP
 
 You only have to add a few lines in a PR to support another.
+
+`*`'ed languages only support file based runs.
 
 ## Installation
 
