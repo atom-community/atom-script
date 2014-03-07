@@ -1,6 +1,6 @@
-# Run scripts in Atom!
+# Run code in Atom!
 
-![](https://f.cloud.github.com/assets/836375/2302319/b9ab8dec-a176-11e3-9073-a7d42c4fdf16.gif)
+![](https://f.cloud.github.com/assets/836375/2354201/e7a115e6-a5b8-11e3-9f89-e9b2ac022f71.gif)
 
 Currently supports:
 
@@ -21,20 +21,20 @@ You only have to add a few lines in a PR to support another.
 
 ## Usage
 
-Select some code and hit `cmd-i`. Your code will get run in
-a fresh instance of the interpreter used by your scripting language.
+Select some code and hit `⌘-i` to run just that selection.
 
-If you don't select any text, it will run the entire file instead.
+`⌘-i` to run your entire file.
 
-`ctrl-c` will kill the process but leaves the pane open for viewing.
+`ctrl-c` will kill the process but leaves the pane open.
 
 `ctrl-w` closes the pane and kills the process.
 
-You can also close the pane and kill the process by clicking the close icon in the upper left.
+To kill everything, click the close icon in the upper right and just go back to
+coding.
 
 ## Development
 
-Use the atom [contributing guidelines](https://atom.io/docs/v0.68.0/contributing).
+Use the atom [contributing guidelines](https://atom.io/docs/latest/contributing).
 They're pretty sane.
 
 #### Quick and dirty setup
@@ -54,4 +54,5 @@ package directory, followed by `apm install` to get dependencies.
 After pulling upstream changes, make sure to run `apm update`.
 
 To start hacking, make sure to run `atom --dev` from the package directory.
-Cut a branch while you're working and submit a Pull Request when done or when you want some feedback!
+Cut a branch while you're working then either submit a Pull Request when done
+or when you want some feedback!
