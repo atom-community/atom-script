@@ -45,3 +45,8 @@ module.exports =
   'F#':
     command: "fsharpi"
     "File Based": (filename) -> ['--exec', filename]
+
+  newLISP:
+    command: "newlisp"
+    "Selection Based": (code) -> ['-e', code]
+    "File Based": (filename) -> [filename]
