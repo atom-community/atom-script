@@ -12,6 +12,7 @@ Currently supports:
   * PHP
   * Python
   * Ruby
+  * F#
 
 You only have to add a few lines in a PR to support another.
 
