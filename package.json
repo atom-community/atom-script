@@ -3,7 +3,7 @@
   "main": "./lib/script",
   "version": "2.0.0",
   "private": false,
-  "description": "Run scripts from atom.",
+  "description": "Run code in Atom!",
   "activationEvents": [
     "script:run"
   ],
