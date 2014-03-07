@@ -8,10 +8,12 @@
 .headerView {
   position: fixed;
   width: 100%;
+  z-index:10;
+  position:relative;
+
 
   .heading-close {
     color: @text-color-highlight;
-    padding-right: 200px; /* Complete fixed hack */
   }
 
   .heading-title {
@@ -49,7 +51,6 @@
   }
 
   .output {
-    margin-top: 35px;
   }
 
   .stderr {
