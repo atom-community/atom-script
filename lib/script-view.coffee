@@ -8,10 +8,11 @@ class ScriptView extends View
   @bufferedProcess: null
 
   @content: ->
-    # Display layout and outlets
-    @div class: 'tool-panel panel panel-bottom padding scriptView', outlet: 'script', tabindex: -1, =>
+    @div class: 'outer-scriptView', =>
       @subview 'headerView', new HeaderView()
-      @div class: 'panel-body padded output', outlet: 'output'
+      # Display layout and outlets
+      @div class: 'tool-panel panel panel-bottom padding scriptView', outlet: 'script', tabindex: -1, =>
+        @div class: 'panel-body padded output', outlet: 'output'
 
   initialize: (serializeState) ->
     # Bind commands
