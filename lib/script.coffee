@@ -10,4 +10,4 @@ module.exports =
     @scriptView.destroy()
 
   serialize: ->
-    scriptViewState: @scriptViewState.serialize()
+    scriptViewState: @scriptView.serialize()
