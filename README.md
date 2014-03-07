@@ -1,6 +1,6 @@
 # Run code in Atom!
 
-![](https://f.cloud.github.com/assets/836375/2354201/e7a115e6-a5b8-11e3-9f89-e9b2ac022f71.gif)
+![](https://f.cloud.github.com/assets/836375/2354274/4932e59e-a5bb-11e3-9f00-c5b5c9d6fc67.gif)
 
 Currently supports:
 
