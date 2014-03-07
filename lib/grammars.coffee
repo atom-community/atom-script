@@ -41,3 +41,7 @@ module.exports =
     command: "go"
     #"Selection Based": (code) -> []
     "File Based": (filename) -> ['run', filename]
+
+  'F#':
+    command: "fsharpi"
+    "File Based": (filename) -> ['--exec', filename]
