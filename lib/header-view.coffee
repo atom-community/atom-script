@@ -5,9 +5,9 @@ class HeaderView extends View
 
   @content: ->
     @div class: 'panel-heading padded heading headerView', =>
-      @span class: 'heading-close icon-remove-close', outlet: 'closeButton', click: 'close'
       @span class: 'heading-title', outlet: 'title'
       @span class: 'heading-status', outlet: 'status'
+      @span class: 'heading-close icon-remove-close pull-right', outlet: 'closeButton', click: 'close'
 
   close: ->
     atom.workspaceView.trigger "script:close-view"
