@@ -15,24 +15,10 @@ class ScriptView extends View
         @div class: 'panel-body padded output', outlet: 'output'
 
   initialize: (serializeState) ->
-    # Bind commands
-    atom.workspaceView.command "script:run", => @start()
     atom.workspaceView.command "script:close-view", => @close()
     atom.workspaceView.command "script:kill-process", => @stop()
 
   serialize: ->
-
-  start: ->
-    # Get current editor
-    editor = atom.workspace.getActiveEditor()
-
-    # No editor available, do nothing
-    if not editor?
-      return
-
-    @resetView()
-    info = @setup(editor)
-    if info then @run(info.command, info.args)
 
   resetView: ->
     # Display window and load message
@@ -61,17 +47,24 @@ class ScriptView extends View
     return lang
 
   setup: (editor) ->
-    # Info object
-    info = {}
+    @resetView()
+    argSetup = @buildArgs(editor)
+    return argSetup
 
-    # Get language
+  buildArgs: (editor) ->
+
+    # Get language and filename
     lang = @getlang(editor)
+    filename = editor.getTitle()
+
+    # Update header
+    @headerView.title.text(lang + " - " + filename)
 
     err = null
     # Determine if no language is selected
     if lang == "Null Grammar" or lang == "Plain Text"
       err =
-        "Must select a language in the lower left or " +
+        "Please select a language in the lower left or " +
         "save the file with an appropriate extension."
 
     # Provide them a dialog to submit an issue on GH, prepopulated
@@ -84,14 +77,35 @@ class ScriptView extends View
         "</a> or send your own Pull Request"
 
     if err?
-      @handleError(err)
+      @displayError(err)
       return false
 
-    # Precondition: lang? and lang of grammarMap
-    info.command = grammarMap[lang]["command"]
+    [runType, arg] = @getRunType(editor)
 
-    filename = editor.getTitle()
+    makeargs = grammarMap[lang][runType]
 
+    # argument layout for BufferedProcess
+    argSetup = {}
+
+    try
+      args = makeargs(arg)
+
+      # Precondition: lang? and lang of grammarMap
+      argSetup.command = grammarMap[lang]["command"]
+      argSetup.args = args
+    catch error
+      err = runType + " Runner not available for " + lang + "\n\n" +
+            "If it should exist add an " +
+            "<a href='https://github.com/rgbkrk/atom-script/issues/" +
+            "new?title=Add%20support%20for%20" + lang + "'>issue on GitHub" +
+            "</a> or send your own Pull Request"
+      @displayError(err)
+      return false
+
+    # Return argument build
+    return argSetup
+
+  getRunType: (editor) ->
     # Get selected text
     selectedText = editor.getSelectedText()
     filepath = editor.getPath()
@@ -105,32 +119,15 @@ class ScriptView extends View
 
     # No selected text on a file that does exist, use filepath
     if (not selectedText? or not selectedText) and filepath?
-      argType = "File Based"
+      runType = "File Based"
       arg = filepath
     else
-      argType = "Selection Based"
+      runType = "Selection Based"
       arg = selectedText
 
-    makeargs = grammarMap[lang][argType]
+    return [runType, arg]
 
-    try
-      args = makeargs(arg)
-      info.args = args
-    catch error
-      err = argType + " Runner not available for " + lang + "\n\n" +
-            "If it should exist add an " +
-            "<a href='https://github.com/rgbkrk/atom-script/issues/" +
-            "new?title=Add%20support%20for%20" + lang + "'>issue on GitHub" +
-            "</a> or send your own Pull Request"
-      @handleError(err)
-      return false
-
-    # Update header
-    @headerView.title.text(lang + " - " + filename)
-    # Return setup information
-    return info
-
-  handleError: (err) ->
+  displayError: (err) ->
     # Display error and kill process
     @headerView.title.text("Error")
     @headerView.setStatus("err")
