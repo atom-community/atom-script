@@ -1,4 +1,3 @@
-grammarMap = require './grammars'
 {View, BufferedProcess} = require 'atom'
 HeaderView = require './header-view'
 
@@ -67,6 +66,8 @@ class ScriptView extends View
     # Get language
     lang = @getlang(editor)
 
+    langConfig = atom.config.get('script.grammars.' + lang)
+
     err = null
     # Determine if no language is selected
     if lang == "Null Grammar" or lang == "Plain Text"
@@ -76,7 +77,7 @@ class ScriptView extends View
 
     # Provide them a dialog to submit an issue on GH, prepopulated
     # with their language of choice
-    else if ! (lang of grammarMap)
+    else if not langConfig?
       err =
         "Command not configured for " + lang + "!\n\n" +
         "Add an <a href='https://github.com/rgbkrk/atom-script/issues/" +
@@ -87,8 +88,8 @@ class ScriptView extends View
       @handleError(err)
       return false
 
-    # Precondition: lang? and lang of grammarMap
-    info.command = grammarMap[lang]["command"]
+    # Precondition: lang? and langConfig?
+    info.command = langConfig['command']
 
     filename = editor.getTitle()
 
@@ -111,7 +112,7 @@ class ScriptView extends View
       argType = "Selection Based"
       arg = selectedText
 
-    makeargs = grammarMap[lang][argType]
+    makeargs = langConfig[argType]
 
     try
       args = makeargs(arg)
