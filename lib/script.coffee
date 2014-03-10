@@ -13,42 +13,42 @@ module.exports =
     scriptViewState: @scriptView.serialize()
 
   configDefaults:
-    grammars:    
+    grammars:
       'CoffeeScript':
         command: "coffee"
-        "Selection Based": (code) -> ['-e', code]
-        "File Based": (filename) -> [filename]
+        "Selection Run Flags": ['-e']
+        "Run Flags": []
       'JavaScript':
         command: "node"
-        "Selection Based": (code) -> ['-e', code]
-        "File Based": (filename) -> [filename]
+        "Selection Run Flags": ['-e']
+        "Run Flags": []
       'Ruby':
         command: "ruby"
-        "Selection Based": (code) -> ['-e', code]
-        "File Based": (filename) -> [filename]
+        "Selection Run Flags": ['-e']
+        "Run Flags": []
       'Perl':
         command: "perl"
-        "Selection Based": (code) -> ['-e', code]
-        "File Based": (filename) -> [filename]
+        "Selection Run Flags": ['-e']
+        "Run Flags": []
       'PHP':
         command: "php"
-        "Selection Based": (code) -> ['-r', code]
-        "File Based": (filename) -> [filename]
+        "Selection Run Flags": ['-r']
+        "Run Flags": []
       'Python':
         command: "python"
-        "Selection Based": (code) -> ['-c', code]
-        "File Based": (filename) -> [filename]
+        "Selection Run Flags": ['-c']
+        "Run Flags": []
       'Shell Script (Bash)':
         command: "bash"
-        "Selection Based": (code) -> ['-c', code]
-        "File Based": (filename) -> [filename]
+        "Selection Run Flags": ['-c']
+        "Run Flags": []
       'Go':
         command: "go"
-        "File Based": (filename) -> ['run', filename]
+        "Run Flags": ['run']
       'F#':
         command: "fsharpi"
-        "File Based": (filename) -> ['--exec', filename]
+        "Run Flags": ['--exec']
       'newLISP':
         command: "newlisp"
-        "Selection Based": (code) -> ['-e', code]
-        "File Based": (filename) -> [filename]
+        "Selection Run Flags": ['-e']
+        "Run Flags": []

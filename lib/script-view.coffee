@@ -106,25 +106,26 @@ class ScriptView extends View
 
     # No selected text on a file that does exist, use filepath
     if (not selectedText? or not selectedText) and filepath?
-      argType = "File Based"
+      flagsType = "Run Flags"
       arg = filepath
     else
-      argType = "Selection Based"
+      flagsType = "Selection Run Flags"
       arg = selectedText
 
-    makeargs = langConfig[argType]
+    args = langConfig[flagsType]
 
-    try
-      args = makeargs(arg)
-      info.args = args
-    catch error
-      err = argType + " Runner not available for " + lang + "\n\n" +
+    if not args?
+      msgType = if "Selection" in flagsType then "Selection Based" else "File Based"
+
+      err = msgType + " Runner not available for " + lang + "\n\n" +
             "If it should exist add an " +
             "<a href='https://github.com/rgbkrk/atom-script/issues/" +
             "new?title=Add%20support%20for%20" + lang + "'>issue on GitHub" +
             "</a> or send your own Pull Request"
       @handleError(err)
       return false
+
+    info.args = args.concat [arg]
 
     # Update header
     @headerView.title.text(lang + " - " + filename)
