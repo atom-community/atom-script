@@ -115,16 +115,9 @@ class ScriptView extends View
     args = langConfig[flagsType]
 
     if not args?
-      msgType = if "Selection" in flagsType then "Selection Based" else "File Based"
+      args = []
 
-      err = msgType + " Runner not available for " + lang + "\n\n" +
-            "If it should exist add an " +
-            "<a href='https://github.com/rgbkrk/atom-script/issues/" +
-            "new?title=Add%20support%20for%20" + lang + "'>issue on GitHub" +
-            "</a> or send your own Pull Request"
-      @handleError(err)
-      return false
-
+    # We assume file/code goes after all the other arguments
     info.args = args.concat [arg]
 
     # Update header
