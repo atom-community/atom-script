@@ -2,6 +2,8 @@ grammarMap = require './grammars'
 {View, BufferedProcess} = require 'atom'
 HeaderView = require './header-view'
 
+AnsiFilter = require 'ansi-to-html'
+
 # Runs a portion of a script through an interpreter and displays it line by line
 module.exports =
 class ScriptView extends View
@@ -19,6 +21,8 @@ class ScriptView extends View
     atom.workspaceView.command "script:run", => @start()
     atom.workspaceView.command "script:close-view", => @close()
     atom.workspaceView.command "script:kill-process", => @stop()
+
+    @ansiFilter = new AnsiFilter
 
   serialize: ->
 
@@ -160,5 +164,6 @@ class ScriptView extends View
       @bufferedProcess.kill()
 
   display: (css, line) ->
+    line = @ansiFilter.toHtml(line)
     # For display
     @output.append("<pre class='line #{css}'>#{line}</pre>")

@@ -29,5 +29,7 @@
   "engines": {
     "atom": ">0.50.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "ansi-to-html": ">0.1.0"
+  }
 }
