@@ -26,6 +26,8 @@ You only have to add a few lines in a PR to support another.
 
 ## Usage
 
+Make sure to run `atom` from the command line to get full access to your environment variables. Running Atom from the icon will launch using launchctl's environment.
+
 Select some code and hit `⌘-i` to run just that selection.
 
 `⌘-i` to run your entire file.
