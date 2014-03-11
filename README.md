@@ -8,6 +8,7 @@ Currently supports:
   * Coffeescript
   * Go *
   * F# *
+  * Haskell *
   * Javascript
   * newLISP
   * Perl
