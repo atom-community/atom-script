@@ -1,7 +1,7 @@
 {
   "name": "script",
   "main": "./lib/script",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "private": false,
   "description": "Run code in Atom!",
   "activationEvents": [
@@ -9,13 +9,13 @@
   ],
   "author": "Kyle Kelley <rgbkrk@gmail.com>",
   "contributors": [
-      "Kyle Kelley <rgbkrk@gmail.com>",
-      "Lance Batson <lancebatsondev@gmail.com>",
-      "Ivan Storck <ivanoats@gmail.com>",
-      "cormullion <cormullion@mac.com>",
-      "Ciaran Downey <me@ciarand.me>",
-      "jbtule <jay+code@tuley.name>"
-   ],
+    "Kyle Kelley <rgbkrk@gmail.com>",
+    "Lance Batson <lancebatsondev@gmail.com>",
+    "Ivan Storck <ivanoats@gmail.com>",
+    "cormullion <cormullion@mac.com>",
+    "Ciaran Downey <me@ciarand.me>",
+    "jbtule <jay+code@tuley.name>"
+  ],
   "repository": "https://github.com/rgbkrk/atom-script",
   "keywords": [
     "script",
