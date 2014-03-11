@@ -50,3 +50,9 @@ module.exports =
     command: "newlisp"
     "Selection Based": (code) -> ['-e', code]
     "File Based": (filename) -> [filename]
+
+  Haskell:
+    command: "runhaskell"
+    "File Based": (filename) -> [filename]
+    #command: "ghc"
+    #"Selection Based": (code) -> ['-e', code]
