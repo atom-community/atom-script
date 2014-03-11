@@ -1,3 +1,10 @@
+##2.0.3
+* Escaped ANSI to HTML
+* Added contributors to package.json
+
+##2.0.1-2.0.2
+* Documentation patches
+
 ##2.0.0
 - Completely new UI
 - Status indicators / icons for script run, stop, kill, complete
