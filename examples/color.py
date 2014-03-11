@@ -11,4 +11,8 @@ def print_format_table():
             print s1
         print '\n'
 
+print("BEFORE")
+
 print_format_table()
+
+print("AFTER")
