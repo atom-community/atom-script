@@ -1,3 +1,6 @@
+##2.0.4
+* Add file based Haskell support
+
 ##2.0.3
 * Escaped ANSI to HTML
 * Added contributors to package.json
