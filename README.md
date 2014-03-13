@@ -15,6 +15,7 @@ Currently supports:
   * PHP
   * Python
   * Ruby
+  * Erlang (Only Selection Based runs. It's not support functions and full power of REPL yet.)
 
 You only have to add a few lines in a PR to support another.
 
