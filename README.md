@@ -2,24 +2,31 @@
 
 ![](https://f.cloud.github.com/assets/836375/2359256/844b39ba-a615-11e3-9732-d6a0cd5694a0.gif)
 
+Run selections of code or the whole file!
+
 Currently supports:
 
   * Bash
   * Coffeescript
-  * Go *
-  * F# *
-  * Haskell *
+  * Erlang <sup>†</sup>
+  * Go <sup>*</sup>
+  * F# <sup>*</sup>
+  * Haskell <sup>*</sup>
   * Javascript
   * newLISP
   * Perl
   * PHP
   * Python
   * Ruby
-  * Erlang (Only Selection Based runs. It's not support functions and full power of REPL yet.)
+
 
 You only have to add a few lines in a PR to support another.
 
-`*`'ed languages only support file based runs.
+### Limitations
+
+<sup>\*</sup> Go and F# only support file based runs
+
+<sup>†</sup> Erlang uses `erl` for limited selection based runs (see [#70](https://github.com/rgbkrk/atom-script/pull/70))
 
 ## Installation
 
