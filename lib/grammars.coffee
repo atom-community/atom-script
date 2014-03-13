@@ -56,3 +56,7 @@ module.exports =
     "File Based": (filename) -> [filename]
     #command: "ghc"
     #"Selection Based": (code) -> ['-e', code]
+
+  Erlang:
+    command: "erl"
+    "Selection Based": (code) -> ['-noshell', '-eval', code+', init:stop().']
