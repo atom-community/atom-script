@@ -6,3 +6,4 @@
   'cmd-i': 'script:run'
   'ctrl-w': 'script:close-view'
   'ctrl-c': 'script:kill-process'
+  'shift-cmd-i': 'script:run-custom'
