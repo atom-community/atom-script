@@ -7,7 +7,7 @@ module.exports =
     @scriptView = new ScriptView(state.scriptViewState)
 
   deactivate: ->
-    @scriptView.destroy()
+    @scriptView.close()
 
   serialize: ->
     scriptViewState: @scriptView.serialize()
