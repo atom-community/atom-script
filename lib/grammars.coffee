@@ -60,3 +60,8 @@ module.exports =
   Erlang:
     command: "erl"
     "Selection Based": (code) -> ['-noshell', '-eval', code+', init:stop().']
+
+  Julia:
+    command: "julia"
+    "Selection Based": (code) -> ['-e', code]
+    "File Based": (filename) -> [filename]
