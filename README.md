@@ -13,6 +13,7 @@ Currently supports:
   * F# <sup>*</sup>
   * Haskell <sup>*</sup>
   * Javascript
+  * Julia
   * newLISP
   * Perl
   * PHP
