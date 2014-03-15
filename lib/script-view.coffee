@@ -142,6 +142,8 @@ class ScriptView extends View
     @stop()
 
   run: (command, args) ->
+    atom.emit("achievement:unlock", {msg: "Homestar Runner"})
+
     # Default to where the user opened atom
     options =
       cwd: atom.project.getPath()
