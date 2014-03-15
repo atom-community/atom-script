@@ -1,5 +1,10 @@
+## 2.1.0-2.1.3
+
+* Added Julia support
+* Added Erlang support (selection based)
+
 ##2.0.4
-* Add file based Haskell support
+* Added file based Haskell support
 
 ##2.0.3
 * Escaped ANSI to HTML
