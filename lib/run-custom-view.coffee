@@ -5,7 +5,7 @@ class RunCustomView extends View
 
   @content: ->
     @div =>
-      @span "Test"
+      @input type: 'text'
 
   close: ->
     atom.workspaceView.trigger "script:close-view"

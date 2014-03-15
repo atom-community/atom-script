@@ -19,16 +19,20 @@ class ScriptView extends View
 
   initialize: (serializeState) ->
     # Bind commands
-    atom.workspaceView.command "script:run", => @start(custom=false)
-    atom.workspaceView.command "script:run-custom", => @start(custom=true)
+    atom.workspaceView.command "script:run", => @start()
+    atom.workspaceView.command "script:run-custom", => @start()
     atom.workspaceView.command "script:close-view", => @close()
     atom.workspaceView.command "script:kill-process", => @stop()
 
     @ansiFilter = new AnsiFilter
+    @options =
+        cmd_cwd: null
+        cmd_args: []
+        script_args: []
 
   serialize: ->
 
-  start: (custom=false) ->
+  start: ->
     # Get current editor
     editor = atom.workspace.getActiveEditor()
 
@@ -38,10 +42,7 @@ class ScriptView extends View
 
     @resetView()
     info = @setup(editor)
-    if custom
-        if info then @run(info.command, info.args)
-    else
-        if info then @run(info.command, info.args)
+    if info then @run(info.command, info.args)
 
   resetView: ->
     # Display window and load message
@@ -151,8 +152,9 @@ class ScriptView extends View
 
     # Default to where the user opened atom
     options =
-      cwd: atom.project.getPath()
+      cwd: @getCwd()
       env: process.env
+    args = (@options.cmd_args.concat args).concat @options.script_args
 
     stdout = (output) => @display("stdout", output)
     stderr = (output) => @display("stderr", output)
@@ -173,6 +175,13 @@ class ScriptView extends View
       @output.append("<pre>PATH: #{_.escape(process.env.PATH)}</pre>")
 
     )
+
+  getCwd: ->
+    if @options.cmd_cwd is null
+      return atom.project.getPath()
+    else
+      return @options.cmd_cwd
+
 
   stop: ->
     # Kill existing process if available
