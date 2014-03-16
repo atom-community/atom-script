@@ -22,6 +22,8 @@ class ScriptView extends View
     # Bind commands
     atom.workspaceView.command "script:run", => @start(configure=false)
     atom.workspaceView.command "script:options", => @start(configure=true)
+    atom.workspaceView.command "script:toggle-options", => @toggleConfigureOptions()
+    atom.workspaceView.command "script:save-options", => @saveOptions()
     atom.workspaceView.command "script:close-view", => @close()
     atom.workspaceView.command "script:kill-process", => @stop()
 
@@ -48,16 +50,19 @@ class ScriptView extends View
 
 
   toggleConfigureOptions: (mode=null) ->
-    console.log(mode)
     if mode !=null
       @configureOptionsToggle = !mode
-    console.log(@configureOptionsToggle)
     if @configureOptionsToggle
       @customOptionView.css('display', 'none')
       @configureOptionsToggle = false
     else
       @customOptionView.css('display', 'block')
       @configureOptionsToggle = true
+
+  saveOptions: =>
+    @options.cmd_cwd = @customOptionView.inputCwd.val()
+    @options.cmd_args = (item for item in @customOptionView.inputCommandArgs.val().split(' ') when item != '')
+    @options.script_args = (item for item in @customOptionView.inputScriptArgs.val().split(' ') when item != '')
 
   resetView: ->
     # Display window and load message
@@ -171,6 +176,9 @@ class ScriptView extends View
       env: process.env
     args = (@options.cmd_args.concat args).concat @options.script_args
 
+    console.log(options.cwd)
+    console.log(args)
+
     stdout = (output) => @display("stdout", output)
     stderr = (output) => @display("stderr", output)
     exit = (return_code) =>
@@ -192,7 +200,7 @@ class ScriptView extends View
     )
 
   getCwd: ->
-    if @options.cmd_cwd is null
+    if @options.cmd_cwd is null || @options.cmd_cwd == ''
       return atom.project.getPath()
     else
       return @options.cmd_cwd

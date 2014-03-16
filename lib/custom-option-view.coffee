@@ -18,5 +18,10 @@ class CustomOptionView extends View
             @div class: 'block', =>
               @label 'Script Arguments:'
               @input type: 'text', class: 'editor mini editor-colors', outlet: 'inputScriptArgs'
+            @div class: 'block', =>
+              @button class: 'btn btn-primary inline-block-tight', click: 'close', 'Close'
+              @button class: 'btn btn-success inline-block-tight', click: 'save', 'Save'
   close: ->
-    atom.workspaceView.trigger "script:close-view"
+    atom.workspaceView.trigger "script:toggle-options"
+  save: ->
+    atom.workspaceView.trigger "script:save-options"
