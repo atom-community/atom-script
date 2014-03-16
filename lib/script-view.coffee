@@ -20,8 +20,8 @@ class ScriptView extends View
 
   initialize: (serializeState) ->
     # Bind commands
-    atom.workspaceView.command "script:run", => @start()
-    atom.workspaceView.command "script:options", => @openConfigureOptions()
+    atom.workspaceView.command "script:run", => @start(configure=false)
+    atom.workspaceView.command "script:options", => @start(configure=true)
     atom.workspaceView.command "script:close-view", => @close()
     atom.workspaceView.command "script:kill-process", => @stop()
 
@@ -33,7 +33,7 @@ class ScriptView extends View
 
   serialize: ->
 
-  start: ->
+  start: (configure) ->
     # Get current editor
     editor = atom.workspace.getActiveEditor()
 
@@ -42,11 +42,22 @@ class ScriptView extends View
       return
 
     @resetView()
+    @toggleConfigureOptions(mode=configure)
     info = @setup(editor)
     if info then @run(info.command, info.args)
 
-  openConfigureOptions: ->
-    console.log('configure option')
+
+  toggleConfigureOptions: (mode=null) ->
+    console.log(mode)
+    if mode !=null
+      @configureOptionsToggle = !mode
+    console.log(@configureOptionsToggle)
+    if @configureOptionsToggle
+      @customOptionView.css('display', 'none')
+      @configureOptionsToggle = false
+    else
+      @customOptionView.css('display', 'block')
+      @configureOptionsToggle = true
 
   resetView: ->
     # Display window and load message
