@@ -12,6 +12,7 @@ class ScriptView extends View
 
   @content: ->
     @div class: 'outer-scriptView', =>
+      @subview 'customOptionView', new CustomOptionView()
       @subview 'headerView', new HeaderView()
       # Display layout and outlets
       @div class: 'tool-panel panel panel-bottom padding scriptView native-key-bindings', outlet: 'script', tabindex: -1, =>
@@ -20,7 +21,7 @@ class ScriptView extends View
   initialize: (serializeState) ->
     # Bind commands
     atom.workspaceView.command "script:run", => @start()
-    atom.workspaceView.command "script:run-custom", => @start()
+    atom.workspaceView.command "script:options", => @openConfigureOptions()
     atom.workspaceView.command "script:close-view", => @close()
     atom.workspaceView.command "script:kill-process", => @stop()
 
@@ -43,6 +44,9 @@ class ScriptView extends View
     @resetView()
     info = @setup(editor)
     if info then @run(info.command, info.args)
+
+  openConfigureOptions: ->
+    console.log('configure option')
 
   resetView: ->
     # Display window and load message
