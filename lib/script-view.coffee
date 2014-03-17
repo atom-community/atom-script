@@ -198,9 +198,9 @@ class ScriptView extends View
 
   getCwd: ->
     if @options.cmd_cwd is null || @options.cmd_cwd == ''
-      return atom.project.getPath()
+      atom.project.getPath()
     else
-      return @options.cmd_cwd
+      @options.cmd_cwd
 
 
   stop: ->
