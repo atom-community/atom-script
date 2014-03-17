@@ -21,7 +21,7 @@ class ScriptView extends View
   initialize: (serializeState) ->
     # Bind commands
     atom.workspaceView.command "script:run", => @start(configure=false)
-    atom.workspaceView.command "script:options", => @start(configure=true)
+    atom.workspaceView.command "script:run-options", => @start(configure=true)
     atom.workspaceView.command "script:toggle-options", => @toggleConfigureOptions()
     atom.workspaceView.command "script:save-options", => @saveOptions()
     atom.workspaceView.command "script:close-view", => @close()
