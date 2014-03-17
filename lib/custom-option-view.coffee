@@ -4,7 +4,7 @@ module.exports =
 class CustomOptionView extends View
 
   @content: ->
-    @div class: "customOptionView", =>
+    @div class: "custom-option-view", =>
       @div class: "overlay from-top", =>
         @div class: 'panel', =>
           @div class: 'panel-heading', 'Configure Run Options'

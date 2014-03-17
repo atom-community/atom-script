@@ -11,11 +11,11 @@ class ScriptView extends View
   @bufferedProcess: null
 
   @content: ->
-    @div class: 'outer-scriptView', =>
+    @div =>
       @subview 'customOptionView', new CustomOptionView()
       @subview 'headerView', new HeaderView()
       # Display layout and outlets
-      @div class: 'tool-panel panel panel-bottom padding scriptView native-key-bindings', outlet: 'script', tabindex: -1, =>
+      @div class: 'tool-panel panel panel-bottom padding script-view native-key-bindings', outlet: 'script', tabindex: -1, =>
         @div class: 'panel-body padded output', outlet: 'output'
 
   initialize: (serializeState) ->

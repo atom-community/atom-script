@@ -4,7 +4,7 @@ module.exports =
 class HeaderView extends View
 
   @content: ->
-    @div class: 'panel-heading padded heading headerView', =>
+    @div class: 'panel-heading padded heading header-view', =>
       @span class: 'heading-title', outlet: 'title'
       @span class: 'heading-status', outlet: 'status'
       @span class: 'heading-close icon-remove-close pull-right', outlet: 'closeButton', click: 'close'
