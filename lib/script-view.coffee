@@ -176,9 +176,6 @@ class ScriptView extends View
       env: process.env
     args = (@options.cmd_args.concat args).concat @options.script_args
 
-    console.log(options.cwd)
-    console.log(args)
-
     stdout = (output) => @display("stdout", output)
     stderr = (output) => @display("stderr", output)
     exit = (return_code) =>
