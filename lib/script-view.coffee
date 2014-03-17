@@ -21,7 +21,7 @@ class ScriptView extends View
   initialize: (serializeState) ->
     # Bind commands
     atom.workspaceView.command "script:run", => @start(configure='hide')
-    atom.workspaceView.command "script:run-options", => @start(configure='show')
+    atom.workspaceView.command "script:run-options", => @runOptions()
     atom.workspaceView.command "script:toggle-options", => @toggleConfigureOptions()
     atom.workspaceView.command "script:save-options", => @saveOptions()
     atom.workspaceView.command "script:close-view", => @close()
@@ -48,6 +48,10 @@ class ScriptView extends View
     info = @setup(editor)
     if info then @run(info.command, info.args)
 
+  runOptions: ->
+    @resetView(title='Configure Options')
+    @toggleConfigureOptions(command='show')
+
 
   toggleConfigureOptions: (command) ->
     if command?
@@ -63,7 +67,7 @@ class ScriptView extends View
     @options.cmd_args = (item for item in @customOptionView.inputCommandArgs.val().split(' ') when item != '')
     @options.script_args = (item for item in @customOptionView.inputScriptArgs.val().split(' ') when item != '')
 
-  resetView: ->
+  resetView: (title='Loading...') ->
     # Display window and load message
 
     # First run, create view
@@ -73,7 +77,7 @@ class ScriptView extends View
     # Close any existing process and start a new one
     @stop()
 
-    @headerView.title.text("Loading...")
+    @headerView.title.text(title)
     @headerView.setStatus("start")
 
     # Get script view ready
