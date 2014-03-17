@@ -6,7 +6,7 @@
   "description": "Run code in Atom!",
   "activationEvents": [
     "script:run",
-    "script:options"
+    "script:run-options"
   ],
   "author": "Kyle Kelley <rgbkrk@gmail.com>",
   "contributors": [
