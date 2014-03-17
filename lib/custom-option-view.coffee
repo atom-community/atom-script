@@ -27,4 +27,5 @@ class CustomOptionView extends View
   save: ->
     atom.workspaceView.trigger "script:save-options"
   run: ->
+    atom.workspaceView.trigger "script:save-options"
     atom.workspaceView.trigger "script:run"
