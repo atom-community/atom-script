@@ -50,13 +50,13 @@ class ScriptView extends View
 
 
   toggleConfigureOptions: (mode=null) ->
-    if mode !=null
+    if mode?
       @configureOptionsToggle = !mode
     if @configureOptionsToggle
-      @customOptionView.css('display', 'none')
+      @customOptionView.hide()
       @configureOptionsToggle = false
     else
-      @customOptionView.css('display', 'block')
+      @customOptionView.show()
       @configureOptionsToggle = true
 
   saveOptions: =>
