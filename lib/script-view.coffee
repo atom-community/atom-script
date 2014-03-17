@@ -28,7 +28,7 @@ class ScriptView extends View
     atom.workspaceView.command "script:kill-process", => @stop()
 
     @ansiFilter = new AnsiFilter
-    @options =
+    @run_options =
         cmd_cwd: null
         cmd_args: []
         script_args: []
@@ -63,9 +63,9 @@ class ScriptView extends View
       @customOptionView.toggle()
 
   saveOptions: =>
-    @options.cmd_cwd = @customOptionView.inputCwd.val()
-    @options.cmd_args = (item for item in @customOptionView.inputCommandArgs.val().split(' ') when item != '')
-    @options.script_args = (item for item in @customOptionView.inputScriptArgs.val().split(' ') when item != '')
+    @run_options.cmd_cwd = @customOptionView.inputCwd.val()
+    @run_options.cmd_args = (item for item in @customOptionView.inputCommandArgs.val().split(' ') when item != '')
+    @run_options.script_args = (item for item in @customOptionView.inputScriptArgs.val().split(' ') when item != '')
 
   resetView: (title='Loading...') ->
     # Display window and load message
@@ -177,7 +177,7 @@ class ScriptView extends View
     options =
       cwd: @getCwd()
       env: process.env
-    args = (@options.cmd_args.concat args).concat @options.script_args
+    args = (@run_options.cmd_args.concat args).concat @run_options.script_args
 
     stdout = (output) => @display("stdout", output)
     stderr = (output) => @display("stderr", output)
@@ -200,10 +200,10 @@ class ScriptView extends View
     )
 
   getCwd: ->
-    if @options.cmd_cwd is null || @options.cmd_cwd == ''
+    if @run_options.cmd_cwd is null || @run_options.cmd_cwd == ''
       atom.project.getPath()
     else
-      @options.cmd_cwd
+      @run_options.cmd_cwd
 
 
   stop: ->
