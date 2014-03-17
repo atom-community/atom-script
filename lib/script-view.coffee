@@ -20,8 +20,8 @@ class ScriptView extends View
 
   initialize: (serializeState) ->
     # Bind commands
-    atom.workspaceView.command "script:run", => @start(configure=false)
-    atom.workspaceView.command "script:run-options", => @start(configure=true)
+    atom.workspaceView.command "script:run", => @start(configure='hide')
+    atom.workspaceView.command "script:run-options", => @start(configure='show')
     atom.workspaceView.command "script:toggle-options", => @toggleConfigureOptions()
     atom.workspaceView.command "script:save-options", => @saveOptions()
     atom.workspaceView.command "script:close-view", => @close()
@@ -44,20 +44,19 @@ class ScriptView extends View
       return
 
     @resetView()
-    @toggleConfigureOptions(mode=configure)
+    @toggleConfigureOptions(command=configure)
     info = @setup(editor)
     if info then @run(info.command, info.args)
 
 
-  toggleConfigureOptions: (mode=null) ->
-    if mode?
-      @configureOptionsToggle = !mode
-    if @configureOptionsToggle
-      @customOptionView.hide()
-      @configureOptionsToggle = false
+  toggleConfigureOptions: (command) ->
+    if command?
+      if command == 'show'
+        @customOptionView.show()
+      if command == 'hide'
+        @customOptionView.hide()
     else
-      @customOptionView.show()
-      @configureOptionsToggle = true
+      @customOptionView.toggle()
 
   saveOptions: =>
     @options.cmd_cwd = @customOptionView.inputCwd.val()
