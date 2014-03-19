@@ -61,6 +61,11 @@ module.exports =
     command: "erl"
     "Selection Based": (code) -> ['-noshell', '-eval', code+', init:stop().']
 
+  Elixir:
+    command: "elixir"
+    "Selection Based": (code) -> ['-e', code]
+    "File Based": (filename) -> ['-r', filename]
+
   Julia:
     command: "julia"
     "Selection Based": (code) -> ['-e', code]

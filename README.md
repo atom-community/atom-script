@@ -9,6 +9,7 @@ Currently supports:
   * Bash
   * Coffeescript
   * Erlang <sup>†</sup>
+  * Elixir
   * Go <sup>*</sup>
   * F# <sup>*</sup>
   * Haskell <sup>*</sup>
