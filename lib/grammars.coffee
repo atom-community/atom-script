@@ -70,3 +70,13 @@ module.exports =
     command: "julia"
     "Selection Based": (code) -> ['-e', code]
     "File Based": (filename) -> [filename]
+
+  Groovy:
+    command: "groovy"
+    "Selection Based": (code) -> ['-e', code]
+    "File Based": (filename) -> [filename]
+
+  Scala:
+    command: "scala"
+    "Selection Based": (code) -> ['-e', code]
+    "File Based": (filename) -> [filename]
