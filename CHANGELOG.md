@@ -1,7 +1,9 @@
-## 2.1.0-2.1.3
+## 2.1.0-2.1.5
 
 * Added Julia support
 * Added Erlang support (selection based)
+* Added Groovy support
+* Added Scala support
 
 ##2.0.4
 * Added file based Haskell support
