@@ -11,6 +11,7 @@ Currently supports:
   * Erlang <sup>†</sup>
   * Elixir
   * Go <sup>*</sup>
+  * Groovy
   * F# <sup>*</sup>
   * Haskell <sup>*</sup>
   * Javascript
@@ -21,7 +22,6 @@ Currently supports:
   * Python
   * Ruby
   * Scala
-  * Groovy
 
 
 You only have to add a few lines in a PR to support another.
