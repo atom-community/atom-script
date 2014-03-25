@@ -1,3 +1,7 @@
+## 2.1.6
+
+* Allow copying text from the terminal output.
+
 ## 2.1.0-2.1.5
 
 * Added Julia support
