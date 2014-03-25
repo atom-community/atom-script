@@ -47,6 +47,7 @@ class ScriptOptionsView extends View
     @run_options.cmd_cwd = @inputCwd.val()
     @run_options.cmd_args = (item for item in @inputCommandArgs.val().split(' ') when item != '')
     @run_options.script_args = (item for item in @inputScriptArgs.val().split(' ') when item != '')
+    atom.emit 'script:update-options', run_options: @run_options
 
   close: ->
     if @hasParent() then @detach()
@@ -57,4 +58,5 @@ class ScriptOptionsView extends View
     atom.workspaceView.trigger "script:save-options"
   run: ->
     atom.workspaceView.trigger "script:save-options"
+    atom.workspaceView.trigger "script:close-options"
     atom.workspaceView.trigger "script:run"

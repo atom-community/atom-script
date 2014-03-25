@@ -22,11 +22,16 @@ class ScriptView extends View
     atom.workspaceView.command "script:run", => @start()
     atom.workspaceView.command "script:close-view", => @close()
     atom.workspaceView.command "script:kill-process", => @stop()
+    atom.on 'script:update-options', @updateOptions
 
     @ansiFilter = new AnsiFilter
     @run_options = run_options
 
   serialize: ->
+
+  updateOptions: (event) =>
+    console.log(event)
+    @run_options = event.run_options
 
   start: ->
     # Get current editor
