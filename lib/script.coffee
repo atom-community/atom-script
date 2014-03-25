@@ -1,5 +1,6 @@
 ScriptView = require './script-view'
 ScriptOptionsView = require './script-options-view'
+ScriptOptions = require './script-options'
 
 module.exports =
   scriptView: null
@@ -7,9 +8,9 @@ module.exports =
   scriptOptions: null
 
   activate: (state) ->
-    @scriptView = new ScriptView(state.scriptViewState)
-    @scriptOptionsView = new ScriptOptionsView(state.scriptOptionsViewState)
-    @scriptOptions = new ScriptOptions()
+    scriptOptions = new ScriptOptions()
+    @scriptView = new ScriptView(state.scriptViewState, scriptOptions)
+    @scriptOptionsView = new ScriptOptionsView(state.scriptOptionsViewState, scriptOptions)
 
   deactivate: ->
     @scriptView.close()

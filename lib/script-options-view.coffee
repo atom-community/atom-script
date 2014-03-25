@@ -22,18 +22,13 @@ class ScriptOptionsView extends View
             @button class: 'btn btn-success inline-block-tight', click: 'save', 'Save'
             @button class: 'btn btn-success inline-block-tight', click: 'run', 'Run'
 
-  initialize: (serializeState) ->
+  initialize: (run_options) ->
     atom.workspaceView.command "script:run-options", => @runOptions()
     atom.workspaceView.command "script:close-options", => @toggleScriptOptions('hide')
     atom.workspaceView.command "script:save-options", => @saveOptions()
     atom.workspaceView.prependToTop(this)
     @toggleScriptOptions('hide')
-    @run_options =
-        cmd_cwd: null
-        cmd_args: []
-        script_args: []
-
-  serialize: ->
+    @run_options = run_options
 
   runOptions: ->
     @toggleScriptOptions()

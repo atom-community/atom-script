@@ -17,17 +17,14 @@ class ScriptView extends View
       @div class: 'tool-panel panel panel-bottom padding script-view native-key-bindings', outlet: 'script', tabindex: -1, =>
         @div class: 'panel-body padded output', outlet: 'output'
 
-  initialize: (serializeState) ->
+  initialize: (serializeState, run_options) ->
     # Bind commands
     atom.workspaceView.command "script:run", => @start()
     atom.workspaceView.command "script:close-view", => @close()
     atom.workspaceView.command "script:kill-process", => @stop()
 
     @ansiFilter = new AnsiFilter
-    @run_options =
-        cmd_cwd: null
-        cmd_args: []
-        script_args: []
+    @run_options = run_options
 
   serialize: ->
 

@@ -4,10 +4,6 @@
   "version": "2.2.0",
   "private": false,
   "description": "Run code in Atom!",
-  "activationEvents": [
-    "script:run",
-    "script:run-options"
-  ],
   "author": "Kyle Kelley <rgbkrk@gmail.com>",
   "contributors": [
     "Kyle Kelley <rgbkrk@gmail.com>",
