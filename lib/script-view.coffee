@@ -1,7 +1,7 @@
 grammarMap = require './grammars'
 {View, BufferedProcess} = require 'atom'
 HeaderView = require './header-view'
-RunCustomView = require './run-custom-view'
+ScriptOptionsView = require './script-options-view'
 AnsiFilter = require 'ansi-to-html'
 _ = require 'underscore'
 
@@ -12,7 +12,6 @@ class ScriptView extends View
 
   @content: ->
     @div =>
-      @subview 'customOptionView', new CustomOptionView()
       @subview 'headerView', new HeaderView()
       # Display layout and outlets
       @div class: 'tool-panel panel panel-bottom padding script-view native-key-bindings', outlet: 'script', tabindex: -1, =>
@@ -21,9 +20,6 @@ class ScriptView extends View
   initialize: (serializeState) ->
     # Bind commands
     atom.workspaceView.command "script:run", => @start()
-    atom.workspaceView.command "script:run-options", => @runOptions()
-    atom.workspaceView.command "script:toggle-options", => @toggleConfigureOptions()
-    atom.workspaceView.command "script:save-options", => @saveOptions()
     atom.workspaceView.command "script:close-view", => @close()
     atom.workspaceView.command "script:kill-process", => @stop()
 
@@ -44,28 +40,8 @@ class ScriptView extends View
       return
 
     @resetView()
-    @toggleConfigureOptions(command='hide')
     info = @setup(editor)
     if info then @run(info.command, info.args)
-
-  runOptions: ->
-    @resetView(title='Configure Options')
-    @toggleConfigureOptions(command='show')
-
-
-  toggleConfigureOptions: (command) ->
-    if command?
-      if command == 'show'
-        @customOptionView.show()
-      if command == 'hide'
-        @customOptionView.hide()
-    else
-      @customOptionView.toggle()
-
-  saveOptions: =>
-    @run_options.cmd_cwd = @customOptionView.inputCwd.val()
-    @run_options.cmd_args = (item for item in @customOptionView.inputCommandArgs.val().split(' ') when item != '')
-    @run_options.script_args = (item for item in @customOptionView.inputScriptArgs.val().split(' ') when item != '')
 
   resetView: (title='Loading...') ->
     # Display window and load message
