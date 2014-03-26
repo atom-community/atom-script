@@ -80,9 +80,8 @@ module.exports =
     command: "scala"
     "Selection Based": (code) -> ['-e', code]
     "File Based": (filename) -> [filename]
-    
+
   Lua:
     command: "lua"
     "Selection Based": (code) -> ['-e', code]
     "File Based": (filename) -> [filename]
-
