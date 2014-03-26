@@ -44,6 +44,7 @@
     "atom": ">0.50.0"
   },
   "dependencies": {
-    "ansi-to-html": ">0.1.0"
+    "ansi-to-html": ">0.1.0",
+    "underscore": "~1.5.2"
   }
 }

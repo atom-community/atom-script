@@ -1,6 +1,7 @@
 grammarMap = require './grammars'
 {View, BufferedProcess} = require 'atom'
 HeaderView = require './header-view'
+_ = require 'underscore'
 
 AnsiFilter = require 'ansi-to-html'
 
@@ -166,6 +167,8 @@ class ScriptView extends View
       @bufferedProcess.kill()
 
   display: (css, line) ->
+
+    line = _.escape(line)
     line = @ansiFilter.toHtml(line)
-    # For display
+
     @output.append("<pre class='line #{css}'>#{line}</pre>")
