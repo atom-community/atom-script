@@ -1,3 +1,8 @@
+## 2.1.7
+
+* Escape HTML output while still letting ANSI colors through (#80)
+* Add PHP example
+
 ## 2.1.6
 
 * Allow copying text from the terminal output.
