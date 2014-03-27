@@ -1,3 +1,7 @@
+## 2.1.8
+
+* Add Lua support
+
 ## 2.1.7
 
 * Escape HTML output while still letting ANSI colors through (#80)
