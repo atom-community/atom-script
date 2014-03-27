@@ -16,13 +16,13 @@ Currently supports:
   * Haskell <sup>*</sup>
   * Javascript
   * Julia
+  * Lua
   * newLISP
   * Perl
   * PHP
   * Python
   * Ruby
   * Scala
-  * Lua
 
 
 You only have to add a few lines in a PR to support another.
