@@ -16,6 +16,7 @@ Currently supports:
   * Haskell <sup>*</sup>
   * Javascript
   * Julia
+  * Lua
   * newLISP
   * Perl
   * PHP
