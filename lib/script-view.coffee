@@ -153,11 +153,22 @@ class ScriptView extends View
     stdout = (output) => @display("stdout", output)
     stderr = (output) => @display("stderr", output)
     exit = (return_code) =>
-      if return_code is 0 then @headerView.setStatus("stop") else @headerView.setStatus("err")
+      if return_code is 0
+        @headerView.setStatus("stop")
+      else
+        @headerView.setStatus("err")
       console.log "Exited with #{return_code}"
 
     # Run process
-    @bufferedProcess = new BufferedProcess({command, args, options, stdout, stderr, exit})
+    @bufferedProcess = new BufferedProcess({command, args, options,
+                                            stdout, stderr, exit})
+    @bufferedProcess.process.on('error', (node_error) =>
+      @output.append("<h1>Unable to run</h1>")
+      @output.append("<pre>#{_.escape(command)}</pre>")
+      @output.append("<h2>Is it on your path?</h2>")
+      @output.append("<pre>PATH: #{_.escape(process.env.PATH)}</pre>")
+
+    )
 
   stop: ->
     # Kill existing process if available
