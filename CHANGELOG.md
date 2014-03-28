@@ -1,18 +1,17 @@
-## 2.1.8
+## 2.2.0
+* Catch spawn errors, present debug information for the user
 
+## 2.1.8
 * Add Lua support
 
 ## 2.1.7
-
 * Escape HTML output while still letting ANSI colors through (#80)
 * Add PHP example
 
 ## 2.1.6
-
 * Allow copying text from the terminal output.
 
 ## 2.1.0-2.1.5
-
 * Added Julia support
 * Added Erlang support (selection based)
 * Added Groovy support
