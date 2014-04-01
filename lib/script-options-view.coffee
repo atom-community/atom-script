@@ -54,8 +54,6 @@ class ScriptOptionsView extends View
 
   close: ->
     atom.workspaceView.trigger "script:close-options"
-  save: ->
-    atom.workspaceView.trigger "script:save-options"
   run: ->
     atom.workspaceView.trigger "script:save-options"
     atom.workspaceView.trigger "script:close-options"
