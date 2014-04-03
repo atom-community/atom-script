@@ -45,6 +45,8 @@ Select some code and hit `⌘-i` to run just that selection.
 
 `⌘-i` to run your entire file.
 
+`⌘-shift-i` to configure command options and program arguments
+
 `ctrl-c` will kill the process but leaves the pane open.
 
 `ctrl-w` closes the pane and kills the process.

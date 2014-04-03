@@ -1,9 +1,9 @@
 grammarMap = require './grammars'
 {View, BufferedProcess} = require 'atom'
 HeaderView = require './header-view'
-_ = require 'underscore'
-
+ScriptOptionsView = require './script-options-view'
 AnsiFilter = require 'ansi-to-html'
+_ = require 'underscore'
 
 # Runs a portion of a script through an interpreter and displays it line by line
 module.exports =
@@ -11,21 +11,27 @@ class ScriptView extends View
   @bufferedProcess: null
 
   @content: ->
-    @div class: 'outer-scriptView', =>
+    @div =>
       @subview 'headerView', new HeaderView()
       # Display layout and outlets
-      @div class: 'tool-panel panel panel-bottom padding scriptView native-key-bindings', outlet: 'script', tabindex: -1, =>
+      @div class: 'tool-panel panel panel-bottom padding script-view native-key-bindings', outlet: 'script', tabindex: -1, =>
         @div class: 'panel-body padded output', outlet: 'output'
 
-  initialize: (serializeState) ->
+  initialize: (serializeState, run_options) ->
     # Bind commands
     atom.workspaceView.command "script:run", => @start()
     atom.workspaceView.command "script:close-view", => @close()
     atom.workspaceView.command "script:kill-process", => @stop()
+    atom.on 'script:update-options', @updateOptions
 
     @ansiFilter = new AnsiFilter
+    @run_options = run_options
 
   serialize: ->
+
+  updateOptions: (event) =>
+    console.log(event)
+    @run_options = event.run_options
 
   start: ->
     # Get current editor
@@ -39,7 +45,7 @@ class ScriptView extends View
     info = @setup(editor)
     if info then @run(info.command, info.args)
 
-  resetView: ->
+  resetView: (title='Loading...') ->
     # Display window and load message
 
     # First run, create view
@@ -49,7 +55,7 @@ class ScriptView extends View
     # Close any existing process and start a new one
     @stop()
 
-    @headerView.title.text("Loading...")
+    @headerView.title.text(title)
     @headerView.setStatus("start")
 
     # Get script view ready
@@ -147,8 +153,9 @@ class ScriptView extends View
 
     # Default to where the user opened atom
     options =
-      cwd: atom.project.getPath()
+      cwd: @getCwd()
       env: process.env
+    args = (@run_options.cmd_args.concat args).concat @run_options.script_args
 
     stdout = (output) => @display("stdout", output)
     stderr = (output) => @display("stderr", output)
@@ -169,6 +176,13 @@ class ScriptView extends View
       @output.append("<pre>PATH: #{_.escape(process.env.PATH)}</pre>")
 
     )
+
+  getCwd: ->
+    if @run_options.cmd_cwd is null || @run_options.cmd_cwd == ''
+      atom.project.getPath()
+    else
+      @run_options.cmd_cwd
+
 
   stop: ->
     # Kill existing process if available
