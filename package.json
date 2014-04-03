@@ -8,6 +8,7 @@
   "contributors": [
     "Kyle Kelley <rgbkrk@gmail.com>",
     "Lance Batson <lancebatsondev@gmail.com>",
+    "Pedro Rodriguez <ski.rodriguez@gmail.com>",
     "Hans Rødtang <hansrodtang@gmail.com>",
     "Ciaran Downey <me@ciarand.me>",
     "Ivan Storck <ivanoats@gmail.com>",
@@ -17,8 +18,7 @@
     "cormullion <cormullion@mac.com>",
     "Andy Hayden <andyhayden1@gmail.com>",
     "jbtule <jay+code@tuley.name>",
-    "Johan Bruning <johan@taquito.nl>",
-    "Pedro Rodriguez <ski.rodriguez@gmail.com>"
+    "Johan Bruning <johan@taquito.nl>"
   ],
   "repository": "https://github.com/rgbkrk/atom-script",
   "keywords": [
