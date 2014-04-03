@@ -19,7 +19,6 @@ class ScriptOptionsView extends View
             @input type: 'text', class: 'editor mini editor-colors', outlet: 'inputScriptArgs'
           @div class: 'block', =>
             @button class: 'btn btn-primary inline-block-tight', click: 'close', 'Close'
-            @button class: 'btn btn-success inline-block-tight', click: 'save', 'Save'
             @button class: 'btn btn-success inline-block-tight', click: 'run', 'Run'
 
   initialize: (run_options) ->
