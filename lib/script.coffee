@@ -13,7 +13,6 @@ module.exports =
   deactivate: ->
     @scriptView.close()
     @scriptOptionsView.close()
-    @scriptOptions = null
 
   serialize: ->
     scriptViewState: @scriptView.serialize()
