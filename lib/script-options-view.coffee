@@ -12,6 +12,9 @@ class ScriptOptionsView extends View
             @label 'Current Working Directory:'
             @input type: 'text', class: 'editor mini editor-colors ', outlet: 'inputCwd'
           @div class: 'block', =>
+            @label 'Command'
+            @input type: 'text', class: 'editor mini editor-colors', outlet: 'inputCommand'
+          @div class: 'block', =>
             @label 'Command Arguments:'
             @input type: 'text', class: 'editor mini editor-colors', outlet: 'inputCommandArgs'
           @div class: 'block', =>
@@ -44,6 +47,7 @@ class ScriptOptionsView extends View
 
   saveOptions: =>
     @run_options.cmd_cwd = @inputCwd.val()
+    @run_options.cmd = @inputCommand.val()
     @run_options.cmd_args = (item for item in @inputCommandArgs.val().split(' ') when item != '')
     @run_options.script_args = (item for item in @inputScriptArgs.val().split(' ') when item != '')
     #atom.emit 'script:update-options', run_options: @run_options
