@@ -98,8 +98,11 @@ class ScriptView extends View
       @handleError(err)
       return false
 
-    # Precondition: lang? and lang of grammarMap
-    info.command = grammarMap[lang]["command"]
+    if @run_options.cmd is null || @run_options.cmd == ''
+      # Precondition: lang? and lang of grammarMap
+      info.command = grammarMap[lang]["command"]
+    else
+      info.command = @run_options.cmd
 
     filename = editor.getTitle()
 
