@@ -49,9 +49,6 @@ class ScriptOptionsView extends View
     #atom.emit 'script:update-options', run_options: @run_options
 
   close: ->
-    if @hasParent() then @detach()
-
-  close: ->
     atom.workspaceView.trigger "script:close-options"
   run: ->
     atom.workspaceView.trigger "script:save-options"
