@@ -85,3 +85,8 @@ module.exports =
     command: "lua"
     "Selection Based": (code) -> ['-e', code]
     "File Based": (filename) -> [filename]
+
+  "CoffeeScript (Literate)":
+    command: "coffee"
+    "Selection Based": (code) -> ['-e', code]
+    "File Based": (filename) -> [filename]
