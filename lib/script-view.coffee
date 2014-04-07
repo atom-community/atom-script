@@ -40,25 +40,23 @@ class ScriptView extends View
     editor = atom.workspace.getActiveEditor()
 
     # No editor available, do nothing
-    if not editor?
-      return
+    return unless editor?
 
     @resetView()
-    commandContext = @setup(editor)
-    if commandContext then @run(commandContext.command, commandContext.args)
+    commandContext = @setup editor
+    @run commandContext.command, commandContext.args if commandContext
 
-  resetView: (title='Loading...') ->
+  resetView: (title = 'Loading...') ->
     # Display window and load message
 
     # First run, create view
-    if not @hasParent()
-      atom.workspaceView.prependToBottom(this)
+    atom.workspaceView.prependToBottom(@) unless @hasParent()
 
     # Close any existing process and start a new one
     @stop()
 
-    @headerView.title.text(title)
-    @headerView.setStatus('start')
+    @headerView.title.text title
+    @headerView.setStatus 'start'
 
     # Get script view ready
     @output.empty()
@@ -66,12 +64,9 @@ class ScriptView extends View
   close: ->
     # Stop any running process and dismiss window
     @stop()
-    if @hasParent() then @detach()
+    @detach() if @hasParent()
 
-  getlang: (editor) ->
-    grammar = editor.getGrammar()
-    lang = grammar.name
-    return lang
+  getlang: (editor) -> editor.getGrammar().name
 
   setup: (editor) ->
     # Store information about the run, including language
@@ -143,20 +138,20 @@ class ScriptView extends View
       return false
 
     # Update header
-    @headerView.title.text(lang + ' - ' + filename)
+    @headerView.title.text "#{lang} - #{filename}"
 
     # Return setup information
     return commandContext
 
   handleError: (err) ->
     # Display error and kill process
-    @headerView.title.text('Error')
-    @headerView.setStatus('err')
-    @display('error', err)
+    @headerView.title.text 'Error'
+    @headerView.setStatus 'err'
+    @display 'error', err
     @stop()
 
   run: (command, args) ->
-    atom.emit('achievement:unlock', {msg: 'Homestar Runner'})
+    atom.emit 'achievement:unlock', msg: 'Homestar Runner'
 
     # Default to where the user opened atom
     options =
@@ -164,13 +159,13 @@ class ScriptView extends View
       env: process.env
     args = (@run_options.cmd_args.concat args).concat @run_options.script_args
 
-    stdout = (output) => @display('stdout', output)
-    stderr = (output) => @display('stderr', output)
+    stdout = (output) => @display 'stdout', output
+    stderr = (output) => @display 'stderr', output
     exit = (return_code) =>
       if return_code is 0
-        @headerView.setStatus('stop')
+        @headerView.setStatus 'stop'
       else
-        @headerView.setStatus('err')
+        @headerView.setStatus 'err'
       console.log "Exited with #{return_code}"
 
     # Run process
@@ -192,8 +187,8 @@ class ScriptView extends View
   stop: ->
     # Kill existing process if available
     if @bufferedProcess? and @bufferedProcess.process?
-      @display('stdout', '^C')
-      @headerView.setStatus('kill')
+      @display 'stdout', '^C'
+      @headerView.setStatus 'kill'
       @bufferedProcess.kill()
 
   display: (css, line) ->
@@ -201,4 +196,4 @@ class ScriptView extends View
     line = _.escape(line)
     line = @ansiFilter.toHtml(line)
 
-    @output.append("<pre class='line #{css}'>#{line}</pre>")
+    @output.append "<pre class='line #{css}'>#{line}</pre>"

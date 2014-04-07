@@ -16,9 +16,9 @@ class HeaderView extends View
     atom.workspaceView.trigger 'script:close-view'
 
   setStatus: (status) ->
-    @status.removeClass('icon-alert icon-check icon-hourglass icon-stop')
+    @status.removeClass 'icon-alert icon-check icon-hourglass icon-stop'
     switch status
-      when 'start' then @status.addClass('icon-hourglass')
-      when 'stop' then @status.addClass('icon-check')
-      when 'kill' then @status.addClass('icon-stop')
-      when 'err' then @status.addClass('icon-alert')
+      when 'start' then @status.addClass 'icon-hourglass'
+      when 'stop' then @status.addClass 'icon-check'
+      when 'kill' then @status.addClass 'icon-stop'
+      when 'err' then @status.addClass 'icon-alert'
