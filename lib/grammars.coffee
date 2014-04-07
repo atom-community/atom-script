@@ -149,3 +149,4 @@ module.exports =
     "File Based":
       command: "cucumber"
       args: (filename) -> [filename]
+>>>>>>> Prefer ' unless doing actual interpolation.

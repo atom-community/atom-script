@@ -19,9 +19,9 @@ class ScriptView extends View
 
   initialize: (serializeState, run_options) ->
     # Bind commands
-    atom.workspaceView.command "script:run", => @start()
-    atom.workspaceView.command "script:close-view", => @close()
-    atom.workspaceView.command "script:kill-process", => @stop()
+    atom.workspaceView.command 'script:run', => @start()
+    atom.workspaceView.command 'script:close-view', => @close()
+    atom.workspaceView.command 'script:kill-process', => @stop()
 
     @ansiFilter = new AnsiFilter
     @run_options = run_options
@@ -55,7 +55,7 @@ class ScriptView extends View
     @stop()
 
     @headerView.title.text(title)
-    @headerView.setStatus("start")
+    @headerView.setStatus('start')
 
     # Get script view ready
     @output.empty()
@@ -79,19 +79,19 @@ class ScriptView extends View
 
     err = null
     # Determine if no language is selected
-    if lang == "Null Grammar" or lang == "Plain Text"
+    if lang == 'Null Grammar' or lang == 'Plain Text'
       err =
-        "Must select a language in the lower left or " +
-        "save the file with an appropriate extension."
+        'Must select a language in the lower left or ' +
+        'save the file with an appropriate extension.'
 
     # Provide them a dialog to submit an issue on GH, prepopulated
     # with their language of choice
     else if ! (lang of grammarMap)
       err =
-        "Command not configured for " + lang + "!\n\n" +
-        "Add an <a href='https://github.com/rgbkrk/atom-script/issues/" +
-        "new?title=Add%20support%20for%20" + lang + "'>issue on GitHub" +
-        "</a> or send your own Pull Request"
+        'Command not configured for ' + lang + '!\n\n' +
+        'Add an <a href='https://github.com/rgbkrk/atom-script/issues/' +
+        'new?title=Add%20support%20for%20' + lang + ''>issue on GitHub' +
+        '</a> or send your own Pull Request'
 
     if err?
       @handleError(err)
@@ -112,10 +112,10 @@ class ScriptView extends View
 
     # No selected text on a file that does exist, use filepath
     if (not selectedText? or not selectedText) and filepath?
-      argType = "File Based"
+      argType = 'File Based'
       arg = filepath
     else
-      argType = "Selection Based"
+      argType = 'Selection Based'
       arg = selectedText
 
     if not @run_options.cmd? or @run_options.cmd is ''
@@ -131,28 +131,28 @@ class ScriptView extends View
       args = grammarMap[lang][argType].args(arg)
       commandContext.args = args
     catch error
-      err = argType + " Runner not available for " + lang + "\n\n" +
-            "If it should exist add an " +
-            "<a href='https://github.com/rgbkrk/atom-script/issues/" +
-            "new?title=Add%20support%20for%20" + lang + "'>issue on GitHub" +
-            "</a> or send your own Pull Request"
+      err = argType + ' Runner not available for ' + lang + '\n\n' +
+            'If it should exist add an ' +
+            '<a href='https://github.com/rgbkrk/atom-script/issues/' +
+            'new?title=Add%20support%20for%20' + lang + ''>issue on GitHub' +
+            '</a> or send your own Pull Request'
       @handleError(err)
       return false
 
     # Update header
-    @headerView.title.text(lang + " - " + filename)
+    @headerView.title.text(lang + ' - ' + filename)
     # Return setup information
     return commandContext
 
   handleError: (err) ->
     # Display error and kill process
-    @headerView.title.text("Error")
-    @headerView.setStatus("err")
-    @display("error", err)
+    @headerView.title.text('Error')
+    @headerView.setStatus('err')
+    @display('error', err)
     @stop()
 
   run: (command, args) ->
-    atom.emit("achievement:unlock", {msg: "Homestar Runner"})
+    atom.emit('achievement:unlock', {msg: 'Homestar Runner'})
 
     # Default to where the user opened atom
     options =
@@ -160,22 +160,22 @@ class ScriptView extends View
       env: process.env
     args = (@run_options.cmd_args.concat args).concat @run_options.script_args
 
-    stdout = (output) => @display("stdout", output)
-    stderr = (output) => @display("stderr", output)
+    stdout = (output) => @display('stdout', output)
+    stderr = (output) => @display('stderr', output)
     exit = (return_code) =>
       if return_code is 0
-        @headerView.setStatus("stop")
+        @headerView.setStatus('stop')
       else
-        @headerView.setStatus("err")
+        @headerView.setStatus('err')
       console.log "Exited with #{return_code}"
 
     # Run process
     @bufferedProcess = new BufferedProcess({command, args, options,
                                             stdout, stderr, exit})
     @bufferedProcess.process.on('error', (node_error) =>
-      @output.append("<h1>Unable to run</h1>")
+      @output.append('<h1>Unable to run</h1>')
       @output.append("<pre>#{_.escape(command)}</pre>")
-      @output.append("<h2>Is it on your path?</h2>")
+      @output.append('<h2>Is it on your path?</h2>')
       @output.append("<pre>PATH: #{_.escape(process.env.PATH)}</pre>")
 
     )
@@ -190,8 +190,8 @@ class ScriptView extends View
   stop: ->
     # Kill existing process if available
     if @bufferedProcess? and @bufferedProcess.process?
-      @display("stdout", "^C")
-      @headerView.setStatus("kill")
+      @display('stdout', '^C')
+      @headerView.setStatus('kill')
       @bufferedProcess.kill()
 
   display: (css, line) ->

@@ -5,15 +5,15 @@ script = require '../lib/script'
 # To run a specific `it` or `describe` block add an `f` to the front (e.g. `fit`
 # or `fdescribe`). Remove the `f` to unfocus the block.
 
-describe "script", ->
+describe 'script', ->
   activationPromise = null
 
   beforeEach ->
     atom.workspaceView = new WorkspaceView
     activationPromise = atom.packages.activatePackage('script')
 
-  describe "when the script:toggle event is triggered", ->
-    it "attaches and then detaches the view", ->
+  describe 'when the script:toggle event is triggered', ->
+    it 'attaches and then detaches the view', ->
       expect(atom.workspaceView.find('.script')).not.toExist()
 
       # This is an activation event, triggering it will cause the package to be
