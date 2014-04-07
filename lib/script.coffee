@@ -9,8 +9,8 @@ module.exports =
 
   activate: (state) ->
     @scriptOptions = new ScriptOptions()
-    @scriptView = new ScriptView(state.scriptViewState, @scriptOptions)
-    @scriptOptionsView = new ScriptOptionsView(@scriptOptions)
+    @scriptView = new ScriptView state.scriptViewState, @scriptOptions
+    @scriptOptionsView = new ScriptOptionsView @scriptOptions
 
   deactivate: ->
     @scriptView.close()
