@@ -13,8 +13,11 @@ class ScriptView extends View
   @content: ->
     @div =>
       @subview 'headerView', new HeaderView()
+
       # Display layout and outlets
-      @div class: 'tool-panel panel panel-bottom padding script-view native-key-bindings', outlet: 'script', tabindex: -1, =>
+      css = 'tool-panel panel panel-bottom padding script-view
+        native-key-bindings'
+      @div class: css, outlet: 'script', tabindex: -1, =>
         @div class: 'panel-body padded output', outlet: 'output'
 
   initialize: (serializeState, run_options) ->
@@ -78,20 +81,19 @@ class ScriptView extends View
     lang = @getlang(editor)
 
     err = null
-    # Determine if no language is selected
-    if lang == 'Null Grammar' or lang == 'Plain Text'
-      err =
-        'Must select a language in the lower left or ' +
-        'save the file with an appropriate extension.'
 
-    # Provide them a dialog to submit an issue on GH, prepopulated
-    # with their language of choice
-    else if ! (lang of grammarMap)
-      err =
-        'Command not configured for ' + lang + '!\n\n' +
-        'Add an <a href='https://github.com/rgbkrk/atom-script/issues/' +
-        'new?title=Add%20support%20for%20' + lang + ''>issue on GitHub' +
-        '</a> or send your own Pull Request'
+    # Determine if no language is selected.
+    if lang == 'Null Grammar' or lang == 'Plain Text'
+      err = "You must select a language in the lower left, or save the file
+        with an appropriate extension."
+
+    # Provide them a dialog to submit an issue on GH, prepopulated with their
+    # language of choice.
+    else if not lang of grammarMap
+      err = "Command not configured for #{lang}!
+        \n\nAdd an <a href='https://github.com/rgbkrk/atom-script/issues/\
+        new?title=Add%20support%20for%20#{lang}'>issue on GitHub</a>
+        or send your own Pull Request."
 
     if err?
       @handleError(err)
@@ -131,16 +133,18 @@ class ScriptView extends View
       args = grammarMap[lang][argType].args(arg)
       commandContext.args = args
     catch error
-      err = argType + ' Runner not available for ' + lang + '\n\n' +
-            'If it should exist add an ' +
-            '<a href='https://github.com/rgbkrk/atom-script/issues/' +
-            'new?title=Add%20support%20for%20' + lang + ''>issue on GitHub' +
-            '</a> or send your own Pull Request'
+      err = "#{argType} runner not available for #{lang}.
+        \n\nIf it should exist, add an
+        <a href='https://github.com/rgbkrk/atom-script/issues/\
+        new?title=Add%20support%20for%20#{lang}'>issue on GitHub</a>, or send
+        your own pull request."
+
       @handleError(err)
       return false
 
     # Update header
     @headerView.title.text(lang + ' - ' + filename)
+
     # Return setup information
     return commandContext
 
@@ -173,11 +177,10 @@ class ScriptView extends View
     @bufferedProcess = new BufferedProcess({command, args, options,
                                             stdout, stderr, exit})
     @bufferedProcess.process.on('error', (node_error) =>
-      @output.append('<h1>Unable to run</h1>')
-      @output.append("<pre>#{_.escape(command)}</pre>")
-      @output.append('<h2>Is it on your path?</h2>')
-      @output.append("<pre>PATH: #{_.escape(process.env.PATH)}</pre>")
-
+      @output.append "<h1>Unable to run</h1>
+        <pre>#{_.escape command}</pre>
+        <h2>Is it on your path?</h2>
+        <pre>PATH: #{_.escape process.env.PATH}</pre>"
     )
 
   getCwd: ->
@@ -185,7 +188,6 @@ class ScriptView extends View
       atom.project.getPath()
     else
       @run_options.cmd_cwd
-
 
   stop: ->
     # Kill existing process if available

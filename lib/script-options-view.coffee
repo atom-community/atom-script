@@ -39,15 +39,15 @@ class ScriptOptionsView extends View
 
   initialize: (run_options) ->
     atom.workspaceView.command 'script:run-options', => @runOptions()
-    atom.workspaceView.command 'script:close-options', => @toggleScriptOptions('hide')
+    atom.workspaceView.command 'script:close-options',
+      => @toggleScriptOptions 'hide'
     atom.workspaceView.command 'script:save-options', => @saveOptions()
     atom.workspaceView.prependToTop(this)
-    @toggleScriptOptions('hide')
+    @toggleScriptOptions 'hide'
     @run_options = run_options
 
   runOptions: ->
     @toggleScriptOptions()
-
 
   toggleScriptOptions: (command) ->
     if command?
@@ -59,13 +59,17 @@ class ScriptOptionsView extends View
       @scriptOptionsView.toggle()
 
   saveOptions: =>
+    splitArgs = (element) ->
+      item for item in element.val().split(' ') when item isnt ''
+
     @run_options.cmd_cwd = @inputCwd.val()
     @run_options.cmd = @inputCommand.val()
-    @run_options.cmd_args = (item for item in @inputCommandArgs.val().split(' ') when item != '')
-    @run_options.script_args = (item for item in @inputScriptArgs.val().split(' ') when item != '')
+    @run_options.cmd_args = splitArgs @inputCommandArgs
+    @run_options.script_args = splitArgs @inputScriptArgs
 
   close: ->
     atom.workspaceView.trigger 'script:close-options'
+
   run: ->
     atom.workspaceView.trigger 'script:save-options'
     atom.workspaceView.trigger 'script:close-options'
