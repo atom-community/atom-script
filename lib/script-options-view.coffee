@@ -55,10 +55,10 @@ class ScriptOptionsView extends View
     splitArgs = (element) ->
       item for item in element.val().split ' ' when item isnt ''
 
-    @runOptions.cmd_cwd = @inputCwd.val()
+    @runOptions.workingDirectory = @inputCwd.val()
     @runOptions.cmd = @inputCommand.val()
-    @runOptions.cmd_args = splitArgs @inputCommandArgs
-    @runOptions.script_args = splitArgs @inputScriptArgs
+    @runOptions.cmdArgs = splitArgs @inputCommandArgs
+    @runOptions.scriptArgs = splitArgs @inputScriptArgs
 
   close: ->
     atom.workspaceView.trigger 'script:close-options'

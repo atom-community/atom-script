@@ -1,5 +1,5 @@
 grammarMap = require './grammars'
-{View, BufferedProcess} = require 'atom'
+{View, BufferedProcess, $$} = require 'atom'
 HeaderView = require './header-view'
 ScriptOptionsView = require './script-options-view'
 AnsiFilter = require 'ansi-to-html'
@@ -20,20 +20,17 @@ class ScriptView extends View
       @div class: css, outlet: 'script', tabindex: -1, =>
         @div class: 'panel-body padded output', outlet: 'output'
 
-  initialize: (serializeState, run_options) ->
+  initialize: (serializeState, @runOptions) ->
     # Bind commands
     atom.workspaceView.command 'script:run', => @start()
     atom.workspaceView.command 'script:close-view', => @close()
     atom.workspaceView.command 'script:kill-process', => @stop()
 
     @ansiFilter = new AnsiFilter
-    @run_options = run_options
 
   serialize: ->
 
-  updateOptions: (event) =>
-    console.log(event)
-    @run_options = event.run_options
+  updateOptions: (event) -> @runOptions = event.runOptions
 
   start: ->
     # Get current editor
@@ -50,7 +47,7 @@ class ScriptView extends View
     # Display window and load message
 
     # First run, create view
-    atom.workspaceView.prependToBottom(@) unless @hasParent()
+    atom.workspaceView.prependToBottom @ unless @hasParent()
 
     # Close any existing process and start a new one
     @stop()
@@ -66,19 +63,18 @@ class ScriptView extends View
     @stop()
     @detach() if @hasParent()
 
-  getlang: (editor) -> editor.getGrammar().name
+  getLang: (editor) -> editor.getGrammar().name
 
   setup: (editor) ->
     # Store information about the run, including language
     commandContext = {}
 
     # Get language
-    lang = @getlang(editor)
-
+    lang = @getLang editor
     err = null
 
     # Determine if no language is selected.
-    if lang == 'Null Grammar' or lang == 'Plain Text'
+    if lang is 'Null Grammar' or lang is 'Plain Text'
       err = "You must select a language in the lower left, or save the file
         with an appropriate extension."
 
@@ -134,7 +130,7 @@ class ScriptView extends View
         new?title=Add%20support%20for%20#{lang}'>issue on GitHub</a>, or send
         your own pull request."
 
-      @handleError(err)
+      @handleError err
       return false
 
     # Update header
@@ -150,39 +146,41 @@ class ScriptView extends View
     @display 'error', err
     @stop()
 
-  run: (command, args) ->
+  run: (command, extraArgs) ->
     atom.emit 'achievement:unlock', msg: 'Homestar Runner'
 
     # Default to where the user opened atom
     options =
       cwd: @getCwd()
       env: process.env
-    args = (@run_options.cmd_args.concat args).concat @run_options.script_args
+    args = (@runOptions.cmdArgs.concat extraArgs).concat @runOptions.scriptArgs
 
     stdout = (output) => @display 'stdout', output
     stderr = (output) => @display 'stderr', output
-    exit = (return_code) =>
-      if return_code is 0
+    exit = (returnCode) =>
+      if returnCode is 0
         @headerView.setStatus 'stop'
       else
         @headerView.setStatus 'err'
       console.log "Exited with #{return_code}"
 
     # Run process
-    @bufferedProcess = new BufferedProcess({command, args, options,
-                                            stdout, stderr, exit})
-    @bufferedProcess.process.on('error', (node_error) =>
-      @output.append "<h1>Unable to run</h1>
-        <pre>#{_.escape command}</pre>
-        <h2>Is it on your path?</h2>
-        <pre>PATH: #{_.escape process.env.PATH}</pre>"
-    )
+    @bufferedProcess = new BufferedProcess({
+      command, args, options, stdout, stderr, exit
+    })
+
+    @bufferedProcess.process.on 'error', (nodeError) =>
+      @output.append $$ ->
+        @h1 'Unable to run'
+        @pre _.escape command
+        @h2 'Is it on your path?'
+        @pre "PATH: #{_.escape process.env.PATH}"
 
   getCwd: ->
-    if not @run_options.cmd_cwd? or @run_options.cmd_cwd is ''
+    if not @runOptions.workingDirectory? or @runOptions.workingDirectory is ''
       atom.project.getPath()
     else
-      @run_options.cmd_cwd
+      @runOptions.workingDirectory
 
   stop: ->
     # Kill existing process if available
@@ -192,8 +190,8 @@ class ScriptView extends View
       @bufferedProcess.kill()
 
   display: (css, line) ->
-
     line = _.escape(line)
     line = @ansiFilter.toHtml(line)
 
-    @output.append "<pre class='line #{css}'>#{line}</pre>"
+    @output.append $$ ->
+      @pre class: "line #{css}", line
