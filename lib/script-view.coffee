@@ -180,7 +180,7 @@ class ScriptView extends View
     )
 
   getCwd: ->
-    if not @run_options.cmd_cwd? || @run_options.cmd_cwd == ''
+    if not @run_options.cmd_cwd? or @run_options.cmd_cwd is ''
       atom.project.getPath()
     else
       @run_options.cmd_cwd
