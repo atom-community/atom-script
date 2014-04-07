@@ -37,35 +37,28 @@ class ScriptOptionsView extends View
             @button class: "btn #{css}", click: 'close', 'Close'
             @button class: "btn #{css}", click: 'run', 'Run'
 
-  initialize: (run_options) ->
-    atom.workspaceView.command 'script:run-options', => @runOptions()
-    atom.workspaceView.command 'script:close-options',
-      => @toggleScriptOptions 'hide'
+  initialize: (@runOptions) ->
+    atom.workspaceView.command 'script:run-options', => @toggleScriptOptions()
+    atom.workspaceView.command 'script:close-options', =>
+      @toggleScriptOptions 'hide'
     atom.workspaceView.command 'script:save-options', => @saveOptions()
-    atom.workspaceView.prependToTop(this)
+    atom.workspaceView.prependToTop @
     @toggleScriptOptions 'hide'
-    @run_options = run_options
-
-  runOptions: ->
-    @toggleScriptOptions()
 
   toggleScriptOptions: (command) ->
-    if command?
-      if command == 'show'
-        @scriptOptionsView.show()
-      if command == 'hide'
-        @scriptOptionsView.hide()
-    else
-      @scriptOptionsView.toggle()
+    switch command
+      when 'show' then @scriptOptionsView.show()
+      when 'hide' then @scriptOptionsView.hide()
+      else @scriptOptionsView.toggle()
 
-  saveOptions: =>
+  saveOptions: ->
     splitArgs = (element) ->
-      item for item in element.val().split(' ') when item isnt ''
+      item for item in element.val().split ' ' when item isnt ''
 
-    @run_options.cmd_cwd = @inputCwd.val()
-    @run_options.cmd = @inputCommand.val()
-    @run_options.cmd_args = splitArgs @inputCommandArgs
-    @run_options.script_args = splitArgs @inputScriptArgs
+    @runOptions.cmd_cwd = @inputCwd.val()
+    @runOptions.cmd = @inputCommand.val()
+    @runOptions.cmd_args = splitArgs @inputCommandArgs
+    @runOptions.script_args = splitArgs @inputScriptArgs
 
   close: ->
     atom.workspaceView.trigger 'script:close-options'
