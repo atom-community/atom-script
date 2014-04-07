@@ -1,3 +1,7 @@
+## 2.3.0
+* Support for Literate CoffeeScript
+* New drop down for argument, command, and current working directory choices
+
 ## 2.2.0
 * Catch spawn errors, present debug information for the user
 
