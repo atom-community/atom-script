@@ -97,9 +97,9 @@ class ScriptView extends View
       @handleError(err)
       return false
 
-    if @run_options.cmd is null || @run_options.cmd == ''
+    if @run_options.cmd? or @run_options.cmd is ''
       # Precondition: lang? and lang of grammarMap
-      info.command = grammarMap[lang]["command"]
+      info.command = grammarMap[lang].command
     else
       info.command = @run_options.cmd
 
