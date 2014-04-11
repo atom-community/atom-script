@@ -42,7 +42,7 @@ class ScriptOptionsView extends View
     atom.workspaceView.command 'script:close-options', =>
       @toggleScriptOptions 'hide'
     atom.workspaceView.command 'script:save-options', => @saveOptions()
-    atom.workspaceView.prependToTop @
+    atom.workspaceView.prependToTop self
     @toggleScriptOptions 'hide'
 
   toggleScriptOptions: (command) ->
