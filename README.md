@@ -22,6 +22,7 @@ Currently supports:
   * Perl
   * PHP
   * Python
+  * RSpec (**NOTE**: This requires the [RSpec language package](https://atom.io/packages/language-rspec) to work.)
   * Ruby
   * Scala
 
@@ -30,7 +31,7 @@ You only have to add a few lines in a PR to support another.
 
 ### Limitations
 
-<sup>\*</sup> Go and F# only support file based runs
+<sup>\*</sup> Go, F#, and RSpec only support file based runs
 
 <sup>†</sup> Erlang uses `erl` for limited selection based runs (see [#70](https://github.com/rgbkrk/atom-script/pull/70))
 
