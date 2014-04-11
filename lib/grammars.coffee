@@ -95,3 +95,8 @@ module.exports =
     command: "coffee"
     "Selection Based": (code) -> ['-e', code]
     "File Based": (filename) -> [filename]
+
+  Gherkin:
+    command: "cucumber"
+    #"Selection Based": (code) -> ['-e', code]
+    "File Based": (filename) -> [filename]
