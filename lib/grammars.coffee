@@ -17,6 +17,11 @@ module.exports =
     "Selection Based": (code) -> ['-e', code]
     "File Based": (filename) -> [filename]
 
+  RSpec:
+    command: "rspec"
+    #"Selection Based": (code) -> []
+    "File Based": (filename) -> [filename]
+
   Perl:
     command: "perl"
     "Selection Based": (code) -> ['-e', code]
