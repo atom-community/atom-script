@@ -11,7 +11,7 @@ Currently supports:
   * CoffeeScript (Literate) <sup>^</sup>
   * Erlang <sup>†</sup>
   * Elixir
-  * [Gherkin](https://atom.io/packages/cucumber) <sup>†</sup><sup>*</sup>
+  * [Gherkin](https://atom.io/packages/cucumber) <sup>‡</sup><sup>*</sup>
   * Go <sup>*</sup>
   * Groovy
   * F# <sup>*</sup>
