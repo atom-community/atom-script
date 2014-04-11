@@ -99,4 +99,4 @@ module.exports =
   Gherkin:
     command: "cucumber"
     #"Selection Based": (code) -> ['-e', code]
-    "File Based": (filename) -> [filename]
+    "File Based": (filename) -> ['-r', '""', filename]
