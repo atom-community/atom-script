@@ -75,16 +75,20 @@ class ScriptView extends View
 
     # Determine if no language is selected.
     if lang is 'Null Grammar' or lang is 'Plain Text'
-      err = "You must select a language in the lower left, or save the file
-        with an appropriate extension."
+      err = $$ ->
+        @p 'You must select a language in the lower left, or save the file
+          with an appropriate extension.'
 
     # Provide them a dialog to submit an issue on GH, prepopulated with their
     # language of choice.
-    else if not lang of grammarMap
-      err = "Command not configured for #{lang}!
-        \n\nAdd an <a href='https://github.com/rgbkrk/atom-script/issues/\
-        new?title=Add%20support%20for%20#{lang}'>issue on GitHub</a>
-        or send your own Pull Request."
+    else if not (lang of grammarMap)
+      err = $$ ->
+        @p class: 'block', "Command not configured for #{lang}!"
+        @p class: 'block', =>
+          @text 'Add an '
+          @a href: "https://github.com/rgbkrk/atom-script/issues/\
+            new?title=Add%20support%20for%20#{lang}", 'issue on GitHub'
+          @text ' or send your own Pull Request.'
 
     if err?
       @handleError(err)
@@ -129,11 +133,13 @@ class ScriptView extends View
     try
       commandContext.args = makeArgs arg
     catch error
-      err = "#{argType} runner not available for #{lang}.
-        \n\nIf it should exist, add an
-        <a href='https://github.com/rgbkrk/atom-script/issues/\
-        new?title=Add%20support%20for%20#{lang}'>issue on GitHub</a>, or send
-        your own pull request."
+      err = $$ ->
+        @p class: 'block', "#{argType} runner not available for #{lang}."
+        @p class: 'block', =>
+          @text 'If it should exist, add an '
+          @a href: "https://github.com/rgbkrk/atom-script/issues/\
+            new?title=Add%20support%20for%20#{lang}", 'issue on GitHub'
+          @text ', or send your own pull request.'
 
       @handleError err
       return false
@@ -148,7 +154,7 @@ class ScriptView extends View
     # Display error and kill process
     @headerView.title.text 'Error'
     @headerView.setStatus 'err'
-    @display 'error', err
+    @output.append err
     @stop()
 
   run: (command, extraArgs) ->
