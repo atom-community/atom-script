@@ -38,7 +38,7 @@ You only have to add a few lines in a PR to support another.
 
 <sup>‡</sup> This grammar requires a language package to be installed.
 
-<sup>\*</sup> Go, F#, and RSpec only support file based runs
+<sup>\*</sup> Gherkin, Go, F#, and RSpec only support file based runs
 
 ## Installation
 
