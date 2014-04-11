@@ -22,7 +22,7 @@ Currently supports:
   * Perl
   * PHP
   * Python
-  * RSpec (**NOTE**: This requires the [RSpec language package](https://atom.io/packages/language-rspec) to work.)
+  * [RSpec](https://atom.io/packages/language-rspec) <sup>‡</sup><sup>\*</sup>
   * Ruby
   * Scala
 
@@ -31,11 +31,13 @@ You only have to add a few lines in a PR to support another.
 
 ### Limitations
 
-<sup>\*</sup> Go, F#, and RSpec only support file based runs
+<sup>^</sup> Running selections of code for CoffeeScript (Literate) only works when selecting just the code blocks
 
 <sup>†</sup> Erlang uses `erl` for limited selection based runs (see [#70](https://github.com/rgbkrk/atom-script/pull/70))
 
-<sup>^</sup> Running selections of code for CoffeeScript (Literate) only works when selecting just the code blocks
+<sup>‡</sup> This grammar requires a language package to be installed.
+
+<sup>\*</sup> Go, F#, and RSpec only support file based runs
 
 ## Installation
 
