@@ -90,6 +90,12 @@ class ScriptView extends View
       @handleError(err)
       return false
 
+    if not @runOptions.cmd? or @runOptions.cmd is ''
+      # Precondition: lang? and lang of grammarMap
+      commandContext.command = grammarMap[lang].command
+    else
+      commandContext.command = @runOptions.cmd
+
     filename = editor.getTitle()
 
     # Get selected text
@@ -121,8 +127,7 @@ class ScriptView extends View
       commandContext.command = @run_options.cmd
 
     try
-      args = grammarMap[lang][argType].args(arg)
-      commandContext.args = args
+      commandContext.args = makeArgs arg
     catch error
       err = "#{argType} runner not available for #{lang}.
         \n\nIf it should exist, add an
@@ -162,7 +167,7 @@ class ScriptView extends View
         @headerView.setStatus 'stop'
       else
         @headerView.setStatus 'err'
-      console.log "Exited with #{return_code}"
+      console.log "Exited with #{returnCode}"
 
     # Run process
     @bufferedProcess = new BufferedProcess({
