@@ -11,6 +11,7 @@ Currently supports:
   * CoffeeScript (Literate) <sup>^</sup>
   * Erlang <sup>†</sup>
   * Elixir
+  * [Gherkin](https://atom.io/packages/cucumber) <sup>†</sup><sup>*</sup>
   * Go <sup>*</sup>
   * Groovy
   * F# <sup>*</sup>
@@ -22,7 +23,7 @@ Currently supports:
   * Perl
   * PHP
   * Python
-  * [RSpec](https://atom.io/packages/language-rspec) <sup>‡</sup><sup>\*</sup>
+  * [RSpec](https://atom.io/packages/language-rspec) <sup>‡</sup><sup>*</sup>
   * Ruby
   * Scala
 
