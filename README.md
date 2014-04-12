@@ -4,14 +4,14 @@
 
 Run selections of code or the whole file!
 
-Currently supports:
+Currently supported grammars are:
 
   * Bash
   * Coffeescript
   * CoffeeScript (Literate) <sup>^</sup>
   * Erlang <sup>†</sup>
   * Elixir
-  * [Gherkin](https://atom.io/packages/cucumber) <sup>‡</sup><sup>*</sup>
+  * Cucumber (Gherkin) <sup>*</sup>
   * Go <sup>*</sup>
   * Groovy
   * F# <sup>*</sup>
@@ -23,10 +23,11 @@ Currently supports:
   * Perl
   * PHP
   * Python
-  * [RSpec](https://atom.io/packages/language-rspec) <sup>‡</sup><sup>*</sup>
+  * RSpec <sup>*</sup>
   * Ruby
   * Scala
 
+**NOTE**: Some grammars may require you to install [a custom language package](https://atom.io/search?utf8=✓&q=language).
 
 You only have to add a few lines in a PR to support another.
 
@@ -36,9 +37,7 @@ You only have to add a few lines in a PR to support another.
 
 <sup>†</sup> Erlang uses `erl` for limited selection based runs (see [#70](https://github.com/rgbkrk/atom-script/pull/70))
 
-<sup>‡</sup> This grammar requires a language package to be installed.
-
-<sup>\*</sup> Gherkin, Go, F#, and RSpec only support file based runs
+<sup>\*</sup> Cucumber (Gherkin), Go, F#, and RSpec only support file based runs
 
 ## Installation
 
