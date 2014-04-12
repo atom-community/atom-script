@@ -15,7 +15,7 @@ Currently supported grammars are:
   * Go <sup>*</sup>
   * Groovy
   * F# <sup>*</sup>
-  * Haskell <sup>*</sup>
+  * Haskell
   * Javascript
   * Julia
   * Lua
@@ -23,7 +23,7 @@ Currently supported grammars are:
   * Perl
   * PHP
   * Python
-  * RSpec <sup>*</sup>
+  * RSpec
   * Ruby
   * Scala
 
