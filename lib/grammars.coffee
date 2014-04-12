@@ -33,10 +33,13 @@ module.exports =
     "File Based":
       args: (filename) -> ['--exec', filename]
 
+  Gherkin:
+    command: "cucumber"
+    "File Based":
+      args: (filename) -> [filename]
+
   Go:
     command: "go"
-    #"Selection Based":
-    #  args: (filename) -> []
     "File Based":
       args: (filename) -> ['run', filename]
 

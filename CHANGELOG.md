@@ -1,3 +1,7 @@
+## 2.3.1
+* Support for RSpec (file based)
+* Support for Gherkin/Cucumber (file based)
+
 ## 2.3.0
 * Support for Literate CoffeeScript
 * New drop down for argument, command, and current working directory choices
