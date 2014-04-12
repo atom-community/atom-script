@@ -83,6 +83,8 @@ module.exports =
     command: "php"
     "Selection Based":
       args: (code)  -> ['-r', code]
+    "File Based":
+      args: (filename) -> [filename]
 
   Perl:
     command: "perl"
