@@ -15,7 +15,7 @@ Currently supported grammars are:
   * Go <sup>*</sup>
   * Groovy
   * F# <sup>*</sup>
-  * Haskell <sup>*</sup>
+  * Haskell
   * Javascript
   * Julia
   * Lua
@@ -23,7 +23,7 @@ Currently supported grammars are:
   * Perl
   * PHP
   * Python
-  * RSpec <sup>*</sup>
+  * RSpec
   * Ruby
   * Scala
 
@@ -37,7 +37,7 @@ You only have to add a few lines in a PR to support another.
 
 <sup>†</sup> Erlang uses `erl` for limited selection based runs (see [#70](https://github.com/rgbkrk/atom-script/pull/70))
 
-<sup>\*</sup> Cucumber (Gherkin), Go, F#, and RSpec only support file based runs
+<sup>\*</sup> Cucumber (Gherkin), Go, and F# only support file based runs
 
 ## Installation
 
