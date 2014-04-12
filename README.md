@@ -4,7 +4,7 @@
 
 Run selections of code or the whole file!
 
-Currently supports:
+Currently supported grammars are:
 
   * Bash
   * Coffeescript
@@ -22,19 +22,21 @@ Currently supports:
   * Perl
   * PHP
   * Python
+  * RSpec <sup>*</sup>
   * Ruby
   * Scala
 
+**NOTE**: Some grammars may require you to install [a custom language package](https://atom.io/search?utf8=✓&q=language).
 
 You only have to add a few lines in a PR to support another.
 
 ### Limitations
 
-<sup>\*</sup> Go and F# only support file based runs
+<sup>^</sup> Running selections of code for CoffeeScript (Literate) only works when selecting just the code blocks
 
 <sup>†</sup> Erlang uses `erl` for limited selection based runs (see [#70](https://github.com/rgbkrk/atom-script/pull/70))
 
-<sup>^</sup> Running selections of code for CoffeeScript (Literate) only works when selecting just the code blocks
+<sup>\*</sup> Go, F#, and RSpec only support file based runs
 
 ## Installation
 
