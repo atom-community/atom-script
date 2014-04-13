@@ -153,7 +153,6 @@ class ScriptView extends View
   run: (command, args) ->
     atom.emit("achievement:unlock", {msg: "Homestar Runner"})
     # Prepend the user defined path
-
     path_prefix = atom.config.get('script.path_prefix')
     if path_prefix
       process.env.PATH = [path_prefix, process.env.PATH].join(':')
