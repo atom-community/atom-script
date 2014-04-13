@@ -98,11 +98,11 @@ module.exports =
       args: (filename) -> [filename]
 
   RSpec:
-    command: "rspec"
     "Selection Based":
       command: "ruby"
       args: (code)  -> ['-e', code]
     "File Based":
+      command: "rspec"
       args: (filename) -> [filename]
 
   Ruby:
