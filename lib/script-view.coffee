@@ -111,6 +111,7 @@ class ScriptView extends View
     if (not selectedText? or not selectedText) and filepath?
       argType = 'File Based'
       arg = filepath
+      editor.save()
     else
       argType = 'Selection Based'
       arg = selectedText
