@@ -116,29 +116,25 @@ class ScriptView extends View
       arg = selectedText
 
     if not @runOptions.cmd? or @runOptions.cmd is ''
+      if not (argType of grammarMap[lang])
+        err = $$ ->
+          @p class: 'block', "#{argType} runner not available for #{lang}."
+          @p class: 'block', =>
+            @text 'If it should exist, add an '
+            @a href: "https://github.com/rgbkrk/atom-script/issues/\
+              new?title=Add%20support%20for%20#{lang}", 'issue on GitHub'
+            @text ', or send your own pull request.'
+
+        @handleError err
+        return false
+
       # Precondition: lang? and lang of grammarMap
-      if grammarMap[lang][argType] and not grammarMap[lang][argType].command?
-        commandContext.command = grammarMap[lang].command
-      else if grammarMap[lang][argType]
-        commandContext.command = grammarMap[lang][argType].command
+      commandContext.command = grammarMap[lang][argType].command
     else
       commandContext.command = @runOptions.cmd
 
-    makeArgs = grammarMap[lang][argType].args
-
-    try
-      commandContext.args = makeArgs arg
-    catch error
-      err = $$ ->
-        @p class: 'block', "#{argType} runner not available for #{lang}."
-        @p class: 'block', =>
-          @text 'If it should exist, add an '
-          @a href: "https://github.com/rgbkrk/atom-script/issues/\
-            new?title=Add%20support%20for%20#{lang}", 'issue on GitHub'
-          @text ', or send your own pull request.'
-
-      @handleError err
-      return false
+    buildArgsArray = grammarMap[lang][argType].args
+    commandContext.args = buildArgsArray arg
 
     # Update header
     @headerView.title.text "#{lang} - #{filename}"
