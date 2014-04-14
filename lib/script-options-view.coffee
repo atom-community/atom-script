@@ -10,50 +10,60 @@ class ScriptOptionsView extends View
         @div class: 'panel-body padded native-key-bindings', =>
           @div class: 'block', =>
             @label 'Current Working Directory:'
-            @input type: 'text', class: 'editor mini editor-colors ', outlet: 'inputCwd'
+            @input
+              type: 'text'
+              class: 'editor mini editor-colors'
+              outlet: 'inputCwd'
           @div class: 'block', =>
             @label 'Command'
-            @input type: 'text', class: 'editor mini editor-colors', outlet: 'inputCommand'
+            @input
+              type: 'text'
+              class: 'editor mini editor-colors'
+              outlet: 'inputCommand'
           @div class: 'block', =>
             @label 'Command Arguments:'
-            @input type: 'text', class: 'editor mini editor-colors', outlet: 'inputCommandArgs'
+            @input
+              type: 'text'
+              class: 'editor mini editor-colors'
+              outlet: 'inputCommandArgs'
           @div class: 'block', =>
             @label 'Program Arguments:'
-            @input type: 'text', class: 'editor mini editor-colors', outlet: 'inputScriptArgs'
+            @input
+              type: 'text'
+              class: 'editor mini editor-colors'
+              outlet: 'inputScriptArgs'
           @div class: 'block', =>
-            @button class: 'btn btn-primary inline-block-tight', click: 'close', 'Close'
-            @button class: 'btn btn-success inline-block-tight', click: 'run', 'Run'
+            css = 'btn inline-block-tight'
+            @button class: "btn #{css}", click: 'close', 'Close'
+            @button class: "btn #{css}", click: 'run', 'Run'
 
-  initialize: (run_options) ->
-    atom.workspaceView.command "script:run-options", => @runOptions()
-    atom.workspaceView.command "script:close-options", => @toggleScriptOptions('hide')
-    atom.workspaceView.command "script:save-options", => @saveOptions()
-    atom.workspaceView.prependToTop(this)
-    @toggleScriptOptions('hide')
-    @run_options = run_options
-
-  runOptions: ->
-    @toggleScriptOptions()
-
+  initialize: (@runOptions) ->
+    atom.workspaceView.command 'script:run-options', => @toggleScriptOptions()
+    atom.workspaceView.command 'script:close-options', =>
+      @toggleScriptOptions 'hide'
+    atom.workspaceView.command 'script:save-options', => @saveOptions()
+    atom.workspaceView.prependToTop this
+    @toggleScriptOptions 'hide'
 
   toggleScriptOptions: (command) ->
-    if command?
-      if command == 'show'
-        @scriptOptionsView.show()
-      if command == 'hide'
-        @scriptOptionsView.hide()
-    else
-      @scriptOptionsView.toggle()
+    switch command
+      when 'show' then @scriptOptionsView.show()
+      when 'hide' then @scriptOptionsView.hide()
+      else @scriptOptionsView.toggle()
 
-  saveOptions: =>
-    @run_options.cmd_cwd = @inputCwd.val()
-    @run_options.cmd = @inputCommand.val()
-    @run_options.cmd_args = (item for item in @inputCommandArgs.val().split(' ') when item != '')
-    @run_options.script_args = (item for item in @inputScriptArgs.val().split(' ') when item != '')
+  saveOptions: ->
+    splitArgs = (element) ->
+      item for item in element.val().split ' ' when item isnt ''
+
+    @runOptions.workingDirectory = @inputCwd.val()
+    @runOptions.cmd = @inputCommand.val()
+    @runOptions.cmdArgs = splitArgs @inputCommandArgs
+    @runOptions.scriptArgs = splitArgs @inputScriptArgs
 
   close: ->
-    atom.workspaceView.trigger "script:close-options"
+    atom.workspaceView.trigger 'script:close-options'
+
   run: ->
-    atom.workspaceView.trigger "script:save-options"
-    atom.workspaceView.trigger "script:close-options"
-    atom.workspaceView.trigger "script:run"
+    atom.workspaceView.trigger 'script:save-options'
+    atom.workspaceView.trigger 'script:close-options'
+    atom.workspaceView.trigger 'script:run'

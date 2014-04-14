@@ -1,6 +1,6 @@
 module.exports =
 class ScriptOptions
-  cmd_cwd: null
+  workingDirectory: null
   cmd: null
-  cmd_args: []
-  script_args: []
+  cmdArgs: []
+  scriptArgs: []

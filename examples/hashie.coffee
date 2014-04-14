@@ -1,8 +1,8 @@
-crypto = require('crypto')
-fs = require('fs')
+crypto = require 'crypto'
+fs = require 'fs'
 
-console.log("Let's hash these bugs out")
+console.log "Let's hash these bugs out"
 
-shasum = crypto.createHash('sha1')
-shasum.update("I like it when you sum.")
-console.log(shasum.digest('hex'))
+shasum = crypto.createHash 'sha1'
+shasum.update 'I like it when you sum.'
+console.log shasum.digest 'hex'
