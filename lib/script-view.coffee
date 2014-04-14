@@ -201,4 +201,5 @@ class ScriptView extends View
     line = @ansiFilter.toHtml(line)
 
     @output.append $$ ->
-      @pre class: "line #{css}", line
+      @pre class: "line #{css}", =>
+        @raw line
