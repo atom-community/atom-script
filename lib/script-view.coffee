@@ -94,12 +94,6 @@ class ScriptView extends View
       @handleError(err)
       return false
 
-    if not @runOptions.cmd? or @runOptions.cmd is ''
-      # Precondition: lang? and lang of grammarMap
-      commandContext.command = grammarMap[lang].command
-    else
-      commandContext.command = @runOptions.cmd
-
     filename = editor.getTitle()
 
     # Get selected text
@@ -121,14 +115,16 @@ class ScriptView extends View
       argType = 'Selection Based'
       arg = selectedText
 
-    if not @run_options.cmd? or @run_options.cmd is ''
+    if not @runOptions.cmd? or @runOptions.cmd is ''
       # Precondition: lang? and lang of grammarMap
       if grammarMap[lang][argType] and not grammarMap[lang][argType].command?
         commandContext.command = grammarMap[lang].command
       else if grammarMap[lang][argType]
         commandContext.command = grammarMap[lang][argType].command
     else
-      commandContext.command = @run_options.cmd
+      commandContext.command = @runOptions.cmd
+
+    makeArgs = grammarMap[lang][argType].args
 
     try
       commandContext.args = makeArgs arg
