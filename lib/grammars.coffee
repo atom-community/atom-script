@@ -41,6 +41,11 @@ module.exports =
       command: "fsharpi"
       args: (filename) -> ['--exec', filename]
 
+  Gherkin:
+    "File Based":
+      command: "cucumber"
+      args: (filename) -> [filename]
+
   Go:
     "File Based":
       command: "go"
@@ -84,6 +89,14 @@ module.exports =
       args: (code)  -> ['-e', code]
     "File Based":
       command: "lua"
+      args: (filename) -> [filename]
+
+  newLISP:
+    "Selection Based":
+      command: "newlisp"
+      args: (code) -> ['-e', code]
+    "File Based":
+      command: "newlisp"
       args: (filename) -> [filename]
 
   PHP:
@@ -140,17 +153,4 @@ module.exports =
       args: (code)  -> ['-e', code]
     "File Based":
       command: "scala"
-      args: (filename) -> [filename]
-
-  newLISP:
-    "Selection Based":
-      command: "newlisp"
-      args: (code) -> ['-e', code]
-    "File Based":
-      command: "newlisp"
-      args: (filename) -> [filename]
-
-  Gherkin:
-    "File Based":
-      command: "cucumber"
       args: (filename) -> [filename]

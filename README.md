@@ -7,14 +7,15 @@ Run selections of code or the whole file!
 Currently supported grammars are:
 
   * Bash
+  * Behat Feature
   * Coffeescript
   * CoffeeScript (Literate) <sup>^</sup>
-  * Erlang <sup>†</sup>
-  * Elixir
   * Cucumber (Gherkin) <sup>*</sup>
+  * Elixir
+  * Erlang <sup>†</sup>
+  * F# <sup>*</sup>
   * Go <sup>*</sup>
   * Groovy
-  * F# <sup>*</sup>
   * Haskell
   * Javascript
   * Julia
