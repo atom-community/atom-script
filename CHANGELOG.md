@@ -1,3 +1,8 @@
+## 2.3.2
+* Allow for different commands per run-mode
+* Massive CoffeeScript cleanups
+* Saves file prior to run
+
 ## 2.3.1
 * Support for RSpec (file based)
 * Support for Gherkin/Cucumber (file based)
