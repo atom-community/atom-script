@@ -2,6 +2,11 @@
 # As well as any special setup for arguments.
 
 module.exports =
+  'Behat Feature':
+    "File Based":
+      command: "behat"
+      args: (filename) -> [filename]
+
   CoffeeScript:
     "Selection Based":
       command: "coffee"
