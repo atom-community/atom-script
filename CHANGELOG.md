@@ -1,3 +1,6 @@
+## 2.3.3
+* Added Behat support
+
 ## 2.3.2
 * Allow for different commands per run-mode
 * Massive CoffeeScript cleanups
