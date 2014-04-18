@@ -11,7 +11,9 @@ Currently supported grammars are:
   * CoffeeScript (Literate) <sup>^</sup>
   * Erlang <sup>†</sup>
   * Elixir
-  * Cucumber (Gherkin) <sup>*</sup>
+  * Gherkin
+   * Behat <sup>*</sup>
+   * Cucumber <sup>*</sup>
   * Go <sup>*</sup>
   * Groovy
   * F# <sup>*</sup>
@@ -37,7 +39,7 @@ You only have to add a few lines in a PR to support another.
 
 <sup>†</sup> Erlang uses `erl` for limited selection based runs (see [#70](https://github.com/rgbkrk/atom-script/pull/70))
 
-<sup>\*</sup> Cucumber (Gherkin), Go, F#, and RSpec only support file based runs
+<sup>\*</sup> Gherkin, Go, F#, and RSpec only support file based runs
 
 ## Installation
 
