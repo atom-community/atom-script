@@ -3,6 +3,13 @@
 
 module.exports =
   'Behat Feature':
+    "Selection Based":
+      command: "behat"
+      args: (filename, selection) ->
+        buffer_row_range = selection.getBufferRowRange()
+        line_number = buffer_row_range.reduce (a,b) -> Math.min(a, b)
+        line_number += 1
+        ["#{filename}:#{line_number}"]
     "File Based":
       command: "behat"
       args: (filename) -> [filename]
