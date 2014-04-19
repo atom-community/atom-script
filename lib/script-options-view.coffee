@@ -7,30 +7,30 @@ class ScriptOptionsView extends View
     @div =>
       @div class: 'overlay from-top panel', outlet: 'scriptOptionsView', =>
         @div class: 'panel-heading', 'Configure Run Options'
-        @div class: 'panel-body padded native-key-bindings', =>
+        @div class: 'panel-body padded', =>
           @div class: 'block', =>
             @label 'Current Working Directory:'
             @input
               type: 'text'
-              class: 'editor mini editor-colors'
+              class: 'editor mini editor-colors native-key-bindings'
               outlet: 'inputCwd'
           @div class: 'block', =>
             @label 'Command'
             @input
               type: 'text'
-              class: 'editor mini editor-colors'
+              class: 'editor mini editor-colors native-key-bindings'
               outlet: 'inputCommand'
           @div class: 'block', =>
             @label 'Command Arguments:'
             @input
               type: 'text'
-              class: 'editor mini editor-colors'
+              class: 'editor mini editor-colors native-key-bindings'
               outlet: 'inputCommandArgs'
           @div class: 'block', =>
             @label 'Program Arguments:'
             @input
               type: 'text'
-              class: 'editor mini editor-colors'
+              class: 'editor mini editor-colors native-key-bindings'
               outlet: 'inputScriptArgs'
           @div class: 'block', =>
             css = 'btn inline-block-tight'
