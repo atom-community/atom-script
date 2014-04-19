@@ -95,26 +95,22 @@ class ScriptView extends View
       return false
 
     filename = editor.getTitle()
-
-    # Get selected text
-    selectedText = editor.getSelectedText()
     filepath = editor.getPath()
-
-    # If no text was selected, either use the file
-    # or select ALL the code in the editor
-
-    # Brand new file, text not selected, "select" ALL the text
-    if (not selectedText? or not selectedText) and not filepath?
-      selectedText = editor.getText()
+    selection = editor.getSelection()
 
     # No selected text on a file that does exist, use filepath
-    if (not selectedText? or not selectedText) and filepath?
+    if selection.isEmpty() and filepath?
       argType = 'File Based'
       arg = filepath
       editor.save()
     else
       argType = 'Selection Based'
-      arg = selectedText
+      # If the selection was empty "select" ALL the text
+      # This allows us to run on new files
+      if selection.isEmpty()
+         arg = editor.getText()
+      else
+         arg = selection.getText()
 
     try
       if not @runOptions.cmd? or @runOptions.cmd is ''
