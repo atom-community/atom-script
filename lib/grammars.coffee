@@ -10,7 +10,7 @@ module.exports =
   CoffeeScript:
     "Selection Based":
       command: "coffee"
-      args: (code)  -> ['-e', code]
+      args: (filename, selection) -> ['-e', selection.getText()]
     "File Based":
       command: "coffee"
       args: (filename) -> [filename]
@@ -18,7 +18,7 @@ module.exports =
   'CoffeeScript (Literate)':
     "Selection Based":
       command: "coffee"
-      args: (code)  -> ['-e', code]
+      args: (filename, selection) -> ['-e', selection.getText()]
     "File Based":
       command: "coffee"
       args: (filename) -> [filename]
@@ -26,7 +26,7 @@ module.exports =
   Elixir:
     "Selection Based":
       command: "elixir"
-      args: (code)  -> ['-e', code]
+      args: (filename, selection) -> ['-e', selection.getText()]
     "File Based":
       command: "elixir"
       args: (filename) -> ['-r', filename]
@@ -34,7 +34,7 @@ module.exports =
   Erlang:
     "Selection Based":
       command: "erl"
-      args: (code)  -> ['-noshell', '-eval', code+', init:stop().']
+      args: (filename, selection) -> ['-noshell', '-eval', selection.getText()+', init:stop().']
 
   'F#':
     "File Based":
@@ -42,6 +42,13 @@ module.exports =
       args: (filename) -> ['--exec', filename]
 
   Gherkin:
+    "Selection Based":
+      command: "cucumber"
+      args: (filename, selection) ->
+        buffer_row_range = selection.getBufferRowRange()
+        line_number = buffer_row_range.reduce (a,b) -> Math.min(a, b)
+        line_number += 1
+        ["#{filename}:#{line_number}"]
     "File Based":
       command: "cucumber"
       args: (filename) -> [filename]
@@ -54,7 +61,7 @@ module.exports =
   Groovy:
     "Selection Based":
       command: "groovy"
-      args: (code)  -> ['-e', code]
+      args: (filename, selection) -> ['-e', selection.getText()]
     "File Based":
       command: "groovy"
       args: (filename) -> [filename]
@@ -65,12 +72,12 @@ module.exports =
       args: (filename) -> [filename]
     "Selection Based":
       command: "ghc"
-      args: (code)  -> ['-e', code]
+      args: (filename, selection) -> ['-e', selection.getText()]
 
   JavaScript:
     "Selection Based":
       command: "node"
-      args: (code)  -> ['-e', code]
+      args: (filename, selection) -> ['-e', selection.getText()]
     "File Based":
       command: "node"
       args: (filename) -> [filename]
@@ -78,7 +85,7 @@ module.exports =
   Julia:
     "Selection Based":
       command: "julia"
-      args: (code)  -> ['-e', code]
+      args: (filename, selection) -> ['-e', selection.getText()]
     "File Based":
       command: "julia"
       args: (filename) -> [filename]
@@ -86,7 +93,7 @@ module.exports =
   Lua:
     "Selection Based":
       command: "lua"
-      args: (code)  -> ['-e', code]
+      args: (filename, selection) -> ['-e', selection.getText()]
     "File Based":
       command: "lua"
       args: (filename) -> [filename]
@@ -94,7 +101,7 @@ module.exports =
   newLISP:
     "Selection Based":
       command: "newlisp"
-      args: (code) -> ['-e', code]
+      args: (filename, selection) -> ['-e', selection.getText()]
     "File Based":
       command: "newlisp"
       args: (filename) -> [filename]
@@ -102,7 +109,7 @@ module.exports =
   PHP:
     "Selection Based":
       command: "php"
-      args: (code)  -> ['-r', code]
+      args: (filename, selection) -> ['-r', selection.getText()]
     "File Based":
       command: "php"
       args: (filename) -> [filename]
@@ -110,7 +117,7 @@ module.exports =
   Perl:
     "Selection Based":
       command: "perl"
-      args: (code)  -> ['-e', code]
+      args: (filename, selection) -> ['-e', selection.getText()]
     "File Based":
       command: "perl"
       args: (filename) -> [filename]
@@ -118,7 +125,7 @@ module.exports =
   Python:
     "Selection Based":
       command: "python"
-      args: (code)  -> ['-c', code]
+      args: (filename, selection) -> ['-c', selection.getText()]
     "File Based":
       command: "python"
       args: (filename) -> [filename]
@@ -126,7 +133,7 @@ module.exports =
   RSpec:
     "Selection Based":
       command: "ruby"
-      args: (code)  -> ['-e', code]
+      args: (filename, selection) -> ['-e', selection.getText()]
     "File Based":
       command: "rspec"
       args: (filename) -> [filename]
@@ -134,7 +141,7 @@ module.exports =
   Ruby:
     "Selection Based":
       command: "ruby"
-      args: (code)  -> ['-e', code]
+      args: (filename, selection) -> ['-e', selection.getText()]
     "File Based":
       command: "ruby"
       args: (filename) -> [filename]
@@ -142,7 +149,7 @@ module.exports =
   'Shell Script (Bash)':
     "Selection Based":
       command: "bash"
-      args: (code)  -> ['-c', code]
+      args: (filename, selection) -> ['-c', selection.getText()]
     "File Based":
       command: "bash"
       args: (filename) -> [filename]
@@ -150,7 +157,7 @@ module.exports =
   Scala:
     "Selection Based":
       command: "scala"
-      args: (code)  -> ['-e', code]
+      args: (filename, selection) -> ['-e', selection.getText()]
     "File Based":
       command: "scala"
       args: (filename) -> [filename]
