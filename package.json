@@ -1,7 +1,7 @@
 {
   "name": "script",
   "main": "./lib/script",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "private": false,
   "description": "Run code in Atom!",
   "author": "Kyle Kelley <rgbkrk@gmail.com>",
