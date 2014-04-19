@@ -1,3 +1,6 @@
+## 2.3.4
+* Fixed copy paste in options dialog
+
 ## 2.3.3
 * Added Behat support
 
