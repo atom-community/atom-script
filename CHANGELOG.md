@@ -1,3 +1,7 @@
+## 2.3.5
+* Use colored output for TDD related grammars by default
+* Improved selection support
+
 ## 2.3.4
 * Fixed copy paste in options dialog
 
