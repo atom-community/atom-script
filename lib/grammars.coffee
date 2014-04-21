@@ -5,7 +5,7 @@ module.exports =
   'Behat Feature':
     "File Based":
       command: "behat"
-      args: (filename) -> [filename]
+      args: (filename) -> ['--ansi', filename]
 
   CoffeeScript:
     "Selection Based":
@@ -44,7 +44,7 @@ module.exports =
   Gherkin:
     "File Based":
       command: "cucumber"
-      args: (filename) -> [filename]
+      args: (filename) -> ['--color', filename]
 
   Go:
     "File Based":
@@ -129,7 +129,7 @@ module.exports =
       args: (code)  -> ['-e', code]
     "File Based":
       command: "rspec"
-      args: (filename) -> [filename]
+      args: (filename) -> ['--tty', '--color', filename]
 
   Ruby:
     "Selection Based":
