@@ -6,5 +6,6 @@
   'cmd-i': 'script:run'
   'ctrl-w': 'script:close-view'
   'ctrl-c': 'script:kill-process'
+  'shift-cmd-j': 'script:run-at-line'
   'shift-cmd-i': 'script:run-options'
   'shift-enter': 'script:run'

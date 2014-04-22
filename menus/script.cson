@@ -1,5 +1,7 @@
 # See https://atom.io/docs/latest/creating-a-package#menus for more details
 'context-menu':
+  '.line-number':
+    'Script: Run At Line': 'script:run-at-line'
   '.overlayer':
     'Enable script': 'script:run-selection'
 
@@ -9,6 +11,7 @@
     'submenu': [
       'label': 'Script'
       'submenu': [
+        { 'label': 'Script: Run At Line', 'command': 'script:run-at-line' },
         { 'label': 'Run Script', 'command': 'script:run' },
         { 'label': 'Stop Script', 'command': 'script:kill-process' },
         { 'label': 'Configure Script', 'command': 'script:run-options' }

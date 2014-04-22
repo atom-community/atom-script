@@ -23,6 +23,7 @@ class ScriptView extends View
   initialize: (serializeState, @runOptions) ->
     # Bind commands
     atom.workspaceView.command 'script:run', => @start()
+    atom.workspaceView.command 'script:run-at-line', => @start(true)
     atom.workspaceView.command 'script:close-view', => @close()
     atom.workspaceView.command 'script:kill-process', => @stop()
 
@@ -32,15 +33,18 @@ class ScriptView extends View
 
   updateOptions: (event) -> @runOptions = event.runOptions
 
-  start: ->
+  start: (lineNumber = false) ->
     # Get current editor
     editor = atom.workspace.getActiveEditor()
+    if lineNumber
+      cursor = editor.getCursor()
+      lineNumber = cursor.getScreenRow() + 1
 
     # No editor available, do nothing
     return unless editor?
 
     @resetView()
-    commandContext = @setup editor
+    commandContext = @setup editor, lineNumber
     @run commandContext.command, commandContext.args if commandContext
 
   resetView: (title = 'Loading...') ->
@@ -65,7 +69,7 @@ class ScriptView extends View
 
   getLang: (editor) -> editor.getGrammar().name
 
-  setup: (editor) ->
+  setup: (editor, lineNumber = false) ->
     # Store information about the run, including language
     commandContext = {}
 
@@ -99,18 +103,22 @@ class ScriptView extends View
     selection = editor.getSelection()
 
     # No selected text on a file that does exist, use filepath
-    if selection.isEmpty() and filepath?
+    if selection.isEmpty() and filepath? and not lineNumber
       argType = 'File Based'
-      arg = filepath
+      arg = [filepath]
+      editor.save()
+    else if lineNumber
+      argType = 'Line Based'
+      arg = [filepath, lineNumber]
       editor.save()
     else
       argType = 'Selection Based'
       # If the selection was empty "select" ALL the text
       # This allows us to run on new files
       if selection.isEmpty()
-         arg = editor.getText()
+         arg = [editor.getText()]
       else
-         arg = selection.getText()
+         arg = [selection.getText()]
 
     try
       if not @runOptions.cmd? or @runOptions.cmd is ''
@@ -120,7 +128,7 @@ class ScriptView extends View
         commandContext.command = @runOptions.cmd
 
       buildArgsArray = grammarMap[lang][argType].args
-      commandContext.args = buildArgsArray arg
+      commandContext.args = buildArgsArray arg...
 
     catch error
       err = $$ ->
@@ -134,8 +142,12 @@ class ScriptView extends View
       @handleError err
       return false
 
+    titleText = "#{lang} - #{filename}"
+    if lineNumber
+      titleText = "#{titleText}:#{lineNumber}"
+
     # Update header
-    @headerView.title.text "#{lang} - #{filename}"
+    @headerView.title.text titleText
 
     # Return setup information
     return commandContext

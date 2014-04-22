@@ -14,6 +14,9 @@ module.exports =
     "File Based":
       command: "behat"
       args: (filename) -> ['--ansi', filename]
+    "Line Based":
+      command: "behat"
+      args: (filename, lineNumber) -> ['--ansi', "#{filename}:#{lineNumber}"]
 
   CoffeeScript:
     "Selection Based":
@@ -53,6 +56,9 @@ module.exports =
     "File Based":
       command: "cucumber"
       args: (filename) -> ['--color', filename]
+    "Line Based":
+      command: "cucumber"
+      args: (filename, lineNumber) -> ['--color', "#{filename}:#{lineNumber}"]
 
   Go:
     "File Based":
@@ -151,6 +157,9 @@ module.exports =
     "File Based":
       command: "rspec"
       args: (filename) -> ['--tty', '--color', filename]
+    "Line Based":
+      command: "rspec"
+      args: (filename, lineNumber) -> ['--tty', '--color', "#{filename}:#{lineNumber}"]
 
   Ruby:
     "Selection Based":
