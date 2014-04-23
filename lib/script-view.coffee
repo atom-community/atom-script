@@ -1,5 +1,6 @@
 grammarMap = require './grammars'
 {View, BufferedProcess, $$} = require 'atom'
+CodeContext = require './code-context'
 HeaderView = require './header-view'
 ScriptOptionsView = require './script-options-view'
 AnsiFilter = require 'ansi-to-html'
@@ -33,18 +34,15 @@ class ScriptView extends View
 
   updateOptions: (event) -> @runOptions = event.runOptions
 
-  start: (lineNumber = false) ->
+  start: (lineBased = false) ->
     # Get current editor
     editor = atom.workspace.getActiveEditor()
-    if lineNumber
-      cursor = editor.getCursor()
-      lineNumber = cursor.getScreenRow() + 1
 
     # No editor available, do nothing
     return unless editor?
 
     @resetView()
-    commandContext = @setup editor, lineNumber
+    commandContext = @setup editor, lineBased
     @run commandContext.command, commandContext.args if commandContext
 
   resetView: (title = 'Loading...') ->
@@ -69,7 +67,7 @@ class ScriptView extends View
 
   getLang: (editor) -> editor.getGrammar().name
 
-  setup: (editor, lineNumber = false) ->
+  setup: (editor, lineBased = false) ->
     # Store information about the run, including language
     commandContext = {}
 
@@ -102,23 +100,31 @@ class ScriptView extends View
     filepath = editor.getPath()
     selection = editor.getSelection()
 
+    # If the selection was empty "select" ALL the text
+    # This allows us to run on new files
+    if selection.isEmpty()
+      textSource = editor
+    else
+      textSource = selection
+
+    codeContext = new CodeContext(filename, filepath, textSource)
+
     # No selected text on a file that does exist, use filepath
-    if selection.isEmpty() and filepath? and not lineNumber
+    if selection.isEmpty() and filepath? and not lineBased
       argType = 'File Based'
-      arg = [filepath]
+      arg = codeContext.getPath()
       editor.save()
-    else if lineNumber
+    else if lineBased
+      cursor = editor.getCursor()
+      codeContext.lineNumber = cursor.getScreenRow() + 1
       argType = 'Line Based'
-      arg = [filepath, lineNumber]
+      arg = codeContext
       editor.save()
     else
       argType = 'Selection Based'
-      # If the selection was empty "select" ALL the text
-      # This allows us to run on new files
-      if selection.isEmpty()
-         arg = [editor.getText()]
-      else
-         arg = [selection.getText()]
+      arg = codeContext.getCode()
+
+    console.log "#{argType} executing"
 
     try
       if not @runOptions.cmd? or @runOptions.cmd is ''
@@ -128,7 +134,7 @@ class ScriptView extends View
         commandContext.command = @runOptions.cmd
 
       buildArgsArray = grammarMap[lang][argType].args
-      commandContext.args = buildArgsArray arg...
+      commandContext.args = buildArgsArray arg
 
     catch error
       err = $$ ->
@@ -142,12 +148,8 @@ class ScriptView extends View
       @handleError err
       return false
 
-    titleText = "#{lang} - #{filename}"
-    if lineNumber
-      titleText = "#{titleText}:#{lineNumber}"
-
-    # Update header
-    @headerView.title.text titleText
+    # Update header to show the file name (and line number if applicable)
+    @headerView.title.text codeContext.fileColonLine(false)
 
     # Return setup information
     return commandContext
