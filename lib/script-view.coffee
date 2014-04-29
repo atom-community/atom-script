@@ -1,4 +1,4 @@
-grammarMap = require './grammars'
+fs = require 'fs'
 {View, BufferedProcess, $$} = require 'atom'
 HeaderView = require './header-view'
 ScriptOptionsView = require './script-options-view'
@@ -27,6 +27,11 @@ class ScriptView extends View
     atom.workspaceView.command 'script:kill-process', => @stop()
 
     @ansiFilter = new AnsiFilter
+
+    @grammarMap = require './grammars'
+    customGrammarFile = atom.config.get('script.customGrammarFile')
+    if customGrammarFile? and fs.existsSync customGrammarFile
+      _.extend(@grammarMap, require(customGrammarFile))
 
   serialize: ->
 
@@ -81,7 +86,7 @@ class ScriptView extends View
 
     # Provide them a dialog to submit an issue on GH, prepopulated with their
     # language of choice.
-    else if not (lang of grammarMap)
+    else if not (lang of @grammarMap)
       err = $$ ->
         @p class: 'block', "Command not configured for #{lang}!"
         @p class: 'block', =>
@@ -114,12 +119,12 @@ class ScriptView extends View
 
     try
       if not @runOptions.cmd? or @runOptions.cmd is ''
-        # Precondition: lang? and lang of grammarMap
-        commandContext.command = grammarMap[lang][argType].command
+        # Precondition: lang? and lang of @grammarMap
+        commandContext.command = @grammarMap[lang][argType].command
       else
         commandContext.command = @runOptions.cmd
 
-      buildArgsArray = grammarMap[lang][argType].args
+      buildArgsArray = @grammarMap[lang][argType].args
       commandContext.args = buildArgsArray arg
 
     catch error

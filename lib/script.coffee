@@ -1,8 +1,11 @@
+path = require 'path'
 ScriptView = require './script-view'
 ScriptOptionsView = require './script-options-view'
 ScriptOptions = require './script-options'
 
 module.exports =
+  configDefaults:
+    customGrammarFile: path.join(atom.getConfigDirPath(), "script-grammar.coffee")
   scriptView: null
   scriptOptionsView: null
   scriptOptions: null
