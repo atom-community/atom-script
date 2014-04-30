@@ -32,15 +32,3 @@ class CodeContext
   # Returns the code selection {String}
   getCode: ->
     @textSource?.getText()
-
-  # Public: A method to retreive `@lineNumber`
-  #
-  # Returns the line number {Integer} to execute within the file.
-  getLineNumber: ->
-    @lineNumber
-
-  # Public: A method to retrieve `@filepath`
-  #
-  # Returns the `@filepath` {String}.
-  getPath: ->
-    @filepath

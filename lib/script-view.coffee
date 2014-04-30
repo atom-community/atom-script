@@ -112,7 +112,7 @@ class ScriptView extends View
     # No selected text on a file that does exist, use filepath
     if selection.isEmpty() and filepath? and not lineBased
       argType = 'File Based'
-      arg = codeContext.getPath()
+      arg = codeContext.filepath
       editor.save()
     else if lineBased
       cursor = editor.getCursor()
