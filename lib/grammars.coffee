@@ -122,7 +122,12 @@ module.exports =
     "File Based":
       command: "python"
       args: (filename) -> [filename]
-
+      
+  R:
+    "File Based":
+      command: "Rscript"
+      args: (filename) -> [filename]
+        
   RSpec:
     "Selection Based":
       command: "ruby"
