@@ -123,7 +123,7 @@ module.exports =
       command: "python"
       args: (filename) -> [filename]
       
-  Rscript:
+  R:
     "Selection Based":
       command: "Rscript"
       args: (code)  -> ['-e', code]
