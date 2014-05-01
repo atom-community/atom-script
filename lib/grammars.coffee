@@ -124,9 +124,6 @@ module.exports =
       args: (filename) -> [filename]
       
   R:
-    "Selection Based":
-      command: "Rscript"
-      args: (code)  -> ['-e', code]
     "File Based":
       command: "Rscript"
       args: (filename) -> [filename]
