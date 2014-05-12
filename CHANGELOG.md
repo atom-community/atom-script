@@ -1,3 +1,6 @@
+## 2.3.6
+* Added R support
+
 ## 2.3.5
 * Use colored output for TDD related grammars by default
 * Improved selection support
