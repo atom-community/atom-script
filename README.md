@@ -44,6 +44,14 @@ You only have to add a few lines in a PR to support another.
 
 `apm install script`
 
+or
+
+## Atom script can't find (node|ruby|python|my socks)
+
+Make sure to launch Atom from the console/terminal. This gives atom all your useful environment variables.
+
+If you *really* wish to open atom from a launcher/icon, see [this issue for a variety of workarounds that have been suggested](https://github.com/rgbkrk/atom-script/issues/61#issuecomment-37337827).
+
 ## Usage
 
 Make sure to run `atom` from the command line to get full access to your environment variables. Running Atom from the icon will launch using launchctl's environment.
