@@ -46,7 +46,7 @@ You only have to add a few lines in a PR to support another.
 
 or
 
-## Atom can't find ( node | ruby | python | my socks )
+## Atom can't find node | ruby | python | my socks
 
 Make sure to launch Atom from the console/terminal. This gives atom all your useful environment variables.
 
