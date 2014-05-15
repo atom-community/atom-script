@@ -67,7 +67,7 @@ module.exports =
       command: "ghc"
       args: (code)  -> ['-e', code]
 
-  CoffeeScript:
+  IcedCoffeeScript:
     "Selection Based":
       command: "iced"
       args: (code)  -> ['-e', code]
