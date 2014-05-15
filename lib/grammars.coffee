@@ -67,6 +67,14 @@ module.exports =
       command: "ghc"
       args: (code)  -> ['-e', code]
 
+  IcedCoffeeScript:
+    "Selection Based":
+      command: "iced"
+      args: (code)  -> ['-e', code]
+    "File Based":
+      command: "iced"
+      args: (filename) -> [filename]
+
   JavaScript:
     "Selection Based":
       command: "node"
@@ -122,12 +130,12 @@ module.exports =
     "File Based":
       command: "python"
       args: (filename) -> [filename]
-      
+
   R:
     "File Based":
       command: "Rscript"
       args: (filename) -> [filename]
-        
+
   RSpec:
     "Selection Based":
       command: "ruby"
