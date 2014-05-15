@@ -1,3 +1,6 @@
+## 2.3.7
+* Added IcedCoffeeScript support
+
 ## 2.3.6
 * Added R support
 
