@@ -6,6 +6,7 @@ Run selections of code or the whole file!
 
 Currently supported grammars are:
 
+  * AppleScript
   * Bash
   * Behat Feature
   * Coffeescript
