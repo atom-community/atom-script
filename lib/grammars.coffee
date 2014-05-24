@@ -2,6 +2,14 @@
 # As well as any special setup for arguments.
 
 module.exports =
+  AppleScript:
+    'Selection Based':
+      command: 'osascript'
+      args: (code)  -> ['-e', code]
+    'File Based':
+      command: 'osascript'
+      args: (filename) -> [filename]
+
   'Behat Feature':
     "File Based":
       command: "behat"
