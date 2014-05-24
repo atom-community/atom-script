@@ -1,3 +1,6 @@
+## 2.3.8
+* Added AppleScript support
+
 ## 2.3.7
 * Added IcedCoffeeScript support
 
