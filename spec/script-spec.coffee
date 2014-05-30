@@ -1,3 +1,4 @@
+{WorkspaceView} = require 'atom'
 script = require '../lib/script'
 
 # Use the command `window:run-package-specs` (cmd-alt-ctrl-p) to run specs.
