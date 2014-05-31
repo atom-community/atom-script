@@ -175,3 +175,8 @@ module.exports =
     "File Based":
       command: "scala"
       args: (filename) -> [filename]
+
+  Scheme:
+    "File Based":
+      command: "scheme"
+      args: (filename) -> [filename]
