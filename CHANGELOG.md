@@ -1,3 +1,7 @@
+## 2.4.0
+* Accept shift-enter as another keymap for run
+* Added Scheme support (guile as default)
+
 ## 2.3.8
 * Added AppleScript support
 
