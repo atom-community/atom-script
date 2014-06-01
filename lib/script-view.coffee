@@ -112,17 +112,14 @@ class ScriptView extends View
     # No selected text on a file that does exist, use filepath
     if selection.isEmpty() and filepath? and not lineBased
       argType = 'File Based'
-      arg = codeContext.filepath
       editor.save()
     else if lineBased
       cursor = editor.getCursor()
       codeContext.lineNumber = cursor.getScreenRow() + 1
       argType = 'Line Based'
-      arg = codeContext
       editor.save()
     else
       argType = 'Selection Based'
-      arg = codeContext.getCode()
 
     console.log "#{argType} executing"
 
@@ -134,7 +131,7 @@ class ScriptView extends View
         commandContext.command = @runOptions.cmd
 
       buildArgsArray = grammarMap[lang][argType].args
-      commandContext.args = buildArgsArray arg
+      commandContext.args = buildArgsArray codeContext
 
     catch error
       err = $$ ->
