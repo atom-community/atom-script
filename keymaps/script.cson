@@ -10,7 +10,7 @@
   'shift-cmd-i': 'script:run-options'
 
 
-'.platform-win32 .editor, .platform-linux .editor'
+'.platform-win32 .editor, .platform-linux .editor':
   'shift-ctrl-b': 'script:run'
   'shift-enter': 'script:run'
   'ctrl-w': 'script:close-view'
