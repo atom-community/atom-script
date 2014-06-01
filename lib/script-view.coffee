@@ -121,8 +121,6 @@ class ScriptView extends View
     else
       argType = 'Selection Based'
 
-    console.log "#{argType} executing"
-
     try
       if not @runOptions.cmd? or @runOptions.cmd is ''
         # Precondition: lang? and lang of grammarMap

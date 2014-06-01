@@ -20,12 +20,15 @@ class CodeContext
   #
   # Returns the "file colon line" {String}.
   fileColonLine: (fullPath = true) ->
-    if @lineNumber and not fullPath
-      "#{@filename}:#{@lineNumber}"
-    else if @lineNumber and fullPath
-      "#{@filepath}:#{@lineNumber}"
+    if fullPath
+      fileColonLine = @filepath
     else
-      @filename
+      fileColonLine = @filename
+
+    if @lineNumber
+      fileColonLine += ":#{@lineNumber}"
+
+    fileColonLine
 
   # Public: Retrieves the text from whatever source was given on initialization
   #
