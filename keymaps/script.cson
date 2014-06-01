@@ -11,6 +11,8 @@
 
 
 '.platform-win32 .editor, .platform-linux .editor'
-  'ctrl-i': 'script:run'
+  'shift-ctrl-b': 'script:run'
   'shift-enter': 'script:run'
-  'ctrl-cmd-i': 'script:run-options'
+  'ctrl-w': 'script:close-view'
+  'ctrl-q': 'script:kill-process'
+  'shift-ctrl-alt-o': 'script:run-options'
