@@ -177,6 +177,9 @@ module.exports =
       args: (filename) -> [filename]
 
   Scheme:
+    "Selection Based":
+      command: "guile"
+      args: (code)  -> ['-c', code]
     "File Based":
-      command: "scheme"
+      command: "guile"
       args: (filename) -> [filename]
