@@ -1,10 +1,7 @@
-{WorkspaceView} = require 'atom'
 CodeContext = require '../lib/code-context'
 
 describe 'CodeContext', ->
   beforeEach ->
-    atom.workspaceView = new WorkspaceView
-    textSource = atom.workspace.getActiveEditor()
     @codeContext = new CodeContext('test.txt', '/tmp/test.txt', null)
 
   describe 'fileColonLine when lineNumber is not set', ->
@@ -28,3 +25,14 @@ describe 'CodeContext', ->
   describe 'getCode', ->
     it 'returns undefined if no textSource is available', ->
       expect(@codeContext.getCode()).toBe(undefined)
+
+    it 'returns the text from the textSource when available', ->
+      # TODO: Test using an actual editor or a selection?
+      dummyTextSource = {}
+      dummyTextSource.getText = ->
+        "print 'hello world!'"
+      @codeContext.textSource = dummyTextSource
+      code = @codeContext.getCode()
+
+      expect(typeof code).toEqual('string')
+      expect(code).toMatch("print 'hello world!'")
