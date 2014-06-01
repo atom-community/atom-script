@@ -145,8 +145,11 @@ class ScriptView extends View
       @handleError err
       return false
 
-    # Update header to show the file name (and line number if applicable)
-    @headerView.title.text codeContext.fileColonLine(false)
+    # Update header to show the lang and file name
+    if argType is 'Line Based'
+      @headerView.title.text "#{lang} - #{codeContext.fileColonLine(false)}"
+    else
+      @headerView.title.text "#{lang} - #{filename}"
 
     # Return setup information
     return commandContext
