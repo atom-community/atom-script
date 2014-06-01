@@ -175,3 +175,11 @@ module.exports =
     "File Based":
       command: "scala"
       args: (filename) -> [filename]
+
+  Scheme:
+    "Selection Based":
+      command: "guile"
+      args: (code)  -> ['-c', code]
+    "File Based":
+      command: "guile"
+      args: (filename) -> [filename]
