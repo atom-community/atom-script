@@ -20,6 +20,7 @@ Currently supported grammars are:
   * Haskell
   * Javascript
   * Julia
+  * LiveScript
   * Lua
   * newLISP
   * Perl
