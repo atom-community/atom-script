@@ -99,6 +99,14 @@ module.exports =
       command: "julia"
       args: (filename) -> [filename]
 
+  LiveScript:
+    "Selection Based":
+      command: "livescript"
+      args: (code)  -> ['-e', code]
+    "File Based":
+      command: "livescript"
+      args: (filename) -> [filename]
+
   Lua:
     "Selection Based":
       command: "lua"
