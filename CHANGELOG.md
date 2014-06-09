@@ -1,3 +1,8 @@
+## 2.5.0
+* Added LiveScript support
+* Keybindings for Linux and Windows!
+* Almost made shift-enter a keybinding for running code
+
 ## 2.4.0
 * Accept shift-enter as another keymap for run
 * Added Scheme support (guile as default)
