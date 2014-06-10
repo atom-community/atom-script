@@ -48,6 +48,8 @@ You only have to add a few lines in a PR to support another.
 
 or
 
+Search for `script` within package search in the Settings View.
+
 ## Atom can't find node | ruby | python | my socks
 
 Make sure to launch Atom from the console/terminal. This gives atom all your useful environment variables.
