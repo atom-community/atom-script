@@ -1,6 +1,6 @@
 # Run code in Atom!
 
-![](https://f.cloud.github.com/assets/836375/2411158/34f05f36-aac4-11e3-95bb-76c6d49c9e9e.gif)
+![](https://cloud.githubusercontent.com/assets/1694055/3226201/c458acbc-f067-11e3-84a0-da27fe334f5e.gif)
 
 Run selections of code or the whole file!
 
