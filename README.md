@@ -2,7 +2,7 @@
 
 ![](https://cloud.githubusercontent.com/assets/1694055/3226201/c458acbc-f067-11e3-84a0-da27fe334f5e.gif)
 
-Run selections of code or the whole file!
+Run selections of code, code based on line number, or the whole file!
 
 Currently supported grammars are:
 
@@ -40,7 +40,7 @@ You only have to add a few lines in a PR to support another.
 
 <sup>†</sup> Erlang uses `erl` for limited selection based runs (see [#70](https://github.com/rgbkrk/atom-script/pull/70))
 
-<sup>\*</sup> Cucumber (Gherkin), Go, F#, and RSpec only support file based runs
+<sup>\*</sup> Cucumber (Gherkin), Go, and F# do not support selection based runs
 
 ## Installation
 
@@ -60,18 +60,30 @@ If you *really* wish to open atom from a launcher/icon, see [this issue for a va
 
 Make sure to run `atom` from the command line to get full access to your environment variables. Running Atom from the icon will launch using launchctl's environment.
 
-Select some code and hit `⌘-i` to run just that selection.
+Select some code and use **Script: Run** to run just that selection.
 
-`⌘-i` to run your entire file.
+By default **Script: Run** will run your entire file.
 
-`⌘-shift-i` to configure command options and program arguments
+Use **Script: Run at line** to run using the line [number] specific. Note that if you select an entire line this number could be off by one due to the way Atom detects numbers while text is selected.
 
-`ctrl-c` will kill the process but leaves the pane open.
+**Script: Run Options** can be used to configure command options and program arguments.
 
-`ctrl-w` closes the pane and kills the process.
+**Script: Kill Process** will kill the process but leaves the pane open.
+
+**Script: Close View** closes the pane and kills the process.
 
 To kill everything, click the close icon in the upper right and just go back to
 coding.
+
+### Command and shortcut reference
+
+| Command              | Notes                                                   | Mac OS X      | Linux/Windows      |
+| -------------------- | ------------------------------------------------------- | ------------- | ------------------ |
+| Script: Run          | If text is selected a selection based run will occur    | `cmd-i`       | `ctrl-b`           |
+| Script: Run at line  | If text is selected the line number will be the last    | `shift-cmd-j` | `shift-ctrl-j`     |
+| Script: Run Options  | Runs the selection or whole file with the given options | `shift-cmd-i` | `shift-ctrl-alt-o` |
+| Script: Close View   | Closes the script view window                           | `ctrl-w`      | `ctrl-w`           |
+| Script: Kill Process | Kills the current script process                        | `ctrl-c`      | `ctrl-q`           |
 
 ## Development
 
