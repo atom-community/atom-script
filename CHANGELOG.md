@@ -1,3 +1,9 @@
+## 2.6.0
+* Added line based support
+* Updated a few BDD/TDD grammars with line based support
+* Improved selection support by correcting the line numbers
+* Travis CI and specs added
+
 ## 2.5.0
 * Added LiveScript support
 * Keybindings for Linux and Windows!
