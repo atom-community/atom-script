@@ -2,7 +2,7 @@
 
 ![](https://cloud.githubusercontent.com/assets/1694055/3226201/c458acbc-f067-11e3-84a0-da27fe334f5e.gif)
 
-Run selections of code or the whole file!
+Run selections of code, code based on line number, or the whole file!
 
 Currently supported grammars are:
 
@@ -40,7 +40,7 @@ You only have to add a few lines in a PR to support another.
 
 <sup>†</sup> Erlang uses `erl` for limited selection based runs (see [#70](https://github.com/rgbkrk/atom-script/pull/70))
 
-<sup>\*</sup> Cucumber (Gherkin), Go, F#, and RSpec only support file based runs
+<sup>\*</sup> Cucumber (Gherkin), Go, and F# do not support selection based runs
 
 ## Installation
 
@@ -63,6 +63,8 @@ Make sure to run `atom` from the command line to get full access to your environ
 Select some code and hit `⌘-i` to run just that selection.
 
 `⌘-i` to run your entire file.
+
+`⌘-shift-j` to run using the line [number] specific. Note that if you select an entire line this number could be off by one due to the way Atom detects numbers while text is selected.
 
 `⌘-shift-i` to configure command options and program arguments
 
