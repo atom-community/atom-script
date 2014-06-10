@@ -1,5 +1,6 @@
 grammarMap = require './grammars'
 {View, BufferedProcess, $$} = require 'atom'
+CodeContext = require './code-context'
 HeaderView = require './header-view'
 ScriptOptionsView = require './script-options-view'
 AnsiFilter = require 'ansi-to-html'
@@ -22,7 +23,8 @@ class ScriptView extends View
 
   initialize: (serializeState, @runOptions) ->
     # Bind commands
-    atom.workspaceView.command 'script:run', => @start()
+    atom.workspaceView.command 'script:run', => @defaultRun()
+    atom.workspaceView.command 'script:run-at-line', => @lineRun()
     atom.workspaceView.command 'script:close-view', => @close()
     atom.workspaceView.command 'script:kill-process', => @stop()
 
@@ -32,15 +34,72 @@ class ScriptView extends View
 
   updateOptions: (event) -> @runOptions = event.runOptions
 
-  start: ->
+  initCodeContext: (editor) ->
+    filename = editor.getTitle()
+    filepath = editor.getPath()
+    selection = editor.getSelection()
+
+    # If the selection was empty "select" ALL the text
+    # This allows us to run on new files
+    if selection.isEmpty()
+      textSource = editor
+    else
+      textSource = selection
+
+    codeContext = new CodeContext(filename, filepath, textSource)
+    codeContext.selection = selection
+
+    # Get language
+    lang = @getLang editor
+
+    if @validateLang lang
+      codeContext.lang = lang
+
+    return codeContext
+
+  lineRun: ->
+    @resetView()
+    codeContext = @buildCodeContext('Line Based')
+    @start(codeContext) unless not codeContext?
+
+  defaultRun: ->
+    @resetView()
+    codeContext = @buildCodeContext() # Until proven otherwise
+    @start(codeContext) unless not codeContext?
+
+  buildCodeContext: (argType='Selection Based') ->
     # Get current editor
     editor = atom.workspace.getActiveEditor()
-
     # No editor available, do nothing
     return unless editor?
 
-    @resetView()
-    commandContext = @setup editor
+    codeContext = @initCodeContext(editor)
+
+    codeContext.argType = argType
+
+    if argType == 'Line Based'
+      editor.save()
+    else if codeContext.selection.isEmpty() and codeContext.filepath?
+      codeContext.argType = 'File Based'
+      editor.save()
+
+    # Selection and Line Based runs both benefit from knowing the current line
+    # number
+    unless argType == 'File Based'
+      cursor = editor.getCursor()
+      codeContext.lineNumber = cursor.getScreenRow() + 1
+
+    return codeContext
+
+  start: (codeContext) ->
+
+    # If language was not determined, do nothing
+    if not codeContext.lang?
+      # In the future we could handle a runner without the language being part
+      # of the grammar map, using the options runner
+      return
+
+    commandContext = @setupRuntime codeContext
     @run commandContext.command, commandContext.args if commandContext
 
   resetView: (title = 'Loading...') ->
@@ -65,12 +124,7 @@ class ScriptView extends View
 
   getLang: (editor) -> editor.getGrammar().name
 
-  setup: (editor) ->
-    # Store information about the run, including language
-    commandContext = {}
-
-    # Get language
-    lang = @getLang editor
+  validateLang: (lang) ->
     err = null
 
     # Determine if no language is selected.
@@ -94,48 +148,42 @@ class ScriptView extends View
       @handleError(err)
       return false
 
-    filename = editor.getTitle()
-    filepath = editor.getPath()
-    selection = editor.getSelection()
+    return true
 
-    # No selected text on a file that does exist, use filepath
-    if selection.isEmpty() and filepath?
-      argType = 'File Based'
-      arg = filepath
-      editor.save()
-    else
-      argType = 'Selection Based'
-      # If the selection was empty "select" ALL the text
-      # This allows us to run on new files
-      if selection.isEmpty()
-         arg = editor.getText()
-      else
-         arg = selection.getText()
+  setupRuntime: (codeContext) ->
+
+    # Store information about the run
+    commandContext = {}
 
     try
       if not @runOptions.cmd? or @runOptions.cmd is ''
         # Precondition: lang? and lang of grammarMap
-        commandContext.command = grammarMap[lang][argType].command
+        commandContext.command = grammarMap[codeContext.lang][codeContext.argType].command
       else
         commandContext.command = @runOptions.cmd
 
-      buildArgsArray = grammarMap[lang][argType].args
-      commandContext.args = buildArgsArray arg
+      buildArgsArray = grammarMap[codeContext.lang][codeContext.argType].args
 
     catch error
       err = $$ ->
-        @p class: 'block', "#{argType} runner not available for #{lang}."
+        @p class: 'block', "#{codeContext.argType} runner not available for #{codeContext.lang}."
         @p class: 'block', =>
           @text 'If it should exist, add an '
           @a href: "https://github.com/rgbkrk/atom-script/issues/\
-            new?title=Add%20support%20for%20#{lang}", 'issue on GitHub'
+            new?title=Add%20support%20for%20#{codeContext.lang}", 'issue on GitHub'
           @text ', or send your own pull request.'
 
       @handleError err
       return false
 
-    # Update header
-    @headerView.title.text "#{lang} - #{filename}"
+    # Update header to show the lang and file name
+    if codeContext.argType is 'Line Based'
+      @headerView.title.text "#{codeContext.lang} - #{codeContext.fileColonLine(false)}"
+    else
+      @headerView.title.text "#{codeContext.lang} - #{codeContext.filename}"
+
+    commandContext.args = buildArgsArray codeContext
+
 
     # Return setup information
     return commandContext

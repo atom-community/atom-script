@@ -5,99 +5,105 @@ module.exports =
   AppleScript:
     'Selection Based':
       command: 'osascript'
-      args: (code)  -> ['-e', code]
+      args: (context)  -> ['-e', context.getCode()]
     'File Based':
       command: 'osascript'
-      args: (filename) -> [filename]
+      args: (context) -> [context.filepath]
 
   'Behat Feature':
     "File Based":
       command: "behat"
-      args: (filename) -> ['--ansi', filename]
+      args: (context) -> ['--ansi', context.filepath]
+    "Line Based":
+      command: "behat"
+      args: (context) -> ['--ansi', context.fileColonLine()]
 
   CoffeeScript:
     "Selection Based":
       command: "coffee"
-      args: (code)  -> ['-e', code]
+      args: (context)  -> ['-e', context.getCode()]
     "File Based":
       command: "coffee"
-      args: (filename) -> [filename]
+      args: (context) -> [context.filepath]
 
   'CoffeeScript (Literate)':
     "Selection Based":
       command: "coffee"
-      args: (code)  -> ['-e', code]
+      args: (context)  -> ['-e', context.getCode()]
     "File Based":
       command: "coffee"
-      args: (filename) -> [filename]
+      args: (context) -> [context.filepath]
 
   Elixir:
     "Selection Based":
       command: "elixir"
-      args: (code)  -> ['-e', code]
+      args: (context)  -> ['-e', context.getCode()]
     "File Based":
       command: "elixir"
-      args: (filename) -> ['-r', filename]
+      args: (context) -> ['-r', context.filepath]
 
   Erlang:
     "Selection Based":
       command: "erl"
-      args: (code)  -> ['-noshell', '-eval', code+', init:stop().']
+      args: (context)  -> ['-noshell', '-eval', "#{context.getCode()}, init:stop()."]
 
   'F#':
     "File Based":
       command: "fsharpi"
-      args: (filename) -> ['--exec', filename]
+      args: (context) -> ['--exec', context.filepath]
 
   Gherkin:
     "File Based":
       command: "cucumber"
-      args: (filename) -> ['--color', filename]
+      args: (context) -> ['--color', context.filepath]
+    "Line Based":
+      command: "cucumber"
+      args: (context) -> ['--color', context.fileColonLine()]
 
   Go:
     "File Based":
       command: "go"
-      args: (filename) -> ['run', filename]
+      args: (context) -> ['run', context.filepath]
 
   Groovy:
     "Selection Based":
       command: "groovy"
-      args: (code)  -> ['-e', code]
+      args: (context)  -> ['-e', context.getCode()]
     "File Based":
       command: "groovy"
-      args: (filename) -> [filename]
+      args: (context) -> [context.filepath]
 
   Haskell:
     "File Based":
       command: "runhaskell"
-      args: (filename) -> [filename]
+      args: (context) -> [context.filepath]
     "Selection Based":
       command: "ghc"
-      args: (code)  -> ['-e', code]
+      args: (context)  -> ['-e', context.getCode()]
 
   IcedCoffeeScript:
     "Selection Based":
       command: "iced"
-      args: (code)  -> ['-e', code]
+      args: (context)  -> ['-e', context.getCode()]
     "File Based":
       command: "iced"
-      args: (filename) -> [filename]
+      args: (context) -> [context.filepath]
 
   JavaScript:
     "Selection Based":
       command: "node"
-      args: (code)  -> ['-e', code]
+      args: (context)  -> ['-e', context.getCode()]
     "File Based":
       command: "node"
-      args: (filename) -> [filename]
+      args: (context) -> [context.filepath]
 
   Julia:
     "Selection Based":
       command: "julia"
-      args: (code)  -> ['-e', code]
+      args: (context)  -> ['-e', context.getCode()]
     "File Based":
       command: "julia"
-      args: (filename) -> [filename]
+      args: (context) -> [context.filepath]
 
   LiveScript:
     "Selection Based":
@@ -110,84 +116,87 @@ module.exports =
   Lua:
     "Selection Based":
       command: "lua"
-      args: (code)  -> ['-e', code]
+      args: (context)  -> ['-e', context.getCode()]
     "File Based":
       command: "lua"
-      args: (filename) -> [filename]
+      args: (context) -> [context.filepath]
 
   newLISP:
     "Selection Based":
       command: "newlisp"
-      args: (code) -> ['-e', code]
+      args: (context) -> ['-e', context.getCode()]
     "File Based":
       command: "newlisp"
-      args: (filename) -> [filename]
+      args: (context) -> [context.filepath]
 
   PHP:
     "Selection Based":
       command: "php"
-      args: (code)  -> ['-r', code]
+      args: (context)  -> ['-r', context.getCode()]
     "File Based":
       command: "php"
-      args: (filename) -> [filename]
+      args: (context) -> [context.filepath]
 
   Perl:
     "Selection Based":
       command: "perl"
-      args: (code)  -> ['-e', code]
+      args: (context)  -> ['-e', context.getCode()]
     "File Based":
       command: "perl"
-      args: (filename) -> [filename]
+      args: (context) -> [context.filepath]
 
   Python:
     "Selection Based":
       command: "python"
-      args: (code)  -> ['-c', code]
+      args: (context)  -> ['-c', context.getCode()]
     "File Based":
       command: "python"
-      args: (filename) -> [filename]
+      args: (context) -> [context.filepath]
 
   R:
     "File Based":
       command: "Rscript"
-      args: (filename) -> [filename]
+      args: (context) -> [context.filepath]
 
   RSpec:
     "Selection Based":
       command: "ruby"
-      args: (code)  -> ['-e', code]
+      args: (context)  -> ['-e', context.getCode()]
     "File Based":
       command: "rspec"
-      args: (filename) -> ['--tty', '--color', filename]
+      args: (context) -> ['--tty', '--color', context.filepath]
+    "Line Based":
+      command: "rspec"
+      args: (context) -> ['--tty', '--color', context.fileColonLine()]
 
   Ruby:
     "Selection Based":
       command: "ruby"
-      args: (code)  -> ['-e', code]
+      args: (context)  -> ['-e', context.getCode()]
     "File Based":
       command: "ruby"
-      args: (filename) -> [filename]
+      args: (context) -> [context.filepath]
 
   'Shell Script (Bash)':
     "Selection Based":
       command: "bash"
-      args: (code)  -> ['-c', code]
+      args: (context)  -> ['-c', context.getCode()]
     "File Based":
       command: "bash"
-      args: (filename) -> [filename]
+      args: (context) -> [context.filepath]
 
   Scala:
     "Selection Based":
       command: "scala"
-      args: (code)  -> ['-e', code]
+      args: (context)  -> ['-e', context.getCode()]
     "File Based":
       command: "scala"
-      args: (filename) -> [filename]
+      args: (context) -> [context.filepath]
 
   Scheme:
     "Selection Based":
       command: "guile"
-      args: (code)  -> ['-c', code]
+      args: (context)  -> ['-c', context.getCode()]
     "File Based":
       command: "guile"
-      args: (filename) -> [filename]
+      args: (context) -> [context.filepath]
