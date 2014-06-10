@@ -25,13 +25,18 @@ class CodeContext
     else
       fileColonLine = @filename
 
-    if @lineNumber
-      fileColonLine += ":#{@lineNumber}"
-
-    fileColonLine
+    return fileColonLine unless @lineNumber
+    "#{fileColonLine}:#{@lineNumber}"
 
   # Public: Retrieves the text from whatever source was given on initialization
   #
+  # prependNewlines - Whether to prepend @lineNumber newlines (default: true)
+  #
   # Returns the code selection {String}
-  getCode: ->
-    @textSource?.getText()
+  getCode: (prependNewlines = true) ->
+    code = @textSource?.getText()
+    return code unless prependNewlines and @lineNumber
+
+    newlineCount = Number(@lineNumber)
+    newlines = Array(newlineCount).join("\n")
+    "#{newlines}#{code}"
