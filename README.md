@@ -77,13 +77,13 @@ coding.
 
 ### Command and shortcut reference
 
-| Command              | Notes                                                   | Mac OS X      | Linux/Windows      |
-| -------------------- | ------------------------------------------------------- | ------------- | ------------------ |
-| Script: Run          | If text is selected a selection based run will occur    | `cmd-i`       | `ctrl-b`           |
-| Script: Run at line  | If text is selected the line number will be the last    | `shift-cmd-j` | `shift-ctrl-j`     |
-| Script: Run Options  | Runs the selection or whole file with the given options | `shift-cmd-i` | `shift-ctrl-alt-o` |
-| Script: Close View   | Closes the script view window                           | `ctrl-w`      | `ctrl-w`           |
-| Script: Kill Process | Kills the current script process                        | `ctrl-c`      | `ctrl-q`           |
+| Command              | Mac OS X               | Linux/Windows               | Notes                                                   |
+| -------------------- | ---------------------- | --------------------------- | ------------------------------------------------------- |
+| Script: Run          | <kbd>cmd-i</kbd>       | <kbd>ctrl-b</kbd>           | If text is selected a selection based run will occur    |
+| Script: Run at line  | <kbd>shift-cmd-j</kbd> | <kbd>shift-ctrl-j<kbd>      | If text is selected the line number will be the last    |
+| Script: Run Options  | <kbd>shift-cmd-i</kbd> | <kbd>shift-ctrl-alt-o</kbd> | Runs the selection or whole file with the given options |
+| Script: Close View   | <kbd>ctrl-w</kbd>      | <kbd>ctrl-w</kbd>           | Closes the script view window                           |
+| Script: Kill Process | <kbd>ctrl-c</kbd>      | <kbd>ctrl-q</kbd>           | Kills the current script process                        |
 
 ## Development
 
