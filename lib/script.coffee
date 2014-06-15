@@ -12,9 +12,15 @@ module.exports =
     @scriptView = new ScriptView state.scriptViewState, @scriptOptions
     @scriptOptionsView = new ScriptOptionsView @scriptOptions
 
+    atom.workspaceView.on 'core:cancel core:close', (event) =>
+      @scriptView?.close()
+      @scriptOptionsView?.close()
+
   deactivate: ->
     @scriptView.close()
     @scriptOptionsView.close()
+
+    atom.workspaceView.off 'core:cancel core:close'
 
   serialize: ->
     # TODO: True serialization needs to take the options view into account
