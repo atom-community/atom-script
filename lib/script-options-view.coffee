@@ -33,6 +33,12 @@ class ScriptOptionsView extends View
               class: 'editor mini editor-colors native-key-bindings'
               outlet: 'inputScriptArgs'
           @div class: 'block', =>
+            @label 'Environment Variables:'
+            @input
+              type: 'text'
+              class: 'editor mini editor-colors native-key-bindings'
+              outlet: 'inputEnv'
+          @div class: 'block', =>
             css = 'btn inline-block-tight'
             @button class: "btn #{css}", click: 'close', 'Close'
             @button class: "btn #{css}", click: 'run', 'Run'
@@ -58,6 +64,7 @@ class ScriptOptionsView extends View
     @runOptions.workingDirectory = @inputCwd.val()
     @runOptions.cmd = @inputCommand.val()
     @runOptions.cmdArgs = splitArgs @inputCommandArgs
+    @runOptions.env = @inputEnv.val()
     @runOptions.scriptArgs = splitArgs @inputScriptArgs
 
   close: ->
