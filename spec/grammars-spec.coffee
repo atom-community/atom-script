@@ -11,8 +11,7 @@ describe 'grammarMap', ->
   it 'has a command and an args function set for each grammar\'s mode', ->
     @codeContext.textSource = @dummyTextSource
     for lang,modes of grammarMap
-      for mode of modes
-        mode.command
-        expect(mode.command).toBeDefined()
-        argList = mode.args(@codeContext)
+      for mode,commandContext of modes
+        expect(commandContext.command).toBeDefined()
+        argList = commandContext.args(@codeContext)
         expect(argList).toBeDefined()
