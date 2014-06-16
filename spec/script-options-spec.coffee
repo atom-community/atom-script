@@ -4,9 +4,10 @@ describe 'ScriptOptions', ->
   beforeEach ->
     @scriptOptions = new ScriptOptions()
     @dummyEnv =
-      NODE_ENV: 'test',
-      SCRIPT_USER: 'johndoe'
-    @dummyEnvString = "SCRIPT_ENV='test';SCRIPT_USER=true;_TEST_VAR='123'"
+      SCRIPT_CI: true
+      SCRIPT_ENV: "'test'"
+      _NUMBERS: '"123"'
+    @dummyEnvString = "SCRIPT_CI=true;SCRIPT_ENV='test';_NUMBERS=\"123\""
 
   describe 'getEnv', ->
     it 'should default to an empty env object', ->
@@ -23,11 +24,20 @@ describe 'ScriptOptions', ->
       mergedEnv = @scriptOptions.mergedEnv(@dummyEnv)
       expect(mergedEnv).toEqual(@dummyEnv)
 
-    it 'should merge custom options', ->
-      @scriptOptions.env = "VAR_1=one;VAR_2='t w o';VAR_3=\"three\""
+    it 'should retain the original environment', ->
+      @scriptOptions.env = "TEST_VAR_1=one;TEST_VAR_2=\"two\";TEST_VAR_3='three'"
       mergedEnv = @scriptOptions.mergedEnv(@dummyEnv)
-      expect(mergedEnv.VAR_1).toEqual('one')
-      expect(mergedEnv.VAR_2).toEqual('t w o')
-      expect(mergedEnv.VAR_3).toEqual('three')
-      expect(mergedEnv.NODE_ENV).toEqual('test')
-      expect(mergedEnv.SCRIPT_USER).toEqual('johndoe')
+      expect(mergedEnv.SCRIPT_CI).toMatch('true')
+      expect(mergedEnv.SCRIPT_ENV).toMatch('test')
+      expect(mergedEnv._NUMBERS).toMatch('123')
+      expect(mergedEnv.TEST_VAR_1).toMatch('one')
+      expect(mergedEnv.TEST_VAR_2).toMatch('two')
+      expect(mergedEnv.TEST_VAR_3).toMatch('three')
+
+    it 'should support special character values', ->
+      @scriptOptions.env = "TEST_VAR_1=o-n-e;TEST_VAR_2=\"nested\\\"doublequotes\\\"\";TEST_VAR_3='nested\\'singlequotes\\';TEST_VAR_4='s p a c e s'"
+      mergedEnv = @scriptOptions.mergedEnv(@dummyEnv)
+      expect(mergedEnv.TEST_VAR_1).toMatch('o-n-e')
+      expect(mergedEnv.TEST_VAR_2).toMatch('nested"doublequotes"')
+      expect(mergedEnv.TEST_VAR_2).toMatch('nested\'singlequotes\'')
+      expect(mergedEnv.TEST_VAR_4).toMatch('s p a c e s')
