@@ -1,4 +1,5 @@
 _ = require 'underscore'
+envVars = require './env-vars'
 
 module.exports =
 class ScriptOptions
@@ -13,17 +14,22 @@ class ScriptOptions
   #
   # Returns an {Object} representation of the user specified environment.
   getEnv: ->
-    return {} unless @env
+    return {} if not @env? or @env is ''
 
     mapping = {}
-    pairs = @env.split(';').map (pair) -> pair.split('=')
-    for pair in pairs when pair[0]?.match(/^[a-zA-Z][a-zA-Z0-9_]*$/)
-      key = pair[0]
-      value = pair[1]?.replace(/^["'](.*)["']$/, '$1')
 
-      # value is undefined if "=" wasn't present in the pair substring
-      # value is empty if "=" was provided without a
-      mapping[key] = value if value? and value isnt ''
+    try
+      json = envVars.parse(@env)
+    catch error
+      console.error "[script]: Encountered an error parsing the environment \
+        string \"#{@env}\"\n[script]: #{error}"
+    finally
+      json = '[]' if error
+
+    vars = JSON.parse(json)
+    for pair in vars when pair.length isnt 0
+      for k,v of pair
+        mapping[k] = v
 
     mapping
 

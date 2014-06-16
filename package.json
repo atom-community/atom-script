@@ -65,6 +65,7 @@
   },
   "dependencies": {
     "ansi-to-html": ">0.1.0",
+    "jison": "~0.4.13",
     "underscore": "~1.5.2"
   }
 }
