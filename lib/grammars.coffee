@@ -120,7 +120,15 @@ module.exports =
     "File Based":
       command: "lua"
       args: (context) -> [context.filepath]
-
+      
+  MoonScript:
+    "Selection Based":
+      command: "moon"
+      args: (context) -> ['-e', context.getCode()]
+    "File Based":
+      command: "moon"
+      args: (context) -> [context.filepath]
+      
   newLISP:
     "Selection Based":
       command: "newlisp"
