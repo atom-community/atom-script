@@ -1,3 +1,9 @@
+## 2.7.0
+* The escape key will now close the script output pane
+* More tests, because this project definitely needs more tests
+* Support for MoonScript
+
+
 ## 2.6.0
 * Added line based support
 * Updated a few BDD/TDD grammars with line based support
