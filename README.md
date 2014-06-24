@@ -22,6 +22,7 @@ Currently supported grammars are:
   * Julia
   * LiveScript
   * Lua
+  * MoonScript
   * newLISP
   * Perl
   * PHP
