@@ -40,3 +40,21 @@ class CodeContext
     newlineCount = Number(@lineNumber)
     newlines = Array(newlineCount).join("\n")
     "#{newlines}#{code}"
+
+  shebangCommand: ->
+    code = @textSource?.getText()
+    return unless code
+
+    lines = code.split("\n")
+    firstLine = lines[0]
+    return unless firstLine.match(/^#!/)
+    firstLine = firstLine.replace(/^#! /, '#!')
+    paths = firstLine.split(' ')
+    parts = paths[0]?.split('/')
+
+    if parts? and parts.length > 1
+      script = parts[parts.length-1]
+    else
+      script = parts.first.sub('#!', '')
+
+    script = if script == 'env' then paths[paths.length-1] else script

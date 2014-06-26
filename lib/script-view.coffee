@@ -158,7 +158,7 @@ class ScriptView extends View
     try
       if not @runOptions.cmd? or @runOptions.cmd is ''
         # Precondition: lang? and lang of grammarMap
-        commandContext.command = grammarMap[codeContext.lang][codeContext.argType].command
+        commandContext.command = codeContext.shebangCommand() or grammarMap[codeContext.lang][codeContext.argType].command
       else
         commandContext.command = @runOptions.cmd
 

@@ -46,3 +46,29 @@ describe 'CodeContext', ->
       code = @codeContext.getCode()
       expect(typeof code).toEqual('string')
       expect(code).toMatch("print 'hello world!'")
+
+  describe 'shebangCommand', ->
+    it 'returns undefined when no code is available', ->
+      expect(@codeContext.shebangCommand()).toBe(undefined)
+
+    it 'returns undefined when no shebang is found', ->
+      @codeContext.textSource = @dummyTextSource
+      expect(@codeContext.shebangCommand()).toBe(undefined)
+
+    it 'returns the command name when a shebang is found', ->
+      @codeContext.textSource = @dummyTextSource
+      @codeContext.textSource.getText = ->
+        "#!/bin/bash\necho 'hello from bash!'"
+      expect(@codeContext.shebangCommand()).toMatch('bash')
+
+      @codeContext.textSource.getText = ->
+        "#!/usr/bin/env ruby\nputs 'hello from ruby!'"
+      expect(@codeContext.shebangCommand()).toMatch('ruby')
+
+      @codeContext.textSource.getText = ->
+        "#!/usr/bin/python2.7\nprint 'hello from python!'"
+      expect(@codeContext.shebangCommand()).toMatch('python2.7')
+
+      @codeContext.textSource.getText = ->
+        "#!/usr/bin/python3\nprint 'hello from python3!'"
+      expect(@codeContext.shebangCommand()).toMatch('python3')
