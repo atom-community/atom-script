@@ -211,13 +211,9 @@ class ScriptView extends View
     options =
       cwd: @getCwd()
       env: process.env
-
+    args = (@runOptions.cmdArgs.concat extraArgs).concat @runOptions.scriptArgs
     if not @runOptions.cmd? or @runOptions.cmd is ''
-      args = codeContext.shebangCommandArgs()
-    else
-      args = []
-
-    args = ((args.concat @runOptions.cmdArgs).concat extraArgs).concat @runOptions.scriptArgs
+      args = codeContext.shebangCommandArgs().concat args
 
     stdout = (output) => @display 'stdout', output
     stderr = (output) => @display 'stderr', output

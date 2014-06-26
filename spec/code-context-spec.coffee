@@ -75,11 +75,11 @@ describe 'CodeContext', ->
       expect(@codeContext.shebangCommand()).toMatch('python2.7')
 
   describe 'shebangCommandArgs when no shebang was found', ->
-    it 'returns undefined when no shebang is found', ->
+    it 'returns [] when no shebang is found', ->
       lines = @dummyTextSource.getText()
       firstLine = lines.split("\n")[0]
       @codeContext.shebang = firstLine if firstLine.match(/^#!/)
-      expect(@codeContext.shebangCommandArgs()).toBe(undefined)
+      expect(@codeContext.shebangCommandArgs()).toMatch([])
 
   describe 'shebangCommandArgs when a shebang was found', ->
     it 'returns the command from the shebang', ->

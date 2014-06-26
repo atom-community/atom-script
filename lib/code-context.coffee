@@ -57,7 +57,7 @@ class CodeContext
   # Returns the {String} name of the command or {undefined} if not applicable.
   shebangCommandArgs: ->
     sections = @shebangSections()
-    return unless sections
+    return [] unless sections
 
     sections[1..sections.length-1]
 
