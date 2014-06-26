@@ -3,6 +3,7 @@ class CodeContext
   filename: null
   filepath: null
   lineNumber: null
+  shebang: null
   textSource: null
 
   # Public: Initializes a new {CodeContext} object for the given file/line
@@ -41,20 +42,28 @@ class CodeContext
     newlines = Array(newlineCount).join("\n")
     "#{newlines}#{code}"
 
+  # Public: Retrieves the command name from @shebang
+  #
+  # Returns the {String} name of the command or {undefined} if not applicable.
   shebangCommand: ->
-    code = @textSource?.getText()
-    return unless code
+    sections = @shebangSections()
+    return unless sections
 
-    lines = code.split("\n")
-    firstLine = lines[0]
-    return unless firstLine.match(/^#!/)
-    firstLine = firstLine.replace(/^#! /, '#!')
-    paths = firstLine.split(' ')
-    parts = paths[0]?.split('/')
+    sections[0]
 
-    if parts? and parts.length > 1
-      script = parts[parts.length-1]
-    else
-      script = parts.first.sub('#!', '')
+  # Public: Retrieves the command arguments (such as flags or arguments to
+  # /usr/bin/env) from @shebang
+  #
+  # Returns the {String} name of the command or {undefined} if not applicable.
+  shebangCommandArgs: ->
+    sections = @shebangSections()
+    return unless sections
 
-    script = if script == 'env' then paths[paths.length-1] else script
+    sections[1..sections.length-1]
+
+  # Public: Splits the shebang string by spaces to extra the command and
+  # arguments
+  #
+  # Returns the {String} name of the command or {undefined} if not applicable.
+  shebangSections: ->
+    @shebang?.split(' ')

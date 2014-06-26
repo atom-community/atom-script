@@ -34,6 +34,14 @@ class ScriptView extends View
 
   updateOptions: (event) -> @runOptions = event.runOptions
 
+  getShebang: (editor) ->
+    text = editor.getText()
+    lines = text.split("\n")
+    firstLine = lines[0]
+    return unless firstLine.match(/^#!/)
+
+    firstLine.replace(/^#!\s*/, '')
+
   initCodeContext: (editor) ->
     filename = editor.getTitle()
     filepath = editor.getPath()
@@ -48,6 +56,7 @@ class ScriptView extends View
 
     codeContext = new CodeContext(filename, filepath, textSource)
     codeContext.selection = selection
+    codeContext.shebang = @getShebang(editor)
 
     # Get language
     lang = @getLang editor
@@ -100,7 +109,7 @@ class ScriptView extends View
       return
 
     commandContext = @setupRuntime codeContext
-    @run commandContext.command, commandContext.args if commandContext
+    @run commandContext.command, commandContext.args, codeContext if commandContext
 
   resetView: (title = 'Loading...') ->
     # Display window and load message
@@ -195,14 +204,20 @@ class ScriptView extends View
     @output.append err
     @stop()
 
-  run: (command, extraArgs) ->
+  run: (command, extraArgs, codeContext) ->
     atom.emit 'achievement:unlock', msg: 'Homestar Runner'
 
     # Default to where the user opened atom
     options =
       cwd: @getCwd()
       env: process.env
-    args = (@runOptions.cmdArgs.concat extraArgs).concat @runOptions.scriptArgs
+
+    if not @runOptions.cmd? or @runOptions.cmd is ''
+      args = codeContext.shebangCommandArgs()
+    else
+      args = []
+
+    args = ((args.concat @runOptions.cmdArgs).concat extraArgs).concat @runOptions.scriptArgs
 
     stdout = (output) => @display 'stdout', output
     stderr = (output) => @display 'stderr', output
