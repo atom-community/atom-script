@@ -61,13 +61,13 @@ If you *really* wish to open atom from a launcher/icon, see [this issue for a va
 
 Make sure to run `atom` from the command line to get full access to your environment variables. Running Atom from the icon will launch using launchctl's environment.
 
-Select some code and use **Script: Run** to run just that selection.
+**Script: Run** will perform a "File Based" run when no text is selected (default).
 
-By default **Script: Run** will run your entire file.
+**Script: Run** while text is selected will perform a "Selection Based" run executing just the highlighted code.
 
-Use **Script: Run at line** to run using the line [number] specific. Note that if you select an entire line this number could be off by one due to the way Atom detects numbers while text is selected.
+**Script: Run at Line** to run using the specified line number. **Note** that if you select an entire line this number could be off by one due to the way Atom detects numbers while text is selected.
 
-**Script: Run Options** can be used to configure command options and program arguments.
+**Script: Run Options** should be used to configure command options and program arguments for a "File Based" or "Selection Based" run.
 
 **Script: Kill Process** will kill the process but leaves the pane open.
 
@@ -80,8 +80,8 @@ coding.
 
 | Command              | Mac OS X               | Linux/Windows               | Notes                                                   |
 | -------------------- | ---------------------- | --------------------------- | ------------------------------------------------------- |
-| Script: Run          | <kbd>cmd-i</kbd>       | <kbd>ctrl-b</kbd>           | If text is selected a selection based run will occur    |
-| Script: Run at line  | <kbd>shift-cmd-j</kbd> | <kbd>shift-ctrl-j<kbd>      | If text is selected the line number will be the last    |
+| Script: Run          | <kbd>cmd-i</kbd>       | <kbd>ctrl-b</kbd>           | If text is selected a "Selection Based" is used instead of a "File Based" run    |
+| Script: Run at Line  | <kbd>shift-cmd-j</kbd> | <kbd>shift-ctrl-j<kbd>      | If text is selected the line number will be the last    |
 | Script: Run Options  | <kbd>shift-cmd-i</kbd> | <kbd>shift-ctrl-alt-o</kbd> | Runs the selection or whole file with the given options |
 | Script: Close View   | <kbd>ctrl-w</kbd>      | <kbd>ctrl-w</kbd>           | Closes the script view window                           |
 | Script: Kill Process | <kbd>ctrl-c</kbd>      | <kbd>ctrl-q</kbd>           | Kills the current script process                        |
