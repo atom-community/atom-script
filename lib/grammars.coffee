@@ -208,3 +208,8 @@ module.exports =
     "File Based":
       command: "guile"
       args: (context) -> [context.filepath]
+
+  Swift:
+    "File Based":
+      command: "xcrun"
+      args: (context) -> ['swift', '-i', context.filepath]
