@@ -120,7 +120,7 @@ module.exports =
     "File Based":
       command: "lua"
       args: (context) -> [context.filepath]
-      
+
   MoonScript:
     "Selection Based":
       command: "moon"
@@ -128,7 +128,7 @@ module.exports =
     "File Based":
       command: "moon"
       args: (context) -> [context.filepath]
-      
+
   newLISP:
     "Selection Based":
       command: "newlisp"
@@ -193,6 +193,11 @@ module.exports =
       command: "bash"
       args: (context) -> [context.filepath]
 
+  Rust:
+    "File Based":
+      command: "rustc"
+      args: (context) -> [context.filepath]
+      
   Scala:
     "Selection Based":
       command: "scala"
