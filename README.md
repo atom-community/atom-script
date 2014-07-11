@@ -30,6 +30,7 @@ Currently supported grammars are:
   * RSpec
   * Ruby
   * Scala
+  * Swift
 
 **NOTE**: Some grammars may require you to install [a custom language package](https://atom.io/search?utf8=✓&q=language).
 
@@ -41,7 +42,7 @@ You only have to add a few lines in a PR to support another.
 
 <sup>†</sup> Erlang uses `erl` for limited selection based runs (see [#70](https://github.com/rgbkrk/atom-script/pull/70))
 
-<sup>\*</sup> Cucumber (Gherkin), Go, and F# do not support selection based runs
+<sup>\*</sup> Cucumber (Gherkin), Go, F#, and Swift do not support selection based runs
 
 ## Installation
 
