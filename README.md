@@ -78,13 +78,13 @@ coding.
 
 ### Command and shortcut reference
 
-| Command              | Mac OS X               | Linux/Windows               | Notes                                                   |
-| -------------------- | ---------------------- | --------------------------- | ------------------------------------------------------- |
-| Script: Run          | <kbd>cmd-i</kbd>       | <kbd>ctrl-b</kbd>           | If text is selected a "Selection Based" is used instead of a "File Based" run    |
-| Script: Run at Line  | <kbd>shift-cmd-j</kbd> | <kbd>shift-ctrl-j<kbd>      | If text is selected the line number will be the last    |
-| Script: Run Options  | <kbd>shift-cmd-i</kbd> | <kbd>shift-ctrl-alt-o</kbd> | Runs the selection or whole file with the given options |
-| Script: Close View   | <kbd>ctrl-w</kbd>      | <kbd>ctrl-w</kbd>           | Closes the script view window                           |
-| Script: Kill Process | <kbd>ctrl-c</kbd>      | <kbd>ctrl-q</kbd>           | Kills the current script process                        |
+| Command              | Mac OS X                            | Linux/Windows               | Notes                                                                         |
+|----------------------|-------------------------------------|-----------------------------|-------------------------------------------------------------------------------|
+| Script: Run          | <kbd>cmd-i</kbd>                    | <kbd>ctrl-b</kbd>           | If text is selected a "Selection Based" is used instead of a "File Based" run |
+| Script: Run at Line  | <kbd>shift-cmd-j</kbd>              | <kbd>shift-ctrl-j<kbd>      | If text is selected the line number will be the last                          |
+| Script: Run Options  | <kbd>shift-cmd-i</kbd>              | <kbd>shift-ctrl-alt-o</kbd> | Runs the selection or whole file with the given options                       |
+| Script: Close View   | <kbd>esc</kbd> or <kbd>ctrl-w</kbd> | <kbd>esc</kbd>              | Closes the script view window                                                 |
+| Script: Kill Process | <kbd>ctrl-c</kbd>                   | <kbd>ctrl-q</kbd>           | Kills the current script process                                              |
 
 ## Development
 

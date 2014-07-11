@@ -2,9 +2,6 @@
 # https://atom.io/docs/latest/advanced/keymaps
 
 # Only bind the keys in the editor
-'.editor':
-  'escape': 'core:cancel'
-
 '.platform-darwin .editor':
   'cmd-i': 'script:run'
   #'shift-enter': 'script:run'
@@ -16,7 +13,7 @@
 '.platform-win32 .editor, .platform-linux .editor':
   'shift-ctrl-b': 'script:run'
   #'shift-enter': 'script:run'
-  'ctrl-w': 'script:close-view'
+  #'ctrl-w': 'script:close-view'
   'ctrl-q': 'script:kill-process'
   'shift-ctrl-j': 'script:run-at-line'
   'shift-ctrl-alt-o': 'script:run-options'
