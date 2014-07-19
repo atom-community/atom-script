@@ -1,3 +1,7 @@
+## 2.8.0
+* Add Swift support
+* Add PowerShell support
+
 ## 2.7.0
 * The escape key will now close the script output pane
 * More tests, because this project definitely needs more tests

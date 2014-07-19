@@ -153,6 +153,11 @@ module.exports =
       command: "perl"
       args: (context) -> [context.filepath]
 
+  PowerShell:
+    "File Based":
+      command: "powershell"
+      args: (context) -> [context.filepath]
+
   Python:
     "Selection Based":
       command: "python"
