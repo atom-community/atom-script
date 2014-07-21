@@ -1,5 +1,4 @@
 _ = require 'underscore'
-envVars = require './env-vars'
 
 module.exports =
 class ScriptOptions
@@ -18,18 +17,11 @@ class ScriptOptions
 
     mapping = {}
 
-    try
-      json = envVars.parse(@env)
-    catch error
-      console.error "[script]: Encountered an error parsing the environment \
-        string \"#{@env}\"\n[script]: #{error}"
-    finally
-      json = '[]' if error
+    for pair in @env.trim().split(';')
+      [key, value] = pair.split('=', 2)
+      mapping[key] = "#{value}".replace /"((?:[^"\\]|\\"|\\[^"])+)"/, '$1'
+      mapping[key] = mapping[key].replace /'((?:[^'\\]|\\'|\\[^'])+)'/, '$1'
 
-    vars = JSON.parse(json)
-    for pair in vars when pair.length isnt 0
-      for k,v of pair
-        mapping[k] = v
 
     mapping
 
@@ -40,4 +32,10 @@ class ScriptOptions
   # Returns the merged environment {Object}.
   mergedEnv: (otherEnv) ->
     otherCopy = _.extend {}, otherEnv
-    _.extend otherCopy, @getEnv()
+    mergedEnv = _.extend otherCopy, @getEnv()
+
+    for key,value of mergedEnv
+      mergedEnv[key] = "#{value}".replace /"((?:[^"\\]|\\"|\\[^"])+)"/, '$1'
+      mergedEnv[key] = mergedEnv[key].replace /'((?:[^'\\]|\\'|\\[^'])+)'/, '$1'
+
+    mergedEnv
