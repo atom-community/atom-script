@@ -105,6 +105,11 @@ module.exports =
       command: "julia"
       args: (context) -> [context.filepath]
 
+  LilyPond:
+    "File Based":
+      command: "lilypond"
+      args: (context) -> [context.filepath]
+
   LiveScript:
     "Selection Based":
       command: "livescript"
@@ -120,7 +125,7 @@ module.exports =
     "File Based":
       command: "lua"
       args: (context) -> [context.filepath]
-      
+
   MoonScript:
     "Selection Based":
       command: "moon"
@@ -128,7 +133,7 @@ module.exports =
     "File Based":
       command: "moon"
       args: (context) -> [context.filepath]
-      
+
   newLISP:
     "Selection Based":
       command: "newlisp"
