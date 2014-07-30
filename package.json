@@ -66,5 +66,8 @@
   "dependencies": {
     "ansi-to-html": ">0.1.0",
     "underscore": "~1.5.2"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5"
   }
 }

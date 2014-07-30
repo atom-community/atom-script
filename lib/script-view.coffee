@@ -210,7 +210,7 @@ class ScriptView extends View
     # Default to where the user opened atom
     options =
       cwd: @getCwd()
-      env: process.env
+      env: @runOptions.mergedEnv(process.env)
     args = (@runOptions.cmdArgs.concat extraArgs).concat @runOptions.scriptArgs
     if not @runOptions.cmd? or @runOptions.cmd is ''
       args = codeContext.shebangCommandArgs().concat args

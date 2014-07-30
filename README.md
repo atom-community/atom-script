@@ -69,7 +69,7 @@ Make sure to run `atom` from the command line to get full access to your environ
 
 **Script: Run at Line** to run using the specified line number. **Note** that if you select an entire line this number could be off by one due to the way Atom detects numbers while text is selected.
 
-**Script: Run Options** should be used to configure command options and program arguments for a "File Based" or "Selection Based" run.
+**Script: Run Options** should be used to configure command options, program arguments, and environment variables overrides. Environment variables may be input into the options view in the form `VARIABLE_NAME_ONE=value;VARIABLE_NAME_TWO="other value";VARIABLE_NAME_3='test'`
 
 **Script: Kill Process** will kill the process but leaves the pane open.
 
