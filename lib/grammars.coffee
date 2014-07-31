@@ -195,6 +195,14 @@ module.exports =
       command: "ruby"
       args: (context) -> [context.filepath]
 
+  'Ruby on Rails':
+    "Selection Based":
+      command: "rails"
+      args: (context)  -> ['runner', context.getCode()]
+    "File Based":
+      command: "rails"
+      args: (context) -> ['runner', context.filepath]
+
   'Shell Script (Bash)':
     "Selection Based":
       command: "bash"

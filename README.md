@@ -30,6 +30,7 @@ Currently supported grammars are:
   * Python
   * RSpec
   * Ruby
+  * Ruby on Rails
   * Scala
   * Swift
 
