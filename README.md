@@ -1,8 +1,9 @@
-# Run code in Atom!
-
-![](https://cloud.githubusercontent.com/assets/1694055/3226201/c458acbc-f067-11e3-84a0-da27fe334f5e.gif)
+# Script [![Build Status](http://img.shields.io/travis/rgbkrk/atom-script.svg?style=flat)](https://travis-ci.org/rgbkrk/atom-script)
+**Run code in Atom!** Run scripts based on file name, a selection of code, or line number.
 
 Run selections of code, code based on line number, or the whole file!
+
+![](https://cloud.githubusercontent.com/assets/1694055/3226201/c458acbc-f067-11e3-84a0-da27fe334f5e.gif)
 
 Currently supported grammars are:
 
