@@ -33,6 +33,7 @@ Currently supported grammars are:
   * Ruby on Rails
   * Scala
   * Swift
+  * Makefile
 
 **NOTE**: Some grammars may require you to install [a custom language package](https://atom.io/search?utf8=✓&q=language).
 
