@@ -1,7 +1,7 @@
 # Script [![Build Status](http://img.shields.io/travis/rgbkrk/atom-script.svg?style=flat)](https://travis-ci.org/rgbkrk/atom-script)
-**Run code in Atom!** Run scripts based on file name, a selection of code, or line number.
+**Run code in Atom!**
 
-Run selections of code, code based on line number, or the whole file!
+Run scripts based on file name, a selection of code, or line number.
 
 ![](https://cloud.githubusercontent.com/assets/1694055/3226201/c458acbc-f067-11e3-84a0-da27fe334f5e.gif)
 
