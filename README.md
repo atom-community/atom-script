@@ -23,6 +23,7 @@ Currently supported grammars are:
   * LilyPond
   * LiveScript
   * Lua
+  * Makefile
   * MoonScript
   * newLISP
   * Perl
