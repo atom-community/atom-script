@@ -211,6 +211,14 @@ module.exports =
       command: "bash"
       args: (context) -> [context.filepath]
 
+  Makefile:
+    "Selection Based":
+      command: "bash"
+      args: (context) -> ['-c', context.getCode()]
+    "File Based":
+      command: "make"
+      args: (context) -> ['-f', context.filepath]
+
   Scala:
     "Selection Based":
       command: "scala"
