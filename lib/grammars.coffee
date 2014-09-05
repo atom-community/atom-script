@@ -73,6 +73,11 @@ module.exports =
       command: "groovy"
       args: (context) -> [context.filepath]
 
+  Grunt:
+    "File Based":
+      command: "grunt"
+      args: (context) -> ['--gruntfile', context.filepath]
+
   Haskell:
     "File Based":
       command: "runhaskell"
@@ -238,4 +243,4 @@ module.exports =
   Swift:
     "File Based":
       command: "xcrun"
-      args: (context) -> ['swift', '-i', context.filepath]
+      args: (context) -> ['swift', context.filepath]
