@@ -1,3 +1,6 @@
+## 2.10.0
+* Fix Swift against Xcode Beta 5
+
 ## 2.9.0
 * Add LilyPond support 
 * Add "Ruby on Rails" support
