@@ -73,6 +73,11 @@ module.exports =
       command: "groovy"
       args: (context) -> [context.filepath]
 
+  Grunt:
+    "File Based":
+      command: "grunt"
+      args: (context) -> ['--gruntfile', context.filepath]
+
   Haskell:
     "File Based":
       command: "runhaskell"

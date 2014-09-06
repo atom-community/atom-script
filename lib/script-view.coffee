@@ -131,7 +131,12 @@ class ScriptView extends View
     @stop()
     @detach() if @hasParent()
 
-  getLang: (editor) -> editor.getGrammar().name
+  getLang: (editor) ->
+      filename = editor.getTitle()
+      if filename?.toLowerCase() in ["gruntfile.coffee", "gruntfile.js"]
+        lang = "Grunt"
+      else
+        editor.getGrammar().name
 
   validateLang: (lang) ->
     err = null
