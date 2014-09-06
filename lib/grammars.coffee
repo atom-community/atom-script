@@ -238,4 +238,4 @@ module.exports =
   Swift:
     "File Based":
       command: "xcrun"
-      args: (context) -> ['swift', '-i', context.filepath]
+      args: (context) -> ['swift', context.filepath]
