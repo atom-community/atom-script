@@ -1,8 +1,8 @@
-utils = require '../lib/grammar-utils'
+GrammarUtils = require '../../lib/grammar-utils'
 
 describe 'GrammarUtils', ->
   describe 'Lisp', ->
-    toStatements = utils.lisp.splitStatements
+    toStatements = GrammarUtils.Lisp.splitStatements
 
     it 'returns empty array for empty code', ->
       code = ''

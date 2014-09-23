@@ -1,4 +1,3 @@
-#Utilities for particular grammars
 _ = require 'underscore'
 
 module.exports =

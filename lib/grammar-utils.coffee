@@ -1,2 +1,2 @@
 module.exports =
-  lisp: require './grammar-utils/lisp'
+  Lisp: require './grammar-utils/lisp'
