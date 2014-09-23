@@ -113,10 +113,10 @@ module.exports =
   LiveScript:
     "Selection Based":
       command: "livescript"
-      args: (code)  -> ['-e', code]
+      args: (context)  -> ['-e', context.getCode()]
     "File Based":
       command: "livescript"
-      args: (filename) -> [filename]
+      args: (context) -> [context.filepath]
 
   Lua:
     "Selection Based":
