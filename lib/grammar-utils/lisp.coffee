@@ -2,22 +2,24 @@ _ = require 'underscore'
 
 module.exports =
   splitStatements: (code) ->
-    reducer = (statements, char, i, code) ->
-      if char == '('
-        @parenDepth = (@parenDepth or 0) + 1
+    iterator = (statements, currentCharacter, _memo, _context) ->
+      @parenDepth ?= 0
+      if currentCharacter is '('
+        @parenDepth += 1
         @inStatement = true
-      else if char == ')'
-        @parenDepth = (@parenDepth or 0) - 1
+      else if currentCharacter is ')'
+        @parenDepth -= 1
 
-      @statement = (@statement or '') + char
+      @statement ?= ''
+      @statement += currentCharacter
 
-      if @parenDepth == 0 and @inStatement
+      if @parenDepth is 0 and @inStatement
         @inStatement = false
         statements.push @statement.trim()
         @statement = ''
 
       return statements
 
-    statements = _.reduce code.trim(), reducer, [], {}
+    statements = _.reduce code.trim(), iterator, [], {}
 
     return statements
