@@ -112,6 +112,7 @@ module.exports =
     "File Based":
       command: "lilypond"
       args: (context) -> [context.filepath]
+
   Lisp:
     "Selection Based":
       command: "sbcl"
@@ -122,6 +123,7 @@ module.exports =
     "File Based":
       command: "sbcl"
       args: (context) -> ['--noinform', '--script', context.filepath]
+
   LiveScript:
     "Selection Based":
       command: "livescript"

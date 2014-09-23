@@ -1,6 +1,11 @@
 _ = require 'underscore'
 
+# Public: GrammarUtils.Lisp - a module which exposes the ability to evaluate
+# code
 module.exports =
+  # Public: Split a string of code into an array of executable statements
+  #
+  # Returns an {Array} of executable statements.
   splitStatements: (code) ->
     iterator = (statements, currentCharacter, _memo, _context) ->
       @parenDepth ?= 0
