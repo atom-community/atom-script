@@ -1,3 +1,6 @@
+## 2.10.1
+* Update LiveScript to use newer grammar mapping
+
 ## 2.10.0
 * Fix Swift against Xcode Beta 5
 
