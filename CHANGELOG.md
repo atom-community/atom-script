@@ -1,3 +1,6 @@
+## 2.11.0
+* Add Batch support
+
 ## 2.10.1
 * Update LiveScript to use newer grammar mapping
 
