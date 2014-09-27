@@ -18,6 +18,11 @@ module.exports =
       command: "behat"
       args: (context) -> ['--ansi', context.fileColonLine()]
 
+  Batch:
+    "File Based":
+      command: ""
+      args: (context) -> [context.filepath]
+
   CoffeeScript:
     "Selection Based":
       command: "coffee"
