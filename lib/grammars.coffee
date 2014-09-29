@@ -1,6 +1,9 @@
 # Maps Atom Grammar names to the command used by that language
 # As well as any special setup for arguments.
 
+_ = require 'underscore'
+utils = require '../lib/grammar-utils'
+
 module.exports =
   AppleScript:
     'Selection Based':
@@ -114,7 +117,16 @@ module.exports =
     "File Based":
       command: "lilypond"
       args: (context) -> [context.filepath]
-
+  Lisp:
+    "Selection Based":
+      command: "sbcl"
+      args: (context) ->
+        statements = _.flatten(_.map(utils.lisp.splitStatements(context.getCode()), (statement) -> ['--eval', statement]))
+        args = _.union ['--noinform', '--disable-debugger', '--non-interactive', '--quit'], statements
+        return args
+    "File Based":
+      command: "sbcl"
+      args: (context) -> ['--noinform', '--script', context.filepath]
   LiveScript:
     "Selection Based":
       command: "livescript"
