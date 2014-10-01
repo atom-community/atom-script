@@ -24,7 +24,7 @@ class ScriptView extends View
   initialize: (serializeState, @runOptions) ->
     # Bind commands
     atom.workspaceView.command 'script:run', => @defaultRun()
-    atom.workspaceView.command 'script:run-at-line', => @lineRun()
+    atom.workspaceView.command 'script:run-by-line-number', => @lineRun()
     atom.workspaceView.command 'script:close-view', => @close()
     atom.workspaceView.command 'script:kill-process', => @stop()
 
@@ -68,7 +68,7 @@ class ScriptView extends View
 
   lineRun: ->
     @resetView()
-    codeContext = @buildCodeContext('Line Based')
+    codeContext = @buildCodeContext('Line Number Based')
     @start(codeContext) unless not codeContext?
 
   defaultRun: ->
@@ -86,13 +86,13 @@ class ScriptView extends View
 
     codeContext.argType = argType
 
-    if argType == 'Line Based'
+    if argType == 'Line Number Based'
       editor.save()
     else if codeContext.selection.isEmpty() and codeContext.filepath?
       codeContext.argType = 'File Based'
       editor.save()
 
-    # Selection and Line Based runs both benefit from knowing the current line
+    # Selection and Line Number Based runs both benefit from knowing the current line
     # number
     unless argType == 'File Based'
       cursor = editor.getCursor()
@@ -186,7 +186,7 @@ class ScriptView extends View
       return false
 
     # Update header to show the lang and file name
-    if codeContext.argType is 'Line Based'
+    if codeContext.argType is 'Line Number Based'
       @headerView.title.text "#{codeContext.lang} - #{codeContext.fileColonLine(false)}"
     else
       @headerView.title.text "#{codeContext.lang} - #{codeContext.filename}"
