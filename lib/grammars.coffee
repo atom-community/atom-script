@@ -14,7 +14,7 @@ module.exports =
     "File Based":
       command: "behat"
       args: (context) -> ['--ansi', context.filepath]
-    "Line Based":
+    "Line Number Based":
       command: "behat"
       args: (context) -> ['--ansi', context.fileColonLine()]
 
@@ -61,7 +61,7 @@ module.exports =
     "File Based":
       command: "cucumber"
       args: (context) -> ['--color', context.filepath]
-    "Line Based":
+    "Line Number Based":
       command: "cucumber"
       args: (context) -> ['--color', context.fileColonLine()]
 
@@ -188,7 +188,7 @@ module.exports =
     "File Based":
       command: "rspec"
       args: (context) -> ['--tty', '--color', context.filepath]
-    "Line Based":
+    "Line Number Based":
       command: "rspec"
       args: (context) -> ['--tty', '--color', context.fileColonLine()]
 
