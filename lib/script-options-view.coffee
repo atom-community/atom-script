@@ -12,31 +12,31 @@ class ScriptOptionsView extends View
             @label 'Current Working Directory:'
             @input
               type: 'text'
-              class: 'editor mini editor-colors native-key-bindings'
+              class: 'editor mini native-key-bindings'
               outlet: 'inputCwd'
           @div class: 'block', =>
             @label 'Command'
             @input
               type: 'text'
-              class: 'editor mini editor-colors native-key-bindings'
+              class: 'editor mini native-key-bindings'
               outlet: 'inputCommand'
           @div class: 'block', =>
             @label 'Command Arguments:'
             @input
               type: 'text'
-              class: 'editor mini editor-colors native-key-bindings'
+              class: 'editor mini native-key-bindings'
               outlet: 'inputCommandArgs'
           @div class: 'block', =>
             @label 'Program Arguments:'
             @input
               type: 'text'
-              class: 'editor mini editor-colors native-key-bindings'
+              class: 'editor mini native-key-bindings'
               outlet: 'inputScriptArgs'
           @div class: 'block', =>
             @label 'Environment Variables:'
             @input
               type: 'text'
-              class: 'editor mini editor-colors native-key-bindings'
+              class: 'editor mini native-key-bindings'
               outlet: 'inputEnv'
           @div class: 'block', =>
             css = 'btn inline-block-tight'
