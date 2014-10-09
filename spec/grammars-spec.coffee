@@ -20,18 +20,18 @@ describe 'grammarMap', ->
   describe 'Operating system specific runners', ->
     beforeEach ->
       @_originalPlatform = OperatingSystem.platform
+      @reloadGrammar = ->
+        delete require.cache[require.resolve('../lib/grammars.coffee')]
+        grammarMap = require '../lib/grammars.coffee'
 
     afterEach ->
       OperatingSystem.platform = @_originalPlatform
-      delete require.cache[require.resolve('../lib/grammars.coffee')]
-      # TODO: Validate that reassigns the global grammarMap variable
-      grammarMap = require '../lib/grammars.coffee'
+      @reloadGrammar()
 
     describe 'C', ->
       it 'returns the appropriate File Based runner on Mac OS X', ->
         OperatingSystem.platform = -> 'darwin'
-        delete require.cache[require.resolve('../lib/grammars.coffee')]
-        grammarMap = require '../lib/grammars.coffee'
+        @reloadGrammar()
 
         grammar = grammarMap['C']
         fileBasedRunner = grammar['File Based']
@@ -42,8 +42,7 @@ describe 'grammarMap', ->
 
       it 'is not defined on other operating systems', ->
         OperatingSystem.platform = -> 'win32'
-        delete require.cache[require.resolve('../lib/grammars.coffee')]
-        grammarMap = require '../lib/grammars.coffee'
+        @reloadGrammar()
 
         grammar = grammarMap['C']
         expect(grammar).toBe(undefined)
@@ -51,8 +50,7 @@ describe 'grammarMap', ->
     describe 'C++', ->
       it 'returns the appropriate File Based runner on Mac OS X', ->
         OperatingSystem.platform = -> 'darwin'
-        delete require.cache[require.resolve('../lib/grammars.coffee')]
-        grammarMap = require '../lib/grammars.coffee'
+        @reloadGrammar()
 
         grammar = grammarMap['C++']
         fileBasedRunner = grammar['File Based']
@@ -63,8 +61,7 @@ describe 'grammarMap', ->
 
       it 'is not defined on other operating systems', ->
         OperatingSystem.platform = -> 'win32'
-        delete require.cache[require.resolve('../lib/grammars.coffee')]
-        grammarMap = require '../lib/grammars.coffee'
+        @reloadGrammar()
 
         grammar = grammarMap['C++']
         expect(grammar).toBe(undefined)
@@ -72,8 +69,7 @@ describe 'grammarMap', ->
     describe 'Objective-C', ->
       it 'returns the appropriate File Based runner on Mac OS X', ->
         OperatingSystem.platform = -> 'darwin'
-        delete require.cache[require.resolve('../lib/grammars.coffee')]
-        grammarMap = require '../lib/grammars.coffee'
+        @reloadGrammar()
 
         grammar = grammarMap['Objective-C']
         fileBasedRunner = grammar['File Based']
@@ -84,8 +80,7 @@ describe 'grammarMap', ->
 
       it 'is not defined on other operating systems', ->
         OperatingSystem.platform = -> 'win32'
-        delete require.cache[require.resolve('../lib/grammars.coffee')]
-        grammarMap = require '../lib/grammars.coffee'
+        @reloadGrammar()
 
         grammar = grammarMap['Objective-C']
         expect(grammar).toBe(undefined)
@@ -93,8 +88,7 @@ describe 'grammarMap', ->
     describe 'Objective-C++', ->
       it 'returns the appropriate File Based runner on Mac OS X', ->
         OperatingSystem.platform = -> 'darwin'
-        delete require.cache[require.resolve('../lib/grammars.coffee')]
-        grammarMap = require '../lib/grammars.coffee'
+        @reloadGrammar()
 
         grammar = grammarMap['Objective-C++']
         fileBasedRunner = grammar['File Based']
@@ -105,8 +99,7 @@ describe 'grammarMap', ->
 
       it 'is not defined on other operating systems', ->
         OperatingSystem.platform = -> 'win32'
-        delete require.cache[require.resolve('../lib/grammars.coffee')]
-        grammarMap = require '../lib/grammars.coffee'
+        @reloadGrammar()
 
         grammar = grammarMap['Objective-C++']
         expect(grammar).toBe(undefined)
