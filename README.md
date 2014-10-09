@@ -22,6 +22,7 @@ Currently supported grammars are:
   * Javascript
   * Julia
   * LilyPond
+  * Lisp (via SBCL) <sup>⍵</sup>
   * LiveScript
   * Lua
   * Makefile
@@ -48,6 +49,8 @@ You only have to add a few lines in a PR to support another.
 <sup>†</sup> Erlang uses `erl` for limited selection based runs (see [#70](https://github.com/rgbkrk/atom-script/pull/70))
 
 <sup>\*</sup> Cucumber (Gherkin), Go, F#, PowerShell, and Swift do not support selection based runs
+
+<sup>⍵</sup> Lisp selection based runs are limited to single line
 
 ## Installation
 
