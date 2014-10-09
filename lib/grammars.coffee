@@ -25,6 +25,15 @@ module.exports =
     "File Based":
       command: ""
       args: (context) -> [context.filepath]
+  C:
+    "File Based":
+      command: "bash"
+      args: (context) -> ['-c', "xcrun clang -Wall -include stdio.h " + context.filepath + " -o /tmp/c.out && /tmp/c.out"]
+
+  'C++':
+    "File Based":
+      command: "bash"
+      args: (context) -> ['-c', "xcrun clang++ -Wc++11-extensions -Wall -include stdio.h -include iostream " + context.filepath + " -o /tmp/cpp.out && /tmp/cpp.out"]
 
   CoffeeScript:
     "Selection Based":
@@ -160,6 +169,16 @@ module.exports =
     "File Based":
       command: "newlisp"
       args: (context) -> [context.filepath]
+
+  'Objective-C':
+    "File Based":
+      command: "bash"
+      args: (context) -> ['-c', "xcrun clang -Wall -include stdio.h -framework Cocoa " + context.filepath + " -o /tmp/objc-c.out && /tmp/objc-c.out"]
+
+  'Objective-C++':
+    "File Based":
+      command: "bash"
+      args: (context) -> ['-c', "xcrun clang++ -Wc++11-extensions -Wall -include stdio.h -include iostream -framework Cocoa " + context.filepath + " -o /tmp/objc-cpp.out && /tmp/objc-cpp.out"]
 
   PHP:
     "Selection Based":
