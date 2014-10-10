@@ -1,3 +1,6 @@
+## 2.12.0
+* Add SML support
+
 ## 2.11.2
 * Incidental release -- no new changes
 

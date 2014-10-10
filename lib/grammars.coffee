@@ -254,6 +254,11 @@ module.exports =
       command: "guile"
       args: (context) -> [context.filepath]
 
+  "Standard ML":
+    "File Based":
+      command: "sml"
+      args: (context) -> [context.filepath]
+
   Swift:
     "File Based":
       command: "xcrun"
