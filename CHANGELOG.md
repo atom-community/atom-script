@@ -1,5 +1,7 @@
 ## 2.12.0
 * Add SML support
+* Add the OperatingSystem grammar utils for platform specific run code
+* Add Mac OS X specific C, C++, Objective-C, and Objective-C++ file based runs
 
 ## 2.11.2
 * Incidental release -- no new changes
