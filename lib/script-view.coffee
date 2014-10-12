@@ -174,12 +174,14 @@ class ScriptView extends View
       buildArgsArray = grammarMap[codeContext.lang][codeContext.argType].args
 
     catch error
+      urlSafeArgType = "#{codeContext.argType}".replace(' ', '')
+      urlSafeLang = "#{codeContext.lang}".replace(' ', '')
       err = $$ ->
         @p class: 'block', "#{codeContext.argType} runner not available for #{codeContext.lang}."
         @p class: 'block', =>
           @text 'If it should exist, add an '
           @a href: "https://github.com/rgbkrk/atom-script/issues/\
-            new?title=Add%20support%20for%20#{codeContext.lang}", 'issue on GitHub'
+            new?title=Add%20#{urlSafeArgType}%20support%20for%20#{urlSafeLang}", 'issue on GitHub'
           @text ', or send your own pull request.'
 
       @handleError err
