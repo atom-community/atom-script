@@ -261,6 +261,11 @@ module.exports =
       command: "make"
       args: (context) -> ['-f', context.filepath]
 
+  Sass:
+    "File Based":
+      command: "sass"
+      args: (context) -> [context.filepath]
+
   Scala:
     "Selection Based":
       command: "scala"
@@ -275,6 +280,11 @@ module.exports =
       args: (context)  -> ['-c', context.getCode()]
     "File Based":
       command: "guile"
+      args: (context) -> [context.filepath]
+
+  SCSS:
+    "File Based":
+      command: "sass"
       args: (context) -> [context.filepath]
 
   "Standard ML":
