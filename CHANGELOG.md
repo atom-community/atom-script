@@ -1,3 +1,7 @@
+## 2.13.0
+* Add Sass support
+* Add SCSS support
+
 ## 2.12.1
 * Update the LiveScript command to `lsc` vs. `livescript`. Since [v1.1.0](http://livescript.net/blog/livescript-1.1.0.html) `lsc` was previously available as an alias and now the official command to run code.
 
