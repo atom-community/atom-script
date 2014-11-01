@@ -10,8 +10,8 @@ Currently supported grammars are:
   * AppleScript
   * Bash
   * Behat Feature
-  * C <sup>*</sup>
-  * C++ <sup>*</sup>
+  * C <sup>*‡</sup>
+  * C++ <sup>*‡</sup>
   * Coffeescript
   * CoffeeScript (Literate) <sup>^</sup>
   * Cucumber (Gherkin) <sup>*</sup>
@@ -30,14 +30,15 @@ Currently supported grammars are:
   * Makefile
   * MoonScript
   * newLISP
-  * Objective-C <sup>*</sup>
-  * Objective-C++ <sup>*</sup>
+  * Objective-C <sup>*‡</sup>
+  * Objective-C++ <sup>*‡</sup>
   * Perl
   * PHP
   * Python
   * RSpec
   * Ruby
   * Ruby on Rails
+  * Sass/SCSS <sup>*</sup>
   * Scala
   * Swift
   * Makefile
