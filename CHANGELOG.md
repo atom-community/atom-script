@@ -1,3 +1,6 @@
+## 2.14.0
+* Add a configuration option to unescape HTML output
+
 ## 2.13.0
 * Add Sass support
 * Add SCSS support
