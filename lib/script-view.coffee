@@ -211,6 +211,7 @@ class ScriptView extends View
 
   run: (command, extraArgs, codeContext) ->
     atom.emit 'achievement:unlock', msg: 'Homestar Runner'
+    startTime = new Date()
 
     # Default to where the user opened atom
     options =
@@ -223,6 +224,10 @@ class ScriptView extends View
     stdout = (output) => @display 'stdout', output
     stderr = (output) => @display 'stderr', output
     exit = (returnCode) =>
+      if (atom.config.get 'script.enableExecTime') is true
+        executionTime = (new Date().getTime() - startTime.getTime()) / 1000
+        @display 'stdout', '[Finished in '+executionTime.toString()+'s]'
+
       if returnCode is 0
         @headerView.setStatus 'stop'
       else
