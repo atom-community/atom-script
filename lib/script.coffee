@@ -7,7 +7,7 @@ module.exports =
     enableExecTime:
       title: 'Output the time it took to execute the script'
       type: 'boolean'
-      default: false
+      default: true
 
   scriptView: null
   scriptOptionsView: null
