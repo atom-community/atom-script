@@ -3,6 +3,12 @@ ScriptOptionsView = require './script-options-view'
 ScriptOptions = require './script-options'
 
 module.exports =
+  config:
+    enableExecTime:
+      title: 'Output the time it took to execute the script'
+      type: 'boolean'
+      default: true
+
   scriptView: null
   scriptOptionsView: null
   scriptOptions: null
