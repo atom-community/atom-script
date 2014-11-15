@@ -281,10 +281,10 @@ module.exports =
 
   "Shell Script":
     "Selection Based":
-      command: "sh"
+      command: "bash"
       args: (context)  -> ['-c', context.getCode()]
     "File Based":
-      command: "sh"
+      command: "bash"
       args: (context) -> [context.filepath]
 
   "Shell Script (Fish)":
