@@ -203,7 +203,7 @@ module.exports =
   PowerShell:
     "File Based":
       command: "powershell"
-      args: (context) -> [context.filepath]
+      args: (context) -> [context.filepath.replace /\ /g, "` "]
 
   Python:
     "Selection Based":
