@@ -1,6 +1,7 @@
 ScriptView = require './script-view'
 ScriptOptionsView = require './script-options-view'
 ScriptOptions = require './script-options'
+CodeContext = require './code-context'
 
 module.exports =
   config:
@@ -12,17 +13,20 @@ module.exports =
   scriptView: null
   scriptOptionsView: null
   scriptOptions: null
+  codeContext: null
 
   activate: (state) ->
     @scriptOptions = new ScriptOptions()
     @scriptView = new ScriptView state.scriptViewState, @scriptOptions
     @scriptOptionsView = new ScriptOptionsView @scriptOptions
+    @codeContext = new CodeContext('', '')
 
     atom.workspaceView.on 'core:cancel core:close', (event) =>
       @scriptView?.close()
       @scriptOptionsView?.close()
 
   deactivate: ->
+    @codeContext.removeTempFiles()
     @scriptView.close()
     @scriptOptionsView.close()
 

@@ -187,7 +187,7 @@ module.exports =
   PHP:
     "Selection Based":
       command: "php"
-      args: (context)  -> ['-r', context.getCode()]
+      args: (context) -> [context.getFileWithCode()]
     "File Based":
       command: "php"
       args: (context) -> [context.filepath]

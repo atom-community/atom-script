@@ -1,3 +1,8 @@
+os = require 'os'
+fs = require 'fs'
+path = require 'path'
+uuid = require 'node-uuid'
+
 module.exports =
 class CodeContext
   filename: null
@@ -5,6 +10,7 @@ class CodeContext
   lineNumber: null
   shebang: null
   textSource: null
+  tempFilesDir: path.join(os.tmpdir(), 'atom_script_tempfiles')
 
   # Public: Initializes a new {CodeContext} object for the given file/line
   #
@@ -41,6 +47,31 @@ class CodeContext
     newlineCount = Number(@lineNumber)
     newlines = Array(newlineCount).join("\n")
     "#{newlines}#{code}"
+
+  # Public: Write selected code in a temporary file
+  #
+  # Returns the {String} filepath
+  getFileWithCode: ->
+    if (!fs.existsSync(@tempFilesDir))
+      fs.mkdirSync(@tempFilesDir)
+    if (!fs.existsSync(@tempFilesDir))
+      throw "Unable to create directory for temporary files " + @tempFilesDir
+
+    tempFilePath = @tempFilesDir + path.sep + uuid.v1()
+    if (file = fs.openSync(tempFilePath, 'w'))
+      fs.writeSync(file, "<?php " + @getCode())
+      fs.closeSync(file)
+      return tempFilePath
+    else
+      throw "Unable to create temporary file " + tempFilePath
+
+  # Public: Delete all temporary files created by {CodeContext.getFileWithCode}
+  removeTempFiles: ->
+    tempFilesDir = @tempFilesDir + path.sep
+    if (fs.existsSync(tempFilesDir))
+      files = fs.readdirSync(tempFilesDir);
+      files.forEach((file, index) -> fs.unlinkSync(tempFilesDir + file))
+      fs.rmdirSync(tempFilesDir)
 
   # Public: Retrieves the command name from @shebang
   #
