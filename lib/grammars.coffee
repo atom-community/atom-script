@@ -245,14 +245,6 @@ module.exports =
       command: "rails"
       args: (context) -> ['runner', context.filepath]
 
-  'Shell Script (Bash)':
-    "Selection Based":
-      command: "bash"
-      args: (context)  -> ['-c', context.getCode()]
-    "File Based":
-      command: "bash"
-      args: (context) -> [context.filepath]
-
   Makefile:
     "Selection Based":
       command: "bash"
@@ -285,6 +277,22 @@ module.exports =
   SCSS:
     "File Based":
       command: "sass"
+      args: (context) -> [context.filepath]
+
+  "Shell Script":
+    "Selection Based":
+      command: "bash"
+      args: (context)  -> ['-c', context.getCode()]
+    "File Based":
+      command: "bash"
+      args: (context) -> [context.filepath]
+
+  "Shell Script (Fish)":
+    "Selection Based":
+      command: "fish"
+      args: (context)  -> ['-c', context.getCode()]
+    "File Based":
+      command: "fish"
       args: (context) -> [context.filepath]
 
   "Standard ML":
