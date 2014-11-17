@@ -190,7 +190,7 @@ module.exports =
       args: (context) ->
         code = context.getCode()
         file = GrammarUtils.PHP.createTempFileWithCode(code)
-        return [file]
+        [file]
     "File Based":
       command: "php"
       args: (context) -> [context.filepath]

@@ -1,4 +1,3 @@
-
 module.exports =
 class CodeContext
   filename: null

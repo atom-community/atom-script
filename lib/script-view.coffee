@@ -196,8 +196,11 @@ class ScriptView extends View
     else
       @headerView.title.text "#{codeContext.lang} - #{codeContext.filename}"
 
-    commandContext.args = buildArgsArray codeContext
-
+    try
+      commandContext.args = buildArgsArray codeContext
+    catch errorSendByArgs
+      @handleError errorSendByArgs
+      return false
 
     # Return setup information
     return commandContext

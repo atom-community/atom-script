@@ -6,5 +6,6 @@ module.exports =
   # * `code`    A {String} containing some PHP code without <?php header
   #
   # Returns the {String} filepath of the new file
-  createTempFileWithCode: (code) ->
-    return module.parent.exports.createTempFileWithCode("<?php #{code}")
+  createTempFileWithCode: (code) =>
+    code = "<?php #{code}" unless /^[\s]*<\?php/.test(code)
+    module.parent.exports.createTempFileWithCode(code)

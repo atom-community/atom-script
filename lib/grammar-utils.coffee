@@ -14,26 +14,29 @@ module.exports =
   #
   # Returns the {String} filepath of the new file
   createTempFileWithCode: (code) ->
-    if (!fs.existsSync(@tempFilesDir))
-      fs.mkdirSync(@tempFilesDir)
-    if (!fs.existsSync(@tempFilesDir))
-      throw "Unable to create directory for temporary files " + @tempFilesDir
+    try
+      fs.mkdirSync(@tempFilesDir) unless fs.existsSync(@tempFilesDir)
 
-    tempFilePath = @tempFilesDir + path.sep + uuid.v1()
-    if (file = fs.openSync(tempFilePath, 'w'))
+      tempFilePath = @tempFilesDir + path.sep + uuid.v1()
+
+      file = fs.openSync(tempFilePath, 'w')
       fs.writeSync(file, code)
       fs.closeSync(file)
-      return tempFilePath
-    else
-      throw "Unable to create temporary file " + tempFilePath
 
-  # Public: Delete all temporary files created by {GrammarUtils::createTempFileWithCode}
+      tempFilePath
+    catch error
+      throw "Error while creating temporary file (#{error})"
+
+  # Public: Delete all temporary files and the directory created by {GrammarUtils::createTempFileWithCode}
   deleteTempFiles: ->
-    if (fs.existsSync(@tempFilesDir))
-      files = fs.readdirSync(@tempFilesDir);
-      if (files.length > 0)
-          files.forEach((file, index) -> fs.unlinkSync(module.exports.tempFilesDir + path.sep + file))
-      fs.rmdirSync(@tempFilesDir)
+    try
+      if (fs.existsSync(@tempFilesDir))
+        files = fs.readdirSync(@tempFilesDir);
+        if (files.length)
+          files.forEach((file, index) => fs.unlinkSync(@tempFilesDir + path.sep + file))
+        fs.rmdirSync(@tempFilesDir)
+    catch error
+      throw "Error while deleting temporary files (#{error})"
 
   # Public: Get the Lisp helper object
   #
