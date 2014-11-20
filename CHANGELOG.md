@@ -1,5 +1,8 @@
 ## 2.14.0
-* Add a configuration option to unescape HTML output
+* Add the ability to unescape HTML output (configuration option)
+* Add total execution time to output (configuration option)
+* Update Shell Script grammar name
+* Update PowerShell runner to support files with whitespace in the name
 
 ## 2.13.0
 * Add Sass support
