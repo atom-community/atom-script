@@ -1,6 +1,7 @@
 ScriptView = require './script-view'
 ScriptOptionsView = require './script-options-view'
 ScriptOptions = require './script-options'
+GrammarUtils = require './grammar-utils'
 
 module.exports =
   config:
@@ -23,6 +24,7 @@ module.exports =
       @scriptOptionsView?.close()
 
   deactivate: ->
+    GrammarUtils.deleteTempFiles()
     @scriptView.close()
     @scriptOptionsView.close()
 

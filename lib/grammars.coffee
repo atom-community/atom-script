@@ -187,7 +187,10 @@ module.exports =
   PHP:
     "Selection Based":
       command: "php"
-      args: (context)  -> ['-r', context.getCode()]
+      args: (context) ->
+        code = context.getCode()
+        file = GrammarUtils.PHP.createTempFileWithCode(code)
+        [file]
     "File Based":
       command: "php"
       args: (context) -> [context.filepath]
