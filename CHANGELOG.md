@@ -1,3 +1,6 @@
+## 2.15.1
+* Remove a unused import from script.less
+
 ## 2.15.0
 * Add temporary file support
 * Enhance PHP selection based runner
