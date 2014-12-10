@@ -1,3 +1,7 @@
+## 2.15.0
+* Add temporary file support
+* Enhance PHP selection based runner
+
 ## 2.14.0
 * Add the ability to unescape HTML output (configuration option)
 * Add total execution time to output (configuration option)
