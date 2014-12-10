@@ -10,38 +10,37 @@ Currently supported grammars are:
   * AppleScript
   * Bash
   * Behat Feature
-  * C <sup>*‡</sup>
-  * C++ <sup>*‡</sup>
+  * C <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
+  * C++ <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
   * Coffeescript
-  * CoffeeScript (Literate) <sup>^</sup>
-  * Cucumber (Gherkin) <sup>*</sup>
+  * CoffeeScript (Literate) <sup>[^](#caret)</sup>
+  * Cucumber (Gherkin) <sup>[*](#asterisk)</sup>
   * Elixir
-  * Erlang <sup>†</sup>
-  * F# <sup>*</sup>
-  * Go <sup>*</sup>
+  * Erlang <sup>[†](#dagger)</sup>
+  * F# <sup>[*](#asterisk)</sup>
+  * Go <sup>[*](#asterisk)</sup>
   * Groovy
   * Haskell
   * Javascript
   * Julia
   * LilyPond
-  * Lisp (via SBCL) <sup>⍵</sup>
+  * Lisp (via SBCL) <sup>[⍵](#omega)</sup>
   * LiveScript
   * Lua
   * Makefile
   * MoonScript
   * newLISP
-  * Objective-C <sup>*‡</sup>
-  * Objective-C++ <sup>*‡</sup>
+  * Objective-C <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
+  * Objective-C++ <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
   * Perl
   * PHP
   * Python
   * RSpec
   * Ruby
   * Ruby on Rails
-  * Sass/SCSS <sup>*</sup>
+  * Sass/SCSS <sup>[*](#asterisk)</sup>
   * Scala
   * Swift
-  * Makefile
 
 **NOTE**: Some grammars may require you to install [a custom language package](https://atom.io/search?utf8=✓&q=language).
 
@@ -49,15 +48,15 @@ You only have to add a few lines in a PR to support another.
 
 ### Limitations
 
-<sup>^</sup> Running selections of code for CoffeeScript (Literate) only works when selecting just the code blocks
+<a name="caret"></a><sup>^</sup> Running selections of code for CoffeeScript (Literate) only works when selecting just the code blocks
 
-<sup>†</sup> Erlang uses `erl` for limited selection based runs (see [#70](https://github.com/rgbkrk/atom-script/pull/70))
+<a name="dagger"></a><sup>†</sup> Erlang uses `erl` for limited selection based runs (see [#70](https://github.com/rgbkrk/atom-script/pull/70))
 
-<sup>\*</sup> Cucumber (Gherkin), Go, F#, PowerShell, and Swift do not support selection based runs
+<a name="asterisk"></a><sup>*</sup> Cucumber (Gherkin), Go, F#, PowerShell, and Swift do not support selection based runs
 
-<sup>⍵</sup> Lisp selection based runs are limited to single line
+<a name="omega"></a><sup>⍵</sup> Lisp selection based runs are limited to single line
 
-<sup>‡</sup> C, C++, Objective-C, and Objective-C++ are currently only available for Mac OS X (where `process.platform is 'darwin'`). This is possible due to the commands `xcrun clang` and `xcrun clang++`. **NOTE**: Xcode and the Xcode command line tools are required to ensure `xcrun` and the correct compilers on your system.
+<a name="double-dagger"></a><sup>‡</sup> C, C++, Objective-C, and Objective-C++ are currently only available for Mac OS X (where `process.platform is 'darwin'`). This is possible due to the commands `xcrun clang` and `xcrun clang++`. **NOTE**: Xcode and the Xcode command line tools are required to ensure `xcrun` and the correct compilers on your system.
 
 ## Installation
 
