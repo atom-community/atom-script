@@ -227,6 +227,8 @@ class ScriptView extends View
     stdout = (output) => @display 'stdout', output
     stderr = (output) => @display 'stderr', output
     exit = (returnCode) =>
+      @bufferedProcess = null
+
       if (atom.config.get 'script.enableExecTime') is true
         executionTime = (new Date().getTime() - startTime.getTime()) / 1000
         @display 'stdout', '[Finished in '+executionTime.toString()+'s]'
@@ -243,6 +245,7 @@ class ScriptView extends View
     })
 
     @bufferedProcess.process.on 'error', (nodeError) =>
+      @bufferedProcess = null
       @output.append $$ ->
         @h1 'Unable to run'
         @pre _.escape command
