@@ -260,10 +260,11 @@ class ScriptView extends View
 
   stop: ->
     # Kill existing process if available
-    if @bufferedProcess? and @bufferedProcess.process?
+    if @bufferedProcess?
       @display 'stdout', '^C'
       @headerView.setStatus 'kill'
       @bufferedProcess.kill()
+      @bufferedProcess = null
 
   display: (css, line) ->
     if atom.config.get('script.escapeConsoleOutput')
