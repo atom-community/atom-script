@@ -29,13 +29,13 @@ module.exports =
     if GrammarUtils.OperatingSystem.isDarwin()
       "File Based":
         command: "bash"
-        args: (context) -> ['-c', "xcrun clang -Wall -include stdio.h " + context.filepath + " -o /tmp/c.out && /tmp/c.out"]
+        args: (context) -> ['-c', "xcrun clang -fcolor-diagnostics -Wall -include stdio.h " + context.filepath + " -o /tmp/c.out && /tmp/c.out"]
 
   'C++':
     if GrammarUtils.OperatingSystem.isDarwin()
       "File Based":
         command: "bash"
-        args: (context) -> ['-c', "xcrun clang++ -Wc++11-extensions -Wall -include stdio.h -include iostream " + context.filepath + " -o /tmp/cpp.out && /tmp/cpp.out"]
+        args: (context) -> ['-c', "xcrun clang++ -fcolor-diagnostics -Wc++11-extensions -Wall -include stdio.h -include iostream " + context.filepath + " -o /tmp/cpp.out && /tmp/cpp.out"]
 
   CoffeeScript:
     "Selection Based":
@@ -176,13 +176,13 @@ module.exports =
     if GrammarUtils.OperatingSystem.isDarwin()
       "File Based":
         command: "bash"
-        args: (context) -> ['-c', "xcrun clang -Wall -include stdio.h -framework Cocoa " + context.filepath + " -o /tmp/objc-c.out && /tmp/objc-c.out"]
+        args: (context) -> ['-c', "xcrun clang -fcolor-diagnostics -Wall -include stdio.h -framework Cocoa " + context.filepath + " -o /tmp/objc-c.out && /tmp/objc-c.out"]
 
   'Objective-C++':
     if GrammarUtils.OperatingSystem.isDarwin()
       "File Based":
         command: "bash"
-        args: (context) -> ['-c', "xcrun clang++ -Wc++11-extensions -Wall -include stdio.h -include iostream -framework Cocoa " + context.filepath + " -o /tmp/objc-cpp.out && /tmp/objc-cpp.out"]
+        args: (context) -> ['-c', "xcrun clang++ -fcolor-diagnostics -Wc++11-extensions -Wall -include stdio.h -include iostream -framework Cocoa " + context.filepath + " -o /tmp/objc-cpp.out && /tmp/objc-cpp.out"]
 
   PHP:
     "Selection Based":
