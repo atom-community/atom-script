@@ -53,6 +53,11 @@ module.exports =
       command: "coffee"
       args: (context) -> [context.filepath]
 
+  D:
+    "File Based":
+      command: "rdmd"
+      args: (context) -> [context.filepath]
+
   Elixir:
     "Selection Based":
       command: "elixir"
