@@ -21,9 +21,6 @@ class ScriptView extends View
       @div class: css, outlet: 'script', tabindex: -1, =>
         @div class: 'panel-body padded output', outlet: 'output'
 
-  configDefaults:
-    escapeConsoleOutput: true
-
   initialize: (serializeState, @runOptions) ->
     # Bind commands
     atom.workspaceView.command 'script:run', => @defaultRun()
@@ -269,7 +266,8 @@ class ScriptView extends View
   display: (css, line) ->
     if atom.config.get('script.escapeConsoleOutput')
       line = _.escape(line)
-      line = @ansiFilter.toHtml(line)
+
+    line = @ansiFilter.toHtml(line)
 
     @output.append $$ ->
       @pre class: "line #{css}", =>

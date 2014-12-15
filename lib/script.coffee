@@ -9,6 +9,10 @@ module.exports =
       title: 'Output the time it took to execute the script'
       type: 'boolean'
       default: true
+    escapeConsoleOutput:
+      title: 'HTML escape console output'
+      type: 'boolean'
+      default: true
 
   scriptView: null
   scriptOptionsView: null
