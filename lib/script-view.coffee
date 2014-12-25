@@ -174,7 +174,7 @@ class ScriptView extends View
       buildArgsArray = grammarMap[codeContext.lang][codeContext.argType].args
 
     catch error
-      err = @createIssuesLink codeContext
+      err = @createGitHubIssueLink codeContext
       @handleError err
 
       return false
@@ -194,7 +194,7 @@ class ScriptView extends View
     # Return setup information
     return commandContext
 
-  createIssuesLink: (codeContext) ->
+  createGitHubIssueLink: (codeContext) ->
     title = "Add #{codeContext.argType} support for #{codeContext.lang}"
     body = """
            ##### Platform: `#{process.platform}`
