@@ -6,41 +6,158 @@
   "description": "Run code in Atom!",
   "author": "Kyle Kelley <rgbkrk@gmail.com>",
   "contributors": [
-    "Kyle Kelley <rgbkrk@gmail.com>",
-    "Erran Carey <me@errancarey.com>",
-    "Lance Batson <lancebatsondev@gmail.com>",
-    "Pedro Rodriguez <ski.rodriguez@gmail.com>",
-    "Ash Wilson <smashwilson@gmail.com>",
-    "Hans Rødtang <hansrodtang@gmail.com>",
-    "Ciaran Downey <me@ciarand.me>",
-    "Hikaru Ojima <hikaru.ojima@mixi.co.jp>",
-    "Rafael Belvederese <rafael@blvz.im>",
-    "Ivan Storck <ivanoats@gmail.com>",
-    "Florian Lefèvre <zedentox@gmail.com>",
-    "Alexey Slaykovsky <alexey@macbook.dlink>",
-    "Christian Kjaer Laustsen <christianlaustsen@gmail.com>",
-    "Otto Robba <OttoRobba@users.noreply.github.com>",
-    "Will Sahatdjian <ws@kindwave.com>",
-    "Rnhmjoj <micheleguerinirocco@me.com>",
-    "Yeonghoon Park <sola92@gmail.com>",
-    "cormullion <cormullion@mac.com>",
-    "Dan <daniel.bayley@me.com>",
-    "Andy Hayden <andyhayden1@gmail.com>",
-    "jbtule <jay+code@tuley.name>",
-    "Jake Sankey <jakesankey@icloud.com>",
-    "bryanweatherly <bryanweatherly@gmail.com>",
-    "Johan Bruning <johan@taquito.nl>",
-    "Charley David <calyhre@gmail.com>",
-    "gerane <gerane@gmail.com>",
-    "Calvin Bottoms <calvin.bottoms@gmail.com>",
-    "Marek Piechut <marek.piechut@gmail.com>",
-    "Rodolfo Carvalho <rhcarvalho@gmail.com>",
-    "cdingpeng <cdingpeng@glitchsoft.com>",
-    "elclanrs <cedric.ruiz@spacirdesigns.com>",
-    "Sergey Koshelev <xih@yandex.ru>",
-    "Dustin Blackman <dustinblackman@users.noreply.github.com>",
-    "Daniel Chatfield <chatfielddaniel@gmail.com>",
-    "ThiconZ <ThiconZ@users.noreply.github.com>"
+    {
+      "name": "Kyle Kelley",
+      "email": "rgbkrk@gmail.com"
+    },
+    {
+      "name": "Erran Carey",
+      "email": "me@errancarey.com"
+    },
+    {
+      "name": "Florian Lefèvre",
+      "email": "zedentox@gmail.com"
+    },
+    {
+      "name": "Dustin Blackman",
+      "email": "dustinblackman@users.noreply.github.com"
+    },
+    {
+      "name": "elclanrs",
+      "email": "cedric.ruiz@spacirdesigns.com"
+    },
+    {
+      "name": "cdingpeng",
+      "email": "cdingpeng@glitchsoft.com"
+    },
+    {
+      "name": "gerane",
+      "email": "gerane@gmail.com"
+    },
+    {
+      "name": "Jake Sankey",
+      "email": "jakesankey@icloud.com"
+    },
+    {
+      "name": "Daniel Bayley",
+      "email": "daniel.bayley@me.com"
+    },
+    {
+      "name": "Dan",
+      "email": "daniel.bayley@me.com"
+    },
+    {
+      "name": "Calyhre",
+      "email": "charley.david@wopata.com"
+    },
+    {
+      "name": "rgbkrk",
+      "email": "rgbkrk@gmail.com"
+    },
+    {
+      "name": "Otto Robba",
+      "email": "OttoRobba@users.noreply.github.com"
+    },
+    {
+      "name": "Hikaru Ojima",
+      "email": "hikaru.ojima@mixi.co.jp"
+    },
+    {
+      "name": "Rafael Belvederese",
+      "email": "rafael@blvz.im"
+    },
+    {
+      "name": "Will Sahatdjian",
+      "email": "ws@kindwave.com"
+    },
+    {
+      "name": "Lance Batson",
+      "email": "lbatson@my.apsu.edu"
+    },
+    {
+      "name": "Ash Wilson",
+      "email": "smashwilson@gmail.com"
+    },
+    {
+      "name": "Pedro Rodriguez",
+      "email": "ski.rodriguez@gmail.com"
+    },
+    {
+      "name": "Hans Rødtang",
+      "email": "hansrodtang@gmail.com"
+    },
+    {
+      "name": "Yeonghoon Park",
+      "email": "sola92@gmail.com"
+    },
+    {
+      "name": "Johan Bruning",
+      "email": "johan@taquito.nl"
+    },
+    {
+      "name": "Andy Hayden",
+      "email": "andyhayden1@gmail.com"
+    },
+    {
+      "name": "Alexey Slaykovsky",
+      "email": "alexey@macbook.dlink"
+    },
+    {
+      "name": "Christian Kjaer Laustsen",
+      "email": "christianlaustsen@gmail.com"
+    },
+    {
+      "name": "cormullion",
+      "email": "cormullion@mac.com"
+    },
+    {
+      "name": "jbtule",
+      "email": "jay+code@tuley.name"
+    },
+    {
+      "name": "Ivan Storck",
+      "email": "ivanoats@gmail.com"
+    },
+    {
+      "name": "Ciaran Downey",
+      "email": "me@ciarand.me"
+    },
+    {
+      "name": "bryanweatherly",
+      "email": "bryanweatherly@gmail.com"
+    },
+    {
+      "name": "Rnhmjoj",
+      "email": "micheleguerinirocco@me.com"
+    },
+    {
+      "name": "Calvin Bottoms",
+      "email": "calvin.bottoms@gmail.com"
+    },
+    {
+      "name": "Marek Piechut",
+      "email": "marek.piechut@gmail.com"
+    },
+    {
+      "name": "Rodolfo Carvalho",
+      "email": "rhcarvalho@gmail.com"
+    },
+    {
+      "name": "Sergey Koshelev",
+      "email": "xih@yandex.ru"
+    },
+    {
+      "name": "Tomasz Grodzki",
+      "email": "dev@plain.pl"
+    },
+    {
+      "name": "fazo96",
+      "email": "fazius2009@gmail.com"
+    },
+    {
+      "name": "morinmorin",
+      "email": "mimomorin@gmail.com"
+    }
   ],
   "repository": "https://github.com/rgbkrk/atom-script",
   "keywords": [
@@ -86,6 +203,10 @@
     "atom-space-pen-views": "^2.0.3"
   },
   "devDependencies": {
-    "grunt": "~0.4.5"
+    "grunt": "~0.4.5",
+    "nodegit": "^0.3.3"
+  },
+  "scripts": {
+    "prepublish": "node utils/updatePackage.js"
   }
 }
