@@ -253,6 +253,11 @@ module.exports =
       command: "rails"
       args: (context) -> ['runner', context.filepath]
 
+  Rust:
+    "File Based":
+      command: "bash"
+      args: (context) -> ['-c', "rustc " + context.filepath + " -o /tmp/rs.out && /tmp/rs.out"]
+
   Makefile:
     "Selection Based":
       command: "bash"
