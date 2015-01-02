@@ -1,3 +1,9 @@
+## 2.16.0
+* Add D support
+* Add Rust support
+* Fix broken ANSI/HTML escaping [#238](https://github.com/rgbkrk/atom-script/issues/238)
+* Turn on colored diagnostics for the C language family
+
 ## 2.15.1
 * Remove a unused import from script.less
 
