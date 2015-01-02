@@ -174,17 +174,9 @@ class ScriptView extends View
       buildArgsArray = grammarMap[codeContext.lang][codeContext.argType].args
 
     catch error
-      urlSafeArgType = "#{codeContext.argType}".replace(' ', '')
-      urlSafeLang = "#{codeContext.lang}".replace(' ', '')
-      err = $$ ->
-        @p class: 'block', "#{codeContext.argType} runner not available for #{codeContext.lang}."
-        @p class: 'block', =>
-          @text 'If it should exist, add an '
-          @a href: "https://github.com/rgbkrk/atom-script/issues/\
-            new?title=Add%20#{urlSafeArgType}%20support%20for%20#{urlSafeLang}", 'issue on GitHub'
-          @text ', or send your own pull request.'
-
+      err = @createGitHubIssueLink codeContext
       @handleError err
+
       return false
 
     # Update header to show the lang and file name
@@ -201,6 +193,23 @@ class ScriptView extends View
 
     # Return setup information
     return commandContext
+
+  createGitHubIssueLink: (codeContext) ->
+    title = "Add #{codeContext.argType} support for #{codeContext.lang}"
+    body = """
+           ##### Platform: `#{process.platform}`
+           ---
+           """
+    encodedURI = encodeURI("https://github.com/rgbkrk/atom-script/issues/new?title=#{title}&body=#{body}")
+    # NOTE: Replace "#" after regular encoding so we don't double escape it.
+    encodedURI = encodedURI.replace(/#/g, '%23')
+
+    $$ ->
+      @p class: 'block', "#{codeContext.argType} runner not available for #{codeContext.lang}."
+      @p class: 'block', =>
+        @text 'If it should exist, add an '
+        @a href: encodedURI, 'issue on GitHub'
+        @text ', or send your own pull request.'
 
   handleError: (err) ->
     # Display error and kill process
