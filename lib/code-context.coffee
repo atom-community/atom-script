@@ -1,7 +1,11 @@
+
+path = require 'path'
+
 module.exports =
 class CodeContext
   filename: null
   filepath: null
+  dirname: null
   lineNumber: null
   shebang: null
   textSource: null
@@ -14,6 +18,7 @@ class CodeContext
   #
   # Returns a newly created {CodeContext} object.
   constructor: (@filename, @filepath, @textSource = null) ->
+    @dirname = path.dirname @filepath
 
   # Public: Creates a {String} representation of the file and line number
   #
