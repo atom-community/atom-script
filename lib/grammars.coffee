@@ -256,7 +256,7 @@ module.exports =
   Rust:
     "File Based":
       command: "bash"
-      args: (context) -> ['-c', "rustc " + context.filepath + " -o /tmp/rs.out && /tmp/rs.out"]
+      args: (context) -> ['-c', "cd #{context.dirname} && rustc #{context.filepath} -o /tmp/rs.out && /tmp/rs.out"]
 
   Makefile:
     "Selection Based":
