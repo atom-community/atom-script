@@ -139,7 +139,7 @@ class ScriptView extends View
     # Determine if no language is selected.
     if lang is 'Null Grammar' or lang is 'Plain Text'
       err = $$ ->
-        @p 'You must select a language in the lower left, or save the file
+        @p 'You must select a language in the lower right, or save the file
           with an appropriate extension.'
 
     # Provide them a dialog to submit an issue on GH, prepopulated with their
