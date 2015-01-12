@@ -145,6 +145,11 @@ module.exports =
       command: "sbcl"
       args: (context) -> ['--noinform', '--script', context.filepath]
 
+  'Literate Haskell':
+    "File Based":
+      command: "runhaskell"
+      args: (context) -> [context.filepath]
+
   LiveScript:
     "Selection Based":
       command: "lsc"
