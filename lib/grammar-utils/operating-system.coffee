@@ -4,5 +4,8 @@ module.exports =
   isDarwin: ->
     @platform() is 'darwin'
 
+  isWindows: ->
+    @platform() is 'win32'
+
   platform: ->
     process.platform

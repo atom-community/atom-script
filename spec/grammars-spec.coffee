@@ -66,6 +66,29 @@ describe 'grammarMap', ->
         grammar = grammarMap['C++']
         expect(grammar).toBe(undefined)
 
+    describe 'F#', ->
+      it 'returns "fsi" as command for File Based runner on Windows', ->
+        OperatingSystem.platform = -> 'win32'
+        @reloadGrammar()
+
+        grammar = grammarMap['F#']
+        fileBasedRunner = grammar['File Based']
+        args = fileBasedRunner.args(@codeContext)
+        expect(fileBasedRunner.command).toEqual('fsi')
+        expect(args[0]).toEqual('--exec')
+        expect(args[1]).toEqual(@codeContext.filepath)
+
+      it 'returns "fsharpi" as command for File Based runner when platform is not Windows', ->
+        OperatingSystem.platform = -> 'darwin'
+        @reloadGrammar()
+
+        grammar = grammarMap['F#']
+        fileBasedRunner = grammar['File Based']
+        args = fileBasedRunner.args(@codeContext)
+        expect(fileBasedRunner.command).toEqual('fsharpi')
+        expect(args[0]).toEqual('--exec')
+        expect(args[1]).toEqual(@codeContext.filepath)
+
     describe 'Objective-C', ->
       it 'returns the appropriate File Based runner on Mac OS X', ->
         OperatingSystem.platform = -> 'darwin'
