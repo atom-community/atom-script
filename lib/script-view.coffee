@@ -291,5 +291,4 @@ class ScriptView extends View
 
   pasteResults: ->
     if @results
-      console.log(@results)
       atom.workspace.getActiveEditor().insertText(@results)
