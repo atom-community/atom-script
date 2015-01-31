@@ -16,6 +16,7 @@
         { 'label': 'Stop Script', 'command': 'script:kill-process' },
         { 'label': 'Configure Script', 'command': 'script:run-options' }
         { 'label': 'Close Window and Stop Script', 'command': 'script:close-view' }
+        { 'label': 'Paste Results', 'command': 'script:paste-results' }
       ]
     ]
   }
