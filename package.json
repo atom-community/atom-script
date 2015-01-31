@@ -74,7 +74,7 @@
   ],
   "license": "Apache 2",
   "engines": {
-    "atom": ">0.50.0"
+    "atom": ">=0.174.0"
   },
   "dependencies": {
     "ansi-to-html": ">0.1.0",
