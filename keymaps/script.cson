@@ -2,7 +2,7 @@
 # https://atom.io/docs/latest/advanced/keymaps
 
 # Only bind the keys in the editor
-'.platform-darwin .editor':
+'.platform-darwin atom-text-editor':
   'cmd-i': 'script:run'
   #'shift-enter': 'script:run'
   'ctrl-w': 'script:close-view'
@@ -10,7 +10,7 @@
   'shift-cmd-j': 'script:run-by-line-number'
   'shift-cmd-i': 'script:run-options'
 
-'.platform-win32 .editor, .platform-linux .editor':
+'.platform-win32 atom-text-editor, .platform-linux atom-text-editor':
   'shift-ctrl-b': 'script:run'
   #'shift-enter': 'script:run'
   #'ctrl-w': 'script:close-view'
