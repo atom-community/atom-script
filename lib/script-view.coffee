@@ -81,7 +81,7 @@ class ScriptView extends View
 
   buildCodeContext: (argType='Selection Based') ->
     # Get current editor
-    editor = atom.workspace.getActiveEditor()
+    editor = atom.workspace.getActiveTextEditor()
     # No editor available, do nothing
     return unless editor?
 
