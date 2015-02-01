@@ -28,7 +28,7 @@ class ScriptView extends View
     atom.workspaceView.command 'script:run-by-line-number', => @lineRun()
     atom.workspaceView.command 'script:close-view', => @close()
     atom.workspaceView.command 'script:kill-process', => @stop()
-    atom.workspaceView.command 'script:paste-results', => @pasteResults()
+    atom.workspaceView.command 'script:copy-run-results', => @copyResults()
 
     @ansiFilter = new AnsiFilter
 
@@ -289,6 +289,6 @@ class ScriptView extends View
       @pre class: "line #{css}", =>
         @raw line
 
-  pasteResults: ->
+  copyResults: ->
     if @results
-      atom.workspace.getActiveEditor().insertText(@results)
+      atom.clipboard.write @results
