@@ -4,6 +4,7 @@ CodeContext = require './code-context'
 HeaderView = require './header-view'
 ScriptOptionsView = require './script-options-view'
 AnsiFilter = require 'ansi-to-html'
+stripAnsi = require 'strip-ansi'
 _ = require 'underscore'
 
 # Runs a portion of a script through an interpreter and displays it line by line
@@ -291,4 +292,4 @@ class ScriptView extends View
 
   copyResults: ->
     if @results
-      atom.clipboard.write @results
+      atom.clipboard.write stripAnsi(@results)
