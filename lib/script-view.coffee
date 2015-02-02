@@ -4,12 +4,14 @@ CodeContext = require './code-context'
 HeaderView = require './header-view'
 ScriptOptionsView = require './script-options-view'
 AnsiFilter = require 'ansi-to-html'
+stripAnsi = require 'strip-ansi'
 _ = require 'underscore'
 
 # Runs a portion of a script through an interpreter and displays it line by line
 module.exports =
 class ScriptView extends View
   @bufferedProcess: null
+  @results: ""
 
   @content: ->
     @div =>
@@ -27,6 +29,7 @@ class ScriptView extends View
     atom.workspaceView.command 'script:run-by-line-number', => @lineRun()
     atom.workspaceView.command 'script:close-view', => @close()
     atom.workspaceView.command 'script:kill-process', => @stop()
+    atom.workspaceView.command 'script:copy-run-results', => @copyResults()
 
     @ansiFilter = new AnsiFilter
 
@@ -125,6 +128,9 @@ class ScriptView extends View
 
     # Get script view ready
     @output.empty()
+
+    # Remove the old script results
+    @results = ""
 
   close: ->
     # Stop any running process and dismiss window
@@ -273,6 +279,8 @@ class ScriptView extends View
       @bufferedProcess = null
 
   display: (css, line) ->
+    @results += line
+
     if atom.config.get('script.escapeConsoleOutput')
       line = _.escape(line)
 
@@ -281,3 +289,7 @@ class ScriptView extends View
     @output.append $$ ->
       @pre class: "line #{css}", =>
         @raw line
+
+  copyResults: ->
+    if @results
+      atom.clipboard.write stripAnsi(@results)

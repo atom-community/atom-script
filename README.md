@@ -94,6 +94,9 @@ Make sure to run `atom` from the command line to get full access to your environ
 To kill everything, click the close icon in the upper right and just go back to
 coding.
 
+**Script: Copy Run Results** copies everything written to the output pane to the
+clipboard, allowing you to paste it into the editor.
+
 ### Command and shortcut reference
 
 | Command                    | Mac OS X                            | Linux/Windows               | Notes                                                                         |
