@@ -290,6 +290,9 @@ class ScriptView extends View
       @pre class: "line #{css}", =>
         @raw line
 
+    if atom.config.get('script.scrollWithOutput')
+      @script.element.scrollTop = @output.element.scrollHeight
+
   copyResults: ->
     if @results
       atom.clipboard.write stripAnsi(@results)

@@ -13,6 +13,10 @@ module.exports =
       title: 'HTML escape console output'
       type: 'boolean'
       default: true
+    scrollWithOutput:
+      title: 'Scroll with output'
+      type: 'boolean'
+      default: true
 
   scriptView: null
   scriptOptionsView: null
