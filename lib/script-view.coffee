@@ -29,7 +29,7 @@ class ScriptView extends View
     atom.commands.add 'atom-workspace', 'script:run-by-line-number', => @lineRun()
     atom.commands.add 'atom-workspace', 'script:close-view', => @close()
     atom.commands.add 'atom-workspace', 'script:kill-process', => @stop()
-    atom.commands.add 'script:copy-run-results', => @copyResults()
+    atom.commands.add 'atom-workspace', 'script:copy-run-results', => @copyResults()
 
     @ansiFilter = new AnsiFilter
 
