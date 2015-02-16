@@ -25,11 +25,11 @@ class ScriptView extends View
 
   initialize: (serializeState, @runOptions) ->
     # Bind commands
-    atom.workspaceView.command 'script:run', => @defaultRun()
-    atom.workspaceView.command 'script:run-by-line-number', => @lineRun()
-    atom.workspaceView.command 'script:close-view', => @close()
-    atom.workspaceView.command 'script:kill-process', => @stop()
-    atom.workspaceView.command 'script:copy-run-results', => @copyResults()
+    atom.commands.add 'atom-workspace', 'script:run', => @defaultRun()
+    atom.commands.add 'atom-workspace', 'script:run-by-line-number', => @lineRun()
+    atom.commands.add 'atom-workspace', 'script:close-view', => @close()
+    atom.commands.add 'atom-workspace', 'script:kill-process', => @stop()
+    atom.commands.add 'script:copy-run-results', => @copyResults()
 
     @ansiFilter = new AnsiFilter
 
