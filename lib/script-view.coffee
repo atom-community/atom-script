@@ -1,5 +1,7 @@
 grammarMap = require './grammars'
-{View, BufferedProcess, $$} = require 'atom'
+
+{View, $$} = require 'atom-space-pen-views'
+{BufferedProcess} = require 'atom'
 CodeContext = require './code-context'
 HeaderView = require './header-view'
 ScriptOptionsView = require './script-options-view'

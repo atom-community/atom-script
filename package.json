@@ -80,7 +80,8 @@
     "ansi-to-html": ">0.1.0",
     "node-uuid": "~1.4.0",
     "strip-ansi": "^2.0.1",
-    "underscore": "~1.5.2"
+    "underscore": "~1.5.2",
+    "atom-space-pen-views": "^2.0.3"
   },
   "devDependencies": {
     "grunt": "~0.4.5"
