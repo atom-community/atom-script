@@ -286,7 +286,7 @@ class ScriptView extends View
 
     line = @ansiFilter.toHtml(line)
 
-    padding = parseInt(@output.css("padding-bottom"))
+    padding = parseInt(@output.css('padding-bottom'))
     scrolledToEnd =
       @script.scrollBottom() == (padding + @output.trueHeight())
 
@@ -297,7 +297,7 @@ class ScriptView extends View
         @raw line
 
     if atom.config.get('script.scrollWithOutput')
-      if lessThanFull || scrolledToEnd
+      if lessThanFull or scrolledToEnd
         @script.scrollTop(@output.trueHeight())
 
   copyResults: ->
