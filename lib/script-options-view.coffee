@@ -1,4 +1,4 @@
-{View} = require 'atom'
+{View} = require 'atom-space-pen-views'
 
 module.exports =
 class ScriptOptionsView extends View
@@ -44,10 +44,10 @@ class ScriptOptionsView extends View
             @button class: "btn #{css}", click: 'run', 'Run'
 
   initialize: (@runOptions) ->
-    atom.workspaceView.command 'script:run-options', => @toggleScriptOptions()
-    atom.workspaceView.command 'script:close-options', =>
+    atom.commands.add 'atom-workspace', 'script:run-options', => @toggleScriptOptions()
+    atom.commands.add 'atom-workspace', 'script:close-options', =>
       @toggleScriptOptions 'hide'
-    atom.workspaceView.command 'script:save-options', => @saveOptions()
+    atom.commands.add 'atom-workspace', 'script:save-options', => @saveOptions()
     atom.workspaceView.prependToTop this
     @toggleScriptOptions 'hide'
 
