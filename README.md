@@ -101,7 +101,7 @@ clipboard, allowing you to paste it into the editor.
 
 | Command                    | Mac OS X                            | Linux/Windows               | Notes                                                                         |
 |----------------------------|-------------------------------------|-----------------------------|-------------------------------------------------------------------------------|
-| Script: Run                | <kbd>cmd-i</kbd>                    | <kbd>ctrl-b</kbd>           | If text is selected a "Selection Based" is used instead of a "File Based" run |
+| Script: Run                | <kbd>cmd-i</kbd>                    | <kbd>shift-ctrl-b</kbd>     | If text is selected a "Selection Based" is used instead of a "File Based" run |
 | Script: Run by Line Number | <kbd>shift-cmd-j</kbd>              | <kbd>shift-ctrl-j</kbd>     | If text is selected the line number will be the last                          |
 | Script: Run Options        | <kbd>shift-cmd-i</kbd>              | <kbd>shift-ctrl-alt-o</kbd> | Runs the selection or whole file with the given options                       |
 | Script: Close View         | <kbd>esc</kbd> or <kbd>ctrl-w</kbd> | <kbd>esc</kbd>              | Closes the script view window                                                 |
