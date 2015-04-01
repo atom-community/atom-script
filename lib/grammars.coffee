@@ -77,8 +77,8 @@ module.exports =
       args: (context) -> ['--exec', context.filepath]
 
   Forth:
-    “File Based”:
-      command: “gforth”
+    "File Based":
+      command: "gforth"
       args: (context) -> [context.filepath]
 
   Gherkin:
