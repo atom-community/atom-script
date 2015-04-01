@@ -19,6 +19,7 @@ Currently supported grammars are:
   * Elixir
   * Erlang <sup>[†](#dagger)</sup>
   * F# <sup>[*](#asterisk)</sup>
+  * Forth (via GForth)
   * Go <sup>[*](#asterisk)</sup>
   * Groovy
   * Haskell
