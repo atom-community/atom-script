@@ -1,3 +1,16 @@
+## 2.19.0
+* Add Racket support
+* Add Forth support
+
+## 2.18.0
+* Fixed scrolling with output
+
+## 2.17.1
+* Updates keyboard shortcuts for running in Windows
+
+## 2.17.0
+* TODO...
+
 ## 2.16.0
 * Add D support
 * Add Rust support
