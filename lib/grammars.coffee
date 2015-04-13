@@ -236,6 +236,14 @@ module.exports =
       command: "Rscript"
       args: (context) -> [context.filepath]
 
+  Racket:
+    "Selection Based":
+      command: "racket"
+      args: (context) -> ['-e', context.getCode()]
+    "File Based":
+      command: "racket"
+      args: (context) -> [context.filepath]
+
   RSpec:
     "Selection Based":
       command: "ruby"

@@ -39,6 +39,7 @@ Currently supported grammars are:
   * PHP
   * Python
   * RSpec
+  * Racket
   * Ruby
   * Ruby on Rails
   * Rust
