@@ -17,7 +17,7 @@ module.exports =
       title: 'Scroll with output'
       type: 'boolean'
       default: true
-
+  disposable: null
   scriptView: null
   scriptOptionsView: null
   scriptOptions: null
@@ -27,7 +27,7 @@ module.exports =
     @scriptView = new ScriptView state.scriptViewState, @scriptOptions
     @scriptOptionsView = new ScriptOptionsView @scriptOptions
 
-    atom.workspaceView.on 'core:cancel core:close', (event) =>
+    @disposable = atom.workspace.on 'core:cancel core:close', (event) =>
       @scriptView?.close()
       @scriptOptionsView?.close()
 
@@ -36,7 +36,7 @@ module.exports =
     @scriptView.close()
     @scriptOptionsView.close()
 
-    atom.workspaceView.off 'core:cancel core:close'
+    @disposable.dispose()
 
   serialize: ->
     # TODO: True serialization needs to take the options view into account

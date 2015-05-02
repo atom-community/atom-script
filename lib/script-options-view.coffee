@@ -68,9 +68,9 @@ class ScriptOptionsView extends View
     @runOptions.scriptArgs = splitArgs @inputScriptArgs
 
   close: ->
-    atom.workspaceView.trigger 'script:close-options'
+    atom.commands.dispatch atom.workspace,  'script:close-options'
 
   run: ->
-    atom.workspaceView.trigger 'script:save-options'
-    atom.workspaceView.trigger 'script:close-options'
-    atom.workspaceView.trigger 'script:run'
+    atom.commands.dispatch atom.workspace,  'script:save-options'
+    atom.commands.dispatch atom.workspace,  'script:close-options'
+    atom.commands.dispatch atom.workspace,  'script:run'
