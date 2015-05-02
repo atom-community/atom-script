@@ -267,8 +267,9 @@ class ScriptView extends View
         @pre "PATH: #{_.escape process.env.PATH}"
 
   getCwd: ->
-    if not @runOptions.workingDirectory? or @runOptions.workingDirectory is ''
-      atom.project.getPath()
+    paths = atom.project.getPaths()
+    if paths.length > 0 or not @runOptions.workingDirectory? or @runOptions.workingDirectory is ''
+      atom.project.getPaths()[0]
     else
       @runOptions.workingDirectory
 
