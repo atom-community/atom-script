@@ -120,7 +120,7 @@ class ScriptView extends View
     # Display window and load message
 
     # First run, create view
-    atom.workspaceView.prependToBottom this unless @hasParent()
+    atom.workspace.addBottomPanel(item: this) unless @hasParent()
 
     # Close any existing process and start a new one
     @stop()
