@@ -1,22 +1,20 @@
 # See https://atom.io/docs/latest/creating-a-package#menus for more details
 'context-menu':
-  '.line-number':
-    'Script: Run by line number': 'script:run-by-line-number'
-  '.overlayer':
-    'Enable script': 'script:run-selection'
+  '.line-number': [{label: 'Script: Run by line number', command: 'script:run-by-line-number'}]
+  '.overlayer': [{label: 'Enable script', command: 'script:run-selection'}]
 
 'menu': [
   {
-    'label': 'Packages'
-    'submenu': [
-      'label': 'Script'
-      'submenu': [
-        { 'label': 'Script: Run by Line Number', 'command': 'script:run-by-line-number' },
-        { 'label': 'Run Script', 'command': 'script:run' },
-        { 'label': 'Stop Script', 'command': 'script:kill-process' },
-        { 'label': 'Configure Script', 'command': 'script:run-options' }
-        { 'label': 'Close Window and Stop Script', 'command': 'script:close-view' }
-        { 'label': 'Copy Run Results', 'command': 'script:copy-run-results' }
+    label: 'Packages'
+    submenu: [
+      label: 'Script'
+      submenu: [
+        { label: 'Script: Run by Line Number', command: 'script:run-by-line-number' },
+        { label: 'Run Script', command: 'script:run' },
+        { label: 'Stop Script', command: 'script:kill-process' },
+        { label: 'Configure Script', command: 'script:run-options' }
+        { label: 'Close Window and Stop Script', command: 'script:close-view' }
+        { label: 'Copy Run Results', command: 'script:copy-run-results' }
       ]
     ]
   }
