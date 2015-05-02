@@ -100,7 +100,7 @@ class ScriptView extends View
     # Selection and Line Number Based runs both benefit from knowing the current line
     # number
     unless argType == 'File Based'
-      cursor = editor.getCursor()
+      cursor = editor.getLastCursor()
       codeContext.lineNumber = cursor.getScreenRow() + 1
 
     return codeContext
