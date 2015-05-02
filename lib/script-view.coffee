@@ -50,7 +50,7 @@ class ScriptView extends View
   initCodeContext: (editor) ->
     filename = editor.getTitle()
     filepath = editor.getPath()
-    selection = editor.getSelection()
+    selection = editor.getLastSelection()
 
     # If the selection was empty "select" ALL the text
     # This allows us to run on new files
