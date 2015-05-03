@@ -166,7 +166,10 @@ module.exports =
   Lua:
     "Selection Based":
       command: "lua"
-      args: (context)  -> ['-e', context.getCode()]
+      args: (context) ->
+        code = context.getCode(true)
+        tmpFile = GrammarUtils.createTempFileWithCode(code)
+        [tmpFile]
     "File Based":
       command: "lua"
       args: (context) -> [context.filepath]
