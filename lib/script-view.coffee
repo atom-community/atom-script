@@ -273,11 +273,14 @@ class ScriptView extends View
         @pre "PATH: #{_.escape process.env.PATH}"
 
   getCwd: ->
+    cwd = @runOptions.workingDirectory
+
+    workingDirectoryProvided = cwd? and cwd isnt ''
     paths = atom.project.getPaths()
-    if paths.length > 0 or not @runOptions.workingDirectory? or @runOptions.workingDirectory is ''
-      atom.project.getPaths()[0]
-    else
-      @runOptions.workingDirectory
+    if not workingDirectoryProvided and paths?.length > 0
+      cwd = paths[0]
+
+    cwd
 
   stop: ->
     # Kill existing process if available
