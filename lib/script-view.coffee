@@ -258,13 +258,14 @@ class ScriptView extends View
       command, args, options, stdout, stderr, exit
     })
 
-    @bufferedProcess.process.on 'error', (nodeError) =>
+    @bufferedProcess.onWillThrowError (nodeError) =>
       @bufferedProcess = null
       @output.append $$ ->
         @h1 'Unable to run'
         @pre _.escape command
         @h2 'Is it on your path?'
         @pre "PATH: #{_.escape process.env.PATH}"
+      nodeError.handle()
 
   getCwd: ->
     if not @runOptions.workingDirectory? or @runOptions.workingDirectory is ''
