@@ -13,7 +13,7 @@ class HeaderView extends View
         click: 'close'
 
   close: ->
-    atom.workspaceView.trigger 'script:close-view'
+    atom.commands.dispatch @workspaceView(), 'script:close-view'
 
   setStatus: (status) ->
     @status.removeClass 'icon-alert icon-check icon-hourglass icon-stop'
@@ -22,3 +22,6 @@ class HeaderView extends View
       when 'stop' then @status.addClass 'icon-check'
       when 'kill' then @status.addClass 'icon-stop'
       when 'err' then @status.addClass 'icon-alert'
+
+  workspaceView: ->
+    atom.views.getView(atom.workspace)

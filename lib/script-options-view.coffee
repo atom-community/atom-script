@@ -1,3 +1,4 @@
+{CompositeDisposable} = require 'atom'
 {View} = require 'atom-space-pen-views'
 
 module.exports =
@@ -44,11 +45,14 @@ class ScriptOptionsView extends View
             @button class: "btn #{css}", click: 'run', 'Run'
 
   initialize: (@runOptions) ->
-    atom.commands.add 'atom-workspace', 'script:run-options', => @toggleScriptOptions()
-    atom.commands.add 'atom-workspace', 'script:close-options', =>
-      @toggleScriptOptions 'hide'
-    atom.commands.add 'atom-workspace', 'script:save-options', => @saveOptions()
-    atom.workspaceView.prependToTop this
+    @subscriptions = new CompositeDisposable
+    @subscriptions.add atom.commands.add 'atom-workspace',
+      'core:cancel': => @toggleScriptOptions('hide')
+      'core:close': => @toggleScriptOptions('hide')
+      'script:close-options': => @toggleScriptOptions('hide')
+      'script:run-options': => @toggleScriptOptions()
+      'script:save-options': => @saveOptions()
+    atom.workspace.addTopPanel(item: this)
     @toggleScriptOptions 'hide'
 
   toggleScriptOptions: (command) ->
@@ -68,9 +72,15 @@ class ScriptOptionsView extends View
     @runOptions.scriptArgs = splitArgs @inputScriptArgs
 
   close: ->
-    atom.workspaceView.trigger 'script:close-options'
+    @toggleScriptOptions('hide')
+
+  destroy: ->
+    @subscriptions?.dispose()
 
   run: ->
-    atom.workspaceView.trigger 'script:save-options'
-    atom.workspaceView.trigger 'script:close-options'
-    atom.workspaceView.trigger 'script:run'
+    @saveOptions()
+    @toggleScriptOptions('hide')
+    atom.commands.dispatch @workspaceView(), 'script:run'
+
+  workspaceView: ->
+    atom.views.getView(atom.workspace)

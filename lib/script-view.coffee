@@ -1,7 +1,7 @@
 grammarMap = require './grammars'
 
+{BufferedProcess, CompositeDisposable} = require 'atom'
 {View, $$} = require 'atom-space-pen-views'
-{BufferedProcess} = require 'atom'
 CodeContext = require './code-context'
 HeaderView = require './header-view'
 ScriptOptionsView = require './script-options-view'
@@ -26,12 +26,15 @@ class ScriptView extends View
         @div class: 'panel-body padded output', outlet: 'output'
 
   initialize: (serializeState, @runOptions) ->
-    # Bind commands
-    atom.commands.add 'atom-workspace', 'script:run', => @defaultRun()
-    atom.commands.add 'atom-workspace', 'script:run-by-line-number', => @lineRun()
-    atom.commands.add 'atom-workspace', 'script:close-view', => @close()
-    atom.commands.add 'atom-workspace', 'script:kill-process', => @stop()
-    atom.commands.add 'atom-workspace', 'script:copy-run-results', => @copyResults()
+    @subscriptions = new CompositeDisposable
+    @subscriptions.add atom.commands.add 'atom-workspace',
+      'core:cancel': => @close()
+      'core:close': => @close()
+      'script:close-view': => @close()
+      'script:copy-run-results': => @copyResults()
+      'script:kill-process': => @stop()
+      'script:run-by-line-number': => @lineRun()
+      'script:run': => @defaultRun()
 
     @ansiFilter = new AnsiFilter
 
@@ -50,7 +53,7 @@ class ScriptView extends View
   initCodeContext: (editor) ->
     filename = editor.getTitle()
     filepath = editor.getPath()
-    selection = editor.getSelection()
+    selection = editor.getLastSelection()
 
     # If the selection was empty "select" ALL the text
     # This allows us to run on new files
@@ -100,7 +103,7 @@ class ScriptView extends View
     # Selection and Line Number Based runs both benefit from knowing the current line
     # number
     unless argType == 'File Based'
-      cursor = editor.getCursor()
+      cursor = editor.getLastCursor()
       codeContext.lineNumber = cursor.getScreenRow() + 1
 
     return codeContext
@@ -120,7 +123,7 @@ class ScriptView extends View
     # Display window and load message
 
     # First run, create view
-    atom.workspaceView.prependToBottom this unless @hasParent()
+    atom.workspace.addBottomPanel(item: this) unless @hasParent()
 
     # Close any existing process and start a new one
     @stop()
@@ -138,6 +141,9 @@ class ScriptView extends View
     # Stop any running process and dismiss window
     @stop()
     @detach() if @hasParent()
+
+  destroy: ->
+    @subscriptions?.dispose()
 
   getLang: (editor) -> editor.getGrammar().name
 
@@ -267,10 +273,14 @@ class ScriptView extends View
         @pre "PATH: #{_.escape process.env.PATH}"
 
   getCwd: ->
-    if not @runOptions.workingDirectory? or @runOptions.workingDirectory is ''
-      atom.project.getPath()
-    else
-      @runOptions.workingDirectory
+    cwd = @runOptions.workingDirectory
+
+    workingDirectoryProvided = cwd? and cwd isnt ''
+    paths = atom.project.getPaths()
+    if not workingDirectoryProvided and paths?.length > 0
+      cwd = paths[0]
+
+    cwd
 
   stop: ->
     # Kill existing process if available
