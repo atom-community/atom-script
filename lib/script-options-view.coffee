@@ -57,15 +57,9 @@ class ScriptOptionsView extends View
 
   toggleScriptOptions: (command) ->
     switch command
-      when 'show'
-        console.log 'toggle show' # then
-        @scriptOptionsView.show()
-      when 'hide'
-        console.log 'toggle hide' # then
-        @scriptOptionsView.hide()
-      else
-        console.log 'toggle called'
-        @scriptOptionsView.toggle()
+      when 'show' then @scriptOptionsView.show()
+      when 'hide' then @scriptOptionsView.hide()
+      else @scriptOptionsView.toggle()
 
   saveOptions: ->
     splitArgs = (element) ->
