@@ -1,7 +1,7 @@
 grammarMap = require './grammars'
 
+{BufferedProcess, CompositeDisposable} = require 'atom'
 {View, $$} = require 'atom-space-pen-views'
-{BufferedProcess} = require 'atom'
 CodeContext = require './code-context'
 HeaderView = require './header-view'
 ScriptOptionsView = require './script-options-view'
@@ -26,12 +26,15 @@ class ScriptView extends View
         @div class: 'panel-body padded output', outlet: 'output'
 
   initialize: (serializeState, @runOptions) ->
-    # Bind commands
-    atom.commands.add 'atom-workspace', 'script:run', => @defaultRun()
-    atom.commands.add 'atom-workspace', 'script:run-by-line-number', => @lineRun()
-    atom.commands.add 'atom-workspace', 'script:close-view', => @close()
-    atom.commands.add 'atom-workspace', 'script:kill-process', => @stop()
-    atom.commands.add 'atom-workspace', 'script:copy-run-results', => @copyResults()
+    @subscriptions = new CompositeDisposable
+    @subscriptions.add atom.commands.add 'atom-workspace',
+      'core:cancel': => @close()
+      'core:close': => @close()
+      'script:close-view': => @close()
+      'script:copy-run-results': => @copyResults()
+      'script:kill-process': => @stop()
+      'script:run-by-line-number': => @lineRun()
+      'script:run': => @defaultRun()
 
     @ansiFilter = new AnsiFilter
 
@@ -138,6 +141,9 @@ class ScriptView extends View
     # Stop any running process and dismiss window
     @stop()
     @detach() if @hasParent()
+
+  destroy: ->
+    @subscriptions?.dispose()
 
   getLang: (editor) -> editor.getGrammar().name
 

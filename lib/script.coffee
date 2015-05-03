@@ -17,7 +17,6 @@ module.exports =
       title: 'Scroll with output'
       type: 'boolean'
       default: true
-  disposable: null
   scriptView: null
   scriptOptionsView: null
   scriptOptions: null
@@ -27,16 +26,10 @@ module.exports =
     @scriptView = new ScriptView state.scriptViewState, @scriptOptions
     @scriptOptionsView = new ScriptOptionsView @scriptOptions
 
-    @disposable = atom.workspace.on 'core:cancel core:close', (event) =>
-      @scriptView?.close()
-      @scriptOptionsView?.close()
-
   deactivate: ->
     GrammarUtils.deleteTempFiles()
     @scriptView.close()
     @scriptOptionsView.close()
-
-    @disposable.dispose()
 
   serialize: ->
     # TODO: True serialization needs to take the options view into account
