@@ -203,10 +203,10 @@ module.exports =
         args: (context) -> ['-c', "xcrun clang++ -fcolor-diagnostics -Wc++11-extensions -Wall -include stdio.h -include iostream -framework Cocoa " + context.filepath + " -o /tmp/objc-cpp.out && /tmp/objc-cpp.out"]
 
   ocaml:
-      "File Based":
-        command: "ocaml"
-        args: (context) -> [context.filepath]
-        
+    "File Based":
+      command: "ocaml"
+      args: (context) -> [context.filepath]
+
   PHP:
     "Selection Based":
       command: "php"
