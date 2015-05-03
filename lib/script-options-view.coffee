@@ -80,3 +80,7 @@ class ScriptOptionsView extends View
   run: ->
     @saveOptions()
     @toggleScriptOptions('hide')
+    atom.commands.dispatch @workspaceView(), 'script:run'
+
+  workspaceView: ->
+    atom.views.getView(atom.workspace)
