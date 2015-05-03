@@ -1,3 +1,7 @@
+## 2.20.0
+* Add OCaml support
+* :checkered_flag: Enhance selection based Lua support
+
 ## 2.19.0
 * Add Racket support
 * Add Forth support
