@@ -166,7 +166,10 @@ module.exports =
   Lua:
     "Selection Based":
       command: "lua"
-      args: (context)  -> ['-e', context.getCode()]
+      args: (context) ->
+        code = context.getCode(true)
+        tmpFile = GrammarUtils.createTempFileWithCode(code)
+        [tmpFile]
     "File Based":
       command: "lua"
       args: (context) -> [context.filepath]
@@ -198,11 +201,6 @@ module.exports =
       "File Based":
         command: "bash"
         args: (context) -> ['-c', "xcrun clang++ -fcolor-diagnostics -Wc++11-extensions -Wall -include stdio.h -include iostream -framework Cocoa " + context.filepath + " -o /tmp/objc-cpp.out && /tmp/objc-cpp.out"]
-
-  ocaml:
-    "File Based":
-      command: "ocaml"
-      args: (context) -> [context.filepath]
 
   PHP:
     "Selection Based":
