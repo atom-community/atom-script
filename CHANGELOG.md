@@ -1,3 +1,8 @@
+## 2.21.0
+* Update BufferedProcess API
+* Addressed deprecations from the Atom API
+* Use the new Path API
+
 ## 2.20.0
 * Add OCaml support
 * :checkered_flag: Enhance selection based Lua support
