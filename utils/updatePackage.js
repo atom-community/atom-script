@@ -13,7 +13,8 @@ var accumulatedChanges = []
 var collecting = true;
 
 var ignore = {
-  "dev": "dev@debian7devel"
+  "dev": "dev@debian7devel",
+  "=": "="
 }
 
 open(".")
