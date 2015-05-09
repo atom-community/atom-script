@@ -233,7 +233,6 @@ class ScriptView extends View
     @stop()
 
   run: (command, extraArgs, codeContext) ->
-    atom.emit 'achievement:unlock', msg: 'Homestar Runner'
     startTime = new Date()
 
     # Default to where the user opened atom
