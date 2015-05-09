@@ -13,11 +13,11 @@ module.exports =
   # * `code`    A {String} containing some code
   #
   # Returns the {String} filepath of the new file
-  createTempFileWithCode: (code) ->
+  createTempFileWithCode: (code, extension = "") ->
     try
       fs.mkdirSync(@tempFilesDir) unless fs.existsSync(@tempFilesDir)
 
-      tempFilePath = @tempFilesDir + path.sep + uuid.v1()
+      tempFilePath = @tempFilesDir + path.sep + uuid.v1() + extension
 
       file = fs.openSync(tempFilePath, 'w')
       fs.writeSync(file, code)
