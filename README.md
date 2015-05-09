@@ -12,6 +12,7 @@ Currently supported grammars are:
   * Behat Feature
   * C <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
   * C++ <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
+  * C# Script <sup>[*](#asterisk)</sup>
   * Coffeescript
   * CoffeeScript (Literate) <sup>[^](#caret)</sup>
   * Cucumber (Gherkin) <sup>[*](#asterisk)</sup>
