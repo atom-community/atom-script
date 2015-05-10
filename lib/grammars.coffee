@@ -118,6 +118,15 @@ module.exports =
       command: "iced"
       args: (context) -> [context.filepath]
 
+  Java:
+    "File Based":
+      command: "bash"
+      args: (context) ->
+        className = context.filename.replace /\.java$/, ""
+        console.log(className)
+        args = ['-c', "javac -d /tmp #{context.filepath} && java -cp /tmp #{className}"]
+        return args
+
   JavaScript:
     "Selection Based":
       command: "node"

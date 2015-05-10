@@ -23,6 +23,7 @@ Currently supported grammars are:
   * Go <sup>[*](#asterisk)</sup>
   * Groovy
   * Haskell
+  * Java
   * Javascript
   * Julia
   * Kotlin
