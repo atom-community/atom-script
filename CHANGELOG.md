@@ -1,3 +1,8 @@
+## 2.22.0
+* Removed support for Atom Achievements :( (breaks the coming 1.0 API)
+* Support for Kotlinc
+* New way for us to manage contributions and changelog
+
 ## 2.21.0
 * Update BufferedProcess API
 * Addressed deprecations from the Atom API
