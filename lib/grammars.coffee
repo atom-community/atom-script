@@ -123,7 +123,6 @@ module.exports =
       command: "bash"
       args: (context) ->
         className = context.filename.replace /\.java$/, ""
-        console.log(className)
         args = ['-c', "javac -d /tmp #{context.filepath} && java -cp /tmp #{className}"]
         return args
 
