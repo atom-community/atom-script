@@ -25,6 +25,7 @@ Currently supported grammars are:
   * Haskell
   * Javascript
   * Julia
+  * Kotlin
   * LilyPond
   * Lisp (via SBCL) <sup>[⍵](#omega)</sup>
   * Literate Haskell <sup>[*](#asterisk)</sup>

@@ -134,6 +134,22 @@ module.exports =
       command: "julia"
       args: (context) -> [context.filepath]
 
+  Kotlin:
+    "Selection Based":
+      command: "bash"
+      args: (context) ->
+        code = context.getCode(true)
+        tmpFile = GrammarUtils.createTempFileWithCode(code, ".kt")
+        jarName = tmpFile.replace /\.kt$/, ".jar"
+        args = ['-c', "kotlinc #{tmpFile} -include-runtime -d #{jarName} && java -jar #{jarName} && rm #{jarName}"]
+        return args
+    "File Based":
+      command: "bash"
+      args: (context) ->
+        jarName = context.filename.replace /\.kt$/, ".jar"
+        args = ['-c', "kotlinc #{context.filepath} -include-runtime -d #{jarName} && java -jar #{jarName} && rm #{jarName}"]
+        return args
+
   LilyPond:
     "File Based":
       command: "lilypond"
