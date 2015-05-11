@@ -1,3 +1,6 @@
+## 2.23.0
+* Added scriptcs support
+
 ## 2.22.0
 * Removed support for Atom Achievements :( (breaks the coming 1.0 API)
 * Support for Kotlinc
