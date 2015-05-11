@@ -36,7 +36,12 @@ module.exports =
       "File Based":
         command: "bash"
         args: (context) -> ['-c', "xcrun clang++ -fcolor-diagnostics -Wc++11-extensions -Wall -include stdio.h -include iostream " + context.filepath + " -o /tmp/cpp.out && /tmp/cpp.out"]
-
+  
+  'C# Script File':
+    "File Based":
+      command: "scriptcs"
+      args: (context) -> ['-script', context.filepath]
+  
   CoffeeScript:
     "Selection Based":
       command: "coffee"
