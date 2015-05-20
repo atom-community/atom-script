@@ -16,10 +16,10 @@ module.exports =
   'Behat Feature':
     "File Based":
       command: "behat"
-      args: (context) -> ['--ansi', context.filepath]
+      args: (context) -> [context.filepath]
     "Line Number Based":
       command: "behat"
-      args: (context) -> ['--ansi', context.fileColonLine()]
+      args: (context) -> [context.fileColonLine()]
 
   Batch:
     "File Based":
