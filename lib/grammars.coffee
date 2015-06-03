@@ -36,12 +36,12 @@ module.exports =
       "File Based":
         command: "bash"
         args: (context) -> ['-c', "xcrun clang++ -fcolor-diagnostics -Wc++11-extensions -Wall -include stdio.h -include iostream " + context.filepath + " -o /tmp/cpp.out && /tmp/cpp.out"]
-  
+
   'C# Script File':
     "File Based":
       command: "scriptcs"
       args: (context) -> ['-script', context.filepath]
-  
+
   CoffeeScript:
     "Selection Based":
       command: "coffee"
@@ -272,6 +272,17 @@ module.exports =
     "File Based":
       command: "racket"
       args: (context) -> [context.filepath]
+
+  RANT:
+    "Selection Based":
+      command: "RantConsole.exe"
+      args: (context) ->
+        code = context.getCode(true)
+        tmpFile = GrammarUtils.createTempFileWithCode(code)
+        ['-file', tmpFile]
+    "File Based":
+      command: "RantConsole.exe"
+      args: (context) -> ['-file', context.filepath]
 
   RSpec:
     "Selection Based":

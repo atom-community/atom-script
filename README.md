@@ -43,6 +43,7 @@ Currently supported grammars are:
   * Python
   * RSpec
   * Racket
+  * [RANT](https://github.com/TheBerkin/Rant)
   * Ruby
   * Ruby on Rails
   * Rust
