@@ -130,6 +130,14 @@ module.exports =
     "File Based":
       command: "node"
       args: (context) -> [context.filepath]
+      
+  'Babel ES6 Javascript':
+    "Selection Based":
+      command: "babel-node"
+      args: (context) -> ['-e', context.getCode()]
+    "File Based":
+      command: "babel-node"
+      args: (context) -> [context.filepath]
 
   Julia:
     "Selection Based":
