@@ -1,3 +1,10 @@
+## 2.24.0
+* RANT Support
+* Switched to using activation commands
+* Cleaned up kotlinc temp files
+* (Slight) support for Java
+* Babel JS support
+
 ## 2.23.0
 * Added scriptcs support
 
