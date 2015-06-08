@@ -17,6 +17,7 @@ Currently supported grammars are:
   * CoffeeScript (Literate) <sup>[^](#caret)</sup>
   * Cucumber (Gherkin) <sup>[*](#asterisk)</sup>
   * D <sup>[*](#asterisk)</sup>
+  * DOT (Graphviz)
   * Elixir
   * Erlang <sup>[†](#dagger)</sup>
   * F# <sup>[*](#asterisk)</sup>
