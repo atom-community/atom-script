@@ -1,0 +1,5 @@
+# Taken from: http://en.wikipedia.org/wiki/DOT_(graph_description_language)
+digraph graphname {
+     a -> b -> c;
+     b -> d;
+}

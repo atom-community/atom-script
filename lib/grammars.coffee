@@ -63,6 +63,11 @@ module.exports =
       command: "rdmd"
       args: (context) -> [context.filepath]
 
+  DOT:
+    "File Based":
+      command: "dot"
+      args: (context) -> ['-Tpng', context.filepath, '-o', context.filepath + '.png']
+
   Elixir:
     "Selection Based":
       command: "elixir"
