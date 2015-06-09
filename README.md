@@ -41,6 +41,7 @@ Currently supported grammars are:
   * Objective-C++ <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
   * OCaml <sup>[*](#asterisk)</sup>
   * Perl
+  * Perl 6
   * PHP
   * Python
   * RSpec
