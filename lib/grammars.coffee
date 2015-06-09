@@ -268,6 +268,14 @@ module.exports =
       command: "perl"
       args: (context) -> [context.filepath]
 
+  Perl6:
+    "Selection Based":
+      command: "perl6"
+      args: (context)  -> ['-e', context.getCode()]
+    "File Based":
+      command: "perl6"
+      args: (context) -> [context.filepath]
+
   PowerShell:
     "File Based":
       command: "powershell"
