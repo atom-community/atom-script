@@ -1,3 +1,8 @@
+## 2.25.0
+* Behat support no longer uses `--ansi` parameter (support Behat 3)
+* Perl 6 support
+* Graphviz support
+
 ## 2.24.0
 * RANT Support
 * Switched to using activation commands
