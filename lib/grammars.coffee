@@ -268,7 +268,7 @@ module.exports =
       command: "perl"
       args: (context) -> [context.filepath]
 
-  Perl6:
+  "Perl 6":
     "Selection Based":
       command: "perl6"
       args: (context)  -> ['-e', context.getCode()]
