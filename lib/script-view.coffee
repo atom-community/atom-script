@@ -268,7 +268,7 @@ class ScriptView extends View
       @output.append $$ ->
         @h1 'Unable to run'
         @pre _.escape command
-        @h2 'Is it on your path?'
+        @h2 'Is it in your PATH?'
         @pre "PATH: #{_.escape process.env.PATH}"
       nodeError.handle()
 
