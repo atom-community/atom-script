@@ -1,3 +1,6 @@
+## 2.25.1
+* Fix typo in Perl 6 Grammar
+
 ## 2.25.0
 * Behat support no longer uses `--ansi` parameter (support Behat 3)
 * Perl 6 support
