@@ -36,6 +36,7 @@ Currently supported grammars are:
   * Lua
   * Makefile
   * MoonScript
+  * MongoDB
   * newLISP
   * Objective-C <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
   * Objective-C++ <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>

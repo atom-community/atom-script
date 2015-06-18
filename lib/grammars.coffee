@@ -224,6 +224,14 @@ module.exports =
       command: "moon"
       args: (context) -> [context.filepath]
 
+  'mongoDB (JavaScript)':
+    "Selection Based":
+      command: "mongo"
+      args: (context) -> ['--eval', context.getCode()]
+    "File Based":
+      command:  "mongo"
+      args: (context) -> [context.filepath]
+
   newLISP:
     "Selection Based":
       command: "newlisp"
