@@ -1,3 +1,7 @@
+## 2.25.2
+* Support for MongoDB JavaScript
+* More unicorns, less turtles
+
 ## 2.25.1
 * Fix typo in Perl 6 Grammar
 
