@@ -1,3 +1,6 @@
+## 2.25.3
+* Fix C/C++ grammar to allow symbols and spaces in path
+
 ## 2.25.2
 * Support for MongoDB JavaScript
 * More unicorns, less turtles
