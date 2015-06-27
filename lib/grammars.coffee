@@ -29,13 +29,13 @@ module.exports =
     if GrammarUtils.OperatingSystem.isDarwin()
       "File Based":
         command: "bash"
-        args: (context) -> ['-c', "xcrun clang -fcolor-diagnostics -Wall -include stdio.h " + context.filepath + " -o /tmp/c.out && /tmp/c.out"]
+        args: (context) -> ['-c', "xcrun clang -fcolor-diagnostics -Wall -include stdio.h '" + context.filepath + "' -o /tmp/c.out && /tmp/c.out"]
 
   'C++':
     if GrammarUtils.OperatingSystem.isDarwin()
       "File Based":
         command: "bash"
-        args: (context) -> ['-c', "xcrun clang++ -fcolor-diagnostics -Wc++11-extensions -Wall -include stdio.h -include iostream " + context.filepath + " -o /tmp/cpp.out && /tmp/cpp.out"]
+        args: (context) -> ['-c', "xcrun clang++ -fcolor-diagnostics -Wc++11-extensions -Wall -include stdio.h -include iostream '" + context.filepath + "' -o /tmp/cpp.out && /tmp/cpp.out"]
 
   'C# Script File':
     "File Based":
@@ -143,7 +143,7 @@ module.exports =
     "File Based":
       command: "node"
       args: (context) -> [context.filepath]
-      
+
   'Babel ES6 Javascript':
     "Selection Based":
       command: "babel-node"
