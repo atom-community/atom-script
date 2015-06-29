@@ -1,3 +1,7 @@
+## 2.26.0
+* Make height of atom script view dynamic
+* No one reads these. If they did, they might have commented on this line.
+
 ## 2.25.3
 * Fix C/C++ grammar to allow symbols and spaces in path
 
