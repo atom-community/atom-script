@@ -1,3 +1,6 @@
+## 2.26.1
+* Support for C based runner on Linux
+
 ## 2.26.0
 * Make height of atom script view dynamic
 * No one reads these. If they did, they might have commented on this line.
