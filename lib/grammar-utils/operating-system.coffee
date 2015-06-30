@@ -7,5 +7,8 @@ module.exports =
   isWindows: ->
     @platform() is 'win32'
 
+  isLinux: ->
+    @platform() is 'linux'
+
   platform: ->
     process.platform
