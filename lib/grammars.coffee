@@ -137,7 +137,7 @@ module.exports =
       command: "bash"
       args: (context) ->
         className = context.filename.replace /\.java$/, ""
-        args = ['-c', "javac -d /tmp #{context.filepath} && java -cp /tmp #{className}"]
+        args = ['-c', "javac -d /tmp '#{context.filepath}' && java -cp /tmp #{className}"]
         return args
 
   JavaScript:
