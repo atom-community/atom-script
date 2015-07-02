@@ -11,8 +11,8 @@
       "email": "rgbkrk@gmail.com"
     },
     {
-      "name": "Jarmo Kivekas",
-      "email": "jarmo.kivekas@nixu.com"
+      "name": "Idean Labib",
+      "email": "idean1.labib@gmail.com"
     },
     {
       "name": "Christopher Armstrong",
@@ -245,6 +245,10 @@
     {
       "name": "wflaschka",
       "email": "wflaschka@gmail.com"
+    },
+    {
+      "name": "Jarmo Kivekas",
+      "email": "jarmo.kivekas@nixu.com"
     }
   ],
   "repository": "https://github.com/rgbkrk/atom-script",

@@ -1,3 +1,6 @@
+## 2.26.2
+* Escape strings for javac
+
 ## 2.26.1
 * Support for C based runner on Linux
 
