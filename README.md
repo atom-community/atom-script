@@ -37,6 +37,7 @@ Currently supported grammars are:
   * Makefile
   * MoonScript
   * MongoDB
+  * [NCL](http://www.ncl.ucar.edu/)<sup>[#](#hash)</sup>
   * newLISP
   * Objective-C <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
   * Objective-C++ <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
@@ -70,6 +71,8 @@ You only have to add a few lines in a PR to support another.
 <a name="omega"></a><sup>⍵</sup> Lisp selection based runs are limited to single line
 
 <a name="double-dagger"></a><sup>‡</sup> C, C++, Objective-C, and Objective-C++ are currently only available for Mac OS X (where `process.platform is 'darwin'`). This is possible due to the commands `xcrun clang` and `xcrun clang++`. **NOTE**: Xcode and the Xcode command line tools are required to ensure `xcrun` and the correct compilers on your system.
+
+<a name="hash"></a><sup>#</sup> NCL scripts must end with `exit` command for file based runs
 
 ## Installation
 

@@ -236,6 +236,21 @@ module.exports =
       command:  "mongo"
       args: (context) -> [context.filepath]
 
+  NCL:
+    "Selection Based":
+      command: "ncl"
+      args: (context) ->
+        code = context.getCode(true)
+        code = code + """
+
+        exit"""
+        tmpFile = GrammarUtils.createTempFileWithCode(code)
+        [tmpFile]
+    "File Based":
+      command: "ncl"
+      args: (context) -> [context.filepath]
+
+
   newLISP:
     "Selection Based":
       command: "newlisp"
