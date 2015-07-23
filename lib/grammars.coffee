@@ -431,3 +431,16 @@ module.exports =
     "File Based":
       command: "xcrun"
       args: (context) -> ['swift', context.filepath]
+
+  TypeScript:
+    "Selection Based":
+      command: "bash"
+      args: (context) ->
+        code = context.getCode(true)
+        tmpFile = GrammarUtils.createTempFileWithCode(code, ".ts")
+        jsFile = tmpFile.replace /\.ts$/, ".js"
+        args = ['-c', "tsc --out '#{jsFile}' '#{tmpFile}' && node '#{jsFile}'"]
+        return args
+    "File Based":
+      command: "bash"
+      args: (context) -> ['-c', "tsc '#{context.filepath}' --out /tmp/js.out && node /tmp/js.out"]
