@@ -148,7 +148,7 @@ module.exports =
       command: "node"
       args: (context) -> [context.filepath]
 
-  'Babel ES6 Javascript':
+  'Babel ES6 JavaScript':
     "Selection Based":
       command: "babel-node"
       args: (context) -> ['-e', context.getCode()]
