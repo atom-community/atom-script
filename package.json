@@ -288,7 +288,7 @@
     "Applescript",
     "code"
   ],
-  "license": "Apache 2",
+  "license": "Apache-2.0",
   "engines": {
     "atom": ">=0.174.0"
   },
