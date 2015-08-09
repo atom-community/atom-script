@@ -1,3 +1,8 @@
+## 2.26.4
+* Fix Babel support
+* Now with TypeScript!
+* Sometimes I really wish this was in ES6, not CoffeeScript (https://gist.github.com/rgbkrk/91b40941a38daf700e61)
+
 ## 2.26.3
 * Support for NCL
 
