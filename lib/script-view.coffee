@@ -140,7 +140,10 @@ class ScriptView extends View
   close: ->
     # Stop any running process and dismiss window
     @stop()
-    @detach() if @hasParent()
+    if @hasParent()
+      grandParent = @script.parent().parent()
+      @detach()
+      grandParent.remove()
 
   destroy: ->
     @subscriptions?.dispose()
