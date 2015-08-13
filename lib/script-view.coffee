@@ -1,7 +1,7 @@
 grammarMap = require './grammars'
 
 {BufferedProcess, CompositeDisposable} = require 'atom'
-{View, $$} = require 'atom-space-pen-views'
+{View, $$, $} = require 'atom-space-pen-views'
 CodeContext = require './code-context'
 HeaderView = require './header-view'
 ScriptOptionsView = require './script-options-view'
@@ -17,6 +17,7 @@ class ScriptView extends View
 
   @content: ->
     @div =>
+      @div class: 'panel-resize-handle'
       @subview 'headerView', new HeaderView()
 
       # Display layout and outlets
@@ -36,7 +37,29 @@ class ScriptView extends View
       'script:run-by-line-number': => @lineRun()
       'script:run': => @defaultRun()
 
+    @handleEvents()
     @ansiFilter = new AnsiFilter
+
+  handleEvents: =>
+    @on 'mousedown', '.panel-resize-handle', (e) => @resizeStarted(e)
+
+  resizeStarted: =>
+    $(document).on('mousemove', @resizeScriptView)
+    $(document).on('mouseup', @resizeStopped)
+
+  resizeStopped: =>
+    $(document).off('mousemove', @resizeScriptView)
+    $(document).off('mouseup', @resizeStopped)
+
+  resizeScriptView: ({pageY, which}) =>
+    totalHeight  = $(document.body).height()
+    headerHeight = $(".header-view").height()
+    # FIXME(rodionovd): I don't know why this offset must be exactly 51px, but
+    # it seems to work. Sorry everyone.
+    magicOffset = 51
+    $(".script-view").css({
+        height: (totalHeight - pageY - headerHeight - magicOffset)
+    });
 
   serialize: ->
 
