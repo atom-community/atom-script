@@ -310,7 +310,19 @@ class ScriptView extends View
 
     if atom.config.get('script.scrollWithOutput')
       if lessThanFull or scrolledToEnd
-        @script.scrollTop(@output.trueHeight())
+        # Scroll down in a polling loop 'cause
+        # we don't know when the reflow will finish.
+        # See: http://stackoverflow.com/q/5017923/407845
+        do @checkScrollAgain 5
+
+  scrollTimeout: null
+  checkScrollAgain: (times) ->
+    =>
+      @script.scrollToBottom()
+
+      clearTimeout @scrollTimeout
+      if times > 1
+        @scrollTimeout = setTimeout @checkScrollAgain(times - 1), 50
 
   copyResults: ->
     if @results
