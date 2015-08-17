@@ -8,10 +8,10 @@ linkPaths.listen = (parentView) ->
   parentView.on 'click', '.-linked-path', (event) ->
     el = this
     {path, line, column} = el.dataset
-    line = Number(line)
-    column = Number(column)
+    line = Number(line) - 1
+    column = Number(column) - 1
 
     atom.workspace.open path, {
       initialLine: line
       initialColumn: column
-      }
+    }
