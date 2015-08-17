@@ -7,6 +7,7 @@ HeaderView = require './header-view'
 ScriptOptionsView = require './script-options-view'
 AnsiFilter = require 'ansi-to-html'
 stripAnsi = require 'strip-ansi'
+linkPaths = require './link-paths'
 _ = require 'underscore'
 
 # Runs a portion of a script through an interpreter and displays it line by line
@@ -37,6 +38,8 @@ class ScriptView extends View
       'script:run': => @defaultRun()
 
     @ansiFilter = new AnsiFilter
+
+    linkPaths.listen @
 
   serialize: ->
 
@@ -297,6 +300,7 @@ class ScriptView extends View
       line = _.escape(line)
 
     line = @ansiFilter.toHtml(line)
+    line = linkPaths(line)
 
     padding = parseInt(@output.css('padding-bottom'))
     scrolledToEnd =
