@@ -1,3 +1,5 @@
+path = require 'path'
+
 grammarMap = require './grammars'
 
 {BufferedProcess, CompositeDisposable} = require 'atom'
@@ -241,7 +243,7 @@ class ScriptView extends View
     # Default to where the user opened atom
     options =
       cwd: @getCwd()
-      env: @runOptions.mergedEnv(process.env)
+      env: @addExtraPathEntries(@runOptions.mergedEnv(process.env))
     args = (@runOptions.cmdArgs.concat extraArgs).concat @runOptions.scriptArgs
     if not @runOptions.cmd? or @runOptions.cmd is ''
       args = codeContext.shebangCommandArgs().concat args
@@ -272,7 +274,7 @@ class ScriptView extends View
         @h1 'Unable to run'
         @pre _.escape command
         @h2 'Is it in your PATH?'
-        @pre "PATH: #{_.escape process.env.PATH}"
+        @pre "PATH: #{_.escape options.env.PATH}"
       nodeError.handle()
 
   getCwd: ->
@@ -284,6 +286,15 @@ class ScriptView extends View
       cwd = paths[0]
 
     cwd
+
+  addExtraPathEntries: (env) ->
+    extraPathEntries = atom.config.get('script.extraPathEntries') || []
+    existingPath = env.PATH
+    if extraPathEntries.length > 0
+      existingPath = [extraPathEntries.join(path.delimiter), existingPath].join(path.delimiter)
+      env.PATH = existingPath
+
+    env
 
   stop: ->
     # Kill existing process if available
