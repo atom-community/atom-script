@@ -3,6 +3,7 @@ grammarMap = require './grammars'
 HeaderView = require './header-view'
 Runner = require './runner'
 ScriptOptionsView = require './script-options-view'
+ViewFormatter = require './view-formatter'
 
 {CompositeDisposable} = require 'atom'
 {View, $$} = require 'atom-space-pen-views'
@@ -26,7 +27,12 @@ class ScriptView extends View
       @div class: css, outlet: 'script', tabindex: -1, =>
         @div class: 'panel-body padded output', outlet: 'output'
 
-  initialize: (serializeState, @runOptions, @runner = new Runner(@runOptions)) ->
+  initialize: (
+    serializeState,
+    @runOptions,
+    @runner = new Runner(@runOptions),
+    @formatters = [new ViewFormatter(@runner, this)]
+  ) ->
     @subscriptions = new CompositeDisposable
     @subscriptions.add atom.commands.add 'atom-workspace',
       'core:cancel': => @close()
@@ -36,15 +42,6 @@ class ScriptView extends View
       'script:kill-process': => @stop()
       'script:run-by-line-number': => @lineRun()
       'script:run': => @defaultRun()
-
-    @subscriptions.add @runner.onDidWriteToStderr (ev) =>
-      @display 'stderr', ev.message
-    @subscriptions.add @runner.onDidWriteToStdout (ev) =>
-      @display 'stdout', ev.message
-    @subscriptions.add @runner.onDidExit (ev) =>
-      @setHeaderAndShowExecutionTime ev.returnCode, ev.executionTime
-    @subscriptions.add @runner.onDidNotRun (ev) =>
-      @showUnableToRunError ev.command
 
     @ansiFilter = new AnsiFilter
 
