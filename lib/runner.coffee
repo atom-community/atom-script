@@ -4,6 +4,11 @@ module.exports =
 class Runner
   bufferedProcess: null
 
+  # Public: Creates a Runner instance
+  #
+  # * `runOptions` a {ScriptOptions} object instance
+  # * `inputProvider` An {Object} with `write(Readable Stream)` method
+  # * `emitter` Atom's {Emitter} instance. You probably don't need to overwrite it
   constructor: (@runOptions, @inputProvider = null, @emitter = new Emitter) ->
 
   run: (command, extraArgs, codeContext) ->
