@@ -4,23 +4,22 @@ module.exports =
 class Runner
   bufferedProcess: null
 
-  constructor: (@runOptions, @emitter = new Emitter) ->
+  constructor: (@runOptions, @inputProvider = null, @emitter = new Emitter) ->
 
   run: (command, extraArgs, codeContext) ->
     @startTime = new Date()
-    @command = command
-
-    args = @args(codeContext, extraArgs)
-    exit = @onExit
-    stdout = @stdoutFunc
-    stderr = @stderrFunc
-    options = @options()
 
     @bufferedProcess = new BufferedProcess({
-      command, args, options, stdout, stderr, exit
+      command,
+      @args(codeContext, extraArgs),
+      @options(),
+      @stdoutFunc,
+      @stderrFunc,
+      @onExit
     })
 
-    @stdinFunc(@bufferedProcess.process.stdin) if @stdinFunc
+    if @inputProvider
+      @inputProvider.write(@bufferedProcess.process.stdin)
 
     @bufferedProcess.onWillThrowError(@createOnErrorFunc(command))
 
@@ -36,10 +35,8 @@ class Runner
   onDidWriteToStderr: (callback) =>
     @emitter.on 'did-write-to-stderr', callback
 
-  stdinFunc: null
-
   destroy: ->
-    @eitter.dispose()
+    @emitter.dispose()
 
   getCwd: ->
     cwd = @runOptions.workingDirectory
@@ -71,7 +68,6 @@ class Runner
     (nodeError) =>
       @bufferedProcess = null
       @emitter.emit 'did-not-run', { command: command }
-      @view.showUnableToRunError(command)
       nodeError.handle()
 
   onDidNotRun: (callback) =>
@@ -85,4 +81,4 @@ class Runner
     args = (@runOptions.cmdArgs.concat extraArgs).concat @runOptions.scriptArgs
     if not @runOptions.cmd? or @runOptions.cmd is ''
       args = codeContext.shebangCommandArgs().concat args
-
+    args
