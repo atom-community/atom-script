@@ -62,6 +62,14 @@ module.exports =
       command: "coffee"
       args: (context) -> [context.filepath]
 
+  Crystal:
+    "Selection Based":
+      command: "crystal"
+      args: (context)  -> ['eval', context.getCode()]
+    "File Based":
+      command: "crystal"
+      args: (context) -> [context.filepath]
+
   D:
     "File Based":
       command: "rdmd"
