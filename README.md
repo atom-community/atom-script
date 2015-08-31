@@ -15,6 +15,7 @@ Currently supported grammars are:
   * C# Script <sup>[*](#asterisk)</sup>
   * Coffeescript
   * CoffeeScript (Literate) <sup>[^](#caret)</sup>
+  * Crystal
   * Cucumber (Gherkin) <sup>[*](#asterisk)</sup>
   * D <sup>[*](#asterisk)</sup>
   * DOT (Graphviz)
