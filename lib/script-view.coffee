@@ -1,10 +1,11 @@
-grammarMap = require './grammars'
-
-{BufferedProcess, CompositeDisposable} = require 'atom'
-{View, $$} = require 'atom-space-pen-views'
 CodeContext = require './code-context'
+grammarMap = require './grammars'
 HeaderView = require './header-view'
 ScriptOptionsView = require './script-options-view'
+
+{CompositeDisposable} = require 'atom'
+{View, $$} = require 'atom-space-pen-views'
+
 AnsiFilter = require 'ansi-to-html'
 stripAnsi = require 'strip-ansi'
 _ = require 'underscore'
@@ -12,7 +13,6 @@ _ = require 'underscore'
 # Runs a portion of a script through an interpreter and displays it line by line
 module.exports =
 class ScriptView extends View
-  @bufferedProcess: null
   @results: ""
 
   @content: ->
@@ -25,7 +25,11 @@ class ScriptView extends View
       @div class: css, outlet: 'script', tabindex: -1, =>
         @div class: 'panel-body padded output', outlet: 'output'
 
-  initialize: (serializeState, @runOptions) ->
+  initialize: (
+    serializeState,
+    @runOptions,
+    @runner
+  ) ->
     @subscriptions = new CompositeDisposable
     @subscriptions.add atom.commands.add 'atom-workspace',
       'core:cancel': => @close()
@@ -41,6 +45,13 @@ class ScriptView extends View
   serialize: ->
 
   updateOptions: (event) -> @runOptions = event.runOptions
+
+  setHeaderAndShowExecutionTime: (returnCode, executionTime) =>
+      @display 'stdout', '[Finished in '+executionTime.toString()+'s]'
+      if returnCode is 0
+        @setHeaderStatus 'stop'
+      else
+        @setHeaderStatus 'err'
 
   getShebang: (editor) ->
     text = editor.getText()
@@ -228,6 +239,14 @@ class ScriptView extends View
         @a href: encodedURI, 'issue on GitHub'
         @text ', or send your own pull request.'
 
+  showUnableToRunError: (command) ->
+    @output.append $$ ->
+      @h1 'Unable to run'
+      @pre _.escape command
+      @h2 'Is it in your PATH?'
+      @pre "PATH: #{_.escape process.env.PATH}"
+
+
   handleError: (err) ->
     # Display error and kill process
     @headerView.title.text 'Error'
@@ -235,63 +254,16 @@ class ScriptView extends View
     @output.append err
     @stop()
 
-  run: (command, extraArgs, codeContext) ->
-    startTime = new Date()
+  run: (command, extraArgs, codeContext, input = null) ->
+    @runner.run(command, extraArgs, codeContext, input)
 
-    # Default to where the user opened atom
-    options =
-      cwd: @getCwd()
-      env: @runOptions.mergedEnv(process.env)
-    args = (@runOptions.cmdArgs.concat extraArgs).concat @runOptions.scriptArgs
-    if not @runOptions.cmd? or @runOptions.cmd is ''
-      args = codeContext.shebangCommandArgs().concat args
-
-    stdout = (output) => @display 'stdout', output
-    stderr = (output) => @display 'stderr', output
-    exit = (returnCode) =>
-      @bufferedProcess = null
-
-      if (atom.config.get 'script.enableExecTime') is true
-        executionTime = (new Date().getTime() - startTime.getTime()) / 1000
-        @display 'stdout', '[Finished in '+executionTime.toString()+'s]'
-
-      if returnCode is 0
-        @headerView.setStatus 'stop'
-      else
-        @headerView.setStatus 'err'
-      console.log "Exited with #{returnCode}"
-
-    # Run process
-    @bufferedProcess = new BufferedProcess({
-      command, args, options, stdout, stderr, exit
-    })
-
-    @bufferedProcess.onWillThrowError (nodeError) =>
-      @bufferedProcess = null
-      @output.append $$ ->
-        @h1 'Unable to run'
-        @pre _.escape command
-        @h2 'Is it in your PATH?'
-        @pre "PATH: #{_.escape process.env.PATH}"
-      nodeError.handle()
-
-  getCwd: ->
-    cwd = @runOptions.workingDirectory
-
-    workingDirectoryProvided = cwd? and cwd isnt ''
-    paths = atom.project.getPaths()
-    if not workingDirectoryProvided and paths?.length > 0
-      cwd = paths[0]
-
-    cwd
+  setHeaderStatus: (status) ->
+    @headerView.setStatus status
 
   stop: ->
-    # Kill existing process if available
-    if @bufferedProcess?
-      @display 'stdout', '^C'
-      @headerView.setStatus 'kill'
-      @bufferedProcess.kill()
-      @bufferedProcess = null
+    @display 'stdout', '^C'
+    @headerView.setStatus 'kill'
+    @runner.stop()
 
   display: (css, line) ->
     @results += line
