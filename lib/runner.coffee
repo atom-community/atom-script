@@ -7,11 +7,10 @@ class Runner
   # Public: Creates a Runner instance
   #
   # * `runOptions` a {ScriptOptions} object instance
-  # * `inputProvider` An {Object} with `write(Readable Stream)` method
   # * `emitter` Atom's {Emitter} instance. You probably don't need to overwrite it
-  constructor: (@runOptions, @inputProvider = null, @emitter = new Emitter) ->
+  constructor: (@runOptions, @emitter = new Emitter) ->
 
-  run: (command, extraArgs, codeContext) ->
+  run: (command, extraArgs, codeContext, inputString = null) ->
     @startTime = new Date()
 
     args = @args(codeContext, extraArgs)
@@ -24,8 +23,8 @@ class Runner
       command, args, options, stdout, stderr, exit
     })
 
-    if @inputProvider
-      @inputProvider.write(@bufferedProcess.process.stdin)
+    if inputString
+      @bufferedProcess.process.stdin.write(inputString)
 
     @bufferedProcess.onWillThrowError(@createOnErrorFunc(command))
 

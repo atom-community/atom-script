@@ -254,8 +254,8 @@ class ScriptView extends View
     @output.append err
     @stop()
 
-  run: (command, extraArgs, codeContext) ->
-    @runner.run(command, extraArgs, codeContext)
+  run: (command, extraArgs, codeContext, input = null) ->
+    @runner.run(command, extraArgs, codeContext, input)
 
   setHeaderStatus: (status) ->
     @headerView.setStatus status
