@@ -1,7 +1,9 @@
+GrammarUtils = require './grammar-utils'
+Runner = require './runner'
 ScriptView = require './script-view'
 ScriptOptionsView = require './script-options-view'
 ScriptOptions = require './script-options'
-GrammarUtils = require './grammar-utils'
+ViewFormatter = require './view-formatter'
 
 module.exports =
   config:
@@ -23,8 +25,10 @@ module.exports =
 
   activate: (state) ->
     @scriptOptions = new ScriptOptions()
-    @scriptView = new ScriptView state.scriptViewState, @scriptOptions
+    @runner = new Runner(@scriptOptions)
+    @scriptView = new ScriptView state.scriptViewState, @scriptOptions, @runner
     @scriptOptionsView = new ScriptOptionsView @scriptOptions
+    @formatter = new ViewFormatter(@runner, @scriptView)
 
   deactivate: ->
     GrammarUtils.deleteTempFiles()

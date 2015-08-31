@@ -1,9 +1,7 @@
 CodeContext = require './code-context'
 grammarMap = require './grammars'
 HeaderView = require './header-view'
-Runner = require './runner'
 ScriptOptionsView = require './script-options-view'
-ViewFormatter = require './view-formatter'
 
 {CompositeDisposable} = require 'atom'
 {View, $$} = require 'atom-space-pen-views'
@@ -30,8 +28,7 @@ class ScriptView extends View
   initialize: (
     serializeState,
     @runOptions,
-    @runner = new Runner(@runOptions),
-    @formatters = [new ViewFormatter(@runner, this)]
+    @runner
   ) ->
     @subscriptions = new CompositeDisposable
     @subscriptions.add atom.commands.add 'atom-workspace',
