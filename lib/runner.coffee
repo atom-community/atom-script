@@ -14,13 +14,14 @@ class Runner
   run: (command, extraArgs, codeContext) ->
     @startTime = new Date()
 
+    args = @args(codeContext, extraArgs)
+    options = @options()
+    stdout = @stdoutFunc
+    stderr = @stderrFunc
+    exit = @onExit
+
     @bufferedProcess = new BufferedProcess({
-      command,
-      @args(codeContext, extraArgs),
-      @options(),
-      @stdoutFunc,
-      @stderrFunc,
-      @onExit
+      command, args, options, stdout, stderr, exit
     })
 
     if @inputProvider
@@ -31,13 +32,13 @@ class Runner
   stdoutFunc: (output) =>
     @emitter.emit 'did-write-to-stdout', { message: output }
 
-  onDidWriteToStdout: (callback) =>
+  onDidWriteToStdout: (callback) ->
     @emitter.on 'did-write-to-stdout', callback
 
   stderrFunc: (output) =>
     @emitter.emit 'did-write-to-stderr', { message: output }
 
-  onDidWriteToStderr: (callback) =>
+  onDidWriteToStderr: (callback) ->
     @emitter.on 'did-write-to-stderr', callback
 
   destroy: ->
@@ -66,7 +67,7 @@ class Runner
 
     @emitter.emit 'did-exit', { executionTime: executionTime, returnCode: returnCode }
 
-  onDidExit: (callback) =>
+  onDidExit: (callback) ->
     @emitter.on 'did-exit', callback
 
   createOnErrorFunc: (command) =>
@@ -75,7 +76,7 @@ class Runner
       @emitter.emit 'did-not-run', { command: command }
       nodeError.handle()
 
-  onDidNotRun: (callback) =>
+  onDidNotRun: (callback) ->
     @emitter.on 'did-not-run', callback
 
   options: ->
