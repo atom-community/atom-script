@@ -12,6 +12,5 @@ class ViewFormatter
     @subscriptions.add @runner.onDidNotRun (ev) =>
       @view.showUnableToRunError ev.command
 
-
   destroy: ->
     @subscriptions?.dispose()
