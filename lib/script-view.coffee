@@ -1,4 +1,5 @@
 CodeContext = require './code-context'
+CodeContextBuilder = require './code-context-builder'
 grammarMap = require './grammars'
 HeaderView = require './header-view'
 ScriptOptionsView = require './script-options-view'
@@ -41,6 +42,7 @@ class ScriptView extends View
       'script:run': => @defaultRun()
 
     @ansiFilter = new AnsiFilter
+    @codeContextBuilder = new CodeContextBuilder(this, atom.workspace.getActiveTextEditor())
 
   serialize: ->
 
@@ -53,37 +55,8 @@ class ScriptView extends View
       else
         @setHeaderStatus 'err'
 
-  getShebang: (editor) ->
-    text = editor.getText()
-    lines = text.split("\n")
-    firstLine = lines[0]
-    return unless firstLine.match(/^#!/)
-
-    firstLine.replace(/^#!\s*/, '')
-
   initCodeContext: (editor) ->
-    filename = editor.getTitle()
-    filepath = editor.getPath()
-    selection = editor.getLastSelection()
-
-    # If the selection was empty "select" ALL the text
-    # This allows us to run on new files
-    if selection.isEmpty()
-      textSource = editor
-    else
-      textSource = selection
-
-    codeContext = new CodeContext(filename, filepath, textSource)
-    codeContext.selection = selection
-    codeContext.shebang = @getShebang(editor)
-
-    # Get language
-    lang = @getLang editor
-
-    if @validateLang lang
-      codeContext.lang = lang
-
-    return codeContext
+    @codeContextBuilder.initCodeContext()
 
   lineRun: ->
     @resetView()
@@ -159,34 +132,6 @@ class ScriptView extends View
   destroy: ->
     @subscriptions?.dispose()
 
-  getLang: (editor) -> editor.getGrammar().name
-
-  validateLang: (lang) ->
-    err = null
-
-    # Determine if no language is selected.
-    if lang is 'Null Grammar' or lang is 'Plain Text'
-      err = $$ ->
-        @p 'You must select a language in the lower right, or save the file
-          with an appropriate extension.'
-
-    # Provide them a dialog to submit an issue on GH, prepopulated with their
-    # language of choice.
-    else if not (lang of grammarMap)
-      err = $$ ->
-        @p class: 'block', "Command not configured for #{lang}!"
-        @p class: 'block', =>
-          @text 'Add an '
-          @a href: "https://github.com/rgbkrk/atom-script/issues/\
-            new?title=Add%20support%20for%20#{lang}", 'issue on GitHub'
-          @text ' or send your own Pull Request.'
-
-    if err?
-      @handleError(err)
-      return false
-
-    return true
-
   setupRuntime: (codeContext) ->
 
     # Store information about the run
@@ -246,6 +191,21 @@ class ScriptView extends View
       @h2 'Is it in your PATH?'
       @pre "PATH: #{_.escape process.env.PATH}"
 
+  showNoLanguageSpecified: ->
+    err = $$ ->
+      @p 'You must select a language in the lower right, or save the file
+        with an appropriate extension.'
+    @handleError(err)
+
+  showLanguageNotSupported: (lang) ->
+    err = $$ ->
+      @p class: 'block', "Command not configured for #{lang}!"
+      @p class: 'block', =>
+        @text 'Add an '
+        @a href: "https://github.com/rgbkrk/atom-script/issues/\
+          new?title=Add%20support%20for%20#{lang}", 'issue on GitHub'
+        @text ' or send your own Pull Request.'
+    @handleError(err)
 
   handleError: (err) ->
     # Display error and kill process
