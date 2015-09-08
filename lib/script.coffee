@@ -1,7 +1,7 @@
 CodeContextBuilder = require './code-context-builder'
-CommandContext = require './command-context'
 GrammarUtils = require './grammar-utils'
 Runner = require './runner'
+Runtime = require './runtime'
 ScriptOptions = require './script-options'
 ScriptOptionsView = require './script-options-view'
 ScriptView = require './script-view'
@@ -32,9 +32,12 @@ module.exports =
     @scriptOptions = new ScriptOptions()
     @scriptOptionsView = new ScriptOptionsView @scriptOptions
 
-    @runner = new Runner(@scriptOptions)
-    @formatter = new ViewFormatter(@runner, @scriptView)
     @codeContextBuilder = new CodeContextBuilder(@scriptView)
+    runner = new Runner(@scriptOptions)
+
+    formatter = new ViewFormatter(@scriptView)
+
+    @runtime = new Runtime(runner, @codeContextBuilder, [formatter], @scriptView)
 
     @subscriptions = new CompositeDisposable
     @subscriptions.add atom.commands.add 'atom-workspace',
@@ -42,44 +45,42 @@ module.exports =
       'core:close': => @closeScriptViewAndStopRunner()
       'script:close-view': => @closeScriptViewAndStopRunner()
       'script:copy-run-results': => @scriptView.copyResults()
-      'script:kill-process': => @killProcess()
-      'script:run-by-line-number': => @start(@runner, 'Line Number Based')
-      'script:run': => @start(@runner, 'Selection Based')
+      'script:kill-process': => @runtime.stop()
+      'script:run-by-line-number': => @runtime.execute('Line Number Based')
+      'script:run': => @runtime.execute('Selection Based')
 
   deactivate: ->
-    GrammarUtils.deleteTempFiles()
+    @runtime.destroy()
     @scriptView.close()
     @scriptOptionsView.close()
     @subscriptions.dispose()
-
-  start: (runner, argType, input = null) ->
-    @scriptView.resetView()
-    codeContext = @codeContextBuilder.buildCodeContext(atom.workspace.getActiveTextEditor(), argType)
-
-    # In the future we could handle a runner without the language being part
-    # of the grammar map, using the options runner
-    return unless codeContext.lang?
-
-    commandContext = CommandContext.build(@scriptView, @scriptOptions, codeContext)
-
-    return unless commandContext
-
-    # Update header to show the lang and file name
-    if codeContext.argType is 'Line Number Based'
-      @scriptView.setHeaderTitle "#{codeContext.lang} - #{codeContext.fileColonLine(false)}"
-    else
-      @scriptView.setHeaderTitle "#{codeContext.lang} - #{codeContext.filename}"
-
-    runner.run(commandContext.command, commandContext.args, codeContext, input) if commandContext
+    GrammarUtils.deleteTempFiles()
 
   closeScriptViewAndStopRunner: ->
+    @runtime.stop()
     @scriptView.close()
-    @runner.stop()
 
-  killProcess: ->
-    @scriptView.stop()
-    @runner.stop()
+  # Public
+  #
+  # Service method that provides the default runtime that's configurable through Atom editor
+  # Use this service if you want to directly show the script's output in the Atom editor
+  #
+  # **Do not destroy this {Runtime} instance!** By doing so you'll break this plugin!
+  provideDefaultRuntime: ->
+    @runtime
 
+  # Public
+  #
+  # Service method that provides a blank runtime. You are free to configure any aspect of it:
+  # * Add formatter (`runtime.addFormatter(formatter)`)
+  # * configure script options (`runtime.scriptOptions`)
+  #
+  # In contrast to `provideDefaultRuntime` you should dispose this {Runtime} when
+  # you no longer need it.
+  provideBlankRuntime: ->
+    runner = new Runner(new ScriptOptions)
+
+    new Runtime(runner, @codeContextBuilder, [], @scriptView)
 
   serialize: ->
     # TODO: True serialization needs to take the options view into account
