@@ -42,26 +42,26 @@ class ScriptView extends View
       'script:run': => @defaultRun()
 
     @ansiFilter = new AnsiFilter
-    @codeContextBuilder = new CodeContextBuilder(this, atom.workspace.getActiveTextEditor())
+    @codeContextBuilder = new CodeContextBuilder(this)
 
   serialize: ->
 
   updateOptions: (event) -> @runOptions = event.runOptions
 
   setHeaderAndShowExecutionTime: (returnCode, executionTime) =>
-      @display 'stdout', '[Finished in '+executionTime.toString()+'s]'
-      if returnCode is 0
-        @setHeaderStatus 'stop'
-      else
-        @setHeaderStatus 'err'
-
-  initCodeContext: (editor) ->
-    @codeContextBuilder.initCodeContext()
+    @display 'stdout', '[Finished in '+executionTime.toString()+'s]'
+    if returnCode is 0
+      @setHeaderStatus 'stop'
+    else
+      @setHeaderStatus 'err'
 
   lineRun: ->
     @resetView()
     codeContext = @buildCodeContext('Line Number Based')
     @start(codeContext) unless not codeContext?
+
+  buildCodeContext: (argType='Selection Based') ->
+    @codeContextBuilder.buildCodeContext(atom.workspace.getActiveTextEditor(), argType)
 
   defaultRun: ->
     @resetView()
@@ -69,31 +69,9 @@ class ScriptView extends View
     @start(codeContext) unless not codeContext?
 
   buildCodeContext: (argType='Selection Based') ->
-    # Get current editor
-    editor = atom.workspace.getActiveTextEditor()
-    # No editor available, do nothing
-    return unless editor?
-
-    codeContext = @initCodeContext(editor)
-
-    codeContext.argType = argType
-
-    if argType == 'Line Number Based'
-      editor.save()
-    else if codeContext.selection.isEmpty() and codeContext.filepath?
-      codeContext.argType = 'File Based'
-      editor.save()
-
-    # Selection and Line Number Based runs both benefit from knowing the current line
-    # number
-    unless argType == 'File Based'
-      cursor = editor.getLastCursor()
-      codeContext.lineNumber = cursor.getScreenRow() + 1
-
-    return codeContext
+    @codeContextBuilder.buildCodeContext(argType)
 
   start: (codeContext) ->
-
     # If language was not determined, do nothing
     if not codeContext.lang?
       # In the future we could handle a runner without the language being part
