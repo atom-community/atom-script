@@ -4,7 +4,6 @@ grammarMap = require './grammars'
 HeaderView = require './header-view'
 ScriptOptionsView = require './script-options-view'
 
-{CompositeDisposable} = require 'atom'
 {View, $$} = require 'atom-space-pen-views'
 
 AnsiFilter = require 'ansi-to-html'
@@ -31,16 +30,6 @@ class ScriptView extends View
     @runOptions,
     @runner
   ) ->
-    @subscriptions = new CompositeDisposable
-    @subscriptions.add atom.commands.add 'atom-workspace',
-      'core:cancel': => @close()
-      'core:close': => @close()
-      'script:close-view': => @close()
-      'script:copy-run-results': => @copyResults()
-      'script:kill-process': => @stop()
-      'script:run-by-line-number': => @lineRun()
-      'script:run': => @defaultRun()
-
     @ansiFilter = new AnsiFilter
     @codeContextBuilder = new CodeContextBuilder(this)
 
@@ -55,31 +44,21 @@ class ScriptView extends View
     else
       @setHeaderStatus 'err'
 
-  lineRun: ->
-    @resetView()
-    codeContext = @buildCodeContext('Line Number Based')
-    @start(codeContext) unless not codeContext?
-
   buildCodeContext: (argType='Selection Based') ->
     @codeContextBuilder.buildCodeContext(atom.workspace.getActiveTextEditor(), argType)
 
-  defaultRun: ->
+  start: (argType, input = null) ->
     @resetView()
-    codeContext = @buildCodeContext() # Until proven otherwise
-    @start(codeContext) unless not codeContext?
+    codeContext = @buildCodeContext(argType)
 
-  buildCodeContext: (argType='Selection Based') ->
-    @codeContextBuilder.buildCodeContext(argType)
-
-  start: (codeContext) ->
-    # If language was not determined, do nothing
     if not codeContext.lang?
       # In the future we could handle a runner without the language being part
       # of the grammar map, using the options runner
       return
 
     commandContext = @setupRuntime codeContext
-    @run commandContext.command, commandContext.args, codeContext if commandContext
+
+    @runner.run(commandContext.command, commandContext.args, codeContext, input) if commandContext
 
   resetView: (title = 'Loading...') ->
     # Display window and load message
@@ -100,15 +79,15 @@ class ScriptView extends View
     @results = ""
 
   close: ->
-    # Stop any running process and dismiss window
     @stop()
     if @hasParent()
       grandParent = @script.parent().parent()
       @detach()
       grandParent.remove()
 
-  destroy: ->
-    @subscriptions?.dispose()
+  stop: ->
+    @display 'stdout', '^C'
+    @headerView.setStatus 'kill'
 
   setupRuntime: (codeContext) ->
 
@@ -192,16 +171,8 @@ class ScriptView extends View
     @output.append err
     @stop()
 
-  run: (command, extraArgs, codeContext, input = null) ->
-    @runner.run(command, extraArgs, codeContext, input)
-
   setHeaderStatus: (status) ->
     @headerView.setStatus status
-
-  stop: ->
-    @display 'stdout', '^C'
-    @headerView.setStatus 'kill'
-    @runner.stop()
 
   display: (css, line) ->
     @results += line

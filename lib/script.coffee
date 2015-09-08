@@ -5,6 +5,8 @@ ScriptOptionsView = require './script-options-view'
 ScriptOptions = require './script-options'
 ViewFormatter = require './view-formatter'
 
+{CompositeDisposable} = require 'atom'
+
 module.exports =
   config:
     enableExecTime:
@@ -30,10 +32,30 @@ module.exports =
     @scriptOptionsView = new ScriptOptionsView @scriptOptions
     @formatter = new ViewFormatter(@runner, @scriptView)
 
+    @subscriptions = new CompositeDisposable
+    @subscriptions.add atom.commands.add 'atom-workspace',
+      'core:cancel': => @closeScriptViewAndStopRunner()
+      'core:close': => @closeScriptViewAndStopRunner()
+      'script:close-view': => @closeScriptViewAndStopRunner()
+      'script:copy-run-results': => @scriptView.copyResults()
+      'script:kill-process': => @killProcess()
+      'script:run-by-line-number': => @scriptView.start('Line Number Based')
+      'script:run': => @scriptView.start('Selection Based')
+
   deactivate: ->
     GrammarUtils.deleteTempFiles()
     @scriptView.close()
     @scriptOptionsView.close()
+    @subscriptions.dispose()
+
+  closeScriptViewAndStopRunner: ->
+    @scriptView.close()
+    @runner.stop()
+
+  killProcess: ->
+    @scriptView.stop()
+    @runner.stop()
+
 
   serialize: ->
     # TODO: True serialization needs to take the options view into account
