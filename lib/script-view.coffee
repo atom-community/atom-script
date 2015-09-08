@@ -35,8 +35,6 @@ class ScriptView extends View
 
   serialize: ->
 
-  updateOptions: (event) -> @runOptions = event.runOptions
-
   setHeaderAndShowExecutionTime: (returnCode, executionTime) =>
     @display 'stdout', '[Finished in '+executionTime.toString()+'s]'
     if returnCode is 0
