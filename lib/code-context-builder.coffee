@@ -10,6 +10,7 @@ class CodeContextBuilder
 
   # Public: Builds code context for specified argType
   #
+  # editor - Atom's #{TextEditor} instance
   # argType - {String} with one of the following values:
   #
   # * "Selection Based" (default)
@@ -58,28 +59,6 @@ class CodeContextBuilder
 
     if @validateLang lang
       codeContext.lang = lang
-
-    return codeContext
-
-<<<<<<< HEAD
-  buildCodeContext: (argType='Selection Based') ->
-    return unless @editor?
-
-    codeContext = @initCodeContext()
-
-    codeContext.argType = argType
-
-    if argType == 'Line Number Based'
-      @editor.save()
-    else if codeContext.selection.isEmpty() and codeContext.filepath?
-      codeContext.argType = 'File Based'
-      @editor.save()
-
-    # Selection and Line Number Based runs both benefit from knowing the current line
-    # number
-    unless argType == 'File Based'
-      cursor = @editor.getLastCursor()
-      codeContext.lineNumber = cursor.getScreenRow() + 1
 
     return codeContext
 
