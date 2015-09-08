@@ -1,6 +1,3 @@
-CodeContext = require './code-context'
-CodeContextBuilder = require './code-context-builder'
-grammarMap = require './grammars'
 HeaderView = require './header-view'
 ScriptOptionsView = require './script-options-view'
 
@@ -25,13 +22,8 @@ class ScriptView extends View
       @div class: css, outlet: 'script', tabindex: -1, =>
         @div class: 'panel-body padded output', outlet: 'output'
 
-  initialize: (
-    serializeState,
-    @runOptions,
-    @runner
-  ) ->
+  initialize: (serializeState) ->
     @ansiFilter = new AnsiFilter
-    @codeContextBuilder = new CodeContextBuilder(this)
 
   serialize: ->
 
@@ -41,22 +33,6 @@ class ScriptView extends View
       @setHeaderStatus 'stop'
     else
       @setHeaderStatus 'err'
-
-  buildCodeContext: (argType='Selection Based') ->
-    @codeContextBuilder.buildCodeContext(atom.workspace.getActiveTextEditor(), argType)
-
-  start: (argType, input = null) ->
-    @resetView()
-    codeContext = @buildCodeContext(argType)
-
-    if not codeContext.lang?
-      # In the future we could handle a runner without the language being part
-      # of the grammar map, using the options runner
-      return
-
-    commandContext = @setupRuntime codeContext
-
-    @runner.run(commandContext.command, commandContext.args, codeContext, input) if commandContext
 
   resetView: (title = 'Loading...') ->
     # Display window and load message
@@ -87,41 +63,6 @@ class ScriptView extends View
     @display 'stdout', '^C'
     @headerView.setStatus 'kill'
 
-  setupRuntime: (codeContext) ->
-
-    # Store information about the run
-    commandContext = {}
-
-    try
-      if not @runOptions.cmd? or @runOptions.cmd is ''
-        # Precondition: lang? and lang of grammarMap
-        commandContext.command = codeContext.shebangCommand() or grammarMap[codeContext.lang][codeContext.argType].command
-      else
-        commandContext.command = @runOptions.cmd
-
-      buildArgsArray = grammarMap[codeContext.lang][codeContext.argType].args
-
-    catch error
-      err = @createGitHubIssueLink codeContext
-      @handleError err
-
-      return false
-
-    # Update header to show the lang and file name
-    if codeContext.argType is 'Line Number Based'
-      @headerView.title.text "#{codeContext.lang} - #{codeContext.fileColonLine(false)}"
-    else
-      @headerView.title.text "#{codeContext.lang} - #{codeContext.filename}"
-
-    try
-      commandContext.args = buildArgsArray codeContext
-    catch errorSendByArgs
-      @handleError errorSendByArgs
-      return false
-
-    # Return setup information
-    return commandContext
-
   createGitHubIssueLink: (codeContext) ->
     title = "Add #{codeContext.argType} support for #{codeContext.lang}"
     body = """
@@ -132,12 +73,13 @@ class ScriptView extends View
     # NOTE: Replace "#" after regular encoding so we don't double escape it.
     encodedURI = encodedURI.replace(/#/g, '%23')
 
-    $$ ->
+    err = $$ ->
       @p class: 'block', "#{codeContext.argType} runner not available for #{codeContext.lang}."
       @p class: 'block', =>
         @text 'If it should exist, add an '
         @a href: encodedURI, 'issue on GitHub'
         @text ', or send your own pull request.'
+    @handleError(err)
 
   showUnableToRunError: (command) ->
     @output.append $$ ->
@@ -171,6 +113,9 @@ class ScriptView extends View
 
   setHeaderStatus: (status) ->
     @headerView.setStatus status
+
+  setHeaderTitle: (title) ->
+    @headerView.title.text title
 
   display: (css, line) ->
     @results += line
