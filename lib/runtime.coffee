@@ -17,6 +17,10 @@ class Runtime
     _.each @formatters, (formatter) => formatter.listen(@runner)
 
   # Public: Adds a new formatter and asks it to listen for {Runner} events
+  #
+  # A formatter should have two methods:
+  # * `listen(runner)` - in which you can subscribe to {Runner} events
+  # * `destroy` - where you can do your cleanup
   addFormatter: (formatter) ->
     @formatters.push(formatter)
     formatter.listen(@runner)
