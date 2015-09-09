@@ -6,9 +6,9 @@ class Runner
 
   # Public: Creates a Runner instance
   #
-  # * `runOptions` a {ScriptOptions} object instance
+  # * `scriptOptions` a {ScriptOptions} object instance
   # * `emitter` Atom's {Emitter} instance. You probably don't need to overwrite it
-  constructor: (@runOptions, @emitter = new Emitter) ->
+  constructor: (@scriptOptions, @emitter = new Emitter) ->
 
   run: (command, extraArgs, codeContext, inputString = null) ->
     @startTime = new Date()
@@ -44,7 +44,7 @@ class Runner
     @emitter.dispose()
 
   getCwd: ->
-    cwd = @runOptions.workingDirectory
+    cwd = @scriptOptions.workingDirectory
 
     workingDirectoryProvided = cwd? and cwd isnt ''
     paths = atom.project.getPaths()
@@ -80,10 +80,10 @@ class Runner
 
   options: ->
     cwd: @getCwd()
-    env: @runOptions.mergedEnv(process.env)
+    env: @scriptOptions.mergedEnv(process.env)
 
   args: (codeContext, extraArgs) ->
-    args = (@runOptions.cmdArgs.concat extraArgs).concat @runOptions.scriptArgs
-    if not @runOptions.cmd? or @runOptions.cmd is ''
+    args = (@scriptOptions.cmdArgs.concat extraArgs).concat @scriptOptions.scriptArgs
+    if not @scriptOptions.cmd? or @scriptOptions.cmd is ''
       args = codeContext.shebangCommandArgs().concat args
     args
