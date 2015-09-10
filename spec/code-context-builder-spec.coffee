@@ -2,10 +2,6 @@ CodeContextBuilder = require '../lib/code-context-builder'
 
 describe 'CodeContextBuilder', ->
   beforeEach ->
-    @viewMock =
-      showLanguageNotSupported: (lang) ->
-      showNoLanguageSpecified: ->
-
     @editorMock =
       getTitle: ->
       getPath: ->
@@ -21,7 +17,7 @@ describe 'CodeContextBuilder', ->
     spyOn(@editorMock, 'getTitle').andReturn('file.js')
     spyOn(@editorMock, 'getPath').andReturn('path/to/file.js')
     spyOn(@editorMock, 'getText').andReturn('console.log("hello")\n')
-    @codeContextBuilder = new CodeContextBuilder(@viewMock)
+    @codeContextBuilder = new CodeContextBuilder
 
   describe 'initCodeContext', ->
     it 'sets correct text source for empty selection', ->

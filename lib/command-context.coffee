@@ -5,7 +5,7 @@ class CommandContext
   command: null
   args: []
 
-  @build: (view, runOptions, codeContext) ->
+  @build: (runtime, runOptions, codeContext) ->
     commandContext = new CommandContext
 
     try
@@ -18,13 +18,13 @@ class CommandContext
       buildArgsArray = grammarMap[codeContext.lang][codeContext.argType].args
 
     catch error
-      view.createGitHubIssueLink codeContext
+      runtime.modeNotSupported(codeContext.argType, codeContext.lang)
       return false
 
     try
       commandContext.args = buildArgsArray codeContext
     catch errorSendByArgs
-      view.handleError errorSendByArgs
+      runtime.didNotBuildArgs errorSendByArgs
       return false
 
     # Return setup information

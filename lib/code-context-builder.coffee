@@ -1,23 +1,25 @@
 CodeContext = require './code-context'
 grammarMap = require './grammars'
 
+{Emitter} = require 'atom'
+
 module.exports =
 class CodeContextBuilder
-  # Public
-  #
-  # @view - a #{ScriptView} instance
-  constructor: (@view) ->
+  constructor: (@emitter = new Emitter) ->
+
+  destroy: ->
+    @emitter.dispose()
 
   # Public: Builds code context for specified argType
   #
-  # editor - Atom's #{TextEditor} instance
+  # editor - Atom's {TextEditor} instance
   # argType - {String} with one of the following values:
   #
   # * "Selection Based" (default)
   # * "Line Number Based",
   # * "File Based"
   #
-  # returns a #{CodeContext} object
+  # returns a {CodeContext} object
   buildCodeContext: (editor, argType='Selection Based') ->
     return unless editor?
 
@@ -75,15 +77,22 @@ class CodeContextBuilder
 
   validateLang: (lang) ->
     valid = true
+    
     # Determine if no language is selected.
     if lang is 'Null Grammar' or lang is 'Plain Text'
-      @view.showNoLanguageSpecified()
+      @emitter.emit 'did-not-specify-language'
       valid = false
 
     # Provide them a dialog to submit an issue on GH, prepopulated with their
     # language of choice.
     else if not (lang of grammarMap)
-      @view.showLanguageNotSupported(lang)
+      @emitter.emit 'did-not-support-language', { lang: lang }
       valid = false
 
     return valid
+
+  onDidNotSpecifyLanguage: (callback) ->
+    @emitter.on 'did-not-specify-language', callback
+
+  onDidNotSupportLanguage: (callback) ->
+    @emitter.on 'did-not-support-language', callback

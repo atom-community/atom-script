@@ -63,8 +63,8 @@ class ScriptView extends View
     @display 'stdout', '^C'
     @headerView.setStatus 'kill'
 
-  createGitHubIssueLink: (codeContext) ->
-    title = "Add #{codeContext.argType} support for #{codeContext.lang}"
+  createGitHubIssueLink: (argType, lang) ->
+    title = "Add #{argType} support for #{lang}"
     body = """
            ##### Platform: `#{process.platform}`
            ---
@@ -74,7 +74,7 @@ class ScriptView extends View
     encodedURI = encodedURI.replace(/#/g, '%23')
 
     err = $$ ->
-      @p class: 'block', "#{codeContext.argType} runner not available for #{codeContext.lang}."
+      @p class: 'block', "#{argType} runner not available for #{lang}."
       @p class: 'block', =>
         @text 'If it should exist, add an '
         @a href: encodedURI, 'issue on GitHub'
