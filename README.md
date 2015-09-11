@@ -43,7 +43,7 @@ Currently supported grammars are:
   * Objective-C <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
   * Objective-C++ <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
   * OCaml <sup>[*](#asterisk)</sup>
-  * Pandoc Markdown
+  * Pandoc Markdown <sup>[††](#two-daggers)</sup>
   * Perl
   * Perl 6
   * PHP
@@ -76,6 +76,8 @@ You only have to add a few lines in a PR to support another.
 <a name="double-dagger"></a><sup>‡</sup> C, C++, Objective-C, and Objective-C++ are currently only available for Mac OS X (where `process.platform is 'darwin'`). This is possible due to the commands `xcrun clang` and `xcrun clang++`. **NOTE**: Xcode and the Xcode command line tools are required to ensure `xcrun` and the correct compilers on your system.
 
 <a name="hash"></a><sup>#</sup> NCL scripts must end with `exit` command for file based runs
+
+<a name="two-daggers"></a><sup>††</sup> Requires the panzer pandoc wrapper https://github.com/msprev/panzer and the pandoc-flavored-markdown language package in Atom https://atom.io/packages/language-pfm
 
 ## Installation
 
