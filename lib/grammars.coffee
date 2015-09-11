@@ -284,6 +284,11 @@ module.exports =
       command: "ocaml"
       args: (context) -> [context.filepath]
 
+  'Pandoc Markdown':
+    "File Based":
+      command: "panzer"
+      args: (context) -> [context.filepath, "--output=" + context.filepath + ".pdf"]
+
   PHP:
     "Selection Based":
       command: "php"
