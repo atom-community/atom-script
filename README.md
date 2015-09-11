@@ -43,6 +43,7 @@ Currently supported grammars are:
   * Objective-C <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
   * Objective-C++ <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
   * OCaml <sup>[*](#asterisk)</sup>
+  * Pandoc Markdown
   * Perl
   * Perl 6
   * PHP
