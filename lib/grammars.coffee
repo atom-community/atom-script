@@ -188,6 +188,11 @@ module.exports =
         args = ['-c', "kotlinc #{context.filepath} -include-runtime -d /tmp/#{jarName} && java -jar /tmp/#{jarName}"]
         return args
 
+  LaTeX:
+    "File Based":
+      command: "latexmk"
+      args: (context) -> ['-quiet', '-pdf', '-shell-escape', context.filepath]
+
   LilyPond:
     "File Based":
       command: "lilypond"
