@@ -40,6 +40,7 @@ Currently supported grammars are:
   * MongoDB
   * [NCL](http://www.ncl.ucar.edu/)<sup>[#](#hash)</sup>
   * newLISP
+  * NSIS
   * Objective-C <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
   * Objective-C++ <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
   * OCaml <sup>[*](#asterisk)</sup>
