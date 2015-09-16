@@ -258,13 +258,17 @@ module.exports =
       command: "ncl"
       args: (context) -> [context.filepath]
 
-
   newLISP:
     "Selection Based":
       command: "newlisp"
       args: (context) -> ['-e', context.getCode()]
     "File Based":
       command: "newlisp"
+      args: (context) -> [context.filepath]
+
+  NSIS:
+    "File Based":
+      command: "makensis"
       args: (context) -> [context.filepath]
 
   'Objective-C':
