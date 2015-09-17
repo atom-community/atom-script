@@ -17,6 +17,13 @@ module.exports =
       title: 'Scroll with output'
       type: 'boolean'
       default: true
+    extraPathEntries:
+      title: 'Add these directories to the PATH environment variable'
+      description: 'Comma separated list of paths'
+      type: 'array'
+      items:
+        type: 'string'
+      default: []
   scriptView: null
   scriptOptionsView: null
   scriptOptions: null
