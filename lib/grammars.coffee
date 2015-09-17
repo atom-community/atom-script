@@ -191,7 +191,7 @@ module.exports =
   LaTeX:
     "File Based":
       command: "latexmk"
-      args: (context) -> ['-quiet', '-pdf', '-shell-escape', context.filepath]
+      args: (context) -> ['-pv', '-quiet', '-pdf', '-shell-escape', context.filepath]
 
   LilyPond:
     "File Based":
