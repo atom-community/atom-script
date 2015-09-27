@@ -1,3 +1,8 @@
+## 2.28.0
+* Add Nim support
+* Add Pandoc Markdown support
+* Upgrade strip ANSI
+
 ## 2.27.0
 * Crystal Language support
 * LaTeX support
