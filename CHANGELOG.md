@@ -1,3 +1,7 @@
+## 2.29.0
+
+* Really 2.28.0 again, can't seem to delete failed releases on atom.io
+
 ## 2.28.0
 * Add Nim support
 * Add Pandoc Markdown support
