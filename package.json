@@ -315,10 +315,8 @@
     "atom-space-pen-views": "^2.0.3"
   },
   "devDependencies": {
-    "grunt": "~0.4.5",
-    "nodegit": "^0.3.3"
+    "grunt": "~0.4.5"
   },
   "scripts": {
-    "prepublish": "node utils/updatePackage.js"
   }
 }

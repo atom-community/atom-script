@@ -1,3 +1,10 @@
+## 2.27.0
+* Crystal Language support
+* LaTeX support
+* NSIS support
+* Scrolls down in a polling loop to catch the reflow!
+* No more grandparent bottom panel
+
 ## 2.26.4
 * Fix Babel support
 * Now with TypeScript!
