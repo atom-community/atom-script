@@ -10,8 +10,19 @@ module.exports =
     path = require('path')
     fs = require('fs')
 
-    # check if we are running on a file
-    # with config
+    if(path.extname(editorfile)=='.nims')
+      # if we have an .nims file
+      try
+        tfile = editorfile.slice(0, -1)
+        stats = fs.statSync(tfile)
+        # it has a corresponding .nim file. so thats a config file.
+        # we run the .nim file instead.
+        return tfile
+      catch error
+        # it has no corresponding .nim file, it is a standalone script
+        return editorfile
+
+    # check if we are running on a file with config
     try
       stats = fs.statSync(editorfile + "s")
       return editorfile
