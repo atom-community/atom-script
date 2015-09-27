@@ -444,6 +444,14 @@ module.exports =
       command: "sml"
       args: (context) -> [context.filepath]
 
+  Nim:
+    "File Based":
+      command: "nim"
+      args: (context) ->
+        file = GrammarUtils.Nim.findNimProjectFile(context.filepath)
+        ['c', '--colors:off', '--verbosity:0', '--parallelBuild:1',
+          '-r', '"' + file + '"']
+
   Swift:
     "File Based":
       command: "xcrun"

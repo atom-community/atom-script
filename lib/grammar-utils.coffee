@@ -52,3 +52,8 @@ module.exports =
   #
   # Returns an {Object} which assists in creating temp files containing PHP code
   PHP: require './grammar-utils/php'
+
+  # Public: Get the Nim helper object
+  #
+  # Returns an {Object} which assists in selecting the right project file for Nim code
+  Nim: require './grammar-utils/nim'
