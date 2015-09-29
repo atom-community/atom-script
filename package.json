@@ -317,5 +317,19 @@
   "devDependencies": {
     "grunt": "~0.4.5"
   },
+  "providedServices": {
+    "default-script-runtime": {
+      "description": "Provides default runtime that's configurable through Atom editor",
+      "versions": {
+        "0.1.0": "provideDefaultRuntime"
+      }
+    },
+    "provide-blank-runtime": {
+      "description": "Provides a Runtime instance that's intended to be more programatically configurable",
+      "versions": {
+        "0.1.0": "provideBlankRuntime"
+      }
+    }
+  },
   "scripts": {}
 }
