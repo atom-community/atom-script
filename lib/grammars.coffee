@@ -272,6 +272,12 @@ module.exports =
       args: (context) -> [context.filepath]
 
   NSIS:
+    "Selection Based":
+      command: "makensis"
+      args: (context) ->
+        code = context.getCode()
+        tmpFile = GrammarUtils.createTempFileWithCode(code)
+        [tmpFile]
     "File Based":
       command: "makensis"
       args: (context) -> [context.filepath]
