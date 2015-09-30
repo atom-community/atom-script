@@ -261,6 +261,10 @@
     {
       "name": "Jarmo Kivekas",
       "email": "jarmo.kivekas@nixu.com"
+    },
+    {
+      "name": "Jan T. Sott",
+      "email": "git@idleberg.com"
     }
   ],
   "repository": "https://github.com/rgbkrk/atom-script",
