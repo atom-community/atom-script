@@ -25,6 +25,7 @@ class Runner
 
     if inputString
       @bufferedProcess.process.stdin.write(inputString)
+      @bufferedProcess.process.stdin.end()
 
     @bufferedProcess.onWillThrowError(@createOnErrorFunc(command))
 
