@@ -480,3 +480,8 @@ module.exports =
     "File Based":
       command: "bash"
       args: (context) -> ['-c', "tsc '#{context.filepath}' --out /tmp/js.out && node /tmp/js.out"]
+
+  Dart:
+    "File Based":
+      command: "dart"
+      args: (context) -> [context.filepath]
