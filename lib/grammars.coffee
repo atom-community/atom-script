@@ -493,3 +493,8 @@ module.exports =
     "File Based":
       command: "dart"
       args: (context) -> [context.filepath]
+
+  Octave:
+    "File Based":
+      command: "octave"
+      args: (context) -> ['-p', context.filepath.replace(/[^\/]*$/, ''), context.filepath]
