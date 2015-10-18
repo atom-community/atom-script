@@ -164,6 +164,14 @@ module.exports =
       command: "babel-node"
       args: (context) -> [context.filepath]
 
+  "JavaScript for Automation":
+    "Selection Based":
+      command: "osascript"
+      args: (context)  -> ['-l', 'JavaScript', '-e', context.getCode()]
+    "File Based":
+      command: "osascript"
+      args: (context) -> ['-l', 'JavaScript', context.filepath]
+
   Julia:
     "Selection Based":
       command: "julia"

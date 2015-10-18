@@ -28,6 +28,7 @@ Currently supported grammars are:
   * Haskell
   * Java
   * Javascript
+  * [JavaScript for Automation](https://developer.apple.com/library/mac/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/Introduction.html) (JXA)
   * Julia
   * Kotlin
   * LaTeX (via latexmk)
