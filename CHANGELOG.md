@@ -1,3 +1,7 @@
+## 3.0.1
+
+* Quick doc updates
+
 ## 3.0.0
 
 * Support for Dart
