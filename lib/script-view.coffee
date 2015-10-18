@@ -88,6 +88,8 @@ class ScriptView extends View
     @output.append $$ ->
       @h1 'Unable to run'
       @pre _.escape command
+      @h2 'Did you start Atom from the command line?'
+      @pre '  atom .'
       @h2 'Is it in your PATH?'
       @pre "PATH: #{_.escape process.env.PATH}"
 
