@@ -63,6 +63,7 @@ Currently supported grammars are:
   * Swift
   * TypeScript
   * Dart
+  * Octave
 
 **NOTE**: Some grammars may require you to install [a custom language package](https://atom.io/search?utf8=✓&q=language).
 
