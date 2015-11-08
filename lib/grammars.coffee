@@ -164,7 +164,7 @@ module.exports =
       command: "babel-node"
       args: (context) -> [context.filepath]
 
-  "JavaScript for Automation":
+  "JavaScript for Automation (JXA)":
     "Selection Based":
       command: "osascript"
       args: (context)  -> ['-l', 'JavaScript', '-e', context.getCode()]
