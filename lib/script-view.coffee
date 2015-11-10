@@ -5,6 +5,7 @@ ScriptOptionsView = require './script-options-view'
 
 AnsiFilter = require 'ansi-to-html'
 stripAnsi = require 'strip-ansi'
+linkPaths = require './link-paths'
 _ = require 'underscore'
 
 # Runs a portion of a script through an interpreter and displays it line by line
@@ -24,6 +25,8 @@ class ScriptView extends View
 
   initialize: (serializeState) ->
     @ansiFilter = new AnsiFilter
+
+    linkPaths.listen @
 
   serialize: ->
 
@@ -85,6 +88,8 @@ class ScriptView extends View
     @output.append $$ ->
       @h1 'Unable to run'
       @pre _.escape command
+      @h2 'Did you start Atom from the command line?'
+      @pre '  atom .'
       @h2 'Is it in your PATH?'
       @pre "PATH: #{_.escape process.env.PATH}"
 
@@ -124,6 +129,7 @@ class ScriptView extends View
       line = _.escape(line)
 
     line = @ansiFilter.toHtml(line)
+    line = linkPaths(line)
 
     padding = parseInt(@output.css('padding-bottom'))
     scrolledToEnd =

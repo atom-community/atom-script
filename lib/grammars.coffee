@@ -164,6 +164,14 @@ module.exports =
       command: "babel-node"
       args: (context) -> [context.filepath]
 
+  "JavaScript for Automation (JXA)":
+    "Selection Based":
+      command: "osascript"
+      args: (context)  -> ['-l', 'JavaScript', '-e', context.getCode()]
+    "File Based":
+      command: "osascript"
+      args: (context) -> ['-l', 'JavaScript', context.filepath]
+
   Julia:
     "Selection Based":
       command: "julia"
@@ -272,6 +280,12 @@ module.exports =
       args: (context) -> [context.filepath]
 
   NSIS:
+    "Selection Based":
+      command: "makensis"
+      args: (context) ->
+        code = context.getCode()
+        tmpFile = GrammarUtils.createTempFileWithCode(code)
+        [tmpFile]
     "File Based":
       command: "makensis"
       args: (context) -> [context.filepath]
@@ -451,11 +465,11 @@ module.exports =
 
   Nim:
     "File Based":
-      command: "nim"
+      command: "bash"
       args: (context) ->
         file = GrammarUtils.Nim.findNimProjectFile(context.filepath)
-        ['c', '--colors:off', '--verbosity:0', '--parallelBuild:1',
-          '-r', '"' + file + '"']
+        path = GrammarUtils.Nim.projectDir(context.filepath)
+        ['-c', 'cd "' + path + '" && nim c --colors:on --hints:off --parallelBuild:1 -r "' + file + '" 2>&1']
 
   Swift:
     "File Based":
@@ -474,3 +488,13 @@ module.exports =
     "File Based":
       command: "bash"
       args: (context) -> ['-c', "tsc '#{context.filepath}' --out /tmp/js.out && node /tmp/js.out"]
+
+  Dart:
+    "File Based":
+      command: "dart"
+      args: (context) -> [context.filepath]
+
+  Octave:
+    "File Based":
+      command: "octave"
+      args: (context) -> ['-p', context.filepath.replace(/[^\/]*$/, ''), context.filepath]

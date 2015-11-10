@@ -28,6 +28,7 @@ Currently supported grammars are:
   * Haskell
   * Java
   * Javascript
+  * [JavaScript for Automation](https://developer.apple.com/library/mac/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/Introduction.html) (JXA)
   * Julia
   * Kotlin
   * LaTeX (via latexmk)
@@ -41,6 +42,7 @@ Currently supported grammars are:
   * MongoDB
   * [NCL](http://www.ncl.ucar.edu/)<sup>[#](#hash)</sup>
   * newLISP
+  * Nim (and NimScript)
   * NSIS
   * Objective-C <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
   * Objective-C++ <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
@@ -60,6 +62,8 @@ Currently supported grammars are:
   * Scala
   * Swift
   * TypeScript
+  * Dart
+  * Octave
 
 **NOTE**: Some grammars may require you to install [a custom language package](https://atom.io/search?utf8=✓&q=language).
 
@@ -91,7 +95,13 @@ Search for `script` within package search in the Settings View.
 
 ## Atom can't find node | ruby | python | my socks
 
-Make sure to launch Atom from the console/terminal. This gives atom all your useful environment variables.
+Make sure to launch Atom from the console/terminal. This gives atom all your useful environment variables. Additionally, make sure to run it with the project path you need. For example, use
+
+```
+atom .
+```
+
+to get it to run with the *current* directory as the default place to run scripts from.
 
 If you *really* wish to open atom from a launcher/icon, see [this issue for a variety of workarounds that have been suggested](https://github.com/rgbkrk/atom-script/issues/61#issuecomment-37337827).
 

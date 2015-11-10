@@ -1,3 +1,16 @@
+## 3.0.1
+
+* Quick doc updates
+
+## 3.0.0
+
+* Support for Dart
+* Support for Nim/Nimscript
+* Support for JXA (OS X - JavaScript for Automation)
+* Selection support for NSIS
+* Major refactor of runs - let us know how it goes
+* File paths get wrapped as links
+
 ## 2.29.0
 
 * Really 2.28.0 again, can't seem to delete failed releases on atom.io

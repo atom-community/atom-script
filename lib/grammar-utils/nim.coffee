@@ -6,6 +6,10 @@ module.exports =
   #
   # Returns the {String} filepath of file to run
 
+  projectDir: (editorfile) ->
+    path = require('path')
+    return path.dirname(editorfile)
+
   findNimProjectFile: (editorfile) ->
     path = require('path')
     fs = require('fs')
@@ -17,23 +21,23 @@ module.exports =
         stats = fs.statSync(tfile)
         # it has a corresponding .nim file. so thats a config file.
         # we run the .nim file instead.
-        return tfile
+        return path.basename(tfile)
       catch error
         # it has no corresponding .nim file, it is a standalone script
-        return editorfile
+        return path.basename(editorfile)
 
     # check if we are running on a file with config
     try
       stats = fs.statSync(editorfile + "s")
-      return editorfile
+      return path.basename(editorfile)
 
     try
       stats = fs.statSync(editorfile + ".cfg")
-      return editorfile
+      return path.basename(editorfile)
 
     try
       stats = fs.statSync(editorfile + "cfg")
-      return editorfile
+      return path.basename(editorfile)
 
     # assume we want to run a project
     # searching for the first file which has
@@ -52,9 +56,9 @@ module.exports =
               try
                 tfile = name.slice(0, -1)
                 stats = fs.statSync(tfile)
-                return tfile
+                return path.basename(tfile)
               catch error
                 console.log "File does not exist.";
 
     # just run what we got
-    return editorfile
+    return path.basename(editorfile)
