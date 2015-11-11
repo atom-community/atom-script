@@ -51,6 +51,7 @@ Currently supported grammars are:
   * Perl
   * Perl 6
   * PHP
+  * PostgreSQL <sup>[§](#section)</sup>
   * Python
   * RSpec
   * Racket
@@ -84,6 +85,12 @@ You only have to add a few lines in a PR to support another.
 <a name="hash"></a><sup>#</sup> NCL scripts must end with `exit` command for file based runs
 
 <a name="two-daggers"></a><sup>††</sup> Requires the panzer pandoc wrapper https://github.com/msprev/panzer and the pandoc-flavored-markdown language package in Atom https://atom.io/packages/language-pfm
+
+<a name="section"></a><sup>§</sup> Requires the atom-language-pgsql package in
+Atom https://atom.io/packages/language-pgsql.  Connects as user `$PGUSER` to
+database `$PGDATABASE`. Both default to the operating system's user name and both
+can be set in the process environment or in Atom's `init.coffee` script:
+`process.env.PGUSER = ⟨username⟩` and `process.env.PGDATABASE = ⟨database name⟩`.
 
 ## Installation
 
