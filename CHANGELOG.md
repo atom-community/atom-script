@@ -1,3 +1,10 @@
+## 3.0.2
+
+* Fix when stdin is coming on in (still doesn't accept it, but it also doesn't act wild)
+* JXA language support fixed
+* Support for Postgres
+* Selection based support for Octave
+
 ## 3.0.1
 
 * Quick doc updates
