@@ -31,7 +31,11 @@ class ScriptView extends View
   serialize: ->
 
   setHeaderAndShowExecutionTime: (returnCode, executionTime) =>
-    @display 'stdout', '[Finished in '+executionTime.toString()+'s]'
+    if (executionTime?)
+        @display 'stdout', '[Finished in '+executionTime.toString()+'s]'
+    else
+        @display 'stdout'
+
     if returnCode is 0
       @setHeaderStatus 'stop'
     else
