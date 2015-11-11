@@ -458,6 +458,14 @@ module.exports =
       command: "fish"
       args: (context) -> [context.filepath]
 
+  "SQL (PostgreSQL)":
+    "Selection Based":
+      command: "psql"
+      args: (context) -> ['-c', context.getCode()]
+    "File Based":
+      command: "psql"
+      args: (context) -> ['-f', context.filepath]
+
   "Standard ML":
     "File Based":
       command: "sml"
