@@ -495,6 +495,9 @@ module.exports =
       args: (context) -> [context.filepath]
 
   Octave:
+    "Selection Based":
+      command: "octave"
+      args: (context) -> ['-p', context.filepath.replace(/[^\/]*$/, ''), '--eval', context.getCode()]
     "File Based":
       command: "octave"
       args: (context) -> ['-p', context.filepath.replace(/[^\/]*$/, ''), context.filepath]
