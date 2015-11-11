@@ -64,3 +64,17 @@ describe 'Runner', ->
 
       runs =>
         expect(@failedEvent.message).toMatch(/kaboom/)
+
+    it 'terminates stdin', ->
+      runs =>
+        @output = null
+        @runner.onDidWriteToStdout (output) =>
+          @output = output
+        @runner.run(@command, ['./stdinEndTest.js'], {}, 'unused input')
+
+      waitsFor =>
+        @output != null
+      , "File should execute", 500
+
+      runs =>
+        expect(@output).toEqual({ message: 'stdin terminated\n' })
