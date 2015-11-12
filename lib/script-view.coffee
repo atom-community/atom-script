@@ -1,8 +1,7 @@
-HeaderView = require './header-view'
-ScriptOptionsView = require './script-options-view'
-
 {View, $$} = require 'atom-space-pen-views'
 
+HeaderView = require './header-view'
+{MessagePanelView} = require 'atom-message-panel'
 AnsiFilter = require 'ansi-to-html'
 stripAnsi = require 'strip-ansi'
 linkPaths = require './link-paths'
@@ -10,25 +9,17 @@ _ = require 'underscore'
 
 # Runs a portion of a script through an interpreter and displays it line by line
 module.exports =
-class ScriptView extends View
-  @results: ""
-
-  @content: ->
-    @div =>
-      @subview 'headerView', new HeaderView()
-
-      # Display layout and outlets
-      css = 'tool-panel panel panel-bottom padding script-view
-        native-key-bindings'
-      @div class: css, outlet: 'script', tabindex: -1, =>
-        @div class: 'panel-body padded output', outlet: 'output'
-
-  initialize: (serializeState) ->
+class ScriptView extends MessagePanelView
+  constructor: ->
     @ansiFilter = new AnsiFilter
 
-    linkPaths.listen @
+    @headerView = new HeaderView
 
-  serialize: ->
+    super(title: @headerView, rawTitle: true, closeMethod: 'destroy')
+
+    @addClass('script-view')
+
+    linkPaths.listen @body
 
   setHeaderAndShowExecutionTime: (returnCode, executionTime) =>
     if (executionTime?)
@@ -45,30 +36,25 @@ class ScriptView extends View
     # Display window and load message
 
     # First run, create view
-    atom.workspace.addBottomPanel(item: this) unless @hasParent()
+    @attach() unless @hasParent()
 
     # Close any existing process and start a new one
     @stop()
 
-    @headerView.title.text title
-    @headerView.setStatus 'start'
+    @setHeaderTitle title
+    @setHeaderStatus 'start'
 
     # Get script view ready
-    @output.empty()
-
-    # Remove the old script results
-    @results = ""
+    @clear()
 
   close: ->
     @stop()
-    if @hasParent()
-      grandParent = @script.parent().parent()
-      @detach()
-      grandParent.remove()
+    @detach()
+    super
 
   stop: ->
     @display 'stdout', '^C'
-    @headerView.setStatus 'kill'
+    @setHeaderStatus 'kill'
 
   createGitHubIssueLink: (argType, lang) ->
     title = "Add #{argType} support for #{lang}"
@@ -89,7 +75,7 @@ class ScriptView extends View
     @handleError(err)
 
   showUnableToRunError: (command) ->
-    @output.append $$ ->
+    @add $$ ->
       @h1 'Unable to run'
       @pre _.escape command
       @h2 'Did you start Atom from the command line?'
@@ -115,9 +101,9 @@ class ScriptView extends View
 
   handleError: (err) ->
     # Display error and kill process
-    @headerView.title.text 'Error'
-    @headerView.setStatus 'err'
-    @output.append err
+    @setHeaderTitle 'Error'
+    @setHeaderStatus 'err'
+    @add(err)
     @stop()
 
   setHeaderStatus: (status) ->
@@ -127,35 +113,31 @@ class ScriptView extends View
     @headerView.title.text title
 
   display: (css, line) ->
-    @results += line
-
     if atom.config.get('script.escapeConsoleOutput')
       line = _.escape(line)
 
     line = @ansiFilter.toHtml(line)
     line = linkPaths(line)
 
-    padding = parseInt(@output.css('padding-bottom'))
-    scrolledToEnd =
-      @script.scrollBottom() == (padding + @output.trueHeight())
+    {clientHeight, scrollTop, scrollHeight} = @body[0]
+    # indicates that the panel is scrolled to the bottom, thus we know that
+    # we are not interfering with the user's manual scrolling
+    atEnd = scrollTop >= (scrollHeight - clientHeight)
 
-    lessThanFull = @output.trueHeight() <= @script.trueHeight()
-
-    @output.append $$ ->
+    @add $$ ->
       @pre class: "line #{css}", =>
         @raw line
 
-    if atom.config.get('script.scrollWithOutput')
-      if lessThanFull or scrolledToEnd
-        # Scroll down in a polling loop 'cause
-        # we don't know when the reflow will finish.
-        # See: http://stackoverflow.com/q/5017923/407845
-        do @checkScrollAgain 5
+    if atom.config.get('script.scrollWithOutput') and atEnd
+      # Scroll down in a polling loop 'cause
+      # we don't know when the reflow will finish.
+      # See: http://stackoverflow.com/q/5017923/407845
+      do @checkScrollAgain 5
 
   scrollTimeout: null
   checkScrollAgain: (times) ->
     =>
-      @script.scrollToBottom()
+      @body.scrollToBottom()
 
       clearTimeout @scrollTimeout
       if times > 1
