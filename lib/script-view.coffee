@@ -47,10 +47,18 @@ class ScriptView extends MessagePanelView
     # Get script view ready
     @clear()
 
-  close: ->
+  removePanel: ->
     @stop()
     @detach()
-    super
+    # the 'close' method from MessagePanelView actually destroys the panel
+    ScriptView.__super__.close.apply(this)
+
+  # This is triggered when hitting the 'close' button on the panel
+  # We are not actually closing the panel here since we want to trigger
+  # 'script:close-view' which will eventually remove the panel via 'removePanel'
+  close: ->
+    workspaceView = atom.views.getView(atom.workspace)
+    atom.commands.dispatch workspaceView, 'script:close-view'
 
   stop: ->
     @display 'stdout', '^C'
