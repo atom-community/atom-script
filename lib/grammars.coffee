@@ -417,6 +417,9 @@ module.exports =
       args: (context) -> ['-f', context.filepath]
 
   Sage:
+    "Selection Based":
+      command: "sage"
+      args: (context) -> ['-c', context.getCode()]
     "File Based":
       command: "sage"
       args: (context) -> [context.filepath]
