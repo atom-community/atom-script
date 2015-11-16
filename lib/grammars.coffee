@@ -416,6 +416,11 @@ module.exports =
       command: "make"
       args: (context) -> ['-f', context.filepath]
 
+  Sage:
+    "File Based":
+      command: "sage"
+      args: (context) -> [context.filepath]
+
   Sass:
     "File Based":
       command: "sass"
