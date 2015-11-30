@@ -1,7 +1,7 @@
 HeaderView = require './header-view'
 ScriptOptionsView = require './script-options-view'
 
-{View, $$} = require 'atom-space-pen-views'
+{View, $$, $} = require 'atom-space-pen-views'
 
 AnsiFilter = require 'ansi-to-html'
 stripAnsi = require 'strip-ansi'
@@ -15,6 +15,7 @@ class ScriptView extends View
 
   @content: ->
     @div =>
+      @div class: 'panel-resize-handle'
       @subview 'headerView', new HeaderView()
 
       # Display layout and outlets
@@ -24,11 +25,33 @@ class ScriptView extends View
         @div class: 'panel-body padded output', outlet: 'output'
 
   initialize: (serializeState) ->
+    @handleEvents()
     @ansiFilter = new AnsiFilter
 
     linkPaths.listen @
 
   serialize: ->
+
+  handleEvents: =>
+    @on 'mousedown', '.panel-resize-handle', (e) => @resizeStarted(e)
+
+  resizeStarted: =>
+    $(document).on('mousemove', @resizeScriptView)
+    $(document).on('mouseup', @resizeStopped)
+
+  resizeStopped: =>
+    $(document).off('mousemove', @resizeScriptView)
+    $(document).off('mouseup', @resizeStopped)
+
+  resizeScriptView: ({pageY, which}) =>
+    totalHeight  = $(document.body).height()
+    headerHeight = $(".header-view").height()
+    # FIXME(rodionovd): I don't know why this offset must be exactly 51px, but
+    # it seems to work. Sorry everyone.
+    magicOffset = 51
+    $(".script-view").css({
+        height: (totalHeight - pageY - headerHeight - magicOffset)
+    });
 
   setHeaderAndShowExecutionTime: (returnCode, executionTime) =>
     if (executionTime?)
