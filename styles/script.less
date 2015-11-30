@@ -40,10 +40,17 @@
   }
 }
 
+.panel-resize-handle {
+  position: relative;
+  height: 3pt;
+  cursor: row-resize;
+  z-index: 3;
+}
+
 .script-view {
   overflow: scroll;
-  max-height: 300px;
-  height: auto;
+  height: 300px;
+  min-height: 100px;
   margin-bottom: 0px;
 
   .panel-body pre{
