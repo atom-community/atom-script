@@ -316,7 +316,8 @@
     "node-uuid": "~1.4.0",
     "strip-ansi": "^3.0.0",
     "underscore": "~1.5.2",
-    "atom-space-pen-views": "^2.0.3"
+    "atom-space-pen-views": "^2.0.3",
+    "atom-message-panel": "1.2.4"
   },
   "devDependencies": {
     "grunt": "~0.4.5"

@@ -51,14 +51,14 @@ module.exports =
 
   deactivate: ->
     @runtime.destroy()
-    @scriptView.close()
+    @scriptView.removePanel()
     @scriptOptionsView.close()
     @subscriptions.dispose()
     GrammarUtils.deleteTempFiles()
 
   closeScriptViewAndStopRunner: ->
     @runtime.stop()
-    @scriptView.close()
+    @scriptView.removePanel()
 
   # Public
   #
