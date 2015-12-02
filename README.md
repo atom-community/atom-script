@@ -59,6 +59,7 @@ Currently supported grammars are:
   * Ruby
   * Ruby on Rails
   * Rust
+  * Sage
   * Sass/SCSS <sup>[*](#asterisk)</sup>
   * Scala
   * Swift
