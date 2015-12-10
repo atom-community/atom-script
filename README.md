@@ -8,7 +8,7 @@ Run scripts based on file name, a selection of code, or by line number.
 Currently supported grammars are:
 
   * AppleScript
-  * Bash
+  * Bash <sup>[**](#double-asterisk)</sup>
   * Behat Feature
   * C <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
   * C++ <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
@@ -40,7 +40,7 @@ Currently supported grammars are:
   * Makefile
   * MoonScript
   * MongoDB
-  * [NCL](http://www.ncl.ucar.edu/)<sup>[#](#hash)</sup>
+  * [NCL](http://ncl.ucar.edu)<sup>[#](#hash)</sup>
   * newLISP
   * Nim (and NimScript)
   * NSIS
@@ -62,10 +62,12 @@ Currently supported grammars are:
   * Sage
   * Sass/SCSS <sup>[*](#asterisk)</sup>
   * Scala
+  * Shell Script <sup>[**](#double-asterisk)</sup>
   * Swift
   * TypeScript
   * Dart
   * Octave
+  * Zsh <sup>[**](#double-asterisk)</sup>
 
 **NOTE**: Some grammars may require you to install [a custom language package](https://atom.io/search?utf8=✓&q=language).
 
@@ -92,6 +94,8 @@ Atom https://atom.io/packages/language-pgsql.  Connects as user `$PGUSER` to
 database `$PGDATABASE`. Both default to the operating system's user name and both
 can be set in the process environment or in Atom's `init.coffee` script:
 `process.env.PGUSER = ⟨username⟩` and `process.env.PGDATABASE = ⟨database name⟩`.
+
+<a name="double-asterisk"></a><sup>\**</sup> The shell used is based on your default `$SHELL` environment variable.
 
 ## Installation
 
@@ -138,7 +142,7 @@ clipboard, allowing you to paste it into the editor.
 ### Command and shortcut reference
 
 | Command                    | Mac OS X                            | Linux/Windows               | Notes                                                                         |
-|----------------------------|-------------------------------------|-----------------------------|-------------------------------------------------------------------------------|
+|:---------------------------|:------------------------------------|:----------------------------|:------------------------------------------------------------------------------|
 | Script: Run                | <kbd>cmd-i</kbd>                    | <kbd>shift-ctrl-b</kbd>     | If text is selected a "Selection Based" is used instead of a "File Based" run |
 | Script: Run by Line Number | <kbd>shift-cmd-j</kbd>              | <kbd>shift-ctrl-j</kbd>     | If text is selected the line number will be the last                          |
 | Script: Run Options        | <kbd>shift-cmd-i</kbd>              | <kbd>shift-ctrl-alt-o</kbd> | Runs the selection or whole file with the given options                       |
