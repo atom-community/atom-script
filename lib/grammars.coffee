@@ -489,8 +489,8 @@ module.exports =
 
   Swift:
     "File Based":
-      command: "xcrun"
-      args: (context) -> ['swift', context.filepath]
+      command: "swift"
+      args: (context) -> [context.filepath]
 
   TypeScript:
     "Selection Based":

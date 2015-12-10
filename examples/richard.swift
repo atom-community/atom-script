@@ -1,4 +1,16 @@
-// Richard Swift - The Shade (DC Comics)
+#!/usr/bin/swift
 
-var who = "World"
-println("Hello, \(who)!")
+// To use this file as script:
+/*
+ $ chmod +x /path/to/file.swift
+ $ /path/to/file.swift
+ > Hello, World
+*/
+
+import Swift
+
+public func greet(receiver: String) {
+  print("Hello, \(receiver)")
+}
+
+greet("World")
