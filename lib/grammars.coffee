@@ -241,6 +241,14 @@ module.exports =
       command: "lua"
       args: (context) -> [context.filepath]
 
+  MagicPython:
+    "Selection Based":
+      command: "python"
+      args: (context)  -> ['-c', context.getCode()]
+    "File Based":
+      command: "python"
+      args: (context) -> [context.filepath]
+
   MoonScript:
     "Selection Based":
       command: "moon"
