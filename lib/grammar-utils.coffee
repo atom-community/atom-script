@@ -47,7 +47,12 @@ module.exports =
   #
   # Returns an {Object} which assists in writing OS dependent code.
   OperatingSystem: require './grammar-utils/operating-system'
-
+  
+  # Public: Get the R helper object
+  #
+  # Returns an {Object} which assists in creating temp files containing R code
+  R: require './grammar-utils/R'
+  
   # Public: Get the PHP helper object
   #
   # Returns an {Object} which assists in creating temp files containing PHP code

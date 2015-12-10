@@ -353,6 +353,12 @@ module.exports =
       args: (context) -> [context.filepath]
 
   R:
+    "Selection Based":
+      command: "Rscript"
+      args: (context) ->
+        code = context.getCode()
+        file = GrammarUtils.R.createTempFileWithCode(code)
+        [file]
     "File Based":
       command: "Rscript"
       args: (context) -> [context.filepath]
