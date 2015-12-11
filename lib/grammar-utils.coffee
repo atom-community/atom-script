@@ -62,3 +62,8 @@ module.exports =
   #
   # Returns an {Object} which assists in selecting the right project file for Nim code
   Nim: require './grammar-utils/nim'
+
+  # Public: Predetermine CoffeeScript compiler
+  #
+  # Returns an [array] of appropriate command line flags for the active CS compiler.
+  CScompiler: require './grammar-utils/coffee-script-compiler'
