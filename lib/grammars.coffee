@@ -141,12 +141,20 @@ module.exports =
       args: (context) -> [context.filepath]
 
   Java:
-    "File Based":
-      command: "bash"
-      args: (context) ->
-        className = context.filename.replace /\.java$/, ""
-        args = ['-c', "javac -d /tmp '#{context.filepath}' && java -cp /tmp #{className}"]
-        return args
+    if GrammarUtils.OperatingSystem.isWindows()
+      "File Based":
+        command: "cmd"
+        args: (context) ->
+          className = context.filename.replace /\.java$/, ""
+          args = ["/c javac -Xlint #{context.filename} && start cmd /k java #{className}"]
+          return args
+    else
+      "File Based":
+        command: "bash"
+        args: (context) ->
+          className = context.filename.replace /\.java$/, ""
+          args = ['-c', "javac -d /tmp '#{context.filepath}' && java -cp /tmp #{className}"]
+          return args
 
   JavaScript:
     "Selection Based":
