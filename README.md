@@ -26,7 +26,7 @@ Currently supported grammars are:
   * Go <sup>[*](#asterisk)</sup>
   * Groovy
   * Haskell
-  * Java
+  * Java (Windows users should manually add jdk path (...\jdk1.x.x_xx\bin) to their system environment variables)
   * Javascript
   * [JavaScript for Automation](https://developer.apple.com/library/mac/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/Introduction.html) (JXA)
   * Julia
