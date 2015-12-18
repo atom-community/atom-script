@@ -244,10 +244,10 @@ module.exports =
   MagicPython:
     "Selection Based":
       command: "python"
-      args: (context)  -> ['-c', context.getCode()]
+      args: (context)  -> ['-u', '-c', context.getCode()]
     "File Based":
       command: "python"
-      args: (context) -> [context.filepath]
+      args: (context) -> ['-u', context.filepath]
 
   MoonScript:
     "Selection Based":
@@ -355,10 +355,10 @@ module.exports =
   Python:
     "Selection Based":
       command: "python"
-      args: (context)  -> ['-c', context.getCode()]
+      args: (context)  -> ['-u', '-c', context.getCode()]
     "File Based":
       command: "python"
-      args: (context) -> [context.filepath]
+      args: (context) -> ['-u', context.filepath]
 
   R:
     "Selection Based":
