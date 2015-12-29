@@ -5,6 +5,11 @@ _ = require 'underscore'
 GrammarUtils = require '../lib/grammar-utils'
 
 module.exports =
+  '1C (BSL)':
+    'File Based':
+      command: "oscript"
+      args: (context) -> ['-encoding=utf-8', context.filepath]
+
   AppleScript:
     'Selection Based':
       command: 'osascript'

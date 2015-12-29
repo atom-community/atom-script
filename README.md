@@ -12,6 +12,7 @@ Run scripts based on file name, a selection of code, or by line number.
 
 Currently supported grammars are:
 
+  * 1C (BSL)
   * AppleScript
   * Bash <sup>[**](#double-asterisk)</sup>
   * Behat Feature
