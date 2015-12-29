@@ -7,6 +7,8 @@ class ViewRuntimeObserver
   observe: (runtime) ->
     @subscriptions.add runtime.onDidExecuteStart =>
       @view.resetView()
+    @subscriptions.add runtime.onDidExecuteStop =>
+      @view.stop()
     @subscriptions.add runtime.onDidWriteToStderr (ev) =>
       @view.display 'stderr', ev.message
     @subscriptions.add runtime.onDidWriteToStdout (ev) =>

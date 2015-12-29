@@ -38,9 +38,6 @@ class ScriptView extends MessagePanelView
     # First run, create view
     @attach() unless @hasParent()
 
-    # Close any existing process and start a new one
-    @stop()
-
     @setHeaderTitle title
     @setHeaderStatus 'start'
 

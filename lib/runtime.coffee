@@ -66,10 +66,15 @@ class Runtime
   # Public: stops execution of the current fork
   stop: ->
     @runner.stop()
+    @emitter.emit 'did-execute-stop'
 
   # Public: Dispatched when the execution is starting
   onDidExecuteStart: (callback) ->
     @emitter.on 'did-execute-start', callback
+
+  # Public: Dispatched when the execution is stopped
+  onDidExecuteStop: (callback) ->
+    @emitter.on 'did-execute-stop', callback
 
   # Public: Dispatched when the language is not specified
   onDidNotSpecifyLanguage: (callback) ->
