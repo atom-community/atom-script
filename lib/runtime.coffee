@@ -43,7 +43,7 @@ class Runtime
   # * "File Based"
   # input (Optional) - {String} that'll be provided to the `stdin` of the new process
   execute: (argType = "Selection Based", input = null) ->
-    @emitter.emit 'did-execute-start'
+    @emitter.emit 'start'
 
     codeContext = @codeContextBuilder.buildCodeContext(atom.workspace.getActiveTextEditor(), argType)
 
@@ -61,19 +61,29 @@ class Runtime
       lineNumber: codeContext.lineNumber
 
     @runner.run(commandContext.command, commandContext.args, codeContext, input)
+    @emitter.emit 'started'
 
   # Public: stops execution of the current fork
   stop: ->
+    @emitter.emit 'stop'
     @runner.stop()
-    @emitter.emit 'did-execute-stop'
+    @emitter.emit 'stopped'
 
   # Public: Dispatched when the execution is starting
-  onDidExecuteStart: (callback) ->
-    @emitter.on 'did-execute-start', callback
+  onStart: (callback) ->
+    @emitter.on 'start', callback
+
+  # Public: Dispatched when the execution is started
+  onStarted: (callback) ->
+    @emitter.on 'started', callback
+
+  # Public: Dispatched when the execution is stopping
+  onStop: (callback) ->
+    @emitter.on 'stop', callback
 
   # Public: Dispatched when the execution is stopped
-  onDidExecuteStop: (callback) ->
-    @emitter.on 'did-execute-stop', callback
+  onStopped: (callback) ->
+    @emitter.on 'stopped', callback
 
   # Public: Dispatched when the language is not specified
   onDidNotSpecifyLanguage: (callback) ->
