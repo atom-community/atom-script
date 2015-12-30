@@ -5,9 +5,9 @@ class ViewRuntimeObserver
   constructor: (@view, @subscriptions = new CompositeDisposable) ->
 
   observe: (runtime) ->
-    @subscriptions.add runtime.onDidExecuteStart =>
+    @subscriptions.add runtime.onStart =>
       @view.resetView()
-    @subscriptions.add runtime.onDidExecuteStop =>
+    @subscriptions.add runtime.onStopped =>
       @view.stop()
     @subscriptions.add runtime.onDidWriteToStderr (ev) =>
       @view.display 'stderr', ev.message
