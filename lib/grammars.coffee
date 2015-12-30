@@ -5,6 +5,11 @@ _ = require 'underscore'
 GrammarUtils = require '../lib/grammar-utils'
 
 module.exports =
+  '1C (BSL)':
+    'File Based':
+      command: "oscript"
+      args: (context) -> ['-encoding=utf-8', context.filepath]
+
   AppleScript:
     'Selection Based':
       command: 'osascript'
@@ -142,10 +147,14 @@ module.exports =
 
   Java:
     "File Based":
-      command: "bash"
+      command: if GrammarUtils.OperatingSystem.isWindows() then "cmd" else "bash"
       args: (context) ->
         className = context.filename.replace /\.java$/, ""
-        args = ['-c', "javac -d /tmp '#{context.filepath}' && java -cp /tmp #{className}"]
+        args = []
+        if GrammarUtils.OperatingSystem.isWindows()
+          args = ["/c javac -Xlint #{context.filename} && start cmd /k java #{className}"]
+        else
+          args = ['-c', "javac -d /tmp '#{context.filepath}' && java -cp /tmp #{className}"]
         return args
 
   JavaScript:
@@ -244,10 +253,10 @@ module.exports =
   MagicPython:
     "Selection Based":
       command: "python"
-      args: (context)  -> ['-c', context.getCode()]
+      args: (context)  -> ['-u', '-c', context.getCode()]
     "File Based":
       command: "python"
-      args: (context) -> [context.filepath]
+      args: (context) -> ['-u', context.filepath]
 
   MoonScript:
     "Selection Based":
@@ -347,6 +356,14 @@ module.exports =
       command: "perl6"
       args: (context) -> [context.filepath]
 
+  "Perl 6 FE":
+    "Selection Based":
+      command: "perl6"
+      args: (context)  -> ['-e', context.getCode()]
+    "File Based":
+      command: "perl6"
+      args: (context) -> [context.filepath]
+
   PowerShell:
     "File Based":
       command: "powershell"
@@ -355,10 +372,10 @@ module.exports =
   Python:
     "Selection Based":
       command: "python"
-      args: (context)  -> ['-c', context.getCode()]
+      args: (context)  -> ['-u', '-c', context.getCode()]
     "File Based":
       command: "python"
-      args: (context) -> [context.filepath]
+      args: (context) -> ['-u', context.filepath]
 
   R:
     "Selection Based":
@@ -420,7 +437,7 @@ module.exports =
   Rust:
     "File Based":
       command: "bash"
-      args: (context) -> ['-c', "rustc " + context.filepath + " -o /tmp/rs.out && /tmp/rs.out"]
+      args: (context) -> ['-c', "rustc '#{context.filepath}' -o /tmp/rs.out && /tmp/rs.out"]
 
   Makefile:
     "Selection Based":

@@ -1,4 +1,9 @@
-# Script [![Build Status](http://img.shields.io/travis/rgbkrk/atom-script.svg?style=flat)](https://travis-ci.org/rgbkrk/atom-script)
+# Script
+
+[![Build Status](http://img.shields.io/travis/rgbkrk/atom-script.svg?style=flat)](https://travis-ci.org/rgbkrk/atom-script)
+
+[![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.3.0/dist/gratipay.svg)](https://gratipay.com/rgbkrk/)
+
 **Run code in Atom!**
 
 Run scripts based on file name, a selection of code, or by line number.
@@ -7,6 +12,7 @@ Run scripts based on file name, a selection of code, or by line number.
 
 Currently supported grammars are:
 
+  * 1C (BSL)
   * AppleScript
   * Bash <sup>[**](#double-asterisk)</sup>
   * Behat Feature
@@ -26,7 +32,7 @@ Currently supported grammars are:
   * Go <sup>[*](#asterisk)</sup>
   * Groovy
   * Haskell
-  * Java
+  * Java <sup>[***](#triple-asterisk)</sup>
   * Javascript
   * [JavaScript for Automation](https://developer.apple.com/library/mac/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/Introduction.html) (JXA)
   * Julia
@@ -96,6 +102,8 @@ can be set in the process environment or in Atom's `init.coffee` script:
 `process.env.PGUSER = ⟨username⟩` and `process.env.PGDATABASE = ⟨database name⟩`.
 
 <a name="double-asterisk"></a><sup>\**</sup> The shell used is based on your default `$SHELL` environment variable.
+
+<a name="triple-asterisk"></a><sup>\***</sup> Windows users should manually add jdk path (...\jdk1.x.x_xx\bin) to their system environment variables.
 
 ## Installation
 

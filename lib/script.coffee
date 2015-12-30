@@ -23,6 +23,10 @@ module.exports =
       title: 'Scroll with output'
       type: 'boolean'
       default: true
+    stopOnRerun:
+      title: 'Stop running process on rerun'
+      type: 'boolean'
+      default: false
   scriptView: null
   scriptOptionsView: null
   scriptOptions: null
