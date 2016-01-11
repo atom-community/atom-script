@@ -516,7 +516,7 @@ module.exports =
       args: (context) ->
         file = GrammarUtils.Nim.findNimProjectFile(context.filepath)
         path = GrammarUtils.Nim.projectDir(context.filepath)
-        ['-c', 'cd "' + path + '" && nim c --colors:on --hints:off --parallelBuild:1 -r "' + file + '" 2>&1']
+        ['-c', 'cd "' + path + '" && nim c --hints:off --parallelBuild:1 -r "' + file + '" 2>&1']
 
   Swift:
     "File Based":
