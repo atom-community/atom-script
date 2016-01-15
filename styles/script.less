@@ -26,6 +26,49 @@
   }
 }
 
+.options-view {
+  table {
+    width: 100%;
+    margin-top: 5px;
+
+    td {
+      padding: 5px;
+      vertical-align: middle;
+
+      input {
+        width: 100%;
+        color: @text-color;
+        height: @component-line-height;
+        line-height: @component-line-height;
+        background-color: @button-background-color;
+        border-radius: @component-border-radius;
+        border: 1px solid @input-border-color;
+        padding-left: 0.8rem;
+      }
+      input:focus {
+        color: @text-color-highlight;
+        background-color: @button-background-color-hover;
+      }
+    }
+
+    td:first-child {
+      width: 15rem;
+      text-align: right;
+    }
+  }
+
+  .buttons {
+    padding: 5px;
+
+    .cancel {
+      float: left;
+    }
+    .run {
+      float: right;
+    }
+  }
+}
+
 .script-view {
   .panel-body pre {
     background: @tool-panel-background-color;
