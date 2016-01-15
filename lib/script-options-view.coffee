@@ -6,43 +6,55 @@ class ScriptOptionsView extends View
 
   @content: ->
     @div =>
-      @div class: 'overlay from-top panel', outlet: 'scriptOptionsView', =>
+      @div class: 'overlay from-top panel options-view', outlet: 'scriptOptionsView', =>
         @div class: 'panel-heading', 'Configure Run Options'
-        @div class: 'panel-body padded', =>
-          @div class: 'block', =>
-            @label 'Current Working Directory:'
-            @input
-              type: 'text'
-              class: 'editor mini native-key-bindings'
-              outlet: 'inputCwd'
-          @div class: 'block', =>
-            @label 'Command'
-            @input
-              type: 'text'
-              class: 'editor mini native-key-bindings'
-              outlet: 'inputCommand'
-          @div class: 'block', =>
-            @label 'Command Arguments:'
-            @input
-              type: 'text'
-              class: 'editor mini native-key-bindings'
-              outlet: 'inputCommandArgs'
-          @div class: 'block', =>
-            @label 'Program Arguments:'
-            @input
-              type: 'text'
-              class: 'editor mini native-key-bindings'
-              outlet: 'inputScriptArgs'
-          @div class: 'block', =>
-            @label 'Environment Variables:'
-            @input
-              type: 'text'
-              class: 'editor mini native-key-bindings'
-              outlet: 'inputEnv'
-          @div class: 'block', =>
-            css = 'btn inline-block-tight'
-            @button class: "btn #{css}", click: 'close', 'Close'
-            @button class: "btn #{css}", click: 'run', 'Run'
+        @table =>
+          @tr =>
+            @td => @label 'Current Working Directory:'
+            @td =>
+              @input
+                keydown: 'traverseFocus'
+                type: 'text'
+                class: 'editor mini native-key-bindings'
+                outlet: 'inputCwd'
+          @tr =>
+            @td => @label 'Command'
+            @td =>
+              @input
+                keydown: 'traverseFocus'
+                type: 'text'
+                class: 'editor mini native-key-bindings'
+                outlet: 'inputCommand'
+          @tr =>
+            @td => @label 'Command Arguments:'
+            @td =>
+              @input
+                keydown: 'traverseFocus'
+                type: 'text'
+                class: 'editor mini native-key-bindings'
+                outlet: 'inputCommandArgs'
+          @tr =>
+            @td => @label 'Program Arguments:'
+            @td =>
+              @input
+                keydown: 'traverseFocus'
+                type: 'text'
+                class: 'editor mini native-key-bindings'
+                outlet: 'inputScriptArgs'
+          @tr =>
+            @td => @label 'Environment Variables:'
+            @td =>
+              @input
+                keydown: 'traverseFocus'
+                type: 'text'
+                class: 'editor mini native-key-bindings'
+                outlet: 'inputEnv'
+        @div class: 'block buttons', =>
+          css = 'btn inline-block-tight'
+          @button class: "btn #{css} cancel", click: 'close', =>
+            @span class: 'icon icon-x', 'Cancel'
+          @button class: "btn #{css} run", outlet: 'buttonRun', click: 'run', =>
+            @span class: 'icon icon-playback-play', 'Run'
 
   initialize: (@runOptions) ->
     @subscriptions = new CompositeDisposable
@@ -57,9 +69,13 @@ class ScriptOptionsView extends View
 
   toggleScriptOptions: (command) ->
     switch command
-      when 'show' then @scriptOptionsView.show()
+      when 'show'
+        @scriptOptionsView.show()
+        @inputCwd.focus()
       when 'hide' then @scriptOptionsView.hide()
-      else @scriptOptionsView.toggle()
+      else
+        @scriptOptionsView.toggle()
+        @inputCwd.focus() if @scriptOptionsView.is(':visible')
 
   saveOptions: ->
     splitArgs = (element) ->
@@ -81,6 +97,12 @@ class ScriptOptionsView extends View
     @saveOptions()
     @toggleScriptOptions('hide')
     atom.commands.dispatch @workspaceView(), 'script:run'
+
+  traverseFocus: (e) ->
+    return true if e.keyCode != 9
+
+    row = @find(e.target).parents('tr:first').nextAll('tr:first')
+    if row.length then row.find('input').focus() else @buttonRun.focus()
 
   workspaceView: ->
     atom.views.getView(atom.workspace)
