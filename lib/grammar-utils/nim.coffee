@@ -58,7 +58,7 @@ module.exports =
                 stats = fs.statSync(tfile)
                 return path.basename(tfile)
               catch error
-                console.log "File does not exist.";
+                console.log "File does not exist."
 
     # just run what we got
     return path.basename(editorfile)
