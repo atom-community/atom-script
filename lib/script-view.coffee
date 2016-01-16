@@ -23,9 +23,9 @@ class ScriptView extends MessagePanelView
 
   setHeaderAndShowExecutionTime: (returnCode, executionTime) =>
     if (executionTime?)
-        @display 'stdout', '[Finished in '+executionTime.toString()+'s]'
+      @display 'stdout', '[Finished in '+executionTime.toString()+'s]'
     else
-        @display 'stdout'
+      @display 'stdout'
 
     if returnCode is 0
       @setHeaderStatus 'stop'

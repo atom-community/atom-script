@@ -50,15 +50,15 @@ module.exports =
     for file in files
       name = filepath + '/' + file
       if (fs.statSync(name).isFile())
-          if(path.extname(name)=='.nims' or
-            path.extname(name)=='.nimcgf' or
-            path.extname(name)=='.cfg')
-              try
-                tfile = name.slice(0, -1)
-                stats = fs.statSync(tfile)
-                return path.basename(tfile)
-              catch error
-                console.log "File does not exist."
+        if(path.extname(name)=='.nims' or
+          path.extname(name)=='.nimcgf' or
+          path.extname(name)=='.cfg')
+            try
+              tfile = name.slice(0, -1)
+              stats = fs.statSync(tfile)
+              return path.basename(tfile)
+            catch error
+              console.log "File does not exist."
 
     # just run what we got
     return path.basename(editorfile)
