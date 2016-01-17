@@ -18,8 +18,34 @@ class ScriptView extends MessagePanelView
     super(title: @headerView, rawTitle: true, closeMethod: 'destroy')
 
     @addClass('script-view')
+    @addShowInTabIcon()
 
     linkPaths.listen @body
+
+  addShowInTabIcon: ->
+    icon = $$ ->
+      @div
+        class: 'heading-show-in-tab inline-block icon-file-text'
+        style: 'cursor: pointer;'
+        outlet: 'btnShowInTab'
+        title: 'Show output in new tab'
+
+    icon.click @showInTab
+    icon.insertBefore @btnAutoScroll
+
+  showInTab: =>
+    # concat output
+    output = ''
+    output += message.text() for message in @messages
+
+    # represent command context
+    context = ''
+    if @commandContext
+      context = "[Command: #{@commandContext.getRepresentation()}]\n"
+
+    # open new tab and set content to output
+    atom.workspace.open().then (editor) ->
+      editor.setText stripAnsi(context + output)
 
   setHeaderAndShowExecutionTime: (returnCode, executionTime) =>
     if (executionTime?)
