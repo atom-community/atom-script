@@ -51,6 +51,14 @@ module.exports =
       command: "scriptcs"
       args: (context) -> ['-script', context.filepath]
 
+  Clojure:
+    "Selection Based":
+      command: "lein"
+      args: (context)  -> ['exec', '-e', context.getCode()]
+    "File Based":
+      command: "lein"
+      args: (context) -> ['exec', context.filepath]
+
   CoffeeScript:
     "Selection Based":
       command: "coffee"
