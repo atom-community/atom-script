@@ -5,4 +5,4 @@ process.stdin.on('readable', function() {
    if (chunk !== null) {
      console.log('TEST: ' + chunk);
    }
-})
+});
