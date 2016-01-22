@@ -320,6 +320,7 @@
     "atom-message-panel": "1.2.4"
   },
   "devDependencies": {
+    "coffee-script": "^1.10.0",
     "grunt": "~0.4.5"
   },
   "providedServices": {
