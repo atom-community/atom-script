@@ -26,28 +26,65 @@
   }
 }
 
+.script-input-view {
+  .caption {
+    margin-bottom: 5px;
+  }
+}
+
+.script-profile-run-view {
+  width: 100%;
+  margin-left: -50%;
+  padding: 0;
+
+  .profile {
+    .name {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .description {
+      font-style: italic;
+      color: @text-color-subtle;
+    }
+  }
+
+  .buttons {
+    margin-top: 1rem;
+
+    .rename, .cancel {
+      float: left;
+      margin-right: 5px;
+    }
+    .delete {
+      float: left;
+    }
+    .run {
+      float: right;
+    }
+  }
+}
+
 .options-view {
+  width: 100%;
+
   table {
-    width: 100%;
-    margin-top: 5px;
+    margin-top: 10px;
+
+    td.first {
+      width: 40%;
+    }
+
+    td.second {
+      width: 60%;
+    }
 
     td {
-      padding: 5px;
+      padding: 0 5px;
       vertical-align: middle;
 
-      input {
-        width: 100%;
-        color: @text-color;
-        height: @component-line-height;
-        line-height: @component-line-height;
-        background-color: @button-background-color;
-        border-radius: @component-border-radius;
-        border: 1px solid @input-border-color;
-        padding-left: 0.8rem;
-      }
-      input:focus {
-        color: @text-color-highlight;
-        background-color: @button-background-color-hover;
+      atom-text-editor {
+        // fix for editor growth on focus/blur
+        max-width: 99%;
       }
     }
 
@@ -63,8 +100,12 @@
     .cancel {
       float: left;
     }
-    .run {
+
+    .right-buttons {
       float: right;
+    }
+    .save-profile {
+      margin-right: 5px;
     }
   }
 }

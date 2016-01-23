@@ -11,6 +11,7 @@
       submenu: [
         { label: 'Script: Run by Line Number', command: 'script:run-by-line-number' },
         { label: 'Run Script', command: 'script:run' },
+        { label: 'Run with profile', command: 'script:run-with-profile' }
         { label: 'Stop Script', command: 'script:kill-process' },
         { label: 'Configure Script', command: 'script:run-options' }
         { label: 'Close Window and Stop Script', command: 'script:close-view' }

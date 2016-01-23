@@ -265,6 +265,10 @@
     {
       "name": "Jan T. Sott",
       "email": "git@idleberg.com"
+    },
+    {
+      "name": "Vladimir Shvets",
+      "email": "stormherz@gmail.com"
     }
   ],
   "repository": "https://github.com/rgbkrk/atom-script",
@@ -308,7 +312,8 @@
     "atom-text-editor": [
       "script:run",
       "script:run-by-line-number",
-      "script:run-options"
+      "script:run-options",
+      "script:run-with-profile"
     ]
   },
   "dependencies": {

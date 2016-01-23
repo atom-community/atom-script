@@ -4,6 +4,7 @@
 # Only bind the keys in the editor
 '.platform-darwin atom-text-editor':
   'cmd-i': 'script:run'
+  'shift-cmd-k': 'script:run-with-profile'
   #'shift-enter': 'script:run'
   'ctrl-w': 'script:close-view'
   'ctrl-c': 'script:kill-process'
@@ -12,6 +13,7 @@
 
 '.platform-win32 atom-text-editor, .platform-linux atom-text-editor':
   'shift-ctrl-b': 'script:run'
+  'shift-ctrl-alt-b': 'script:run-with-profile'
   #'shift-enter': 'script:run'
   #'ctrl-w': 'script:close-view'
   'ctrl-q': 'script:kill-process'
