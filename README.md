@@ -12,7 +12,7 @@ Run scripts based on file name, a selection of code, or by line number.
 
 Currently supported grammars are:
 
-  * 1C (BSL)
+  * 1C (BSL) <sup>[Ø](#o-stroke)</sup>
   * AppleScript
   * Bash <sup>[**](#double-asterisk)</sup>
   * Behat Feature
@@ -80,6 +80,8 @@ Currently supported grammars are:
 You only have to add a few lines in a PR to support another.
 
 ### Limitations
+
+<a name="o-stroke"></a><sup>Ø</sup> 1C (BSL) code runs through [OneScript](http://oscript.io/) interpreter in console mode.
 
 <a name="caret"></a><sup>^</sup> Running selections of code for CoffeeScript (Literate) only works when selecting just the code blocks
 
