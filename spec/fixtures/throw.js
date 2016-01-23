@@ -1,1 +1,1 @@
-throw 'kaboom'
+throw 'kaboom';
