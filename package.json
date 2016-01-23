@@ -273,6 +273,7 @@
     "runner",
     "Bash",
     "Behat Feature",
+    "Clojure",
     "Coffeescript",
     "CoffeeScript (Literate)",
     "Cucumber (Gherkin)",

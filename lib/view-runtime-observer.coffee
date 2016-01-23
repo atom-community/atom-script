@@ -7,6 +7,8 @@ class ViewRuntimeObserver
   observe: (runtime) ->
     @subscriptions.add runtime.onStart =>
       @view.resetView()
+    @subscriptions.add runtime.onStarted (ev) =>
+      @view.commandContext = ev
     @subscriptions.add runtime.onStopped =>
       @view.stop()
     @subscriptions.add runtime.onDidWriteToStderr (ev) =>

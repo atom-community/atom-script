@@ -77,15 +77,40 @@ class ScriptOptionsView extends View
         @scriptOptionsView.toggle()
         @inputCwd.focus() if @scriptOptionsView.is(':visible')
 
-  saveOptions: ->
-    splitArgs = (element) ->
-      item for item in element.val().split ' ' when item isnt ''
+  splitArgs: (args) ->
+    args = args.val().trim()
 
+    if args.indexOf('"') == -1 and args.indexOf("'") == -1
+      # no escaping, just split
+      return (item for item in args.split ' ' when item isnt '')
+
+    replaces = {}
+
+    regexps = [/"[^"]*"/ig, /'[^']*'/ig]
+
+    # find strings in arguments
+    matches = (if matches? then matches else []).concat((args.match regex) or []) for regex in regexps
+
+    # format replacement as bash comment to avoid replacing valid input
+    (replaces['`#match' + (Object.keys(replaces).length + 1) + '`'] = match) for match in matches
+
+    # replace strings
+    args = args.replace(new RegExp(part, 'g'), match) for match, part of replaces
+    split = (item for item in args.split ' ' when item isnt '')
+
+    replacer = (argument) ->
+      argument = argument.replace(match, replacement) for match, replacement of replaces
+      argument
+
+    # restore strings, strip quotes
+    (replacer(argument).replace(/"|'/g, '') for argument in split)
+
+  saveOptions: ->
     @runOptions.workingDirectory = @inputCwd.val()
     @runOptions.cmd = @inputCommand.val()
-    @runOptions.cmdArgs = splitArgs @inputCommandArgs
+    @runOptions.cmdArgs = @splitArgs @inputCommandArgs
     @runOptions.env = @inputEnv.val()
-    @runOptions.scriptArgs = splitArgs @inputScriptArgs
+    @runOptions.scriptArgs = @splitArgs @inputScriptArgs
 
   close: ->
     @toggleScriptOptions('hide')
