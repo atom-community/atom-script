@@ -95,11 +95,11 @@ class ScriptOptionsView extends View
     (replaces['`#match' + (Object.keys(replaces).length + 1) + '`'] = match) for match in matches
 
     # replace strings
-    args = args.replace(new RegExp(part, 'g'), match) for match, part of replaces
+    args = (args.replace(new RegExp(part, 'g'), match) for match, part of replaces)
     split = (item for item in args.split ' ' when item isnt '')
 
     replacer = (argument) ->
-      argument = argument.replace(match, replacement) for match, replacement of replaces
+      argument = (argument.replace(match, replacement) for match, replacement of replaces)
       argument
 
     # restore strings, strip quotes

@@ -31,7 +31,7 @@ class Runtime
   destroy: ->
     @stop()
     @runner.destroy()
-    _.each @observers, (observer) => observer.destroy()
+    _.each @observers, (observer) -> observer.destroy()
     @emitter.dispose()
     @codeContextBuilder.destroy()
 

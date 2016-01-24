@@ -6,5 +6,5 @@ module.exports =
   # * `code`    A {String} containing some R code
   #
   # Returns the {String} filepath of the new file
-  createTempFileWithCode: (code) =>
+  createTempFileWithCode: (code) ->
     module.parent.exports.createTempFileWithCode(code)

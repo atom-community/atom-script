@@ -1,8 +1,5 @@
 {
   "max_line_length": {
     "level": "ignore"
-  },
-  "no_throwing_strings": {
-    "level": "warn"
   }
 }
