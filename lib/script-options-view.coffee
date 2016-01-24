@@ -67,7 +67,32 @@ class ScriptOptionsView extends View
     @panel.hide()
 
   splitArgs: (element) ->
-    item for item in element.get(0).getModel().getText().split ' ' when item isnt ''
+    args = element.get(0).getModel().getText().trim()
+
+    if args.indexOf('"') == -1 and args.indexOf("'") == -1
+      # no escaping, just split
+      return (item for item in args.split ' ' when item isnt '')
+
+    replaces = {}
+
+    regexps = [/"[^"]*"/ig, /'[^']*'/ig]
+
+    # find strings in arguments
+    matches = (if matches? then matches else []).concat((args.match regex) or []) for regex in regexps
+
+    # format replacement as bash comment to avoid replacing valid input
+    (replaces['`#match' + (Object.keys(replaces).length + 1) + '`'] = match) for match in matches
+
+    # replace strings
+    args = args.replace(new RegExp(part, 'g'), match) for match, part of replaces
+    split = (item for item in args.split ' ' when item isnt '')
+
+    replacer = (argument) ->
+      argument = argument.replace(match, replacement) for match, replacement of replaces
+      argument
+
+    # restore strings, strip quotes
+    (replacer(argument).replace(/"|'/g, '') for argument in split)
 
   getOptions: ->
     workingDirectory: @inputCwd.get(0).getModel().getText()

@@ -64,7 +64,7 @@ class Runtime
 
     @runner.scriptOptions = executionOptions
     @runner.run(commandContext.command, commandContext.args, codeContext, input)
-    @emitter.emit 'started'
+    @emitter.emit 'started', commandContext
 
   # Public: stops execution of the current fork
   stop: ->

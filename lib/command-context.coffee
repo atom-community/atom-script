@@ -4,9 +4,11 @@ module.exports =
 class CommandContext
   command: null
   args: []
+  options: {}
 
   @build: (runtime, runOptions, codeContext) ->
     commandContext = new CommandContext
+    commandContext.options = runOptions
 
     try
       if not runOptions.cmd? or runOptions.cmd is ''
@@ -29,3 +31,21 @@ class CommandContext
 
     # Return setup information
     commandContext
+
+  quoteArguments: (args) ->
+    ((if arg.trim().indexOf(' ') == -1 then arg.trim() else "'#{arg}'") for arg in args)
+
+  getRepresentation: ->
+    return '' if !@command or !@args.length
+
+    # command arguments
+    commandArgs = if @options.cmdArgs? then @quoteArguments(@options.cmdArgs).join ' ' else ''
+
+    # script arguments
+    args = if @args.length then @quoteArguments(@args).join ' ' else ''
+    scriptArgs = if @options.scriptArgs? then @quoteArguments(@options.scriptArgs).join ' ' else ''
+
+    @command.trim() +
+      (if commandArgs then ' ' + commandArgs else '') +
+      (if args then ' ' + args else '') +
+      (if scriptArgs then ' ' + scriptArgs else '')
