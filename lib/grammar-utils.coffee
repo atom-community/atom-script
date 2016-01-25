@@ -25,7 +25,7 @@ module.exports =
 
       tempFilePath
     catch error
-      throw "Error while creating temporary file (#{error})"
+      throw ("Error while creating temporary file (#{error})")
 
   # Public: Delete all temporary files and the directory created by {GrammarUtils::createTempFileWithCode}
   deleteTempFiles: ->
@@ -36,7 +36,7 @@ module.exports =
           files.forEach((file, index) => fs.unlinkSync(@tempFilesDir + path.sep + file))
         fs.rmdirSync(@tempFilesDir)
     catch error
-      throw "Error while deleting temporary files (#{error})"
+      throw ("Error while deleting temporary files (#{error})")
 
   # Public: Get the Lisp helper object
   #
