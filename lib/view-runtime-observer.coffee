@@ -20,7 +20,7 @@ class ViewRuntimeObserver
     @subscriptions.add runtime.onDidNotRun (ev) =>
       @view.showUnableToRunError ev.command
     @subscriptions.add runtime.onDidContextCreate (ev) =>
-      title = "#{ev.lang} - " + ev.filename + (if ev.lineNumber? then ":#{ev.lineNumber}" else "")
+      title = "#{ev.lang} - " + ev.filename + (if ev.lineNumber? then ":#{ev.lineNumber}" else '')
       @view.setHeaderTitle title
     @subscriptions.add runtime.onDidNotSpecifyLanguage =>
       @view.showNoLanguageSpecified()
