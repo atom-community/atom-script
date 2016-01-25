@@ -1,84 +1,73 @@
-{CompositeDisposable} = require 'atom'
+{CompositeDisposable, Emitter} = require 'atom'
 {View} = require 'atom-space-pen-views'
+ScriptInputView = require './script-input-view'
 
 module.exports =
 class ScriptOptionsView extends View
 
   @content: ->
-    @div =>
-      @div class: 'overlay from-top panel options-view', outlet: 'scriptOptionsView', =>
-        @div class: 'panel-heading', 'Configure Run Options'
-        @table =>
-          @tr =>
-            @td => @label 'Current Working Directory:'
-            @td =>
-              @input
-                keydown: 'traverseFocus'
-                type: 'text'
-                class: 'editor mini native-key-bindings'
-                outlet: 'inputCwd'
-          @tr =>
-            @td => @label 'Command'
-            @td =>
-              @input
-                keydown: 'traverseFocus'
-                type: 'text'
-                class: 'editor mini native-key-bindings'
-                outlet: 'inputCommand'
-          @tr =>
-            @td => @label 'Command Arguments:'
-            @td =>
-              @input
-                keydown: 'traverseFocus'
-                type: 'text'
-                class: 'editor mini native-key-bindings'
-                outlet: 'inputCommandArgs'
-          @tr =>
-            @td => @label 'Program Arguments:'
-            @td =>
-              @input
-                keydown: 'traverseFocus'
-                type: 'text'
-                class: 'editor mini native-key-bindings'
-                outlet: 'inputScriptArgs'
-          @tr =>
-            @td => @label 'Environment Variables:'
-            @td =>
-              @input
-                keydown: 'traverseFocus'
-                type: 'text'
-                class: 'editor mini native-key-bindings'
-                outlet: 'inputEnv'
-        @div class: 'block buttons', =>
-          css = 'btn inline-block-tight'
-          @button class: "btn #{css} cancel", click: 'close', =>
-            @span class: 'icon icon-x', 'Cancel'
+    @div class: 'options-view', =>
+      @div class: 'panel-heading', 'Configure Run Options'
+      @table =>
+        @tr =>
+          @td class: 'first', => @label 'Current Working Directory:'
+          @td class: 'second', =>
+            @tag 'atom-text-editor', mini: '', class: 'editor mini', outlet: 'inputCwd'
+        @tr =>
+          @td => @label 'Command'
+          @td =>
+            @tag 'atom-text-editor', mini: '', class: 'editor mini', outlet: 'inputCommand'
+        @tr =>
+          @td => @label 'Command Arguments:'
+          @td =>
+            @tag 'atom-text-editor', mini: '', class: 'editor mini', outlet: 'inputCommandArgs'
+        @tr =>
+          @td => @label 'Program Arguments:'
+          @td =>
+            @tag 'atom-text-editor', mini: '', class: 'editor mini', outlet: 'inputScriptArgs'
+        @tr =>
+          @td => @label 'Environment Variables:'
+          @td =>
+            @tag 'atom-text-editor', mini: '', class: 'editor mini', outlet: 'inputEnv'
+      @div class: 'block buttons', =>
+        css = 'btn inline-block-tight'
+        @button class: "btn #{css} cancel", outlet: 'buttonCancel', click: 'close', =>
+          @span class: 'icon icon-x', 'Cancel'
+        @span class: 'right-buttons', =>
+          @button class: "btn #{css} save-profile", outlet: 'buttonSaveProfile', click: 'saveProfile', =>
+            @span class: 'icon icon-file-text', 'Save as profile'
           @button class: "btn #{css} run", outlet: 'buttonRun', click: 'run', =>
             @span class: 'icon icon-playback-play', 'Run'
 
   initialize: (@runOptions) ->
+    @emitter = new Emitter
+
     @subscriptions = new CompositeDisposable
     @subscriptions.add atom.commands.add 'atom-workspace',
-      'core:cancel': => @toggleScriptOptions('hide')
-      'core:close': => @toggleScriptOptions('hide')
-      'script:close-options': => @toggleScriptOptions('hide')
-      'script:run-options': => @toggleScriptOptions()
+      'core:cancel': => @hide()
+      'core:close': => @hide()
+      'script:close-options': => @hide()
+      'script:run-options': => if @panel.isVisible() then @hide() else @show()
       'script:save-options': => @saveOptions()
-    atom.workspace.addTopPanel(item: this)
-    @toggleScriptOptions 'hide'
 
-  toggleScriptOptions: (command) ->
-    switch command
-      when 'show'
-        @scriptOptionsView.show()
-        @inputCwd.focus()
-      when 'hide' then @scriptOptionsView.hide()
-      else
-        @scriptOptionsView.toggle()
-        @inputCwd.focus() if @scriptOptionsView.is(':visible')
+    # handling focus traversal and run on enter
+    @find('atom-text-editor').on 'keydown', (e) =>
+      return true unless e.keyCode == 9 or e.keyCode == 13
 
-  splitArgs: (args) ->
-    args = args.val().trim()
+      switch e.keyCode
+        when 9
+          e.preventDefault()
+          e.stopPropagation()
+          row = @find(e.target).parents('tr:first').nextAll('tr:first')
+          if row.length then row.find('atom-text-editor').focus() else @buttonCancel.focus()
+
+        when 13 then @run()
+
+    @panel = atom.workspace.addModalPanel item: this
+    @panel.hide()
+
+  splitArgs: (element) ->
+    args = element.get(0).getModel().getText().trim()
 
     if args.indexOf('"') == -1 and args.indexOf("'") == -1
       # no escaping, just split
@@ -105,29 +94,57 @@ class ScriptOptionsView extends View
     # restore strings, strip quotes
     (replacer(argument).replace(/"|'/g, '') for argument in split)
 
+  getOptions: ->
+    workingDirectory: @inputCwd.get(0).getModel().getText()
+    cmd: @inputCommand.get(0).getModel().getText()
+    cmdArgs: @splitArgs @inputCommandArgs
+    env: @inputEnv.get(0).getModel().getText()
+    scriptArgs: @splitArgs @inputScriptArgs
+
   saveOptions: ->
-    @runOptions.workingDirectory = @inputCwd.val()
-    @runOptions.cmd = @inputCommand.val()
-    @runOptions.cmdArgs = @splitArgs @inputCommandArgs
-    @runOptions.env = @inputEnv.val()
-    @runOptions.scriptArgs = @splitArgs @inputScriptArgs
+    @runOptions[key] = value for key, value of @getOptions()
+
+  onProfileSave: (callback) -> @emitter.on 'on-profile-save', callback
+
+  # Saves specified options as new profile
+  saveProfile: ->
+    @hide()
+
+    options = @getOptions()
+
+    inputView = new ScriptInputView caption: 'Enter profile name:'
+    inputView.onCancel =>
+      @show()
+    inputView.onConfirm (profileName) =>
+      return unless profileName
+      editor.getModel().setText('') for editor in @find('atom-text-editor')
+
+      # clean up the options
+      @saveOptions()
+
+      # add to global profiles list
+      @emitter.emit 'on-profile-save', name: profileName, options: options
+
+    inputView.show()
 
   close: ->
-    @toggleScriptOptions('hide')
+    @hide()
 
   destroy: ->
     @subscriptions?.dispose()
 
+  show: ->
+    @panel.show()
+    @inputCwd.focus()
+
+  hide: ->
+    @panel.hide()
+    atom.workspace.getActivePane().activate()
+
   run: ->
     @saveOptions()
-    @toggleScriptOptions('hide')
+    @hide()
     atom.commands.dispatch @workspaceView(), 'script:run'
-
-  traverseFocus: (e) ->
-    return true if e.keyCode != 9
-
-    row = @find(e.target).parents('tr:first').nextAll('tr:first')
-    if row.length then row.find('input').focus() else @buttonRun.focus()
 
   workspaceView: ->
     atom.views.getView(atom.workspace)

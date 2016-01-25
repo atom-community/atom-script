@@ -4,6 +4,7 @@ Runner = require './runner'
 Runtime = require './runtime'
 ScriptOptions = require './script-options'
 ScriptOptionsView = require './script-options-view'
+ScriptProfileRunView = require './script-profile-run-view'
 ScriptView = require './script-view'
 ViewRuntimeObserver = require './view-runtime-observer'
 
@@ -29,12 +30,23 @@ module.exports =
       default: false
   scriptView: null
   scriptOptionsView: null
+  scriptProfileRunView: null
   scriptOptions: null
+  scriptProfiles: []
 
   activate: (state) ->
     @scriptView = new ScriptView state.scriptViewState
     @scriptOptions = new ScriptOptions()
     @scriptOptionsView = new ScriptOptionsView @scriptOptions
+
+    # profiles loading
+    @scriptProfiles = []
+    if state.profiles
+      for profile in state.profiles
+        so = ScriptOptions.createFromOptions profile.name, profile
+        @scriptProfiles.push so
+
+    @scriptProfileRunView = new ScriptProfileRunView @scriptProfiles
 
     codeContextBuilder = new CodeContextBuilder
     runner = new Runner(@scriptOptions)
@@ -53,10 +65,55 @@ module.exports =
       'script:run-by-line-number': => @runtime.execute('Line Number Based')
       'script:run': => @runtime.execute('Selection Based')
 
+    # profile created
+    @scriptOptionsView.onProfileSave (profileData) =>
+      # create and fill out profile
+      profile = ScriptOptions.createFromOptions profileData.name, profileData.options
+
+      codeContext = @runtime.codeContextBuilder.buildCodeContext(atom.workspace.getActiveTextEditor(),
+        "Selection Based")
+      profile.lang = codeContext.lang
+
+      # formatting description
+      opts = profile.toObject()
+      desc = "Language: #{codeContext.lang}"
+      desc += ", Command: #{opts.cmd}" if opts.cmd
+      desc += " #{opts.cmdArgs.join ' '}" if opts.cmdArgs and opts.cmd
+
+      profile.description = desc
+      @scriptProfiles.push profile
+
+      @scriptOptionsView.hide()
+      @scriptProfileRunView.show()
+      @scriptProfileRunView.setProfiles @scriptProfiles
+
+    # profile deleted
+    @scriptProfileRunView.onProfileDelete (profile) =>
+      index = @scriptProfiles.indexOf profile
+      return unless index != -1
+
+      @scriptProfiles.splice index, 1 if index != -1
+      @scriptProfileRunView.setProfiles @scriptProfiles
+
+    # profile renamed
+    @scriptProfileRunView.onProfileChange (data) =>
+      index = @scriptProfiles.indexOf data.profile
+      return unless index != -1 and @scriptProfiles[index][data.key]?
+
+      @scriptProfiles[index][data.key] = data.value
+      @scriptProfileRunView.show()
+      @scriptProfileRunView.setProfiles @scriptProfiles
+
+    # profile renamed
+    @scriptProfileRunView.onProfileRun (profile) =>
+      return unless profile
+      @runtime.execute 'Selection Based', null, profile
+
   deactivate: ->
     @runtime.destroy()
     @scriptView.removePanel()
     @scriptOptionsView.close()
+    @scriptProfileRunView.close()
     @subscriptions.dispose()
     GrammarUtils.deleteTempFiles()
 
@@ -106,5 +163,9 @@ module.exports =
   serialize: ->
     # TODO: True serialization needs to take the options view into account
     #       and handle deserialization
+    serializedProfiles = []
+    serializedProfiles.push profile.toObject() for profile in @scriptProfiles
+
     scriptViewState: @scriptView.serialize()
     scriptOptionsViewState: @scriptOptionsView.serialize()
+    profiles: serializedProfiles
