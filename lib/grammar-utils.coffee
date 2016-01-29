@@ -53,6 +53,11 @@ module.exports =
   # Returns an {Object} which assists in creating temp files containing R code
   R: require './grammar-utils/R'
 
+  # Public: Get the Perl helper object
+  #
+  # Returns an {Object} which assists in creating temp files containing Perl code
+  Perl: require './grammar-utils/perl'
+
   # Public: Get the PHP helper object
   #
   # Returns an {Object} which assists in creating temp files containing PHP code

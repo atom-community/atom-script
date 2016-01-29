@@ -351,7 +351,10 @@ module.exports =
   Perl:
     "Selection Based":
       command: "perl"
-      args: (context)  -> ['-e', context.getCode()]
+      args: (context) ->
+        code = context.getCode()
+        file = GrammarUtils.Perl.createTempFileWithCode(code)
+        [file]
     "File Based":
       command: "perl"
       args: (context) -> [context.filepath]
