@@ -559,3 +559,8 @@ module.exports =
     "File Based":
       command: "octave"
       args: (context) -> ['-p', context.filepath.replace(/[^\/]*$/, ''), context.filepath]
+
+  Prolog:
+    "File Based":
+      command: "swipl"
+      args: (context) -> ['-f', context.filepath, '-t', 'main', '--quiet']

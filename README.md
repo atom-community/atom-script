@@ -75,6 +75,7 @@ Currently supported grammars are:
   * Dart
   * Octave
   * Zsh <sup>[**](#double-asterisk)</sup>
+  * Prolog <sup>[¢](#cents)</sup>
 
 **NOTE**: Some grammars may require you to install [a custom language package](https://atom.io/search?utf8=✓&q=language).
 
@@ -109,6 +110,8 @@ can be set in the process environment or in Atom's `init.coffee` script:
 <a name="double-asterisk"></a><sup>\**</sup> The shell used is based on your default `$SHELL` environment variable.
 
 <a name="triple-asterisk"></a><sup>\***</sup> Windows users should manually add jdk path (...\jdk1.x.x_xx\bin) to their system environment variables.
+
+<a name="cents"></a><sup>¢</sup> Prolog scripts must contain a rule with the head `main` (e.g.`main:- parent(X,lucas),writeln(X).`). The script is executed with the goal `main` and is halted after the first result is found. The output is produced by the `writeln/1` predicates. It requires swipl.
 
 ## Installation
 
