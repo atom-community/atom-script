@@ -19,6 +19,7 @@ Currently supported grammars are:
   * C <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
   * C++ <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
   * C# Script <sup>[*](#asterisk)</sup>
+  * Cake[file]
   * Clojure (via Leiningen) <sup>[ϖ](#pi)</sup>
   * Coffeescript
   * CoffeeScript (Literate) <sup>[^](#caret)</sup>
