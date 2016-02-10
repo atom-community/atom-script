@@ -60,10 +60,10 @@ module.exports =
       args: (context) -> ['exec', context.filepath]
 
   CoffeeScript:
-    'Selection Based':
+    "Selection Based":
       command: 'coffee'
       args: (context) -> GrammarUtils.CoffeeScript.args.concat [context.getCode()]
-    'File Based':
+    "File Based":
       command: #/^Cakefile$/i.test
         if GrammarUtils.CoffeeScript.filepath.endsWith 'akefile' then 'sh' else 'coffee'
       args: (context) ->
@@ -72,11 +72,11 @@ module.exports =
           ['-c', "cd '#{project}' && $(cake | egrep -o 'cake \\w+'| head -1)"]
         else [context.filepath]
 
-  "CoffeeScript (Literate)":
-    'Selection Based':
+  'CoffeeScript (Literate)':
+    "Selection Based":
       command: 'coffee'
       args: (context) -> GrammarUtils.CoffeeScript.args.concat [context.getCode()]
-    'File Based':
+    "File Based":
       command: 'coffee'
       args: (context) -> [context.filepath]
 
