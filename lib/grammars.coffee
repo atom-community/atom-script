@@ -218,6 +218,11 @@ module.exports =
       command: "latexmk"
       args: (context) -> ['-cd', '-quiet', '-pdf', '-pv', '-shell-escape', context.filepath]
 
+  'LaTeX Beamer':
+    "File Based":
+      command: "latexmk"
+      args: (context) -> ['-cd', '-quiet', '-pdf', '-pv', '-shell-escape', context.filepath]
+
   LilyPond:
     "File Based":
       command: "lilypond"
