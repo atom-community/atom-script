@@ -1,3 +1,7 @@
+## 3.5.1
+
+* Temporarily remove a `Cake[file]` support cause of bugs
+
 ## 3.5.0
 
 * Visual updates to the options view

@@ -61,22 +61,17 @@ module.exports =
 
   CoffeeScript:
     "Selection Based":
-      command: 'coffee'
-      args: (context) -> GrammarUtils.CoffeeScript.args.concat [context.getCode()]
+      command: "coffee"
+      args: (context) -> GrammarUtils.CScompiler.args.concat [context.getCode()]
     "File Based":
-      command: #/^Cakefile$/i.test
-        if GrammarUtils.CoffeeScript.filepath.endsWith 'akefile' then 'sh' else 'coffee'
-      args: (context) ->
-        if context.filepath.endsWith 'akefile'
-          project = context.filepath.match( /(.*)\// )[1]
-          ['-c', "cd '#{project}' && $(cake | egrep -o 'cake \\w+'| head -1)"]
-        else [context.filepath]
+      command: "coffee"
+      args: (context) -> [context.filepath]
 
-  'CoffeeScript (Literate)':
-    "Selection Based":
+  "CoffeeScript (Literate)":
+    'Selection Based':
       command: 'coffee'
-      args: (context) -> GrammarUtils.CoffeeScript.args.concat [context.getCode()]
-    "File Based":
+      args: (context) -> GrammarUtils.CScompiler.args.concat [context.getCode()]
+    'File Based':
       command: 'coffee'
       args: (context) -> [context.filepath]
 
