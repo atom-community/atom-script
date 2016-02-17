@@ -1,3 +1,7 @@
+## 3.5.2
+
+* Support `LaTeX Beamer`
+
 ## 3.5.1
 
 * Temporarily remove a `Cake[file]` support cause of bugs
