@@ -7,7 +7,5 @@ try
   coffee = execSync 'coffee -h' #which coffee | xargs readlink'
   if coffee.toString().match /--cli/ #-redux
     args.push '--cli'
-catch e
-  console.error('unable to find coffee')
 
 exports.args = args
