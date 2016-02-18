@@ -568,4 +568,4 @@ module.exports =
   Prolog:
     "File Based":
       command: "bash"
-      args: (context) -> ['-c', 'set -ex;cd \"' + context.filepath.replace(/[^\/]*$/, '') + '\"; swipl -f \"' + context.filepath + '\" -t main --quiet']
+      args: (context) -> ['-c', 'cd \"' + context.filepath.replace(/[^\/]*$/, '') + '\"; swipl -f \"' + context.filepath + '\" -t main --quiet']
