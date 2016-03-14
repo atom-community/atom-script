@@ -72,6 +72,7 @@ Currently supported grammars are:
   * Shell Script <sup>[**](#double-asterisk)</sup>
   * Swift
   * TypeScript
+  * ioLanguage (http://iolanguage.org/)
   * Dart
   * Octave
   * Zsh <sup>[**](#double-asterisk)</sup>
