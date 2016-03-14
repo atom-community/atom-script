@@ -579,6 +579,6 @@ module.exports =
     "Selection Based":
       command: "io"
       args: (context) -> ['-e', context.getCode()]
-    "Selection Based":
+    "Selection Based (static)":
       command: "io_static"
       args: (context) -> ['-e', context.getCode()]
