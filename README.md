@@ -33,6 +33,7 @@ Currently supported grammars are:
   * Go <sup>[*](#asterisk)</sup>
   * Groovy
   * Haskell
+  * ioLanguage (http://iolanguage.org/)
   * Java <sup>[***](#triple-asterisk)</sup>
   * Javascript
   * [JavaScript for Automation](https://developer.apple.com/library/mac/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/Introduction.html) (JXA)
