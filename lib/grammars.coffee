@@ -569,3 +569,10 @@ module.exports =
     "File Based":
       command: "swipl"
       args: (context) -> ['-f', context.filepath, '-t', 'main', '--quiet']
+  ioLanguage:
+    "File Based":
+      command: "io"
+      args: (context) -> [context.filepath]
+    "Selection Based":
+      command: "io"
+      args: (context) -> ['-e', context.getCode()]
