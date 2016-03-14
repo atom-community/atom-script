@@ -573,12 +573,6 @@ module.exports =
     "File Based":
       command: "io"
       args: (context) -> [context.filepath]
-    "File Based (static)":
-      command: "io_static"
-      args: (context) -> [context.filepath]
     "Selection Based":
       command: "io"
-      args: (context) -> ['-e', context.getCode()]
-    "Selection Based (static)":
-      command: "io_static"
       args: (context) -> ['-e', context.getCode()]
