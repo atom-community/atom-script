@@ -153,6 +153,14 @@ module.exports =
       command: "iced"
       args: (context) -> [context.filepath]
 
+  ioLanguage:
+    "Selection Based":
+      command: "io"
+      args: (context) -> [context.getCode()]
+    "File Based":
+      command: "io"
+      args: (context) -> ['-e', context.filepath]
+
   Java:
     "File Based":
       command: if GrammarUtils.OperatingSystem.isWindows() then "cmd" else "bash"
