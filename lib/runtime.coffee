@@ -57,6 +57,9 @@ class Runtime
 
     return unless commandContext
 
+    if commandContext.workingDirectory?
+      executionOptions.workingDirectory = commandContext.workingDirectory
+    
     @emitter.emit 'did-context-create',
       lang: codeContext.lang
       filename: codeContext.filename
