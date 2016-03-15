@@ -156,10 +156,10 @@ module.exports =
   ioLanguage:
     "Selection Based":
       command: "io"
-      args: (context) -> [context.filepath]
+      args: (context) -> [context.getCode()]
     "File Based":
       command: "io"
-      args: (context) -> ['-e', context.getCode()]
+      args: (context) -> ['-e', context.filepath]
 
   Java:
     "File Based":
