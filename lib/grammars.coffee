@@ -575,5 +575,5 @@ module.exports =
 
   Prolog:
     "File Based":
-      command: "swipl"
-      args: (context) -> ['-f', context.filepath, '-t', 'main', '--quiet']
+      command: "bash"
+      args: (context) -> ['-c', 'cd \"' + context.filepath.replace(/[^\/]*$/, '') + '\"; swipl -f \"' + context.filepath + '\" -t main --quiet']
