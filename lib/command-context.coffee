@@ -3,6 +3,7 @@ grammarMap = require './grammars'
 module.exports =
 class CommandContext
   command: null
+  workingDirectory: null
   args: []
   options: {}
 
@@ -29,6 +30,12 @@ class CommandContext
       runtime.didNotBuildArgs errorSendByArgs
       return false
 
+    if not runOptions.workingDirectory? or runOptions.workingDirectory is ''
+      # Precondition: lang? and lang of grammarMap
+      commandContext.workingDirectory = grammarMap[codeContext.lang][codeContext.argType].workingDirectory or ''
+    else
+      commandContext.workingDirectory = runOptions.workingDirectory
+    
     # Return setup information
     commandContext
 
