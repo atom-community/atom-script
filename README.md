@@ -30,6 +30,7 @@ Currently supported grammars are:
   * Erlang <sup>[†](#dagger)</sup>
   * F# <sup>[*](#asterisk)</sup>
   * Forth (via GForth)
+  * Gnuplot
   * Go <sup>[*](#asterisk)</sup>
   * Groovy
   * Haskell

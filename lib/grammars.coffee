@@ -124,6 +124,12 @@ module.exports =
       command: "cucumber"
       args: (context) -> ['--color', context.fileColonLine()]
 
+  gnuplot:
+    "File Based":
+      command: "gnuplot"
+      args: (context) -> ['-p', context.filepath]
+      workingDirectory: atom.workspace.getActivePaneItem()?.buffer.file?.getParent().getPath()
+
   Go:
     "File Based":
       command: "go"
