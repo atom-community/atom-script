@@ -1,4 +1,6 @@
 {Emitter, BufferedProcess} = require 'atom'
+fs = require 'fs'
+path = require 'path'
 
 module.exports =
 class Runner
@@ -83,8 +85,26 @@ class Runner
     cwd: @getCwd()
     env: @scriptOptions.mergedEnv(process.env)
 
+  fillVarsInArg: (arg, codeContext, project_path) ->
+    if codeContext.filepath?
+      arg = arg.replace(/{FILE_ACTIVE}/g, codeContext.filepath)
+      arg = arg.replace(/{FILE_ACTIVE_PATH}/g, path.join(codeContext.filepath, '..'))
+    if codeContext.filename?
+      arg = arg.replace(/{FILE_ACTIVE_NAME}/g, codeContext.filename)
+      arg = arg.replace(/{FILE_ACTIVE_NAME_BASE}/g, path.join(codeContext.filename, '..'))
+    if project_path?
+      arg = arg.replace(/{PROJECT_PATH}/g, project_path)
+    
+    arg
+
   args: (codeContext, extraArgs) ->
     args = (@scriptOptions.cmdArgs.concat extraArgs).concat @scriptOptions.scriptArgs
+    project_path = ''
+    paths = atom.project.getPaths()
+    if paths.length > 0
+      project_path = if fs.statSync(paths[0]).isDirectory() then paths[0] else path.join(paths[0], '..')
+    args = (@fillVarsInArg arg, codeContext, project_path for arg in args)
+    
     if not @scriptOptions.cmd? or @scriptOptions.cmd is ''
       args = codeContext.shebangCommandArgs().concat args
     args
