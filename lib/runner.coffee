@@ -52,7 +52,7 @@ class Runner
     workingDirectoryProvided = cwd? and cwd isnt ''
     paths = atom.project.getPaths()
     if not workingDirectoryProvided and paths?.length > 0
-      cwd = paths[0]
+      cwd = if fs.statSync(paths[0]).isDirectory() then paths[0] else path.join(paths[0], '..')
 
     cwd
 
