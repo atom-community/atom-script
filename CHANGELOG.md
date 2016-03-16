@@ -1,3 +1,10 @@
+## 3.6.0
+
+* Support ioLanguage
+* Ability to set working directory
+* File based prolog command runs swipl from file directory
+* Templated args support
+
 ## 3.5.2
 
 * Support `LaTeX Beamer`
