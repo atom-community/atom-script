@@ -1,3 +1,7 @@
+## 3.6.1
+
+* Fix bug prevents the package from loading
+
 ## 3.6.0
 
 * Support ioLanguage
