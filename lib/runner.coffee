@@ -53,8 +53,9 @@ class Runner
     paths = atom.project.getPaths()
     if not workingDirectoryProvided and paths?.length > 0
       try
-        cwd = if fs.statSync(paths[0]).isDirectory() then paths[0] else path.join(paths[0], '..')
-    
+        # cwd = if fs.statSync(paths[0]).isDirectory() then paths[0] else path.join(paths[0], '..')
+        parentDirectory = atom.workspace.getActivePaneItem().buffer.file.getParent().path
+        cwd = if fs.statSync(parentDirectory).isDirectory() then parentDirectory else path.join(paths[0], '..')
     cwd
 
   stop: ->
@@ -95,7 +96,7 @@ class Runner
       arg = arg.replace(/{FILE_ACTIVE_NAME_BASE}/g, path.join(codeContext.filename, '..'))
     if project_path?
       arg = arg.replace(/{PROJECT_PATH}/g, project_path)
-    
+
     arg
 
   args: (codeContext, extraArgs) ->
@@ -107,9 +108,9 @@ class Runner
         if !err
           project_path = if stats.isDirectory() then paths[0] else path.join(paths[0], '..')
       )
-    
+
     args = (@fillVarsInArg arg, codeContext, project_path for arg in args)
-    
+
     if not @scriptOptions.cmd? or @scriptOptions.cmd is ''
       args = codeContext.shebangCommandArgs().concat args
     args
