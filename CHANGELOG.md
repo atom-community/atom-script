@@ -1,3 +1,7 @@
+## 3.6.2
+
+* Fix running of atom://config files
+
 ## 3.6.1
 
 * Fix bug prevents the package from loading
