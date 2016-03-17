@@ -52,8 +52,9 @@ class Runner
     workingDirectoryProvided = cwd? and cwd isnt ''
     paths = atom.project.getPaths()
     if not workingDirectoryProvided and paths?.length > 0
-      cwd = if fs.statSync(paths[0]).isDirectory() then paths[0] else path.join(paths[0], '..')
-
+      try
+        cwd = if fs.statSync(paths[0]).isDirectory() then paths[0] else path.join(paths[0], '..')
+    
     cwd
 
   stop: ->
@@ -102,7 +103,11 @@ class Runner
     project_path = ''
     paths = atom.project.getPaths()
     if paths.length > 0
-      project_path = if fs.statSync(paths[0]).isDirectory() then paths[0] else path.join(paths[0], '..')
+      fs.stat(paths[0], (err, stats) ->
+        if !err
+          project_path = if stats.isDirectory() then paths[0] else path.join(paths[0], '..')
+      )
+    
     args = (@fillVarsInArg arg, codeContext, project_path for arg in args)
     
     if not @scriptOptions.cmd? or @scriptOptions.cmd is ''
