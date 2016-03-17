@@ -128,7 +128,7 @@ module.exports =
     "File Based":
       command: "gnuplot"
       args: (context) -> ['-p', context.filepath]
-      workingDirectory: atom.workspace.getActivePaneItem()?.buffer.file?.getParent().getPath()
+      workingDirectory: atom.workspace.getActivePaneItem()?.buffer?.file?.getParent?().getPath?()
 
   Go:
     "File Based":
