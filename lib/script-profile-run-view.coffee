@@ -1,6 +1,7 @@
 {CompositeDisposable, Emitter} = require 'atom'
 {$$, View, SelectListView} = require 'atom-space-pen-views'
 ScriptInputView = require './script-input-view'
+ScriptOptionsView = require './script-options-view'
 
 module.exports =
 class ScriptProfileRunView extends SelectListView
@@ -29,6 +30,8 @@ class ScriptProfileRunView extends SelectListView
           @span class: 'icon icon-x', 'Cancel'
         @button class: "btn rename", =>
           @span class: 'icon icon-pencil', 'Rename'
+        @button class: "btn edit", =>
+          @span class: 'icon icon-pencil', 'Edit'
         @button class: "btn delete", =>
           @span class: 'icon icon-trashcan', 'Delete'
         @button class: "btn run", =>
@@ -37,6 +40,7 @@ class ScriptProfileRunView extends SelectListView
     # event handlers
     @buttons.find('.btn.cancel').on 'click', => @hide()
     @buttons.find('.btn.rename').on 'click', => @rename()
+    @buttons.find('.btn.edit').on 'click', => @edit()
     @buttons.find('.btn.delete').on 'click', => @delete()
     @buttons.find('.btn.run').on 'click', => @run()
 
@@ -76,6 +80,16 @@ class ScriptProfileRunView extends SelectListView
       @emitter.emit 'on-profile-change', profile: profile, key: 'name', value: newProfileName
 
     inputView.show()
+
+  edit: ->
+    profile = @getSelectedItem()
+    return unless profile
+  
+    optionsView = new ScriptOptionsView editMode: true
+    optionsView.setOptions(profile)
+    # optionsView.onProfileChange (profileOptions) =>
+    #   @emitter.emit 'on-profile-change', profile: profile, name: 'options', value: profileOptions
+    optionsView.show()
 
   delete: ->
     profile = @getSelectedItem()
@@ -118,7 +132,7 @@ class ScriptProfileRunView extends SelectListView
     @setItems @profiles
 
     # toggle profile controls
-    selector = '.rename, .delete, .run'
+    selector = '.rename, .edit, .delete, .run'
     if @profiles.length then @buttons.find(selector).show() else @buttons.find(selector).hide()
 
     @populateList()
@@ -135,5 +149,3 @@ class ScriptProfileRunView extends SelectListView
 
     @emitter.emit 'on-profile-run', profile
     @hide()
-
-
