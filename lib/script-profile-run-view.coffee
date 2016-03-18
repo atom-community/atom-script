@@ -125,7 +125,6 @@ class ScriptProfileRunView extends SelectListView
     @focusFilterEditor()
 
   close: ->
-    toggleProfileRun 'hide'
 
   destroy: ->
     @subscriptions?.dispose()
