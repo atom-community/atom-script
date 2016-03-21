@@ -346,7 +346,7 @@ module.exports =
         command: "bash"
         args: (context) -> ['-c', "xcrun clang++ -fcolor-diagnostics -Wc++11-extensions -Wall -include stdio.h -include iostream -framework Cocoa " + context.filepath + " -o /tmp/objc-cpp.out && /tmp/objc-cpp.out"]
 
-  ocaml:
+  OCaml:
     "File Based":
       command: "ocaml"
       args: (context) -> [context.filepath]
