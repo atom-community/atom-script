@@ -45,6 +45,10 @@ module.exports =
       "File Based":
         command: "bash"
         args: (context) -> ['-c', "xcrun clang++ -fcolor-diagnostics -Wc++11-extensions -Wall -include stdio.h -include iostream '" + context.filepath + "' -o /tmp/cpp.out && /tmp/cpp.out"]
+    else if GrammarUtils.OperatingSystem.isLinux()
+      "File Based":
+        command: "bash"
+        args: (context) -> ["-c", "g++ -Wall -include stdio.h -include iostream '" + context.filepath + "' -o /tmp/cpp.out && /tmp/cpp.out"]
 
   'C# Script File':
     "File Based":
@@ -346,7 +350,7 @@ module.exports =
         command: "bash"
         args: (context) -> ['-c', "xcrun clang++ -fcolor-diagnostics -Wc++11-extensions -Wall -include stdio.h -include iostream -framework Cocoa " + context.filepath + " -o /tmp/objc-cpp.out && /tmp/objc-cpp.out"]
 
-  ocaml:
+  OCaml:
     "File Based":
       command: "ocaml"
       args: (context) -> [context.filepath]

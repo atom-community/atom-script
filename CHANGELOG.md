@@ -1,3 +1,7 @@
+## 3.6.3
+
+* Fix bug prevents the package from disabling and updating
+
 ## 3.6.2
 
 * Fix running of atom://config files
