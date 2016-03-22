@@ -101,14 +101,14 @@ class Runner
       arg = arg.replace(/{FILE_ACTIVE_NAME_BASE}/g, path.join(codeContext.filename, '..'))
     if project_path?
       arg = arg.replace(/{PROJECT_PATH}/g, project_path)
-
+    
     arg
 
   args: (codeContext, extraArgs) ->
     args = (@scriptOptions.cmdArgs.concat extraArgs).concat @scriptOptions.scriptArgs
     project_path = @getProjectPath or ''
     args = (@fillVarsInArg arg, codeContext, project_path for arg in args)
-
+    
     if not @scriptOptions.cmd? or @scriptOptions.cmd is ''
       args = codeContext.shebangCommandArgs().concat args
     args
