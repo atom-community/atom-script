@@ -51,16 +51,16 @@ class Runner
 
     workingDirectoryProvided = cwd? and cwd isnt ''
     if not workingDirectoryProvided
-      try
-        switch atom.config.get('script.cwdBehavior')
-          when 'First project directory'
-            paths = atom.project.getPaths()
-            if paths?.length > 0
+      switch atom.config.get('script.cwdBehavior')
+        when 'First project directory'
+          paths = atom.project.getPaths()
+          if paths?.length > 0
+            try
               cwd = if fs.statSync(paths[0]).isDirectory() then paths[0] else path.join(paths[0], '..')
-          when 'Project directory of the script'
-            cwd = @getProjectPath()
-          when 'Directory of the script'
-            cwd = atom.workspace.getActivePaneItem().buffer.file.getParent().path
+        when 'Project directory of the script'
+          cwd = @getProjectPath()
+        when 'Directory of the script'
+          cwd = atom.workspace.getActivePaneItem()?.buffer?.file?.getParent?().getPath?() or ''
     cwd
 
   stop: ->
@@ -116,9 +116,11 @@ class Runner
   getProjectPath: ->
     filePath = atom.workspace.getActiveTextEditor().getPath()
     projectPaths = atom.project.getPaths()
+    curProjectPath = ''
     for projectPath in projectPaths
       if filePath.indexOf(projectPath) > -1
-        if fs.statSync(projectPath).isDirectory()
-          return projectPath
-        else
-          return path.join(projectPath, '..')
+        fs.stat(projectPath, (err, stats) ->
+          if !err
+            curProjectPath = if stats.isDirectory() then projectPath else path.join(projectPath, '..')
+        )
+        return curProjectPath
