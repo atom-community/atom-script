@@ -116,11 +116,9 @@ class Runner
   getProjectPath: ->
     filePath = atom.workspace.getActiveTextEditor().getPath()
     projectPaths = atom.project.getPaths()
-    curProjectPath = ''
     for projectPath in projectPaths
       if filePath.indexOf(projectPath) > -1
-        fs.stat(projectPath, (err, stats) ->
-          if !err
-            curProjectPath = if stats.isDirectory() then projectPath else path.join(projectPath, '..')
-        )
-        return curProjectPath
+        if fs.statSync(projectPath).isDirectory()
+          return projectPath
+        else
+          return path.join(projectPath, '..')
