@@ -20,6 +20,10 @@ module.exports =
       title: 'HTML escape console output'
       type: 'boolean'
       default: true
+    ignoreSelection:
+      title: 'Ignore selection (file-based runs only)'
+      type: 'boolean'
+      default: false
     scrollWithOutput:
       title: 'Scroll with output'
       type: 'boolean'
