@@ -178,7 +178,7 @@ module.exports =
         className = context.filename.replace /\.java$/, ""
         args = []
         if GrammarUtils.OperatingSystem.isWindows()
-          args = ["/c javac -Xlint #{context.filename} && start cmd /k java #{className}"]
+          args = ["/c javac -Xlint #{context.filename} && java #{className}"]
         else
           args = ['-c', "javac -d /tmp '#{context.filepath}' && java -cp /tmp #{className}"]
         return args
