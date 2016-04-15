@@ -36,6 +36,7 @@ Currently supported grammars are:
   * Java <sup>[***](#triple-asterisk)</sup>
   * Javascript
   * [JavaScript for Automation](https://developer.apple.com/library/mac/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/Introduction.html) (JXA)
+  * Jolie <sup>[*](#asterisk)</sup>
   * Julia
   * Kotlin
   * LaTeX (via latexmk)
@@ -89,7 +90,7 @@ You only have to add a few lines in a PR to support another.
 
 <a name="dagger"></a><sup>†</sup> Erlang uses `erl` for limited selection based runs (see [#70](https://github.com/rgbkrk/atom-script/pull/70))
 
-<a name="asterisk"></a><sup>*</sup> Cucumber (Gherkin), D, Go, F#, Literate Haskell, OCaml, PowerShell, and Swift do not support selection based runs
+<a name="asterisk"></a><sup>*</sup> Cucumber (Gherkin), D, Go, F#, Literate Haskell, Jolie, OCaml, PowerShell, and Swift do not support selection based runs
 
 <a name="omega"></a><sup>⍵</sup> Lisp selection based runs are limited to single line
 
