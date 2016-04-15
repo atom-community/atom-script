@@ -207,6 +207,11 @@ module.exports =
       command: "osascript"
       args: (context) -> ['-l', 'JavaScript', context.filepath]
 
+  Jolie:
+    "File Based":
+      command: "jolie"
+      args: (context) -> [context.filepath]
+
   Julia:
     "Selection Based":
       command: "julia"
