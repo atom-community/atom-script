@@ -137,7 +137,10 @@ module.exports =
   Go:
     "File Based":
       command: "go"
-      args: (context) -> ['run', context.filepath]
+      args: (context) ->
+        if context.filepath.match(/_test.go/) then ['test', '' ]
+        else ['run', context.filepath]
+      workingDirectory: atom.workspace.getActivePaneItem()?.buffer?.file?.getParent?().getPath?()
 
   Groovy:
     "Selection Based":
