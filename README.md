@@ -11,6 +11,7 @@ Run scripts based on file name, a selection of code, or by line number.
 Currently supported grammars are:
 
   * 1C (BSL) <sup>[Ø](#o-stroke)</sup>
+  * Ansible <sup>[*](#asterisk)</sup>
   * AppleScript
   * Bash <sup>[**](#double-asterisk)</sup>
   * Behat Feature
@@ -90,7 +91,7 @@ You only have to add a few lines in a PR to support another.
 
 <a name="dagger"></a><sup>†</sup> Erlang uses `erl` for limited selection based runs (see [#70](https://github.com/rgbkrk/atom-script/pull/70))
 
-<a name="asterisk"></a><sup>*</sup> Cucumber (Gherkin), D, Go, F#, Literate Haskell, Jolie, OCaml, PowerShell, and Swift do not support selection based runs
+<a name="asterisk"></a><sup>*</sup> Ansible, Cucumber (Gherkin), D, Go, F#, Literate Haskell, Jolie, OCaml, PowerShell, and Swift do not support selection based runs
 
 <a name="omega"></a><sup>⍵</sup> Lisp selection based runs are limited to single line
 

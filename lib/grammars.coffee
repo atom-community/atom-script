@@ -10,6 +10,11 @@ module.exports =
       command: "oscript"
       args: (context) -> ['-encoding=utf-8', context.filepath]
 
+  Ansible:
+    "File Based":
+      command: "ansible-playbook"
+      args: (context) -> [context.filepath]
+
   AppleScript:
     'Selection Based':
       command: 'osascript'
