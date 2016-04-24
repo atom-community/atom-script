@@ -1,3 +1,16 @@
+## 3.7.1
+
+* Support for Ansible playbooks
+
+## 3.7.0
+
+* Adapt script for tests in go
+* Support Jolie language
+* Keep Java runner within same console on Windows
+* Option to ignore selection runs
+* Fix C++ not running on Linux
+* Fix OCaml support
+
 ## 3.6.3
 
 * Fix bug prevents the package from disabling and updating
