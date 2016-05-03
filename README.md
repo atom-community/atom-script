@@ -61,6 +61,7 @@ Currently supported grammars are:
   * Perl 6
   * PHP
   * PostgreSQL <sup>[§](#section)</sup>
+  * PowerShell
   * Python
   * RSpec
   * Racket
