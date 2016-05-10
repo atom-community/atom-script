@@ -13,7 +13,9 @@ Currently supported grammars are:
   * 1C (BSL) <sup>[Ø](#o-stroke)</sup>
   * Ansible <sup>[*](#asterisk)</sup>
   * AppleScript
+  * Babel ES6 Javascript
   * Bash <sup>[**](#double-asterisk)</sup>
+  * Batch <sup>
   * Behat Feature
   * C <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
   * C# Script <sup>[*](#asterisk)</sup>
@@ -29,11 +31,13 @@ Currently supported grammars are:
   * Elixir
   * Erlang <sup>[†](#dagger)</sup>
   * F# <sup>[*](#asterisk)</sup>
+  * Fish
   * Forth (via GForth)
   * Gnuplot
   * Go <sup>[*](#asterisk)</sup>
   * Groovy
   * Haskell
+  * IcedCoffeeScript
   * ioLanguage (http://iolanguage.org/)
   * Java <sup>[***](#triple-asterisk)</sup>
   * Javascript
@@ -66,6 +70,7 @@ Currently supported grammars are:
   * PowerShell
   * Prolog <sup>[¢](#cents)</sup>
   * Python
+  * R
   * Racket
   * [RANT](https://github.com/TheBerkin/Rant)
   * RSpec
@@ -75,7 +80,9 @@ Currently supported grammars are:
   * Sage
   * Sass/SCSS <sup>[*](#asterisk)</sup>
   * Scala
+  * Scheme
   * Shell Script <sup>[**](#double-asterisk)</sup>
+  * Standard ML
   * Swift
   * TypeScript
   * Zsh <sup>[**](#double-asterisk)</sup>
