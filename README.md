@@ -16,14 +16,15 @@ Currently supported grammars are:
   * Bash <sup>[**](#double-asterisk)</sup>
   * Behat Feature
   * C <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
-  * C++ <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
   * C# Script <sup>[*](#asterisk)</sup>
+  * C++ <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
   * Clojure (via Leiningen) <sup>[ϖ](#pi)</sup>
   * Coffeescript
   * CoffeeScript (Literate) <sup>[^](#caret)</sup>
   * Crystal
   * Cucumber (Gherkin) <sup>[*](#asterisk)</sup>
   * D <sup>[*](#asterisk)</sup>
+  * Dart
   * DOT (Graphviz)
   * Elixir
   * Erlang <sup>[†](#dagger)</sup>
@@ -47,8 +48,8 @@ Currently supported grammars are:
   * LiveScript
   * Lua
   * Makefile
-  * MoonScript
   * MongoDB
+  * MoonScript
   * [NCL](http://ncl.ucar.edu)<sup>[#](#hash)</sup>
   * newLISP
   * Nim (and NimScript)
@@ -56,16 +57,18 @@ Currently supported grammars are:
   * Objective-C <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
   * Objective-C++ <sup>[*](#asterisk)</sup><sup>[‡](#double-dagger)</sup>
   * OCaml <sup>[*](#asterisk)</sup>
+  * Octave
   * Pandoc Markdown <sup>[††](#two-daggers)</sup>
   * Perl
   * Perl 6
   * PHP
   * PostgreSQL <sup>[§](#section)</sup>
   * PowerShell
+  * Prolog <sup>[¢](#cents)</sup>
   * Python
-  * RSpec
   * Racket
   * [RANT](https://github.com/TheBerkin/Rant)
+  * RSpec
   * Ruby
   * Ruby on Rails
   * Rust
@@ -75,10 +78,7 @@ Currently supported grammars are:
   * Shell Script <sup>[**](#double-asterisk)</sup>
   * Swift
   * TypeScript
-  * Dart
-  * Octave
   * Zsh <sup>[**](#double-asterisk)</sup>
-  * Prolog <sup>[¢](#cents)</sup>
 
 **NOTE**: Some grammars may require you to install [a custom language package](https://atom.io/search?utf8=✓&q=language).
 
