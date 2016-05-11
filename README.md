@@ -10,84 +10,84 @@ Run scripts based on file name, a selection of code, or by line number.
 
 Currently supported grammars are:
 
-| Grammar                              | File Based | Selection Based | Line Based  | Notes |
-| :----------------------------------- | :--------- | :-------------- | :---------- | :---- |
-| 1C (BSL)                             | Yes        |                 |             | Runs through [OneScript](http://oscript.io/) interpreter in console mode |
-| Ansible                              | Yes        |                 |             | |
-| AppleScript                          | Yes        | Yes             |             | |
-| Babel ES6 JS                         | Yes        | Yes             |             | |
-| Bash                                 | Yes        | Yes             |             | The shell used is based on your default `$SHELL` environment variable |
-| Batch                                | Yes        |                 |             | |
-| Behat Feature                        | Yes        |                 | Yes         | |
-| C                                    | Yes        |                 |             | Only available on OSX (`xcrun clang`) and Linux (`cc`) |
-| C#                                   | Yes        |                 |             | |
-| C++                                  | Yes        |                 |             | Only available on OSX (`xcurn clang++`) and Linux (`g++`) |
-| Clojure                              | Yes        | Yes             |             | Clojure scripts are executed via [Leiningen](http://leiningen.org/)'s [exec](https://github.com/kumarshantanu/lein-exec) plugin. Both `Leiningen` and `exec` must be installed |
-| CoffeeScript                         | Yes        | Yes             |             | |
-| CoffeeScript (Literate)              | Yes        | Yes             |             | Running selections of code for CoffeeScript (Literate) only works when selecting just the code blocks |
-| Crystal                              | Yes        | Yes             |             | |
-| Cucumber (Gherkin)                   | Yes        |                 | Yes         | |
-| D                                    | Yes        |                 |             | |
-| Dart                                 | Yes        |                 |             | |
-| DOT (Graphviz)                       | Yes        |                 |             | |
-| Elixir                               | Yes        | Yes             |             | |
-| Erlang                               |            | Yes             |             | Uses `erl` for limited selection based runs (see [#70](https://github.com/rgbkrk/atom-script/pull/70)) |
-| F#                                   | Yes        |                 |             | |
-| Fish                                 | Yes        | Yes             |             | Finally, a way to run code within Atom for the 90s |
-| Forth (via GForth)                   | Yes        |                 |             | |
-| Gnuplot                              | Yes        |                 |             | |
-| Go                                   | Yes        |                 |             | |
-| Groovy                               | Yes        | Yes             |             | |
-| Haskell                              | Yes        | Yes             |             | |
-| IcedCoffeeScript                     | Yes        | Yes             |             | |
-| [ioLanguage](http://iolanguage.org/) | Yes        | Yes             |             | |
-| Java                                 | Yes        |                 |             | Windows users should manually add jdk path (...\jdk1.x.x_xx\bin) to their system environment variables |
-| Javascript                           | Yes        | Yes             |             | |
-| [JavaScript for Automation](https://developer.apple.com/library/mac/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/Introduction.html) (JXA)            | Yes        | Yes             |             | |
-| Jolie                                | Yes        |                 |             | |
-| Julia                                | Yes        | Yes             |             | |
-| Kotlin                               | Yes        | Yes             |             | |
-| LaTeX (via latexmk)                  | Yes        |                 |             | |
-| LilyPond                             | Yes        |                 |             | |
-| Lisp (via SBCL)                      | Yes        | Yes             |             | Selection based runs are limited to single line |
-| Literate Haskell                     | Yes        |                 |             | |
-| LiveScript                           | Yes        | Yes             |             | |
-| Lua                                  | Yes        | Yes             |             | |
-| Makefile                             | Yes        | Yes             |             | |
-| MongoDB                              | Yes        | Yes             |             | |
-| MoonScript                           | Yes        | Yes             |             | |
-| [NCL](http://ncl.ucar.edu)           | Yes        | Yes             |             | Scripts must end with `exit` command for file based runs |
-| newLISP                              | Yes        | Yes             |             | |
-| Nim (and NimScript)                  | Yes        |                 |             | |
-| NSIS                                 | Yes        | Yes             |             | |
-| Objective-C                          | Yes        |                 |             | Only available on OSX (`xcrun clang`) |
-| Objective-C                          | Yes        |                 |             | Only available on OSX (`xcrun clang++`) |
-| OCaml                                | Yes        |                 |             | |
-| Octave                               | Yes        | Yes             |             | |
-| Pandoc Markdown                      | Yes        |                 |             | Requires the panzer pandoc wrapper https://github.com/msprev/panzer and the pandoc-flavored-markdown language package in Atom https://atom.io/packages/language-pfm |
-| Perl                                 | Yes        | Yes             |             | |
-| Perl 6                               | Yes        | Yes             |             | |
-| PHP                                  | Yes        | Yes             |             | |
-| PostgreSQL                           | Yes        | Yes             |             | Requires the atom-language-pgsql package in Atom https://atom.io/packages/language-pgsql. Connects as user `$PGUSER` to database `$PGDATABASE`. Both default to the operating system's user name and both can be set in the process environment or in Atom's `init.coffee` script: `process.env.PGUSER = ⟨username⟩` and `process.env.PGDATABASE = ⟨database name⟩` |
-| PowerShell                           | Yes        |                 |             | |
-| Prolog                               | Yes        |                 |             | Scripts must contain a rule with the head `main` (e.g.`main:- parent(X,lucas),writeln(X).`). The script is executed with the goal `main` and is halted after the first result is found. The output is produced by the `writeln/1` predicates. It requires swipl |
-| Python                               | Yes        | Yes             |             | |
-| R                                    | Yes        | Yes             |             | |
-| Racket                               | Yes        | Yes             |             | |
-| [RANT](https://github.com/TheBerkin/Rant) | Yes        | Yes             |             | |
-| RSpec                                | Yes        | Yes             | Yes         | |
-| Ruby                                 | Yes        | Yes             |             | |
-| Ruby on Rails                        | Yes        | Yes             |             | |
-| Rust                                 | Yes        |                 |             | |
-| Sage                                 | Yes        | Yes             |             | |
-| Sass/SCSS                            | Yes        |                 |             | |
-| Scala                                | Yes        | Yes             |             | |
-| Scheme                               | Yes        | Yes             |             | |
-| Shell Script                         | Yes        | Yes             |             | The shell used is based on your default `$SHELL` environment variable |
-| Standard ML                          | Yes        |                 |             | |
-| Swift                                | Yes        |                 |             | |
-| TypeScript                           | Yes        | Yes             |             | |
-| Zsh                                  | Yes        | Yes             |             | The shell used is based on your default `$SHELL` environment variable |
+| Grammar                              | File Based | Selection Based | Notes |
+| :----------------------------------- | :--------- | :-------------- | :---- |
+| 1C (BSL)                             | Yes        |                 | Runs through [OneScript](http://oscript.io/) interpreter in console mode |
+| Ansible                              | Yes        |                 | |
+| AppleScript                          | Yes        | Yes             | |
+| Babel ES6 JS                         | Yes        | Yes             | |
+| Bash                                 | Yes        | Yes             | The shell used is based on your default `$SHELL` environment variable |
+| Batch                                | Yes        |                 | |
+| Behat Feature                        | Yes        |                 | |
+| C                                    | Yes        |                 | Only available on OSX (`xcrun clang`) and Linux (`cc`) |
+| C#                                   | Yes        |                 | |
+| C++                                  | Yes        |                 | Only available on OSX (`xcurn clang++`) and Linux (`g++`) |
+| Clojure                              | Yes        | Yes             | Clojure scripts are executed via [Leiningen](http://leiningen.org/)'s [exec](https://github.com/kumarshantanu/lein-exec) plugin. Both `Leiningen` and `exec` must be installed |
+| CoffeeScript                         | Yes        | Yes             | |
+| CoffeeScript (Literate)              | Yes        | Yes             | Running selections of code for CoffeeScript (Literate) only works when selecting just the code blocks |
+| Crystal                              | Yes        | Yes             | |
+| Cucumber (Gherkin)                   | Yes        |                 | |
+| D                                    | Yes        |                 | |
+| Dart                                 | Yes        |                 | |
+| DOT (Graphviz)                       | Yes        |                 | |
+| Elixir                               | Yes        | Yes             | |
+| Erlang                               |            | Yes             | Uses `erl` for limited selection based runs (see [#70](https://github.com/rgbkrk/atom-script/pull/70)) |
+| F#                                   | Yes        |                 | |
+| Fish                                 | Yes        | Yes             | Finally, a way to run code within Atom for the 90s |
+| Forth (via GForth)                   | Yes        |                 | |
+| Gnuplot                              | Yes        |                 | |
+| Go                                   | Yes        |                 | |
+| Groovy                               | Yes        | Yes             | |
+| Haskell                              | Yes        | Yes             | |
+| IcedCoffeeScript                     | Yes        | Yes             | |
+| [ioLanguage](http://iolanguage.org/) | Yes        | Yes             | |
+| Java                                 | Yes        |                 | Windows users should manually add jdk path (...\jdk1.x.x_xx\bin) to their system environment variables |
+| Javascript                           | Yes        | Yes             | |
+| [JavaScript for Automation](https://developer.apple.com/library/mac/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/Introduction.html) (JXA)            | Yes        | Yes             | |
+| Jolie                                | Yes        |                 | |
+| Julia                                | Yes        | Yes             | |
+| Kotlin                               | Yes        | Yes             | |
+| LaTeX (via latexmk)                  | Yes        |                 | |
+| LilyPond                             | Yes        |                 | |
+| Lisp (via SBCL)                      | Yes        | Yes             | Selection based runs are limited to single line |
+| Literate Haskell                     | Yes        |                 | |
+| LiveScript                           | Yes        | Yes             | |
+| Lua                                  | Yes        | Yes             | |
+| Makefile                             | Yes        | Yes             | |
+| MongoDB                              | Yes        | Yes             | |
+| MoonScript                           | Yes        | Yes             | |
+| [NCL](http://ncl.ucar.edu)           | Yes        | Yes             | Scripts must end with `exit` command for file based runs |
+| newLISP                              | Yes        | Yes             | |
+| Nim (and NimScript)                  | Yes        |                 | |
+| NSIS                                 | Yes        | Yes             | |
+| Objective-C                          | Yes        |                 | Only available on OSX (`xcrun clang`) |
+| Objective-C                          | Yes        |                 | Only available on OSX (`xcrun clang++`) |
+| OCaml                                | Yes        |                 | |
+| Octave                               | Yes        | Yes             | |
+| Pandoc Markdown                      | Yes        |                 | Requires the panzer pandoc wrapper https://github.com/msprev/panzer and the pandoc-flavored-markdown language package in Atom https://atom.io/packages/language-pfm |
+| Perl                                 | Yes        | Yes             | |
+| Perl 6                               | Yes        | Yes             | |
+| PHP                                  | Yes        | Yes             | |
+| PostgreSQL                           | Yes        | Yes             | Requires the atom-language-pgsql package in Atom https://atom.io/packages/language-pgsql. Connects as user `$PGUSER` to database `$PGDATABASE`. Both default to the operating system's user name and both can be set in the process environment or in Atom's `init.coffee` script: `process.env.PGUSER = ⟨username⟩` and `process.env.PGDATABASE = ⟨database name⟩` |
+| PowerShell                           | Yes        |                 | |
+| Prolog                               | Yes        |                 | Scripts must contain a rule with the head `main` (e.g.`main:- parent(X,lucas),writeln(X).`). The script is executed with the goal `main` and is halted after the first result is found. The output is produced by the `writeln/1` predicates. It requires swipl |
+| Python                               | Yes        | Yes             | |
+| R                                    | Yes        | Yes             | |
+| Racket                               | Yes        | Yes             | |
+| [RANT](https://github.com/TheBerkin/Rant) | Yes        | Yes             | |
+| RSpec                                | Yes        | Yes             | |
+| Ruby                                 | Yes        | Yes             | |
+| Ruby on Rails                        | Yes        | Yes             | |
+| Rust                                 | Yes        |                 | |
+| Sage                                 | Yes        | Yes             | |
+| Sass/SCSS                            | Yes        |                 | |
+| Scala                                | Yes        | Yes             | |
+| Scheme                               | Yes        | Yes             | |
+| Shell Script                         | Yes        | Yes             | The shell used is based on your default `$SHELL` environment variable |
+| Standard ML                          | Yes        |                 | |
+| Swift                                | Yes        |                 | |
+| TypeScript                           | Yes        | Yes             | |
+| Zsh                                  | Yes        | Yes             | The shell used is based on your default `$SHELL` environment variable |
 
 **NOTE**: Some grammars may require you to install [a custom language package](https://atom.io/search?utf8=✓&q=language).
 
