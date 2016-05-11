@@ -23,6 +23,19 @@ module.exports =
       command: 'osascript'
       args: (context) -> [context.filepath]
 
+  'Babel ES6 JavaScript':
+    "Selection Based":
+      command: "babel-node"
+      args: (context) -> ['-e', context.getCode()]
+    "File Based":
+      command: "babel-node"
+      args: (context) -> [context.filepath]
+
+  Batch:
+    "File Based":
+      command: ""
+      args: (context) -> [context.filepath]
+
   'Behat Feature':
     "File Based":
       command: "behat"
@@ -31,10 +44,6 @@ module.exports =
       command: "behat"
       args: (context) -> [context.fileColonLine()]
 
-  Batch:
-    "File Based":
-      command: ""
-      args: (context) -> [context.filepath]
   C:
     if GrammarUtils.OperatingSystem.isDarwin()
       "File Based":
@@ -45,6 +54,11 @@ module.exports =
         command: "bash"
         args: (context) -> ["-c", "cc -Wall -include stdio.h '" + context.filepath + "' -o /tmp/c.out && /tmp/c.out"]
 
+  'C# Script File':
+    "File Based":
+      command: "scriptcs"
+      args: (context) -> ['-script', context.filepath]
+
   'C++':
     if GrammarUtils.OperatingSystem.isDarwin()
       "File Based":
@@ -54,11 +68,6 @@ module.exports =
       "File Based":
         command: "bash"
         args: (context) -> ["-c", "g++ -Wall -include stdio.h -include iostream '" + context.filepath + "' -o /tmp/cpp.out && /tmp/cpp.out"]
-
-  'C# Script File':
-    "File Based":
-      command: "scriptcs"
-      args: (context) -> ['-script', context.filepath]
 
   Clojure:
     "Selection Based":
@@ -95,6 +104,11 @@ module.exports =
   D:
     "File Based":
       command: "rdmd"
+      args: (context) -> [context.filepath]
+
+  Dart:
+    "File Based":
+      command: "dart"
       args: (context) -> [context.filepath]
 
   DOT:
@@ -199,14 +213,6 @@ module.exports =
       command: "node"
       args: (context) -> [context.filepath]
 
-  'Babel ES6 JavaScript':
-    "Selection Based":
-      command: "babel-node"
-      args: (context) -> ['-e', context.getCode()]
-    "File Based":
-      command: "babel-node"
-      args: (context) -> [context.filepath]
-
   "JavaScript for Automation (JXA)":
     "Selection Based":
       command: "osascript"
@@ -294,6 +300,14 @@ module.exports =
       command: "lua"
       args: (context) -> [context.filepath]
 
+  Makefile:
+    "Selection Based":
+      command: "bash"
+      args: (context) -> ['-c', context.getCode()]
+    "File Based":
+      command: "make"
+      args: (context) -> ['-f', context.filepath]
+
   MagicPython:
     "Selection Based":
       command: "python"
@@ -340,6 +354,14 @@ module.exports =
       command: "newlisp"
       args: (context) -> [context.filepath]
 
+  Nim:
+    "File Based":
+      command: "bash"
+      args: (context) ->
+        file = GrammarUtils.Nim.findNimProjectFile(context.filepath)
+        path = GrammarUtils.Nim.projectDir(context.filepath)
+        ['-c', 'cd "' + path + '" && nim c --hints:off --parallelBuild:1 -r "' + file + '" 2>&1']
+
   NSIS:
     "Selection Based":
       command: "makensis"
@@ -368,21 +390,18 @@ module.exports =
       command: "ocaml"
       args: (context) -> [context.filepath]
 
+  Octave:
+    "Selection Based":
+      command: "octave"
+      args: (context) -> ['-p', context.filepath.replace(/[^\/]*$/, ''), '--eval', context.getCode()]
+    "File Based":
+      command: "octave"
+      args: (context) -> ['-p', context.filepath.replace(/[^\/]*$/, ''), context.filepath]
+
   'Pandoc Markdown':
     "File Based":
       command: "panzer"
       args: (context) -> [context.filepath, "--output=" + context.filepath + ".pdf"]
-
-  PHP:
-    "Selection Based":
-      command: "php"
-      args: (context) ->
-        code = context.getCode()
-        file = GrammarUtils.PHP.createTempFileWithCode(code)
-        [file]
-    "File Based":
-      command: "php"
-      args: (context) -> [context.filepath]
 
   Perl:
     "Selection Based":
@@ -411,10 +430,26 @@ module.exports =
       command: "perl6"
       args: (context) -> [context.filepath]
 
+  PHP:
+    "Selection Based":
+      command: "php"
+      args: (context) ->
+        code = context.getCode()
+        file = GrammarUtils.PHP.createTempFileWithCode(code)
+        [file]
+    "File Based":
+      command: "php"
+      args: (context) -> [context.filepath]
+
   PowerShell:
     "File Based":
       command: "powershell"
       args: (context) -> [context.filepath.replace /\ /g, "` "]
+
+  Prolog:
+    "File Based":
+      command: "bash"
+      args: (context) -> ['-c', 'cd \"' + context.filepath.replace(/[^\/]*$/, '') + '\"; swipl -f \"' + context.filepath + '\" -t main --quiet']
 
   Python:
     "Selection Based":
@@ -486,14 +521,6 @@ module.exports =
       command: "bash"
       args: (context) -> ['-c', "rustc '#{context.filepath}' -o /tmp/rs.out && /tmp/rs.out"]
 
-  Makefile:
-    "Selection Based":
-      command: "bash"
-      args: (context) -> ['-c', context.getCode()]
-    "File Based":
-      command: "make"
-      args: (context) -> ['-f', context.filepath]
-
   Sage:
     "Selection Based":
       command: "sage"
@@ -557,14 +584,6 @@ module.exports =
       command: "sml"
       args: (context) -> [context.filepath]
 
-  Nim:
-    "File Based":
-      command: "bash"
-      args: (context) ->
-        file = GrammarUtils.Nim.findNimProjectFile(context.filepath)
-        path = GrammarUtils.Nim.projectDir(context.filepath)
-        ['-c', 'cd "' + path + '" && nim c --hints:off --parallelBuild:1 -r "' + file + '" 2>&1']
-
   Swift:
     "File Based":
       command: "swift"
@@ -582,21 +601,3 @@ module.exports =
     "File Based":
       command: "bash"
       args: (context) -> ['-c', "tsc '#{context.filepath}' --out /tmp/js.out && node /tmp/js.out"]
-
-  Dart:
-    "File Based":
-      command: "dart"
-      args: (context) -> [context.filepath]
-
-  Octave:
-    "Selection Based":
-      command: "octave"
-      args: (context) -> ['-p', context.filepath.replace(/[^\/]*$/, ''), '--eval', context.getCode()]
-    "File Based":
-      command: "octave"
-      args: (context) -> ['-p', context.filepath.replace(/[^\/]*$/, ''), context.filepath]
-
-  Prolog:
-    "File Based":
-      command: "bash"
-      args: (context) -> ['-c', 'cd \"' + context.filepath.replace(/[^\/]*$/, '') + '\"; swipl -f \"' + context.filepath + '\" -t main --quiet']
