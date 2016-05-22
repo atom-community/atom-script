@@ -518,8 +518,15 @@ module.exports =
 
   Rust:
     "File Based":
-      command: "bash"
-      args: (context) -> ['-c', "rustc '#{context.filepath}' -o /tmp/rs.out && /tmp/rs.out"]
+      command: if GrammarUtils.OperatingSystem.isWindows() then "cmd" else "bash"
+      args: (context) ->
+        progname = context.filename.replace /\.rs$/, ""
+        args = []
+        if GrammarUtils.OperatingSystem.isWindows()
+          args = ["/c rustc #{context.filepath} && #{progname}.exe"]
+        else
+          args = ['-c', "rustc '#{context.filepath}' -o /tmp/rs.out && /tmp/rs.out"]
+        return args
 
   Sage:
     "Selection Based":
