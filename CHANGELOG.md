@@ -1,3 +1,7 @@
+## 3.7.2
+
+* Support Rust on Windows
+
 ## 3.7.1
 
 * Support for Ansible playbooks
