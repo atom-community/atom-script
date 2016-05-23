@@ -54,6 +54,7 @@ Currently supported grammars are:
 | LiveScript                           | Yes        | Yes             | |
 | Lua                                  | Yes        | Yes             | |
 | Makefile                             | Yes        | Yes             | |
+| [MATLAB](http://mathworks.com/products/matlab) | Yes        | Yes             | Requires the language-matlab package in Atom https://atom.io/packages/language-matlab |
 | MongoDB                              | Yes        | Yes             | |
 | MoonScript                           | Yes        | Yes             | |
 | [NCL](http://ncl.ucar.edu)           | Yes        | Yes             | Scripts must end with `exit` command for file based runs |
