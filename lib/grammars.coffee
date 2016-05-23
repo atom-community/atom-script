@@ -591,6 +591,14 @@ module.exports =
       command: "sml"
       args: (context) -> [context.filepath]
 
+  Stata:
+    "Selection Based":
+      command: "xstata-se"
+      args: (context)  -> ['do', context.getCode()]
+    "File Based":
+      command: "xstata-se"
+      args: (context) -> ['do', context.filepath]
+
   Swift:
     "File Based":
       command: "swift"
