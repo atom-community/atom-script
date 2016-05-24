@@ -43,6 +43,11 @@ module.exports =
   # Returns an {Object} which assists in splitting Lisp statements.
   Lisp: require './grammar-utils/lisp'
 
+  # Public: Get the MATLAB helper object
+  #
+  # Returns an {Object} which assists in splitting MATLAB statements.
+  MATLAB: require './grammar-utils/matlab'
+
   # Public: Get the OperatingSystem helper object
   #
   # Returns an {Object} which assists in writing OS dependent code.

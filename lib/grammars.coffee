@@ -316,6 +316,17 @@ module.exports =
       command: "python"
       args: (context) -> ['-u', context.filepath]
 
+  MATLAB:
+    "Selection Based":
+      command: "matlab"
+      args: (context) ->
+        code = context.getCode()
+        tmpFile = GrammarUtils.MATLAB.createTempFileWithCode(code)
+        ['-nodesktop','-nosplash','-nojvm','-nodisplay','-r',"try, run('" + tmpFile + "'), catch ME, disp(ME.message);,exit(1);, end, exit(0);"]
+    "File Based":
+      command: "matlab"
+      args: (context) -> ['-nodesktop','-nosplash','-nojvm','-nodisplay','-r',"try, run('" + context.filepath + "'), catch ME, disp(ME.message);,exit(1);, end, exit(0);"]
+
   MoonScript:
     "Selection Based":
       command: "moon"
