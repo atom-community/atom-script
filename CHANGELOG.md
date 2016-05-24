@@ -1,3 +1,8 @@
+## 3.7.3
+
+* Support for Stata
+* Support for MATLAB
+
 ## 3.7.2
 
 * Support Rust on Windows
