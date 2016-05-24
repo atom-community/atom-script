@@ -86,6 +86,7 @@ Currently supported grammars are:
 | Scheme                               | Yes        | Yes             | |
 | Shell Script                         | Yes        | Yes             | The shell used is based on your default `$SHELL` environment variable |
 | Standard ML                          | Yes        |                 | |
+| Stata                                | Yes        | Yes             | Runs through xstata-se |
 | Swift                                | Yes        |                 | |
 | TypeScript                           | Yes        | Yes             | |
 | Zsh                                  | Yes        | Yes             | The shell used is based on your default `$SHELL` environment variable |
