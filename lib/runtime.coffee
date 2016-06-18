@@ -50,7 +50,7 @@ class Runtime
 
     # In the future we could handle a runner without the language being part
     # of the grammar map, using the options runner
-    return unless codeContext.lang?
+    return unless codeContext?.lang?
 
     executionOptions = if options then options else @scriptOptions
     commandContext = CommandContext.build(@, executionOptions, codeContext)
@@ -59,7 +59,7 @@ class Runtime
 
     if commandContext.workingDirectory?
       executionOptions.workingDirectory = commandContext.workingDirectory
-    
+
     @emitter.emit 'did-context-create',
       lang: codeContext.lang
       filename: codeContext.filename
