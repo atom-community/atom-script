@@ -88,7 +88,7 @@ Currently supported grammars are:
 | Standard ML                          | Yes        |                 | |
 | Stata                                | Yes        | Yes             | Runs through xstata-se |
 | Swift                                | Yes        |                 | |
-| Tcl                                  | Yes        |                 | |
+| Tcl                                  | Yes        | Yes             | |
 | TypeScript                           | Yes        | Yes             | |
 | Zsh                                  | Yes        | Yes             | The shell used is based on your default `$SHELL` environment variable |
 
