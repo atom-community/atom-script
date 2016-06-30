@@ -615,6 +615,17 @@ module.exports =
       command: "swift"
       args: (context) -> [context.filepath]
 
+  Tcl:
+    "Selection Based":
+      command: "tclsh"
+      args: (context) ->
+        code = context.getCode()
+        tmpFile = GrammarUtils.createTempFileWithCode(code)
+        [tmpFile]
+    "File Based":
+      command: "tclsh"
+      args: (context) -> [context.filepath]
+
   TypeScript:
     "Selection Based":
       command: "bash"
