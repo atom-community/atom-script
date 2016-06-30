@@ -12,3 +12,6 @@ module.exports =
 
   platform: ->
     process.platform
+  
+  release: ->
+    process.release
