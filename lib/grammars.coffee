@@ -69,7 +69,7 @@ module.exports =
         command: "bash"
         args: (context) -> ["-c", "g++ -Wall -include stdio.h -include iostream '" + context.filepath + "' -o /tmp/cpp.out && /tmp/cpp.out"]
     else if GrammarUtils.OperatingSystem.isWindows() and GrammarUtils.OperatingSystem.release().indexOf("14399") >= 0
-      "File Based:
+      "File Based":
         command: "bash"
         args: (context) -> ["-c", "g++ -Wall -include stdio.h -include iostream '" + context.filepath + "' -o /tmp/cpp.out && /tmp/cpp.out"]
 
