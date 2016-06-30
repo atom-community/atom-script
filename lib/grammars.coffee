@@ -33,8 +33,8 @@ module.exports =
 
   Batch:
     "File Based":
-      command: ""
-      args: (context) -> [context.filepath]
+      command: "cmd.exe"
+      args: (context) -> ['/q', '/c', context.filepath]
 
   'Behat Feature':
     "File Based":
