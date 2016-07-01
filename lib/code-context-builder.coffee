@@ -28,10 +28,10 @@ class CodeContextBuilder
     codeContext.argType = argType
 
     if argType == 'Line Number Based'
-      editor.save() if editor.isModified()
+      editor.save()
     else if codeContext.selection.isEmpty() and codeContext.filepath?
       codeContext.argType = 'File Based'
-      editor.save() if editor.isModified()
+      editor.save() if editor?.isModified()
 
     # Selection and Line Number Based runs both benefit from knowing the current line
     # number
