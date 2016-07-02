@@ -71,7 +71,7 @@ module.exports =
     else if GrammarUtils.OperatingSystem.isWindows() and GrammarUtils.OperatingSystem.release().indexOf("14399") >= 0
       "File Based":
         command: "bash"
-        args: (context) -> ["-c", "g++ -Wall -include stdio.h -include iostream '" + context.filepath + "' -o /tmp/cpp.out && /tmp/cpp.out"]
+        args: (context) -> ["-c", "g++ -Wall -include stdio.h -include iostream '/mnt/" + path.posix.join.apply(path.posix, [].concat([context.filepath.split(path.win32.sep)[0].toLowerCase()], context.filepath.split(path.win32.sep).slice(1))).replace(":", "") + "' -o /tmp/cpp.out && /tmp/cpp.out"]
 
   Clojure:
     "Selection Based":
