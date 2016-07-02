@@ -68,7 +68,7 @@ module.exports =
       "File Based":
         command: "bash"
         args: (context) -> ["-c", "g++ -Wall -include stdio.h -include iostream '" + context.filepath + "' -o /tmp/cpp.out && /tmp/cpp.out"]
-    else if GrammarUtils.OperatingSystem.isWindows() and GrammarUtils.OperatingSystem.release().slice(-1) >= '14399'
+    else if GrammarUtils.OperatingSystem.isWindows() and GrammarUtils.OperatingSystem.release().split(".").slice -1 >= '14399'
       "File Based":
         command: "bash"
         args: (context) -> ["-c", "g++ -Wall -include stdio.h -include iostream '/mnt/" + path.posix.join.apply(path.posix, [].concat([context.filepath.split(path.win32.sep)[0].toLowerCase()], context.filepath.split(path.win32.sep).slice(1))).replace(":", "") + "' -o /tmp/cpp.out && /tmp/cpp.out"]
