@@ -14,4 +14,4 @@ module.exports =
     process.platform
   
   release: ->
-    process.release
+    os.release
