@@ -139,6 +139,26 @@ module.exports =
       command: "gforth"
       args: (context) -> [context.filepath]
 
+  "Fortran - Fixed Form":
+    "File Based":
+      command: "bash"
+      args: (context) -> ['-c', "gfortran '" + context.filepath + "' -ffixed-form -o /tmp/f.out && /tmp/f.out"]
+
+  "Fortran - Free Form":
+    "File Based":
+      command: "bash"
+      args: (context) -> ['-c', "gfortran '" + context.filepath + "' -ffree-form -o /tmp/f90.out && /tmp/f90.out"]
+
+  "Fortran - Modern":
+    "File Based":
+      command: "bash"
+      args: (context) -> ['-c', "gfortran '" + context.filepath + "' -ffree-form -o /tmp/f90.out && /tmp/f90.out"]
+
+  "Fortran - Punchcard":
+    "File Based":
+      command: "bash"
+      args: (context) -> ['-c', "gfortran '" + context.filepath + "' -ffixed-form -o /tmp/f.out && /tmp/f.out"]
+
   Gherkin:
     "File Based":
       command: "cucumber"
