@@ -41,6 +41,7 @@ Currently supported grammars are:
 | Groovy                               | Yes        | Yes             | |
 | Haskell                              | Yes        | Yes             | |
 | IcedCoffeeScript                     | Yes        | Yes             | |
+| Inno Setup                           | Yes        |                 | Requires the path of `ISCC.exe` in your system environment variables |
 | [ioLanguage](http://iolanguage.org/) | Yes        | Yes             | |
 | Java                                 | Yes        |                 | Windows users should manually add jdk path (...\jdk1.x.x_xx\bin) to their system environment variables |
 | Javascript                           | Yes        | Yes             | |
