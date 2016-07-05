@@ -40,13 +40,6 @@ describe 'grammarMap', ->
         expect(args[0]).toEqual('-c')
         expect(args[1]).toMatch(/^xcrun clang/)
 
-      it 'is not defined on other operating systems', ->
-        OperatingSystem.platform = -> 'win32'
-        @reloadGrammar()
-
-        grammar = grammarMap['C']
-        expect(grammar).toBe(undefined)
-
     describe 'C++', ->
       it 'returns the appropriate File Based runner on Mac OS X', ->
         OperatingSystem.platform = -> 'darwin'
@@ -58,13 +51,6 @@ describe 'grammarMap', ->
         expect(fileBasedRunner.command).toEqual('bash')
         expect(args[0]).toEqual('-c')
         expect(args[1]).toMatch(/^xcrun clang\+\+/)
-
-      it 'is not defined on other operating systems', ->
-        OperatingSystem.platform = -> 'win32'
-        @reloadGrammar()
-
-        grammar = grammarMap['C++']
-        expect(grammar).toBe(undefined)
 
     describe 'F#', ->
       it 'returns "fsi" as command for File Based runner on Windows', ->
@@ -101,13 +87,6 @@ describe 'grammarMap', ->
         expect(args[0]).toEqual('-c')
         expect(args[1]).toMatch(/^xcrun clang/)
 
-      it 'is not defined on other operating systems', ->
-        OperatingSystem.platform = -> 'win32'
-        @reloadGrammar()
-
-        grammar = grammarMap['Objective-C']
-        expect(grammar).toBe(undefined)
-
     describe 'Objective-C++', ->
       it 'returns the appropriate File Based runner on Mac OS X', ->
         OperatingSystem.platform = -> 'darwin'
@@ -119,10 +98,3 @@ describe 'grammarMap', ->
         expect(fileBasedRunner.command).toEqual('bash')
         expect(args[0]).toEqual('-c')
         expect(args[1]).toMatch(/^xcrun clang\+\+/)
-
-      it 'is not defined on other operating systems', ->
-        OperatingSystem.platform = -> 'win32'
-        @reloadGrammar()
-
-        grammar = grammarMap['Objective-C++']
-        expect(grammar).toBe(undefined)
