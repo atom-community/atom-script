@@ -1,3 +1,7 @@
+## 3.8.1
+
+* Fix compilation errors
+
 ## 3.8.0
 
 * Support for C/C++ on Windows (only latest win10 builds with `bash` and `g++` installed)
