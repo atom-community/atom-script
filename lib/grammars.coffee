@@ -205,6 +205,11 @@ module.exports =
       command: "iced"
       args: (context) -> [context.filepath]
 
+  InnoSetup:
+    "File Based":
+      command: "ISCC.exe"
+      args: (context) -> ['/Q', context.filepath]
+
   ioLanguage:
     "Selection Based":
       command: "io"
