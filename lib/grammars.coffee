@@ -2,6 +2,7 @@
 # As well as any special setup for arguments.
 
 _ = require 'underscore'
+path = require 'path'
 GrammarUtils = require '../lib/grammar-utils'
 
 module.exports =

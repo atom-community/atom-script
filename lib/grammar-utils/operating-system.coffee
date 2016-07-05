@@ -13,7 +13,7 @@ module.exports =
     @platform() is 'linux'
 
   platform: ->
-    process.platform
-  
+    os.platform()
+
   release: ->
-    os.release
+    os.release()
