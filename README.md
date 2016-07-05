@@ -87,7 +87,7 @@ Currently supported grammars are:
 | Scheme                               | Yes        | Yes             | |
 | Shell Script                         | Yes        | Yes             | The shell used is based on your default `$SHELL` environment variable |
 | Standard ML                          | Yes        |                 | |
-| Stata                                | Yes        | Yes             | Runs through xstata-se |
+| Stata                                | Yes        | Yes             | Runs through Stata. Note stata needs to be added to your system PATH for this to work. `Mac directions <http://www.stata.com/support/faqs/mac/advanced-topics/>`_ . |
 | Swift                                | Yes        |                 | |
 | Tcl                                  | Yes        | Yes             | |
 | TypeScript                           | Yes        | Yes             | |

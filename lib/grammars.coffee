@@ -624,10 +624,10 @@ module.exports =
 
   Stata:
     "Selection Based":
-      command: "xstata-se"
+      command: "stata"
       args: (context)  -> ['do', context.getCode()]
     "File Based":
-      command: "xstata-se"
+      command: "stata"
       args: (context) -> ['do', context.filepath]
 
   Swift:
