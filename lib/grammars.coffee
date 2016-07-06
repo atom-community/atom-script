@@ -352,10 +352,10 @@ module.exports =
       args: (context) ->
         code = context.getCode()
         tmpFile = GrammarUtils.MATLAB.createTempFileWithCode(code)
-        ['-nodesktop','-nosplash','-nojvm','-nodisplay','-r',"try, run('" + tmpFile + "'), catch ME, disp(ME.message);,exit(1);, end, exit(0);"]
+        ['-nodesktop','-nosplash','-r',"try, run('" + tmpFile + "');while ~isempty(get(0,'Children')); pause(0.5); end; catch ME; disp(ME.message); exit(1); end; exit(0);"]
     "File Based":
       command: "matlab"
-      args: (context) -> ['-nodesktop','-nosplash','-nojvm','-nodisplay','-r',"try, run('" + context.filepath + "'), catch ME, disp(ME.message);,exit(1);, end, exit(0);"]
+      args: (context) -> ['-nodesktop','-nosplash','-r',"try run('" + context.filepath + "');while ~isempty(get(0,'Children')); pause(0.5); end; catch ME; disp(ME.message); exit(1); end; exit(0);"]
 
   MoonScript:
     "Selection Based":
