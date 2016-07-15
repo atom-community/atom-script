@@ -330,6 +330,17 @@ module.exports =
       command: "lua"
       args: (context) -> [context.filepath]
 
+  'Lua (WoW)':
+    "Selection Based":
+      command: "lua"
+      args: (context) ->
+        code = context.getCode(true)
+        tmpFile = GrammarUtils.createTempFileWithCode(code)
+        [tmpFile]
+    "File Based":
+      command: "lua"
+      args: (context) -> [context.filepath]
+
   Makefile:
     "Selection Based":
       command: "bash"

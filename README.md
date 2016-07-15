@@ -55,6 +55,7 @@ Currently supported grammars are:
 | Literate Haskell                     | Yes        |                 | |
 | LiveScript                           | Yes        | Yes             | |
 | Lua                                  | Yes        | Yes             | |
+| Lua (WoW)                            | Yes        | Yes             | |
 | Makefile                             | Yes        | Yes             | |
 | [MATLAB](http://mathworks.com/products/matlab) | Yes        | Yes   | |
 | MongoDB                              | Yes        | Yes             | |
