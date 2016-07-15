@@ -1,3 +1,7 @@
+## 3.8.2
+
+* Support for Lua (WoW)
+
 ## 3.8.1
 
 * Fix compilation errors
