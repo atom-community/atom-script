@@ -497,11 +497,16 @@ module.exports =
     "File Based":
       command: "powershell"
       args: (context) -> [context.filepath.replace /\ /g, "` "]
-      
+
   Processing:
     "File Based":
-      command: "bash"
-      args: (context) -> ['-c', 'processing-java --sketch='+context.filepath.replace("/"+context.filename,"")+' --run']
+      command: if GrammarUtils.OperatingSystem.isWindows() then "cmd" else "bash"
+      args: (context) ->
+        if GrammarUtils.OperatingSystem.isWindows()
+          return ['/c processing-java --sketch='+context.filepath.replace("\\"+context.filename,"")+' --run']
+        else
+          return ['-c', 'processing-java --sketch='+context.filepath.replace("/"+context.filename,"")+' --run']
+
 
   Prolog:
     "File Based":
