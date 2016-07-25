@@ -1,3 +1,7 @@
+## 3.8.3
+
+* Support for Processing
+
 ## 3.8.2
 
 * Support for Lua (WoW)

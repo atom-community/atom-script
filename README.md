@@ -74,6 +74,7 @@ Currently supported grammars are:
 | PHP                                  | Yes        | Yes             | |
 | PostgreSQL                           | Yes        | Yes             | Requires the atom-language-pgsql package in Atom https://atom.io/packages/language-pgsql. Connects as user `$PGUSER` to database `$PGDATABASE`. Both default to the operating system's user name and both can be set in the process environment or in Atom's `init.coffee` script: `process.env.PGUSER = ⟨username⟩` and `process.env.PGDATABASE = ⟨database name⟩` |
 | PowerShell                           | Yes        |                 | |
+| Processing                           | Yes        |                 | Runs through processing-java. |
 | Prolog                               | Yes        |                 | Scripts must contain a rule with the head `main` (e.g.`main:- parent(X,lucas),writeln(X).`). The script is executed with the goal `main` and is halted after the first result is found. The output is produced by the `writeln/1` predicates. It requires swipl |
 | Python                               | Yes        | Yes             | |
 | R                                    | Yes        | Yes             | |
