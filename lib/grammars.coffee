@@ -494,6 +494,9 @@ module.exports =
       args: (context) -> [context.filepath]
 
   PowerShell:
+    "Selection Based":
+      command: "powershell"
+      args: (context) -> [context.getCode()]
     "File Based":
       command: "powershell"
       args: (context) -> [context.filepath.replace /\ /g, "` "]
