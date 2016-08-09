@@ -77,3 +77,8 @@ module.exports =
   #
   # Returns an [array] of appropriate command line flags for the active CS compiler.
   CScompiler: require './grammar-utils/coffee-script-compiler'
+
+  # Public: Get the D helper object
+  #
+  # Returns an {Object} which assists in creating temp files containing D code
+  D: require './grammar-utils/d'
