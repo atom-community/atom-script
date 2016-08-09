@@ -22,7 +22,7 @@ Currently supported grammars are:
 | C                                    | Yes        | Yes             | Only available on OSX (`xcrun clang`) and Linux (`cc`) |
 | C#                                   | Yes        | Yes             | Requires the path of 'csc.exe' in your system environment variables |
 | C# Script                            | Yes        | Yes             | |
-| C++                                  | Yes        |                 | Only available on OSX (`xcurn clang++`) and Linux (`g++`) |
+| C++                                  | Yes        | Yes             | Only available on OSX (`xcurn clang++`) and Linux (`g++`) |
 | Clojure                              | Yes        | Yes             | Clojure scripts are executed via [Leiningen](http://leiningen.org/)'s [exec](https://github.com/kumarshantanu/lein-exec) plugin. Both `Leiningen` and `exec` must be installed |
 | CoffeeScript                         | Yes        | Yes             | |
 | CoffeeScript (Literate)              | Yes        | Yes             | Running selections of code for CoffeeScript (Literate) only works when selecting just the code blocks |
