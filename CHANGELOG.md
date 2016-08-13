@@ -1,3 +1,16 @@
+## 3.9.0
+
+* Support "Selection Based" run for `C#`
+* Support "Selection Based" run for `C# Script`
+* Support "Selection Based" run for `C`
+* Support "Selection Based" run for `C++`
+* Support "Selection Based" run for `D`
+* Support "Selection Based" run for `Dart`
+* Support "Selection Based" run for `DOT (Graphviz)`
+* Support "Selection Based" run for `Powershell`
+* Fix `MATLAB` plot support
+* Fix #973 (`args.split is not a function`)
+
 ## 3.8.3
 
 * Support for Processing
