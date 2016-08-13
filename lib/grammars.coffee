@@ -46,19 +46,61 @@ module.exports =
       args: (context) -> [context.fileColonLine()]
 
   C:
-    if GrammarUtils.OperatingSystem.isDarwin()
-      "File Based":
-        command: "bash"
-        args: (context) -> ['-c', "xcrun clang -fcolor-diagnostics -Wall -include stdio.h '" + context.filepath + "' -o /tmp/c.out && /tmp/c.out"]
-    else if GrammarUtils.OperatingSystem.isLinux()
-      "File Based":
-        command: "bash"
-        args: (context) -> ["-c", "cc -Wall -include stdio.h '" + context.filepath + "' -o /tmp/c.out && /tmp/c.out"]
+    "File Based":
+      command: "bash"
+      args: (context) ->
+        args = []
+        if GrammarUtils.OperatingSystem.isDarwin()
+          args = ['-c', "xcrun clang -fcolor-diagnostics -Wall -include stdio.h '" + context.filepath + "' -o /tmp/c.out && /tmp/c.out"]
+        else if GrammarUtils.OperatingSystem.isLinux()
+          args = ["-c", "cc -Wall -include stdio.h '" + context.filepath + "' -o /tmp/c.out && /tmp/c.out"]
+        return args
+    "Selection Based":
+      command: "bash"
+      args: (context) ->
+        code = context.getCode(true)
+        tmpFile = GrammarUtils.createTempFileWithCode(code, ".c")
+        args = []
+        if GrammarUtils.OperatingSystem.isDarwin()
+          args = ['-c', "xcrun clang -fcolor-diagnostics -Wall -include stdio.h '" + tmpFile + "' -o /tmp/c.out && /tmp/c.out"]
+        else if GrammarUtils.OperatingSystem.isLinux()
+          args = ["-c", "cc -Wall -include stdio.h '" + tmpFile + "' -o /tmp/c.out && /tmp/c.out"]
+        return args
+
+  'C#':
+    "File Based":
+      command: if GrammarUtils.OperatingSystem.isWindows() then "cmd" else "bash"
+      args: (context) ->
+        progname = context.filename.replace /\.cs$/, ""
+        args = []
+        if GrammarUtils.OperatingSystem.isWindows()
+          args = ["/c csc #{context.filepath} && #{progname}.exe"]
+        else
+          args = ['-c', "csc #{context.filepath} && mono #{progname}.exe"]
+        return args
+    "Selection Based":
+      command: if GrammarUtils.OperatingSystem.isWindows() then "cmd" else "bash"
+      args: (context) ->
+        code = context.getCode(true)
+        tmpFile = GrammarUtils.createTempFileWithCode(code, ".cs")
+        progname = tmpFile.replace /\.cs$/, ""
+        args = []
+        if GrammarUtils.OperatingSystem.isWindows()
+          args = ["/c csc /out:#{progname}.exe #{tmpFile} && #{progname}.exe"]
+        else
+          args = ['-c', "csc /out:#{progname}.exe #{tmpFile} && mono #{progname}.exe"]
+        return args
 
   'C# Script File':
     "File Based":
       command: "scriptcs"
       args: (context) -> ['-script', context.filepath]
+    "Selection Based":
+      command: "scriptcs"
+      args: (context) ->
+        code = context.getCode(true)
+        tmpFile = GrammarUtils.createTempFileWithCode(code, ".csx")
+        ['-script', tmpFile]
 
   'C++':
     if GrammarUtils.OperatingSystem.isDarwin()
@@ -66,6 +108,12 @@ module.exports =
         command: "bash"
         args: (context) -> ['-c', "xcrun clang++ -fcolor-diagnostics -Wc++11-extensions -Wall -include stdio.h -include iostream '" + context.filepath + "' -o /tmp/cpp.out && /tmp/cpp.out"]
     else if GrammarUtils.OperatingSystem.isLinux()
+      "Selection Based":
+        command: "bash"
+        args: (context) ->
+          code = context.getCode(true)
+          tmpFile = GrammarUtils.createTempFileWithCode(code, ".cpp")
+          ["-c", "g++ -Wall -include stdio.h -include iostream '" + tmpFile + "' -o /tmp/cpp.out && /tmp/cpp.out"]
       "File Based":
         command: "bash"
         args: (context) -> ["-c", "g++ -Wall -include stdio.h -include iostream '" + context.filepath + "' -o /tmp/cpp.out && /tmp/cpp.out"]
@@ -107,16 +155,44 @@ module.exports =
       args: (context) -> [context.filepath]
 
   D:
+    "Selection Based":
+      command: "rdmd"
+      args: (context)  ->
+        code = context.getCode(true)
+        tmpFile = GrammarUtils.D.createTempFileWithCode(code)
+        [tmpFile]
     "File Based":
       command: "rdmd"
       args: (context) -> [context.filepath]
 
   Dart:
+    "Selection Based":
+      command: "dart"
+      args: (context) ->
+        code = context.getCode(true)
+        tmpFile = GrammarUtils.createTempFileWithCode(code, ".dart")
+        [tmpFile]
     "File Based":
       command: "dart"
       args: (context) -> [context.filepath]
 
+  "Graphviz (DOT)":
+    "Selection Based":
+      command: "dot"
+      args: (context) ->
+        code = context.getCode(true)
+        tmpFile = GrammarUtils.createTempFileWithCode(code, ".dot")
+        ['-Tpng', tmpFile, '-o', tmpFile + '.png']
+    "File Based":
+      command: "dot"
+      args: (context) -> ['-Tpng', context.filepath, '-o', context.filepath + '.png']
   DOT:
+    "Selection Based":
+      command: "dot"
+      args: (context) ->
+        code = context.getCode(true)
+        tmpFile = GrammarUtils.createTempFileWithCode(code, ".dot")
+        ['-Tpng', tmpFile, '-o', tmpFile + '.png']
     "File Based":
       command: "dot"
       args: (context) -> ['-Tpng', context.filepath, '-o', context.filepath + '.png']

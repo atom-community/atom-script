@@ -19,17 +19,18 @@ Currently supported grammars are:
 | Bash                                 | Yes        | Yes             | The shell used is based on your default `$SHELL` environment variable |
 | Batch                                | Yes        |                 | |
 | Behat Feature                        | Yes        |                 | |
-| C                                    | Yes        |                 | Only available on OSX (`xcrun clang`) and Linux (`cc`) |
-| C#                                   | Yes        |                 | |
-| C++                                  | Yes        |                 | Only available on OSX (`xcurn clang++`) and Linux (`g++`) |
+| C                                    | Yes        | Yes             | Only available on OSX (`xcrun clang`) and Linux (`cc`) |
+| C#                                   | Yes        | Yes             | Requires the path of 'csc.exe' in your system environment variables |
+| C# Script                            | Yes        | Yes             | |
+| C++                                  | Yes        | Yes             | Only available on OSX (`xcurn clang++`) and Linux (`g++`) |
 | Clojure                              | Yes        | Yes             | Clojure scripts are executed via [Leiningen](http://leiningen.org/)'s [exec](https://github.com/kumarshantanu/lein-exec) plugin. Both `Leiningen` and `exec` must be installed |
 | CoffeeScript                         | Yes        | Yes             | |
 | CoffeeScript (Literate)              | Yes        | Yes             | Running selections of code for CoffeeScript (Literate) only works when selecting just the code blocks |
 | Crystal                              | Yes        | Yes             | |
 | Cucumber (Gherkin)                   | Yes        |                 | |
-| D                                    | Yes        |                 | |
-| Dart                                 | Yes        |                 | |
-| DOT (Graphviz)                       | Yes        |                 | |
+| D                                    | Yes        | Yes             | |
+| Dart                                 | Yes        | Yes             | |
+| DOT (Graphviz)                       | Yes        | Yes             | |
 | Elixir                               | Yes        | Yes             | |
 | Erlang                               |            | Yes             | Uses `erl` for limited selection based runs (see [#70](https://github.com/rgbkrk/atom-script/pull/70)) |
 | F#                                   | Yes        |                 | |
@@ -73,7 +74,7 @@ Currently supported grammars are:
 | Perl 6                               | Yes        | Yes             | |
 | PHP                                  | Yes        | Yes             | |
 | PostgreSQL                           | Yes        | Yes             | Requires the atom-language-pgsql package in Atom https://atom.io/packages/language-pgsql. Connects as user `$PGUSER` to database `$PGDATABASE`. Both default to the operating system's user name and both can be set in the process environment or in Atom's `init.coffee` script: `process.env.PGUSER = ⟨username⟩` and `process.env.PGDATABASE = ⟨database name⟩` |
-| PowerShell                           | Yes        |                 | |
+| PowerShell                           | Yes        | Yes             | |
 | Processing                           | Yes        |                 | Runs through processing-java. |
 | Prolog                               | Yes        |                 | Scripts must contain a rule with the head `main` (e.g.`main:- parent(X,lucas),writeln(X).`). The script is executed with the goal `main` and is halted after the first result is found. The output is produced by the `writeln/1` predicates. It requires swipl |
 | Python                               | Yes        | Yes             | |
