@@ -278,6 +278,14 @@ module.exports =
       command: "ghc"
       args: (context)  -> ['-e', context.getCode()]
 
+  Hy:
+    "File Based":
+      command: "hy"
+      args: (context) -> [context.filepath]
+    "Selection Based":
+      command: "hy"
+      args: (context) -> ['-c', context.getCode()]
+
   IcedCoffeeScript:
     "Selection Based":
       command: "iced"

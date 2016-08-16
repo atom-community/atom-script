@@ -41,6 +41,7 @@ Currently supported grammars are:
 | Go                                   | Yes        |                 | |
 | Groovy                               | Yes        | Yes             | |
 | Haskell                              | Yes        | Yes             | |
+| Hy                                   | Yes        | Yes             | Requires the path of 'hy.exe' in your system environment variables. Also requires the a Hy grammar, such as [this one](https://atom.io/packages/language-hy) |
 | IcedCoffeeScript                     | Yes        | Yes             | |
 | Inno Setup                           | Yes        |                 | Requires the path of `ISCC.exe` in your system environment variables |
 | [ioLanguage](http://iolanguage.org/) | Yes        | Yes             | |
