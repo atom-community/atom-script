@@ -26,10 +26,10 @@ module.exports =
 
   AutoHotKey:
     "File Based":
-      command: "AutoHotKey.exe"
+      command: "AutoHotKey"
       args: (context) -> [context.filepath]
     "Selection Based":
-      command: "AutoHotKey.exe"
+      command: "AutoHotKey"
       args: (context) ->
         code = context.getCode(true)
         tmpFile = GrammarUtils.createTempFileWithCode(code)
