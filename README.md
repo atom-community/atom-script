@@ -14,6 +14,7 @@ Currently supported grammars are:
 | :----------------------------------- | :--------- | :-------------- | :---- |
 | 1C (BSL)                             | Yes        |                 | Runs through [OneScript](http://oscript.io/) interpreter in console mode |
 | Ansible                              | Yes        |                 | |
+| AutoHotKey                           | Yes        | Yes             | Requires the path of 'AutoHotKey.exe' in your system environment variables.
 | AppleScript                          | Yes        | Yes             | |
 | Babel ES6 JS                         | Yes        | Yes             | |
 | Bash                                 | Yes        | Yes             | The shell used is based on your default `$SHELL` environment variable |

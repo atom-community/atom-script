@@ -24,6 +24,17 @@ module.exports =
       command: 'osascript'
       args: (context) -> [context.filepath]
 
+  AutoHotKey:
+    "File Based":
+      command: "AutoHotKey"
+      args: (context) -> [context.filepath]
+    "Selection Based":
+      command: "AutoHotKey"
+      args: (context) ->
+        code = context.getCode(true)
+        tmpFile = GrammarUtils.createTempFileWithCode(code)
+        [tmpFile]
+
   'Babel ES6 JavaScript':
     "Selection Based":
       command: "babel-node"
