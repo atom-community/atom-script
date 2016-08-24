@@ -284,7 +284,10 @@ module.exports =
       args: (context) -> [context.filepath]
     "Selection Based":
       command: "hy"
-      args: (context) -> ['-c', context.getCode()]
+      args: (context) ->
+        code = context.getCode(true)
+        tmpFile = GrammarUtils.createTempFileWithCode(code, ".hy")
+        [tmpFile]
 
   IcedCoffeeScript:
     "Selection Based":
