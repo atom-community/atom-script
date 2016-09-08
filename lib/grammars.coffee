@@ -56,6 +56,17 @@ module.exports =
       command: "behat"
       args: (context) -> [context.fileColonLine()]
 
+  BucketScript:
+    "Selection Based":
+      command: "bsc"
+      args: (context) ->
+        code = context.getCode()
+        tmpFile = GrammarUtils.createTempFileWithCode(code)
+        ['-c', tmpFile]
+    "File Based":
+      command: "bsc"
+      args: (context) -> ['-c', context.filepath]
+
   C:
     "File Based":
       command: "bash"
