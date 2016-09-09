@@ -20,6 +20,7 @@ Currently supported grammars are:
 | Bash                                 | Yes        | Yes             | The shell used is based on your default `$SHELL` environment variable |
 | Batch                                | Yes        |                 | |
 | Behat Feature                        | Yes        |                 | |
+| BucketScript                         | Yes        | Yes             | |
 | C                                    | Yes        | Yes             | Only available on OSX (`xcrun clang`) and Linux (`cc`) |
 | C#                                   | Yes        | Yes             | Requires the path of 'csc.exe' in your system environment variables |
 | C# Script                            | Yes        | Yes             | |
