@@ -660,6 +660,18 @@ module.exports =
       command: "RantConsole.exe"
       args: (context) -> ['-file', context.filepath]
 
+  Reason:
+    "File Based":
+      command: if GrammarUtils.OperatingSystem.isWindows() then "cmd" else "bash"
+      args: (context) ->
+        progname = context.filename.replace /\.re$/, ""
+        args = []
+        if GrammarUtils.OperatingSystem.isWindows()
+          args = ["/c rebuild #{progname}.native && #{progname}.native"]
+        else
+          args = ['-c', "rebuild '#{progname}.native' && '#{progname}.native'"]
+        return args
+
   RSpec:
     "Selection Based":
       command: "ruby"
