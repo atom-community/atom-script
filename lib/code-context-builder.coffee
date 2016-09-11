@@ -67,6 +67,7 @@ class CodeContextBuilder
     return codeContext
 
   getShebang: (editor) ->
+    return unless process.platform isnt 'win32'
     text = editor.getText()
     lines = text.split("\n")
     firstLine = lines[0]
