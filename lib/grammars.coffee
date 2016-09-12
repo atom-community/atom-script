@@ -56,7 +56,7 @@ module.exports =
       command: "behat"
       args: (context) -> [context.fileColonLine()]
 
-  BucketScript:
+  BuckleScript:
     "Selection Based":
       command: "bsc"
       args: (context) ->
