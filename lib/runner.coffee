@@ -92,7 +92,7 @@ class Runner
       arg = arg.replace(/{FILE_ACTIVE_PATH}/g, path.join(codeContext.filepath, '..'))
     if codeContext.filename?
       arg = arg.replace(/{FILE_ACTIVE_NAME}/g, codeContext.filename)
-      arg = arg.replace(/{FILE_ACTIVE_NAME_BASE}/g, path.join(codeContext.filename, '..'))
+      arg = arg.replace(/{FILE_ACTIVE_NAME_BASE}/g, path.basename(codeContext.filename, path.extname(codeContext.filename)))
     if project_path?
       arg = arg.replace(/{PROJECT_PATH}/g, project_path)
     
