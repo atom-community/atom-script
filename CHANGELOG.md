@@ -1,3 +1,7 @@
+## 3.9.1
+
+* Support "File Based" run for `F*`
+
 ## 3.9.0
 
 * Support "Selection Based" run for `C#`

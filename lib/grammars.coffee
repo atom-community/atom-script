@@ -237,6 +237,11 @@ module.exports =
       command: if GrammarUtils.OperatingSystem.isWindows() then "fsi" else "fsharpi"
       args: (context) -> ['--exec', context.filepath]
 
+  'F*':
+    "File Based":
+      command: "fstar"
+      args: (context) -> ['--fsi', context.filepath]
+
   Forth:
     "File Based":
       command: "gforth"
