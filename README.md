@@ -72,6 +72,7 @@ Currently supported grammars are:
 | Objective-C                          | Yes        |                 | Only available on OSX (`xcrun clang++`) |
 | OCaml                                | Yes        |                 | |
 | Octave                               | Yes        | Yes             | |
+| [Oz](https://mozart.github.io/)      | Yes        | Yes             | |
 | Pandoc Markdown                      | Yes        |                 | Requires the panzer pandoc wrapper https://github.com/msprev/panzer and the pandoc-flavored-markdown language package in Atom https://atom.io/packages/language-pfm |
 | Perl                                 | Yes        | Yes             | |
 | Perl 6                               | Yes        | Yes             | |
