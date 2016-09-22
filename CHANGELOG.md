@@ -1,3 +1,7 @@
+## 3.10.1
+
+* Fix `tsc` run
+
 ## 3.10.0
 
 * Support for `BuckleScript`
