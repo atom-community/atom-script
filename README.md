@@ -62,6 +62,7 @@ Currently supported grammars are:
 | Lua (WoW)                            | Yes        | Yes             | |
 | Makefile                             | Yes        | Yes             | |
 | [MATLAB](http://mathworks.com/products/matlab) | Yes        | Yes   | |
+| MIPS                                 | Yes        |                 | Requires the path of `spim` in your system environment variables |
 | MongoDB                              | Yes        | Yes             | |
 | MoonScript                           | Yes        | Yes             | |
 | [NCL](http://ncl.ucar.edu)           | Yes        | Yes             | Scripts must end with `exit` command for file based runs |

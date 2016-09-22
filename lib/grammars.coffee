@@ -482,6 +482,11 @@ module.exports =
       command: "matlab"
       args: (context) -> ['-nodesktop','-nosplash','-r',"try run('" + context.filepath + "');while ~isempty(get(0,'Children')); pause(0.5); end; catch ME; disp(ME.message); exit(1); end; exit(0);"]
 
+  'MIPS Assembler':
+    "File Based":
+      command: "spim"
+      args: (context) -> [context.filepath]
+
   MoonScript:
     "Selection Based":
       command: "moon"
