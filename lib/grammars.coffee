@@ -812,8 +812,8 @@ module.exports =
         code = context.getCode(true)
         tmpFile = GrammarUtils.createTempFileWithCode(code, ".ts")
         jsFile = tmpFile.replace /\.ts$/, ".js"
-        args = ['-c', "tsc --out '#{jsFile}' '#{tmpFile}' && node '#{jsFile}'"]
+        args = ['-c', "tsc --outDir '#{jsFile}' '#{tmpFile}' && node '#{jsFile}'"]
         return args
     "File Based":
       command: "bash"
-      args: (context) -> ['-c', "tsc '#{context.filepath}' --out /tmp/js.out && node /tmp/js.out"]
+      args: (context) -> ['-c', "tsc '#{context.filepath}' --outDir /tmp/js.out && node /tmp/js.out"]
