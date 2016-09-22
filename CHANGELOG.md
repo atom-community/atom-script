@@ -1,6 +1,13 @@
-## 3.9.1 (Unreleased)
+## 3.10.0
 
-* Support "File Based" run for `F*`
+* Support for `BuckleScript`
+* Support for `F*`
+* Support for `Hy`
+* Support for `MIPS`
+* Support for `Oz`
+* Ignore first line check in scripts on Windows
+* Fix the `{FILE_ACTIVE_NAME_BASE}}` doesn't work
+* Fix run `tsc` on non amd or system module types
 
 ## 3.9.0
 
