@@ -240,7 +240,7 @@ module.exports =
   'F*':
     "File Based":
       command: "fstar"
-      args: (context) -> ['--fsi', context.filepath]
+      args: (context) -> [context.filepath]
 
   Forth:
     "File Based":
