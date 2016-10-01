@@ -101,7 +101,7 @@ Currently supported grammars are:
 | Stata                                | Yes        | Yes             | Runs through Stata. Note stata needs to be added to your system PATH for this to work. `Mac directions <http://www.stata.com/support/faqs/mac/advanced-topics/>`_ . |
 | Swift                                | Yes        |                 | |
 | Tcl                                  | Yes        | Yes             | |
-| TypeScript                           | Yes        | Yes             | |
+| TypeScript                           | Yes        | Yes             | Requires `ts-node` https://github.com/TypeStrong/ts-node |
 | Zsh                                  | Yes        | Yes             | The shell used is based on your default `$SHELL` environment variable |
 
 **NOTE**: Some grammars may require you to install [a custom language package](https://atom.io/search?utf8=✓&q=language).

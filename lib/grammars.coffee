@@ -824,13 +824,8 @@ module.exports =
 
   TypeScript:
     "Selection Based":
-      command: "bash"
-      args: (context) ->
-        code = context.getCode(true)
-        tmpFile = GrammarUtils.createTempFileWithCode(code, ".ts")
-        jsFile = tmpFile.replace /\.ts$/, ".js"
-        args = ['-c', "tsc --outFile '#{jsFile}' '#{tmpFile}' && node '#{jsFile}'"]
-        return args
+      command: "ts-node"
+      args: (context) -> ['-e', context.getCode()]
     "File Based":
-      command: "bash"
-      args: (context) -> ['-c', "tsc '#{context.filepath}' --outFile /tmp/js.out && node /tmp/js.out"]
+      command: "ts-node"
+      args: (context) -> [context.filepath]
