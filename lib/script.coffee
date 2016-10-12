@@ -32,6 +32,23 @@ module.exports =
       title: 'Stop running process on rerun'
       type: 'boolean'
       default: false
+    cwdBehavior:
+      title: 'Default CWD Behavior'
+      description: 'If no Run Options are set, this setting decides how to determine the CWD'
+      type: 'string'
+      default: 'First project directory'
+      enum: [
+        'First project directory'
+        'Project directory of the script'
+        'Directory of the script'
+      ]
+      # For some reason, the text of these options does not show in package settings view
+      # default: 'firstProj'
+      # enum: [
+      #   {value: 'firstProj', description: 'First project directory (if there is one)'}
+      #   {value: 'scriptProj', description: 'Project directory of the script (if there is one)'}
+      #   {value: 'scriptDir', description: 'Directory of the script'}
+      # ]
   scriptView: null
   scriptOptionsView: null
   scriptProfileRunView: null

@@ -50,11 +50,17 @@ class Runner
     cwd = @scriptOptions.workingDirectory
 
     workingDirectoryProvided = cwd? and cwd isnt ''
-    paths = atom.project.getPaths()
-    if not workingDirectoryProvided and paths?.length > 0
-      try
-        cwd = if fs.statSync(paths[0]).isDirectory() then paths[0] else path.join(paths[0], '..')
-    
+    if not workingDirectoryProvided
+      switch atom.config.get('script.cwdBehavior')
+        when 'First project directory'
+          paths = atom.project.getPaths()
+          if paths?.length > 0
+            try
+              cwd = if fs.statSync(paths[0]).isDirectory() then paths[0] else path.join(paths[0], '..')
+        when 'Project directory of the script'
+          cwd = @getProjectPath()
+        when 'Directory of the script'
+          cwd = atom.workspace.getActivePaneItem()?.buffer?.file?.getParent?().getPath?() or ''
     cwd
 
   stop: ->
@@ -100,16 +106,19 @@ class Runner
 
   args: (codeContext, extraArgs) ->
     args = (@scriptOptions.cmdArgs.concat extraArgs).concat @scriptOptions.scriptArgs
-    project_path = ''
-    paths = atom.project.getPaths()
-    if paths.length > 0
-      fs.stat(paths[0], (err, stats) ->
-        if !err
-          project_path = if stats.isDirectory() then paths[0] else path.join(paths[0], '..')
-      )
-    
+    project_path = @getProjectPath or ''
     args = (@fillVarsInArg arg, codeContext, project_path for arg in args)
     
     if not @scriptOptions.cmd? or @scriptOptions.cmd is ''
       args = codeContext.shebangCommandArgs().concat args
     args
+
+  getProjectPath: ->
+    filePath = atom.workspace.getActiveTextEditor().getPath()
+    projectPaths = atom.project.getPaths()
+    for projectPath in projectPaths
+      if filePath.indexOf(projectPath) > -1
+        if fs.statSync(projectPath).isDirectory()
+          return projectPath
+        else
+          return path.join(projectPath, '..')
