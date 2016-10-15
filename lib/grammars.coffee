@@ -342,7 +342,7 @@ module.exports =
       command: if GrammarUtils.OperatingSystem.isWindows() then "cmd" else "bash"
       args: (context) ->
         className = context.filename.replace /\.java$/, ""
-        classPackage = (context.filepath.replace atom.project.rootDirectories[0].path + "/", "").replace context.filename, ""
+        classPackage = (context.filepath.replace (GrammarUtils.Nim.projectDir context.filepath) + "/", "").replace context.filename, ""
         args = []
         if GrammarUtils.OperatingSystem.isWindows()
           args = ["/c javac -Xlint #{context.filename} && java #{className}"]
