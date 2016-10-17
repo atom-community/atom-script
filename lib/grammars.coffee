@@ -785,6 +785,14 @@ module.exports =
       command: "fish"
       args: (context) -> [context.filepath]
 
+  "SQL":
+    "Selection Based":
+      command: "echo"
+      args: (context) -> ['SQL requires setting \'Script: Run Options\' directly. See https://github.com/rgbkrk/atom-script/tree/master/examples/hello.sql for further information.']
+    "File Based":
+      command: "echo"
+      args: (context) -> ['SQL requires setting \'Script: Run Options\' directly. See https://github.com/rgbkrk/atom-script/tree/master/examples/hello.sql for further information.']      
+
   "SQL (PostgreSQL)":
     "Selection Based":
       command: "psql"
