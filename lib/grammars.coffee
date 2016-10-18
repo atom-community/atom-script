@@ -486,7 +486,7 @@ module.exports =
   'MIPS Assembler':
     "File Based":
       command: "spim"
-      args: (context) -> [context.filepath]
+      args: (context) -> ['-f', context.filepath]
 
   MoonScript:
     "Selection Based":
