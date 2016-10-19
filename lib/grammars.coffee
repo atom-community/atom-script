@@ -700,7 +700,7 @@ module.exports =
   "Ren'Py":
     "File Based":
       command: "renpy"
-      args: (context) -> [context.filepath.substr(0, context.filepath.indexOf("/game"))]
+      args: (context) -> [context.filepath.substr(0, context.filepath.lastIndexOf("/game"))]
 
   RSpec:
     "Selection Based":
