@@ -88,6 +88,7 @@ Currently supported grammars are:
 | Racket                               | Yes        | Yes             | |
 | [RANT](https://github.com/TheBerkin/Rant) | Yes        | Yes             | |
 | Reason                               | Yes        | Yes             | |
+| Ren'Py                               | Yes        | No              | Requires `renpy` to be in path. Runs project at root of current file.|
 | RSpec                                | Yes        | Yes             | |
 | Ruby                                 | Yes        | Yes             | |
 | Ruby on Rails                        | Yes        | Yes             | |
