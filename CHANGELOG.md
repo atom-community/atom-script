@@ -1,3 +1,14 @@
+## 3.11.0
+
+* Add ability to set how `current working directory` is calculated. See the package settings!
+* Support for `Ren'py`
+* Add a dummy runner for generic `SQL`
+* Support `c++14` standard for `c++`
+* Support `java` packages
+* Use `ts-node` as `typescript` runner
+* Tweek `F*` run
+* Fix `MIPS` file-based run
+
 ## 3.10.1
 
 * Fix `tsc` run
