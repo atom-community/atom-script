@@ -341,13 +341,14 @@ module.exports =
     "File Based":
       command: if GrammarUtils.OperatingSystem.isWindows() then "cmd" else "bash"
       args: (context) ->
-        className = context.filename.replace /\.java$/, ""
-        classPackage = (context.filepath.replace (GrammarUtils.Nim.projectDir context.filepath) + "/", "").replace context.filename, ""
-        args = []
+        tmpFolder = GrammarUtils.Java.tempFilesDir
+        className = GrammarUtils.Java.getClassName context
+        classPackage = GrammarUtils.Java.getClassPackage context
+
         if GrammarUtils.OperatingSystem.isWindows()
           args = ["/c javac -Xlint #{context.filename} && java #{className}"]
         else
-          args = ["-c", "javac -cp . -d /tmp '#{context.filepath}' && java -cp /tmp #{classPackage}#{className}"]
+          args = ["-c", "javac -cp . -d '#{tmpFolder}' '#{context.filepath}' && java -cp /tmp #{classPackage}.#{className}"]
         return args
 
   JavaScript:
