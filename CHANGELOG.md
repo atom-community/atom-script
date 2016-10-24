@@ -6,7 +6,7 @@
 * Support `c++14` standard for `c++`
 * Support `java` packages
 * Use `ts-node` as `typescript` runner
-* Tweek `F*` run
+* Tune `F*` run
 * Fix `MIPS` file-based run
 
 ## 3.10.1
