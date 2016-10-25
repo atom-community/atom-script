@@ -1,3 +1,7 @@
+## 3.11.1
+
+* Revert `Support java packages`
+
 ## 3.11.0
 
 * Add ability to set how `current working directory` is calculated. See the package settings!
