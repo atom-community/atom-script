@@ -341,14 +341,12 @@ module.exports =
     "File Based":
       command: if GrammarUtils.OperatingSystem.isWindows() then "cmd" else "bash"
       args: (context) ->
-        tmpFolder = GrammarUtils.Java.tempFilesDir
-        className = GrammarUtils.Java.getClassName context
-        classPackage = GrammarUtils.Java.getClassPackage context
-
+        className = context.filename.replace /\.java$/, ""
+        args = []
         if GrammarUtils.OperatingSystem.isWindows()
           args = ["/c javac -Xlint #{context.filename} && java #{className}"]
         else
-          args = ["-c", "javac -cp . -d '#{tmpFolder}' '#{context.filepath}' && java -cp /tmp #{classPackage}.#{className}"]
+          args = ['-c', "javac -d /tmp '#{context.filepath}' && java -cp /tmp #{className}"]
         return args
 
   JavaScript:
@@ -697,7 +695,7 @@ module.exports =
         else
           args = ['-c', "rebuild '#{progname}.native' && '#{progname}.native'"]
         return args
-      
+
   "Ren'Py":
     "File Based":
       command: "renpy"
