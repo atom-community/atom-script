@@ -847,9 +847,9 @@ module.exports =
     'Selection Based':
       command: 'cscript'
       args: (context) ->
-          code = context.getCode()
-          tmpFile = GrammarUtils.createTempFileWithCode(code, ".vbs")
-          ['//NOLOGO',tmpFile]
+        code = context.getCode()
+        tmpFile = GrammarUtils.createTempFileWithCode(code, ".vbs")
+        ['//NOLOGO',tmpFile]
     'File Based':
       command: 'cscript'
       args: (context) -> ['//NOLOGO',context.filepath]
