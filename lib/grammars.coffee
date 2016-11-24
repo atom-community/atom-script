@@ -842,3 +842,14 @@ module.exports =
     "File Based":
       command: "ts-node"
       args: (context) -> [context.filepath]
+
+  VBScript:
+    'Selection Based':
+      command: 'cscript'
+      args: (context) ->
+        code = context.getCode()
+        tmpFile = GrammarUtils.createTempFileWithCode(code, ".vbs")
+        ['//NOLOGO',tmpFile]
+    'File Based':
+      command: 'cscript'
+      args: (context) -> ['//NOLOGO',context.filepath]

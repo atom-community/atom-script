@@ -103,6 +103,7 @@ Currently supported grammars are:
 | Swift                                | Yes        |                 | |
 | Tcl                                  | Yes        | Yes             | |
 | TypeScript                           | Yes        | Yes             | Requires `ts-node` https://github.com/TypeStrong/ts-node |
+| VBScript                             | Yes        | Yes             | |
 | Zsh                                  | Yes        | Yes             | The shell used is based on your default `$SHELL` environment variable |
 
 **NOTE**: Some grammars may require you to install [a custom language package](https://atom.io/search?utf8=✓&q=language).
