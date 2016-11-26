@@ -91,10 +91,6 @@
       "email": "daniel.bayley@me.com"
     },
     {
-      "name": "Dan",
-      "email": "daniel.bayley@me.com"
-    },
-    {
       "name": "rgbkrk",
       "email": "rgbkrk@gmail.com"
     },
@@ -338,7 +334,7 @@
     "atom-message-panel": "1.2.4"
   },
   "devDependencies": {
-    "coffee-script": "^1.10.0",
+    "coffee-script": "^1.11.1",
     "coffeelint": "^1.14.2",
     "grunt": "~0.4.5"
   },
