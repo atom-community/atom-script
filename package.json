@@ -273,6 +273,10 @@
     {
       "name": "A Manning",
       "email": "449a6a9b@opayq.com"
+    },
+    {
+      "name": "Bruno Durán",
+      "email": "bruno.duran.rey@gmail.com"
     }
   ],
   "repository": "https://github.com/rgbkrk/atom-script",
@@ -311,7 +315,8 @@
     "Swift",
     "run",
     "Applescript",
-    "code"
+    "code",
+    "LAMMPS"
   ],
   "license": "Apache-2.0",
   "engines": {

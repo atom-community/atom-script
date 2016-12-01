@@ -54,6 +54,7 @@ Currently supported grammars are:
 | Jolie                                | Yes        |                 | |
 | Julia                                | Yes        | Yes             | |
 | Kotlin                               | Yes        | Yes             | |
+| LAMMPS                               | Yes        |                 | Only available on Linux and macOS. Requires 'lammps' to be in path. |
 | LaTeX (via latexmk)                  | Yes        |                 | |
 | LilyPond                             | Yes        |                 | |
 | Lisp (via SBCL)                      | Yes        | Yes             | Selection based runs are limited to single line |
