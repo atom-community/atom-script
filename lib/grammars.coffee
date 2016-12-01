@@ -395,7 +395,8 @@ module.exports =
         return args
 
   LAMMPS:
-    "File Based":
+    if GrammarUtils.OperatingSystem.isDarwin() || GrammarUtils.OperatingSystem.isLinux()
+      "File Based":
         command: "lammps"
         args: (context) -> ['-log', 'none', '-in', context.filepath]
 
