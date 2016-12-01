@@ -1,0 +1,3 @@
+variable w string World
+
+print "Hello $w!"
