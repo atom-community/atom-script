@@ -37,7 +37,7 @@ describe('grammarMap', function() {
       this._originalPlatform = OperatingSystem.platform;
       return this.reloadGrammar = function() {
         delete require.cache[require.resolve('../lib/grammars.coffee')];
-        return grammarMap = require('../lib/grammars.coffee');
+        return newGrammarMap = require('../lib/grammars.coffee');
       };
     });
 
@@ -51,7 +51,7 @@ describe('grammarMap', function() {
         OperatingSystem.platform = () => 'darwin';
         this.reloadGrammar();
 
-        let grammar = grammarMap['C'];
+        let grammar = newGrammarMap['C'];
         let fileBasedRunner = grammar['File Based'];
         let args = fileBasedRunner.args(this.codeContext);
         expect(fileBasedRunner.command).toEqual('bash');
@@ -65,7 +65,7 @@ describe('grammarMap', function() {
         OperatingSystem.platform = () => 'darwin';
         this.reloadGrammar();
 
-        let grammar = grammarMap['C++'];
+        let grammar = newGrammarMap['C++'];
         let fileBasedRunner = grammar['File Based'];
         let args = fileBasedRunner.args(this.codeContext);
         expect(fileBasedRunner.command).toEqual('bash');
@@ -79,7 +79,7 @@ describe('grammarMap', function() {
         OperatingSystem.platform = () => 'win32';
         this.reloadGrammar();
 
-        let grammar = grammarMap['F#'];
+        let grammar = newGrammarMap['F#'];
         let fileBasedRunner = grammar['File Based'];
         let args = fileBasedRunner.args(this.codeContext);
         expect(fileBasedRunner.command).toEqual('fsi');
@@ -91,7 +91,7 @@ describe('grammarMap', function() {
         OperatingSystem.platform = () => 'darwin';
         this.reloadGrammar();
 
-        let grammar = grammarMap['F#'];
+        let grammar = newGrammarMap['F#'];
         let fileBasedRunner = grammar['File Based'];
         let args = fileBasedRunner.args(this.codeContext);
         expect(fileBasedRunner.command).toEqual('fsharpi');
@@ -105,7 +105,7 @@ describe('grammarMap', function() {
         OperatingSystem.platform = () => 'darwin';
         this.reloadGrammar();
 
-        let grammar = grammarMap['Objective-C'];
+        let grammar = newGrammarMap['Objective-C'];
         let fileBasedRunner = grammar['File Based'];
         let args = fileBasedRunner.args(this.codeContext);
         expect(fileBasedRunner.command).toEqual('bash');
@@ -119,7 +119,7 @@ describe('grammarMap', function() {
         OperatingSystem.platform = () => 'darwin';
         this.reloadGrammar();
 
-        let grammar = grammarMap['Objective-C++'];
+        let grammar = newGrammarMap['Objective-C++'];
         let fileBasedRunner = grammar['File Based'];
         let args = fileBasedRunner.args(this.codeContext);
         expect(fileBasedRunner.command).toEqual('bash');
