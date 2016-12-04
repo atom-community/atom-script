@@ -1,80 +1,123 @@
-Runner = require '../lib/runner'
-ScriptOptions = require '../lib/script-options'
+'use babel';
+import Runner from '../lib/runner';
+import ScriptOptions from '../lib/script-options';
 
-describe 'Runner', ->
-  beforeEach ->
-    @command = 'node'
-    @runOptions = new ScriptOptions
-    @runOptions.cmd = @command
-    @runner = new Runner(@runOptions)
+describe('Runner', function() {
+  beforeEach(function() {
+    this.command = 'node';
+    this.runOptions = new ScriptOptions;
+    this.runOptions.cmd = this.command;
+    return this.runner = new Runner(this.runOptions);
+  });
 
-  afterEach ->
-    @runner.destroy()
+  afterEach(function() {
+    return this.runner.destroy();
+  });
 
-  describe 'run', ->
-    it 'with no input', ->
-      runs =>
-        @output = null
-        @runner.onDidWriteToStdout (output) =>
-          @output = output
-        @runner.run(@command, ['./spec/fixtures/outputTest.js'], {})
+  return describe('run', function() {
+    it('with no input', function() {
+      runs(() => {
+        this.output = null;
+        this.runner.onDidWriteToStdout(output => {
+          return this.output = output;
+        }
+        );
+        return this.runner.run(this.command, ['./spec/fixtures/outputTest.js'], {});
+      }
+      );
 
-      waitsFor =>
-        @output != null
-      , "File should execute", 500
+      waitsFor(() => {
+        return this.output !== null;
+      }
+      , "File should execute", 500);
 
-      runs =>
-        expect(@output).toEqual({ message: 'hello\n' })
+      return runs(() => {
+        return expect(this.output).toEqual({ message: 'hello\n' });
+      }
+      );
+    });
 
-    it 'with an input string', ->
-      runs =>
-        @output = null
-        @runner.onDidWriteToStdout (output) =>
-          @output = output
-        @runner.run(@command, ['./spec/fixtures/ioTest.js'], {}, 'hello')
+    it('with an input string', function() {
+      runs(() => {
+        this.output = null;
+        this.runner.onDidWriteToStdout(output => {
+          return this.output = output;
+        }
+        );
+        return this.runner.run(this.command, ['./spec/fixtures/ioTest.js'], {}, 'hello');
+      }
+      );
 
-      waitsFor =>
-        @output != null
-      , "File should execute", 500
+      waitsFor(() => {
+        return this.output !== null;
+      }
+      , "File should execute", 500);
 
-      runs =>
-        expect(@output).toEqual({ message: 'TEST: hello\n' })
+      return runs(() => {
+        return expect(this.output).toEqual({ message: 'TEST: hello\n' });
+      }
+      );
+    });
 
-    it 'exits', ->
-      runs =>
-        @exited = false
-        @runner.onDidExit =>
-          @exited = true
-        @runner.run(@command, ['./spec/fixtures/outputTest.js'], {})
+    it('exits', function() {
+      runs(() => {
+        this.exited = false;
+        this.runner.onDidExit(() => {
+          return this.exited = true;
+        }
+        );
+        return this.runner.run(this.command, ['./spec/fixtures/outputTest.js'], {});
+      }
+      );
 
-      waitsFor =>
-        @exited
-      , "Should receive exit callback", 500
+      return waitsFor(() => {
+        return this.exited;
+      }
+      , "Should receive exit callback", 500);
+    });
 
-    it 'notifies about writing to stderr', ->
-      runs =>
-        @failedEvent = null
-        @runner.onDidWriteToStderr (event) =>
-          @failedEvent = event
-        @runner.run(@command, ['./spec/fixtures/throw.js'], {})
+    it('notifies about writing to stderr', function() {
+      runs(() => {
+        this.failedEvent = null;
+        this.runner.onDidWriteToStderr(event => {
+          return this.failedEvent = event;
+        }
+        );
+        return this.runner.run(this.command, ['./spec/fixtures/throw.js'], {});
+      }
+      );
 
-      waitsFor =>
-        @failedEvent
-      , "Should receive failure callback", 500
+      waitsFor(() => {
+        return this.failedEvent;
+      }
+      , "Should receive failure callback", 500);
 
-      runs =>
-        expect(@failedEvent.message).toMatch(/kaboom/)
+      return runs(() => {
+        return expect(this.failedEvent.message).toMatch(/kaboom/);
+      }
+      );
+    });
 
-    it 'terminates stdin', ->
-      runs =>
-        @output = null
-        @runner.onDidWriteToStdout (output) =>
-          @output = output
-        @runner.run(@command, ['./spec/fixtures/stdinEndTest.js'], {}, 'unused input')
+    return it('terminates stdin', function() {
+      runs(() => {
+        this.output = null;
+        this.runner.onDidWriteToStdout(output => {
+          return this.output = output;
+        }
+        );
+        return this.runner.run(this.command, ['./spec/fixtures/stdinEndTest.js'], {}, 'unused input');
+      }
+      );
 
-      waitsFor =>
-        @output != null
-      , "File should execute", 500
+      waitsFor(() => {
+        return this.output !== null;
+      }
+      , "File should execute", 500);
 
-      runs =>
-        expect(@output).toEqual({ message: 'stdin terminated\n' })
+      return runs(() => {
+        return expect(this.output).toEqual({ message: 'stdin terminated\n' });
+      }
+      );
+    });
+  });
+});

@@ -1,100 +1,131 @@
-CodeContext = require '../lib/code-context'
-OperatingSystem = require '../lib/grammar-utils/operating-system'
-grammarMap = require '../lib/grammars'
+'use babel';
+import CodeContext from '../lib/code-context';
+import OperatingSystem from '../lib/grammar-utils/operating-system';
+import grammarMap from '../lib/grammars';
 
-describe 'grammarMap', ->
-  beforeEach ->
-    @codeContext = new CodeContext('test.txt', '/tmp/test.txt', null)
-    # TODO: Test using an actual editor or a selection?
-    @dummyTextSource = {}
-    @dummyTextSource.getText = -> ""
+describe('grammarMap', function() {
+  beforeEach(function() {
+    this.codeContext = new CodeContext('test.txt', '/tmp/test.txt', null);
+    // TODO: Test using an actual editor or a selection?
+    this.dummyTextSource = {};
+    return this.dummyTextSource.getText = () => "";
+  });
 
-  it "has a command and an args function set for each grammar's mode", ->
-    @codeContext.textSource = @dummyTextSource
-    for lang,modes of grammarMap
-      for mode,commandContext of modes
-        expect(commandContext.command).toBeDefined()
-        argList = commandContext.args(@codeContext)
-        expect(argList).toBeDefined()
+  it("has a command and an args function set for each grammar's mode", function() {
+    this.codeContext.textSource = this.dummyTextSource;
+    return (() => {
+      let result = [];
+      for (let lang in grammarMap) {
+        let modes = grammarMap[lang];
+        result.push((() => {
+          let result1 = [];
+          for (let mode in modes) {
+            let commandContext = modes[mode];
+            expect(commandContext.command).toBeDefined();
+            let argList = commandContext.args(this.codeContext);
+            result1.push(expect(argList).toBeDefined());
+          }
+          return result1;
+        })());
+      }
+      return result;
+    })();
+  });
 
-  describe 'Operating system specific runners', ->
-    beforeEach ->
-      @_originalPlatform = OperatingSystem.platform
-      @reloadGrammar = ->
-        delete require.cache[require.resolve('../lib/grammars.coffee')]
-        grammarMap = require '../lib/grammars.coffee'
+  return describe('Operating system specific runners', function() {
+    beforeEach(function() {
+      this._originalPlatform = OperatingSystem.platform;
+      return this.reloadGrammar = function() {
+        delete require.cache[require.resolve('../lib/grammars.coffee')];
+        return grammarMap = require('../lib/grammars.coffee');
+      };
+    });
 
-    afterEach ->
-      OperatingSystem.platform = @_originalPlatform
-      @reloadGrammar()
+    afterEach(function() {
+      OperatingSystem.platform = this._originalPlatform;
+      return this.reloadGrammar();
+    });
 
-    describe 'C', ->
-      it 'returns the appropriate File Based runner on Mac OS X', ->
-        OperatingSystem.platform = -> 'darwin'
-        @reloadGrammar()
+    describe('C', () =>
+      it('returns the appropriate File Based runner on Mac OS X', function() {
+        OperatingSystem.platform = () => 'darwin';
+        this.reloadGrammar();
 
-        grammar = grammarMap['C']
-        fileBasedRunner = grammar['File Based']
-        args = fileBasedRunner.args(@codeContext)
-        expect(fileBasedRunner.command).toEqual('bash')
-        expect(args[0]).toEqual('-c')
-        expect(args[1]).toMatch(/^xcrun clang/)
+        let grammar = grammarMap['C'];
+        let fileBasedRunner = grammar['File Based'];
+        let args = fileBasedRunner.args(this.codeContext);
+        expect(fileBasedRunner.command).toEqual('bash');
+        expect(args[0]).toEqual('-c');
+        return expect(args[1]).toMatch(/^xcrun clang/);
+      })
+    );
 
-    describe 'C++', ->
-      it 'returns the appropriate File Based runner on Mac OS X', ->
-        OperatingSystem.platform = -> 'darwin'
-        @reloadGrammar()
+    describe('C++', () =>
+      it('returns the appropriate File Based runner on Mac OS X', function() {
+        OperatingSystem.platform = () => 'darwin';
+        this.reloadGrammar();
 
-        grammar = grammarMap['C++']
-        fileBasedRunner = grammar['File Based']
-        args = fileBasedRunner.args(@codeContext)
-        expect(fileBasedRunner.command).toEqual('bash')
-        expect(args[0]).toEqual('-c')
-        expect(args[1]).toMatch(/^xcrun clang\+\+/)
+        let grammar = grammarMap['C++'];
+        let fileBasedRunner = grammar['File Based'];
+        let args = fileBasedRunner.args(this.codeContext);
+        expect(fileBasedRunner.command).toEqual('bash');
+        expect(args[0]).toEqual('-c');
+        return expect(args[1]).toMatch(/^xcrun clang\+\+/);
+      })
+    );
 
-    describe 'F#', ->
-      it 'returns "fsi" as command for File Based runner on Windows', ->
-        OperatingSystem.platform = -> 'win32'
-        @reloadGrammar()
+    describe('F#', function() {
+      it('returns "fsi" as command for File Based runner on Windows', function() {
+        OperatingSystem.platform = () => 'win32';
+        this.reloadGrammar();
 
-        grammar = grammarMap['F#']
-        fileBasedRunner = grammar['File Based']
-        args = fileBasedRunner.args(@codeContext)
-        expect(fileBasedRunner.command).toEqual('fsi')
-        expect(args[0]).toEqual('--exec')
-        expect(args[1]).toEqual(@codeContext.filepath)
+        let grammar = grammarMap['F#'];
+        let fileBasedRunner = grammar['File Based'];
+        let args = fileBasedRunner.args(this.codeContext);
+        expect(fileBasedRunner.command).toEqual('fsi');
+        expect(args[0]).toEqual('--exec');
+        return expect(args[1]).toEqual(this.codeContext.filepath);
+      });
 
-      it 'returns "fsharpi" as command for File Based runner when platform is not Windows', ->
-        OperatingSystem.platform = -> 'darwin'
-        @reloadGrammar()
+      return it('returns "fsharpi" as command for File Based runner when platform is not Windows', function() {
+        OperatingSystem.platform = () => 'darwin';
+        this.reloadGrammar();
 
-        grammar = grammarMap['F#']
-        fileBasedRunner = grammar['File Based']
-        args = fileBasedRunner.args(@codeContext)
-        expect(fileBasedRunner.command).toEqual('fsharpi')
-        expect(args[0]).toEqual('--exec')
-        expect(args[1]).toEqual(@codeContext.filepath)
+        let grammar = grammarMap['F#'];
+        let fileBasedRunner = grammar['File Based'];
+        let args = fileBasedRunner.args(this.codeContext);
+        expect(fileBasedRunner.command).toEqual('fsharpi');
+        expect(args[0]).toEqual('--exec');
+        return expect(args[1]).toEqual(this.codeContext.filepath);
+      });
+    });
 
-    describe 'Objective-C', ->
-      it 'returns the appropriate File Based runner on Mac OS X', ->
-        OperatingSystem.platform = -> 'darwin'
-        @reloadGrammar()
+    describe('Objective-C', () =>
+      it('returns the appropriate File Based runner on Mac OS X', function() {
+        OperatingSystem.platform = () => 'darwin';
+        this.reloadGrammar();
 
-        grammar = grammarMap['Objective-C']
-        fileBasedRunner = grammar['File Based']
-        args = fileBasedRunner.args(@codeContext)
-        expect(fileBasedRunner.command).toEqual('bash')
-        expect(args[0]).toEqual('-c')
-        expect(args[1]).toMatch(/^xcrun clang/)
+        let grammar = grammarMap['Objective-C'];
+        let fileBasedRunner = grammar['File Based'];
+        let args = fileBasedRunner.args(this.codeContext);
+        expect(fileBasedRunner.command).toEqual('bash');
+        expect(args[0]).toEqual('-c');
+        return expect(args[1]).toMatch(/^xcrun clang/);
+      })
+    );
 
-    describe 'Objective-C++', ->
-      it 'returns the appropriate File Based runner on Mac OS X', ->
-        OperatingSystem.platform = -> 'darwin'
-        @reloadGrammar()
+    return describe('Objective-C++', () =>
+      it('returns the appropriate File Based runner on Mac OS X', function() {
+        OperatingSystem.platform = () => 'darwin';
+        this.reloadGrammar();
 
-        grammar = grammarMap['Objective-C++']
-        fileBasedRunner = grammar['File Based']
-        args = fileBasedRunner.args(@codeContext)
-        expect(fileBasedRunner.command).toEqual('bash')
-        expect(args[0]).toEqual('-c')
-        expect(args[1]).toMatch(/^xcrun clang\+\+/)
+        let grammar = grammarMap['Objective-C++'];
+        let fileBasedRunner = grammar['File Based'];
+        let args = fileBasedRunner.args(this.codeContext);
+        expect(fileBasedRunner.command).toEqual('bash');
+        expect(args[0]).toEqual('-c');
+        return expect(args[1]).toMatch(/^xcrun clang\+\+/);
+      })
+    );
+  });
+});
