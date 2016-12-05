@@ -23,13 +23,11 @@ describe('Runner', () => {
           this.output = output;
         });
         this.runner.run(this.command, ['./spec/fixtures/outputTest.js'], {});
-      },
-      );
+      });
 
       waitsFor(() => this.output !== null, 'File should execute', 500);
 
-      runs(() => expect(this.output).toEqual({ message: 'hello\n' }),
-      );
+      runs(() => expect(this.output).toEqual({ message: 'hello\n' }));
     });
 
     it('with an input string', () => {
@@ -43,8 +41,7 @@ describe('Runner', () => {
 
       waitsFor(() => this.output !== null, 'File should execute', 500);
 
-      runs(() => expect(this.output).toEqual({ message: 'TEST: hello\n' }),
-      );
+      runs(() => expect(this.output).toEqual({ message: 'TEST: hello\n' }));
     });
 
     it('exits', () => {
@@ -70,8 +67,7 @@ describe('Runner', () => {
 
       waitsFor(() => this.failedEvent, 'Should receive failure callback', 500);
 
-      runs(() => expect(this.failedEvent.message).toMatch(/kaboom/),
-      );
+      runs(() => expect(this.failedEvent.message).toMatch(/kaboom/));
     });
 
     it('terminates stdin', () => {
@@ -85,8 +81,7 @@ describe('Runner', () => {
 
       waitsFor(() => this.output !== null, 'File should execute', 500);
 
-      runs(() => expect(this.output).toEqual({ message: 'stdin terminated\n' }),
-      );
+      runs(() => expect(this.output).toEqual({ message: 'stdin terminated\n' }));
     });
   });
 });

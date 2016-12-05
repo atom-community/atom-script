@@ -25,10 +25,7 @@ describe('linkPaths', () => {
   });
 
   it('links multiple paths', () => {
-    const multilineResult = linkPaths(`\
-foo() b/c.js:44:55
-bar() b/c.js:45:56\
-`,
+    const multilineResult = linkPaths('foo() b/c.js:44:5\nbar() b/c.js:45:56',
     );
     expect(multilineResult).toContain('foo() <a');
     expect(multilineResult).toContain('bar() <a');

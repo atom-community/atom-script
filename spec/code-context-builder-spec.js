@@ -63,6 +63,7 @@ describe('CodeContextBuilder', () => {
         const codeContext = this.codeContextBuilder.buildCodeContext(this.editorMock, argType);
         expect(codeContext.argType).toEqual(argType);
         expect(codeContext.lineNumber).toEqual(2);
-      })),
+      }),
+    ),
   );
 });
