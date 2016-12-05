@@ -339,8 +339,12 @@
     "atom-message-panel": "1.2.4"
   },
   "devDependencies": {
+    "babel-eslint": "^7.1.1",
     "coffee-script": "^1.11.1",
     "coffeelint": "^1.14.2",
+    "eslint": "^3.11.1",
+    "eslint-config-airbnb-base": "^10.0.1",
+    "eslint-plugin-import": "^2.2.0",
     "grunt": "~0.4.5"
   },
   "providedServices": {
@@ -357,5 +361,8 @@
       }
     }
   },
-  "scripts": {}
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  }
 }
