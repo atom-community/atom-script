@@ -331,12 +331,12 @@
     ]
   },
   "dependencies": {
-    "ansi-to-html": ">0.1.0",
-    "node-uuid": "~1.4.0",
-    "strip-ansi": "^3.0.0",
-    "underscore": "~1.5.2",
+    "ansi-to-html": "^0.4.2",
+    "atom-message-panel": "^1.2.7",
     "atom-space-pen-views": "^2.0.3",
-    "atom-message-panel": "1.2.4"
+    "uuid": "^3.0.1",
+    "strip-ansi": "^3.0.0",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
