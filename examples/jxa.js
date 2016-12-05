@@ -1,7 +1,7 @@
 #!/usr/bin/env osascript -l JavaScript
 
-test = Application.currentApplication()
+test = Application.currentApplication();
 
-test.includeStandardAdditions = true
+test.includeStandardAdditions = true;
 
-test.displayDialog("Hello world")
+test.displayDialog('Hello world');
