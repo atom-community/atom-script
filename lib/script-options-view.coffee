@@ -101,31 +101,42 @@ class ScriptOptionsView extends View
     env: @inputEnv.get(0).getModel().getText()
     scriptArgs: @splitArgs @inputScriptArgs
 
+  setOptions: (options) ->
+    @inputCwd.get(0).getModel().setText(options.workingDirectory)
+    @inputCommand.get(0).getModel().setText(options.cmd)
+    @inputCommandArgs.get(0).getModel().setText(options.cmdArgs.join(' '))
+    @inputEnv.get(0).getModel().setText(options.env)
+    @inputScriptArgs.get(0).getModel().setText(options.scriptArgs.join(' '))
+    
   saveOptions: ->
     @runOptions[key] = value for key, value of @getOptions()
 
   onProfileSave: (callback) -> @emitter.on 'on-profile-save', callback
+  # onProfileChange: (callback) -> @emitter.on 'on-profile-change', callback
 
   # Saves specified options as new profile
   saveProfile: ->
     @hide()
 
     options = @getOptions()
+    
+    if @runOptions?.editMode
+      # @emitter.emit 'on-profile-change', options
+    else
+      inputView = new ScriptInputView caption: 'Enter profile name:'
+      inputView.onCancel =>
+        @show()
+      inputView.onConfirm (profileName) =>
+        return unless profileName
+        editor.getModel().setText('') for editor in @find('atom-text-editor')
 
-    inputView = new ScriptInputView caption: 'Enter profile name:'
-    inputView.onCancel =>
-      @show()
-    inputView.onConfirm (profileName) =>
-      return unless profileName
-      editor.getModel().setText('') for editor in @find('atom-text-editor')
+        # clean up the options
+        @saveOptions()
 
-      # clean up the options
-      @saveOptions()
+        # add to global profiles list
+        @emitter.emit 'on-profile-save', name: profileName, options: options
 
-      # add to global profiles list
-      @emitter.emit 'on-profile-save', name: profileName, options: options
-
-    inputView.show()
+      inputView.show()
 
   close: ->
     @hide()
