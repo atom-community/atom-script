@@ -17,7 +17,7 @@ describe 'Runner', ->
         @output = null
         @runner.onDidWriteToStdout (output) =>
           @output = output
-        @runner.run(@command, ['./outputTest.js'], {})
+        @runner.run(@command, ['./spec/fixtures/outputTest.js'], {})
 
       waitsFor =>
         @output != null
@@ -31,7 +31,7 @@ describe 'Runner', ->
         @output = null
         @runner.onDidWriteToStdout (output) =>
           @output = output
-        @runner.run(@command, ['./ioTest.js'], {}, 'hello')
+        @runner.run(@command, ['./spec/fixtures/ioTest.js'], {}, 'hello')
 
       waitsFor =>
         @output != null
@@ -45,7 +45,7 @@ describe 'Runner', ->
         @exited = false
         @runner.onDidExit =>
           @exited = true
-        @runner.run(@command, ['./outputTest.js'], {})
+        @runner.run(@command, ['./spec/fixtures/outputTest.js'], {})
 
       waitsFor =>
         @exited
@@ -56,7 +56,7 @@ describe 'Runner', ->
         @failedEvent = null
         @runner.onDidWriteToStderr (event) =>
           @failedEvent = event
-        @runner.run(@command, ['./throw.js'], {})
+        @runner.run(@command, ['./spec/fixtures/throw.js'], {})
 
       waitsFor =>
         @failedEvent
@@ -70,7 +70,7 @@ describe 'Runner', ->
         @output = null
         @runner.onDidWriteToStdout (output) =>
           @output = output
-        @runner.run(@command, ['./stdinEndTest.js'], {}, 'unused input')
+        @runner.run(@command, ['./spec/fixtures/stdinEndTest.js'], {}, 'unused input')
 
       waitsFor =>
         @output != null
