@@ -331,17 +331,18 @@
     ]
   },
   "dependencies": {
-    "ansi-to-html": ">0.1.0",
-    "node-uuid": "~1.4.0",
-    "strip-ansi": "^3.0.0",
-    "underscore": "~1.5.2",
+    "ansi-to-html": "^0.4.2",
+    "atom-message-panel": "^1.2.7",
     "atom-space-pen-views": "^2.0.3",
-    "atom-message-panel": "1.2.4"
+    "uuid": "^3.0.1",
+    "strip-ansi": "^3.0.0",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "coffee-script": "^1.11.1",
-    "coffeelint": "^1.14.2",
-    "grunt": "~0.4.5"
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.11.1",
+    "eslint-config-airbnb-base": "^10.0.1",
+    "eslint-plugin-import": "^2.2.0"
   },
   "providedServices": {
     "default-script-runtime": {
@@ -357,5 +358,8 @@
       }
     }
   },
-  "scripts": {}
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  }
 }

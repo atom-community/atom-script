@@ -2,7 +2,7 @@ var i: number = 1;
 var run = setInterval(function() {
   console.log("line " + i);
   i++;
-  if (i == 20) {
+  if (i === 20) {
     stop();
   }
 }, 1000);
