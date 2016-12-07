@@ -1,3 +1,10 @@
+## 3.12.0
+
+* Convert codebase to ES6 Javascript
+* Fix path to fixtures in tests
+* Support for `LAMMPS`
+* Support for `VBScript`
+
 ## 3.11.1
 
 * Revert `Support java packages`
