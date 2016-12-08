@@ -1,3 +1,7 @@
+## 3.12.1
+
+* Fix `Cannot read property 'path' of undefined`
+
 ## 3.12.0
 
 * Convert codebase to ES6 Javascript
