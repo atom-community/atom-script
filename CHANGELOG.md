@@ -1,3 +1,7 @@
+## 3.12.2
+
+* Fix condition for detecting cwd.
+
 ## 3.12.1
 
 * Fix `Cannot read property 'path' of undefined`
