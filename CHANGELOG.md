@@ -1,3 +1,8 @@
+## 3.13.0
+
+* Support for `HTML`
+* Fix exception during profile saving
+
 ## 3.12.2
 
 * Fix condition for detecting cwd.
