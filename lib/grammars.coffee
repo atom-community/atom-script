@@ -4,6 +4,7 @@
 _ = require 'underscore'
 path = require 'path'
 GrammarUtils = require '../lib/grammar-utils'
+shell = require('electron').shell
 
 module.exports =
   '1C (BSL)':
@@ -858,4 +859,12 @@ module.exports =
         ['//NOLOGO',tmpFile]
     'File Based':
       command: 'cscript'
-      args: (context) -> ['//NOLOGO',context.filepath]
+      args: (context) -> ['//NOLOGO', context.filepath]
+
+  HTML:
+    "File Based":
+      command: 'echo'
+      args: (context) ->
+        uri = 'file://' + context.filepath
+        shell.openExternal(uri)
+        ['HTML file opened at:', uri]

@@ -44,6 +44,7 @@ Currently supported grammars are:
 | Go                                   | Yes        |                 | |
 | Groovy                               | Yes        | Yes             | |
 | Haskell                              | Yes        | Yes             | |
+| HTML                                 | Yes        |                 | Opens File in Browser |
 | Hy                                   | Yes        | Yes             | Requires the path of 'hy.exe' in your system environment variables. This is probably already fulfilled if you used `pip install hy` to get Hy. A Hy grammar, such as [this one](https://atom.io/packages/language-hy) is also a good idea. |
 | IcedCoffeeScript                     | Yes        | Yes             | |
 | Inno Setup                           | Yes        |                 | Requires the path of `ISCC.exe` in your system environment variables |
