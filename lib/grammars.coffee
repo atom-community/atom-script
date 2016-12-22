@@ -868,3 +868,12 @@ module.exports =
         uri = 'file://' + context.filepath
         shell.openExternal(uri)
         ['HTML file opened at:', uri]
+  
+  MQL5:
+    if GrammarUtils.OperatingSystem.isDarwin()
+      "File Based":
+        command: "cmd.exe"
+        args: (context) ->
+          batchfilepath = path.join __dirname, "batch", "mql5.cmd"
+          args = ['/Q', '/C', batchfilepath+" ", context.filepath]
+          return args
