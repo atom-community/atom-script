@@ -708,6 +708,11 @@ module.exports =
       command: "renpy"
       args: (context) -> [context.filepath.substr(0, context.filepath.lastIndexOf("/game"))]
 
+  'Robot Framework':
+    "File Based":
+      command: 'robot'
+      args: (context) -> [context.filepath]
+
   RSpec:
     "Selection Based":
       command: "ruby"
