@@ -49,7 +49,7 @@ Currently supported grammars are:
 | IcedCoffeeScript                     | Yes        | Yes             | |
 | Inno Setup                           | Yes        |                 | Requires the path of `ISCC.exe` in your system environment variables |
 | [ioLanguage](http://iolanguage.org/) | Yes        | Yes             | |
-| Java                                 | Yes        |                 | Windows users should manually add jdk path (...\jdk1.x.x_xx\bin) to their system environment variables |
+| Java                                 | Yes        |                 | Windows users should manually add jdk path (...\jdk1.x.x_xx\bin) to their system environment variables. Project directory should be the source directory; subfolders imply packaging. |
 | Javascript                           | Yes        | Yes             | |
 | [JavaScript for Automation](https://developer.apple.com/library/mac/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/Introduction.html) (JXA)            | Yes        | Yes             | |
 | Jolie                                | Yes        |                 | |
