@@ -344,12 +344,13 @@ module.exports =
       args: (context) ->
         className = GrammarUtils.Java.getClassName context
         classPackages = GrammarUtils.Java.getClassPackage context
+        sourcePath = GrammarUtils.Java.getProjectPath context
 
         args = []
         if GrammarUtils.OperatingSystem.isWindows()
           args = ["/c javac -Xlint #{context.filename} && java #{className}"]
         else
-          args = ['-c', "javac -d /tmp '#{context.filepath}' && java -cp /tmp #{classPackages}#{className}"]
+          args = ['-c', "javac -sourcepath #{sourcePath} -d /tmp '#{context.filepath}' && java -cp /tmp #{classPackages}#{className}"]
 
         return args
 
