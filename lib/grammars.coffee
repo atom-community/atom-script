@@ -658,7 +658,7 @@ module.exports =
       command: if GrammarUtils.OperatingSystem.isWindows() then "cmd" else "bash"
       args: (context) ->
         if GrammarUtils.OperatingSystem.isWindows()
-          ['/c cd ' + context.filepath.replace(/[^\/]*$/, '') + ' && pulp run']
+          ['/c cd "' + context.filepath.replace(/[^\/]*$/, '') + '" && pulp run']
         else
           ['-c', 'cd "' + context.filepath.replace(/[^\/]*$/, '') + '" && pulp run']
 
