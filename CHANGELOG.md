@@ -1,3 +1,9 @@
+## 3.14.0
+
+* Support for `PureScript`
+* Support for `Robot Framework`
+* Fix exception in options view
+
 ## 3.13.0
 
 * Support for `HTML`
