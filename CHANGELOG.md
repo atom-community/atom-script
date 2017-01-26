@@ -1,3 +1,7 @@
+## 3.14.1
+
+* Fix exception occuring during closing of output panel
+
 ## 3.14.0
 
 * Support for `PureScript`
