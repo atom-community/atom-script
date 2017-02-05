@@ -168,6 +168,11 @@ module.exports =
     'File Based':
       command: 'coffee'
       args: (context) -> [context.filepath]
+      
+  "Common Lisp":
+    "File Based":
+      command: "clisp"
+      args: (context) -> [context.filepath]
 
   Crystal:
     "Selection Based":
