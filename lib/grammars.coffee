@@ -856,6 +856,11 @@ module.exports =
       command: "tclsh"
       args: (context) -> [context.filepath]
 
+  Turing:
+    "File Based":
+      command: "turing"
+      args: (context) -> ['-run', context.filepath]
+
   TypeScript:
     "Selection Based":
       command: "ts-node"
