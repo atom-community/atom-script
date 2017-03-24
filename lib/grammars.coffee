@@ -259,6 +259,17 @@ module.exports =
       command: "fstar"
       args: (context) -> [context.filepath]
 
+  Fable:
+    "Selection Based":
+      command: "fable"
+      args: (context) ->
+        code = context.getCode()
+        tmpFile = GrammarUtils.createTempFileWithCode(code)
+        [tmpFile]
+    "File Based":
+      command: "fable"
+      args: (context) -> [context.filepath]
+
   Forth:
     "File Based":
       command: "gforth"
