@@ -352,6 +352,11 @@ module.exports =
       command: "iced"
       args: (context) -> [context.filepath]
 
+  Idris:
+    "File Based":
+      command: "idris"
+      args: (context) -> [context.filepath, '-o', path.basename(context.filepath, path.extname(context.filepath))]
+
   InnoSetup:
     "File Based":
       command: "ISCC.exe"

@@ -50,6 +50,7 @@ Currently supported grammars are:
 | Hy                                   | Yes        | Yes             | Requires the path of 'hy.exe' in your system environment variables. This is probably already fulfilled if you used `pip install hy` to get Hy. A Hy grammar, such as [this one](https://atom.io/packages/language-hy) is also a good idea. |
 | IcedCoffeeScript                     | Yes        | Yes             | |
 | Inno Setup                           | Yes        |                 | Requires the path of `ISCC.exe` in your system environment variables |
+| [Idris](http://idris-lang.org/)      | Yes        |                 | |
 | [ioLanguage](http://iolanguage.org/) | Yes        | Yes             | |
 | Java                                 | Yes        |                 | Windows users should manually add jdk path (...\jdk1.x.x_xx\bin) to their system environment variables. Project directory should be the source directory; subfolders imply packaging. |
 | Javascript                           | Yes        | Yes             | |
