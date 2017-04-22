@@ -44,6 +44,17 @@ module.exports =
       command: "babel-node"
       args: (context) -> [context.filepath]
 
+  'Bash Automated Test System (Bats)':
+    "File Based":
+      command: "bats"
+      args: (context) -> [context.filepath]
+    "Selection Based":
+      command: 'bats'
+      args: (context) ->
+        code = context.getCode(true)
+        tmpFile = GrammarUtils.createTempFileWithCode(code)
+        [tmpFile]
+
   Batch:
     "File Based":
       command: "cmd.exe"
@@ -168,7 +179,7 @@ module.exports =
     'File Based':
       command: 'coffee'
       args: (context) -> [context.filepath]
-      
+
   "Common Lisp":
     "File Based":
       command: "clisp"
