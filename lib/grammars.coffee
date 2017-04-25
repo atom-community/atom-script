@@ -378,6 +378,14 @@ module.exports =
       command: "node"
       args: (context) -> [context.filepath]
 
+  'JavaScript with JSX':
+    "Selection Based":
+      command: "node"
+      args: (context)  -> ['-e', context.getCode()]
+    "File Based":
+      command: "node"
+      args: (context) -> [context.filepath]
+
   "JavaScript for Automation (JXA)":
     "Selection Based":
       command: "osascript"
