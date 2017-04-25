@@ -18,6 +18,7 @@ Currently supported grammars are:
 | AppleScript                          | Yes        | Yes             | |
 | Babel ES6 JS                         | Yes        | Yes             | |
 | Bash                                 | Yes        | Yes             | The shell used is based on your default `$SHELL` environment variable |
+| Bash Automated Test System (Bats)    | Yes        | Yes             | |
 | Batch                                | Yes        |                 | |
 | Behat Feature                        | Yes        |                 | |
 | BuckleScript                         | Yes        | Yes             | |
