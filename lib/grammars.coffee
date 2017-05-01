@@ -138,6 +138,12 @@ module.exports =
 
   'C++':
     if GrammarUtils.OperatingSystem.isDarwin()
+      "Selection Based":
+        command: "bash"
+        args: (context) ->
+          code = context.getCode(true)
+          tmpFile = GrammarUtils.createTempFileWithCode(code, ".cpp")
+          ["-c", "xcrun clang++ -fcolor-diagnostics -std=c++14 -Wall -include stdio.h -include iostream '" + tmpFile + "' -o /tmp/cpp.out && /tmp/cpp.out"]
       "File Based":
         command: "bash"
         args: (context) -> ['-c', "xcrun clang++ -fcolor-diagnostics -std=c++14 -Wall -include stdio.h -include iostream '" + context.filepath + "' -o /tmp/cpp.out && /tmp/cpp.out"]
@@ -158,6 +164,12 @@ module.exports =
 
   'C++14':
     if GrammarUtils.OperatingSystem.isDarwin()
+      "Selection Based":
+        command: "bash"
+        args: (context) ->
+          code = context.getCode(true)
+          tmpFile = GrammarUtils.createTempFileWithCode(code, ".cpp")
+          ["-c", "xcrun clang++ -fcolor-diagnostics -std=c++14 -Wall -include stdio.h -include iostream '" + tmpFile + "' -o /tmp/cpp.out && /tmp/cpp.out"]
       "File Based":
         command: "bash"
         args: (context) -> ['-c', "xcrun clang++ -fcolor-diagnostics -std=c++14 -Wall -include stdio.h -include iostream '" + context.filepath + "' -o /tmp/cpp.out && /tmp/cpp.out"]
