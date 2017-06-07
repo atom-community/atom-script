@@ -88,6 +88,7 @@ Currently supported grammars are:
 | PowerShell                           | Yes        | Yes             | |
 | Processing                           | Yes        |                 | Runs through processing-java. |
 | Prolog                               | Yes        |                 | Scripts must contain a rule with the head `main` (e.g.`main:- parent(X,lucas),writeln(X).`). The script is executed with the goal `main` and is halted after the first result is found. The output is produced by the `writeln/1` predicates. It requires swipl |
+| PROMELA                              | Yes        | No              | Requires `spin` to be in path. |
 | PureScript                           | Yes        |                 | Requires `pulp` to be in path. |
 | Python                               | Yes        | Yes             | |
 | R                                    | Yes        | Yes             | |

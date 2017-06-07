@@ -729,6 +729,11 @@ module.exports =
       command: "bash"
       args: (context) -> ['-c', 'cd \"' + context.filepath.replace(/[^\/]*$/, '') + '\"; swipl -f \"' + context.filepath + '\" -t main --quiet']
 
+  PROMELA:
+    "File Based":
+      command: "spin"
+      args: (context) -> [context.filepath]
+
   PureScript:
     "File Based":
       command: if GrammarUtils.OperatingSystem.isWindows() then "cmd" else "bash"
