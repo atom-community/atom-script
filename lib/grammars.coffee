@@ -326,6 +326,17 @@ module.exports =
     "File Based":
       command: "bash"
       args: (context) -> ['-c', "gfortran '" + context.filepath + "' -ffixed-form -o /tmp/f.out && /tmp/f.out"]
+      
+  "Free Pascal":
+    "Selection Based":
+      command: "fsc"
+      args: (context) ->
+        code = context.getCode()
+        tmpFile = GrammarUtils.createTempFileWithCode(code)
+        [tmpFile]
+    "File Based":
+      command: "fsc"
+      args: (context) -> [context.filepath]
 
   Gherkin:
     "File Based":
