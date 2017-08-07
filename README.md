@@ -42,6 +42,7 @@ Currently supported grammars are:
 | Fish                                 | Yes        | Yes             | Finally, a way to run code within Atom for the 90s |
 | Forth (via GForth)                   | Yes        |                 | |
 | Fortran (via gfortran)               | Yes        |                 |
+| Free Pascal                          | Yes        | Yes             | |
 | Gnuplot                              | Yes        |                 | |
 | Go                                   | Yes        |                 | |
 | Groovy                               | Yes        | Yes             | |
