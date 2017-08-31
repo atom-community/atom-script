@@ -188,6 +188,11 @@ module.exports =
         command: "bash"
         args: (context) -> ["-c", "g++ -std=c++14 -Wall -include stdio.h -include iostream '/mnt/" + path.posix.join.apply(path.posix, [].concat([context.filepath.split(path.win32.sep)[0].toLowerCase()], context.filepath.split(path.win32.sep).slice(1))).replace(":", "") + "' -o /tmp/cpp.out && /tmp/cpp.out"]
 
+  ChucK:
+    "File Based"
+      command: "chuck"
+      args: (context) -> [context.filepath]
+        
   Clojure:
     "Selection Based":
       command: "lein"
