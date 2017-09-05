@@ -717,6 +717,11 @@ module.exports =
       command: "php"
       args: (context) -> [context.filepath]
 
+  Povray:
+    "File Based":
+      command: "povray"
+      args: (context) -> [context.filepath]
+
   PowerShell:
     "Selection Based":
       command: "powershell"
