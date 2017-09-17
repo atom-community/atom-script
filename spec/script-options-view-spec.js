@@ -43,12 +43,16 @@ describe('ScriptOptionsView', () => {
       description: 'handles multiple quoted arguments, with mixed single and double quotes',
     }, {
       text: 'arg1="foo bar"',
-      expectedArgs: ['arg1=foo bar'],
-      description: 'strips quotes from argument values',
+      expectedArgs: ['arg1="foo bar"'],
+      description: 'does not strip quotes from argument values',
     }, {
       text: 'arg1=\'foo bar\'',
-      expectedArgs: ['arg1=foo bar'],
-      description: 'strips single quotes from argument values',
+      expectedArgs: ['arg1=\'foo bar\''],
+      description: 'does not strip single quotes from argument values',
+    }, {
+      text: '-e \'(load "{FILE_ACTIVE}")\'',
+      expectedArgs: ['-e', '(load "{FILE_ACTIVE}")'],
+      description: 'keeps nested quotes intact',
     }].forEach(({ text, expectedArgs, description }) => {
       it(description, () => {
         const args = ScriptOptionsView.splitArgs(text);
