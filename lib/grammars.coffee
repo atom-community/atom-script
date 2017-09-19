@@ -199,18 +199,18 @@ module.exports =
   CoffeeScript:
     "Selection Based":
       command: "coffee"
-      args: (context) -> GrammarUtils.CScompiler.args.concat [context.getCode()]
+      args: (context) -> ['--transpile', '-e', context.getCode()]
     "File Based":
       command: "coffee"
-      args: (context) -> [context.filepath]
+      args: (context) -> ['-t', context.filepath]
 
   "CoffeeScript (Literate)":
     'Selection Based':
       command: 'coffee'
-      args: (context) -> GrammarUtils.CScompiler.args.concat [context.getCode()]
+      args: (context) -> ['-t', '-e', context.getCode()]
     'File Based':
       command: 'coffee'
-      args: (context) -> [context.filepath]
+      args: (context) -> ['-t', context.filepath]
 
   "Common Lisp":
     "File Based":
