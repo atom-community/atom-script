@@ -340,6 +340,7 @@
     "uuid": "^3.0.1"
   },
   "optionalDependencies": {
+    "babel-cli": "^6.26.0",
     "coffeescript": "^2"
   },
   "devDependencies": {
