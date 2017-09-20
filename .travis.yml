@@ -12,7 +12,7 @@ sudo: false
 
 os:
   - linux
-  #- osx
+  - osx
 
 env:
   global:
