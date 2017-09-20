@@ -431,18 +431,18 @@ module.exports =
 
   JavaScript:
     "Selection Based":
-      command: "node"
+      command: "babel-node"
       args: (context)  -> ['-e', context.getCode()]
     "File Based":
-      command: "node"
+      command: "babel-node"
       args: (context) -> [context.filepath]
 
   'JavaScript with JSX':
     "Selection Based":
-      command: "node"
+      command: "babel-node"
       args: (context)  -> ['-e', context.getCode()]
     "File Based":
-      command: "node"
+      command: "babel-node"
       args: (context) -> [context.filepath]
 
   "JavaScript for Automation (JXA)":
