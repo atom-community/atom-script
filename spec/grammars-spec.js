@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars, global-require, no-undef */
 import CodeContext from '../lib/code-context';
 import OperatingSystem from '../lib/grammar-utils/operating-system';
-import grammarMap from '../lib/grammars.coffee';
+import grammarMap from '../lib/grammars';
 
 describe('grammarMap', () => {
   beforeEach(() => {
@@ -30,8 +30,10 @@ describe('grammarMap', () => {
     beforeEach(() => {
       this.originalPlatform = OperatingSystem.platform;
       this.reloadGrammar = () => {
-        delete require.cache[require.resolve('../lib/grammars.coffee')];
-        this.grammarMap = require('../lib/grammars.coffee');
+        delete require.cache[require.resolve('../lib/grammars')];
+        delete require.cache[require.resolve('../lib/grammars/index')];
+        delete require.cache[require.resolve('../lib/grammars/c')];
+        this.grammarMap = require('../lib/grammars');
       };
     });
 
