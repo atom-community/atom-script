@@ -772,17 +772,6 @@ module.exports =
       command: 'racket'
       args: ({filepath}) -> [filepath]
 
-  RANT:
-    'Selection Based':
-      command: 'RantConsole.exe'
-      args: (context) ->
-        code = context.getCode()
-        tmpFile = GrammarUtils.createTempFileWithCode(code)
-        return ['-file', tmpFile]
-    'File Based':
-      command: 'RantConsole.exe'
-      args: ({filepath}) -> ['-file', filepath]
-
   Reason:
     'File Based':
       command: if windows then 'cmd' else 'bash'

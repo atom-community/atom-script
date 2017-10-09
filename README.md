@@ -93,7 +93,6 @@ Currently supported grammars are:
 | Python                               | Yes        | Yes             | |
 | R                                    | Yes        | Yes             | |
 | Racket                               | Yes        | Yes             | |
-| [RANT](https://github.com/TheBerkin/Rant) | Yes        | Yes             | |
 | Reason                               | Yes        | Yes             | |
 | Ren'Py                               | Yes        | No              | Requires `renpy` to be in path. Runs project at root of current file.|
 | Robot Framework                      | Yes        | No              | Requires `robot` to be in path. Output location depends on CWD behaviour which can be altered in settings. |
