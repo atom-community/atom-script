@@ -282,17 +282,6 @@ module.exports =
       command: if windows then 'fsi' else 'fsharpi'
       args: ({filepath}) -> ['--exec', filepath]
 
-  Fable:
-    'Selection Based':
-      command: 'fable'
-      args: (context) ->
-        code = context.getCode()
-        tmpFile = GrammarUtils.createTempFileWithCode(code)
-        return [tmpFile]
-    'File Based':
-      command: 'fable'
-      args: ({filepath}) -> [filepath]
-
   Forth:
     'File Based':
       command: 'gforth'

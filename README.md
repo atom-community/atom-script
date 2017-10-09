@@ -38,7 +38,6 @@ Currently supported grammars are:
 | Erlang                               |            | Yes             | Uses `erl` for limited selection based runs (see [#70](https://github.com/rgbkrk/atom-script/pull/70)) |
 | F#                                   | Yes        |                 | |
 | F*                                   | Yes        |                 | |
-| Fable                                | Yes        | Yes             | |
 | Fish                                 | Yes        | Yes             | Finally, a way to run code within Atom for the 90s |
 | Forth (via GForth)                   | Yes        |                 | |
 | Fortran (via gfortran)               | Yes        |                 |
