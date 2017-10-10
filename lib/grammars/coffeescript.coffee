@@ -1,29 +1,31 @@
-module.exports =
+path = require 'path'
+GrammarUtils = require '../grammar-utils'
 
-  CoffeeScript:
-    'Selection Based':
-      command: 'coffee'
-      args: (context) -> ['--transpile', '-e', context.getCode()]
+bin = path.join __dirname, '../..', 'node_modules', '.bin'
+coffee = path.join bin, 'coffee'
+babel = path.join bin, 'babel'
 
-    'File Based':
-      command: 'coffee'
-      args: ({filepath}) -> ['-t', filepath]
+args = ({filepath}) -> ['-c', "'#{coffee}' -p '#{filepath}'|'#{babel}' --filename '#{bin}'| node"]
 
-  'CoffeeScript (Literate)':
+exports.CoffeeScript =
+  'Selection Based':
+    command: 'bash'
+    args: (context) ->
+      {scopeName} = atom.workspace.getActiveTextEditor()?.getGrammar()
+      lit = if scopeName?.includes 'lit' then 'lit' else ''
+      code = context.getCode()
+      filepath = GrammarUtils.createTempFileWithCode(code, ".#{lit}coffee")
+      return args({filepath})
 
-    'Selection Based':
-      command: 'coffee'
-      args: (context) -> ['-t', '-e', context.getCode()]
+  'File Based': { command: 'bash', args }
 
-    'File Based':
-      command: 'coffee'
-      args: ({filepath}) -> ['-t', filepath]
+exports['CoffeeScript (Literate)'] = exports.CoffeeScript
 
-  IcedCoffeeScript:
-    'Selection Based':
-      command: 'iced'
-      args: (context) -> ['-e', context.getCode()]
+exports.IcedCoffeeScript =
+  'Selection Based':
+    command: 'iced'
+    args: (context) -> ['-e', context.getCode()]
 
-    'File Based':
-      command: 'iced'
-      args: ({filepath}) -> [filepath]
+  'File Based':
+    command: 'iced'
+    args: ({filepath}) -> [filepath]

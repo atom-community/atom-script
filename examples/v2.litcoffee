@@ -11,7 +11,7 @@ This is a [_literate_] CoffeeScript file, written in Markdown.
         setTimeout resolve, s * 1000 # ms
 
     sleep = (s, message) =>
-      console.log "Awaiting Promise…" # This selected line should run.
+      console.log "Awaiting Promise…" # This [whole] selected line should run.
       await timeout s
       console.log message
 
