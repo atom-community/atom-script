@@ -1,23 +1,25 @@
 path = require 'path'
-GrammarUtils = require '../grammar-utils'
+{command} = GrammarUtils = require '../grammar-utils'
 
 bin = path.join __dirname, '../..', 'node_modules', '.bin'
 coffee = path.join bin, 'coffee'
 babel = path.join bin, 'babel'
 
-args = ({filepath}) -> ['-c', "'#{coffee}' -p '#{filepath}'|'#{babel}' --filename '#{bin}'| node"]
+args = ({filepath}) ->
+  cmd = "'#{coffee}' -p '#{filepath}'|'#{babel}' --filename '#{bin}'| node"
+  return GrammarUtils.formatArgs(cmd)
 
 exports.CoffeeScript =
-  'Selection Based':
-    command: 'bash'
+  'Selection Based': {
+    command
     args: (context) ->
       {scopeName} = atom.workspace.getActiveTextEditor()?.getGrammar()
       lit = if scopeName?.includes 'lit' then 'lit' else ''
       code = context.getCode()
       filepath = GrammarUtils.createTempFileWithCode(code, ".#{lit}coffee")
       return args({filepath})
-
-  'File Based': { command: 'bash', args }
+  }
+  'File Based': { command, args }
 
 exports['CoffeeScript (Literate)'] = exports.CoffeeScript
 

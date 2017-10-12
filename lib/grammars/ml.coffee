@@ -1,4 +1,4 @@
-GrammarUtils = require '../grammar-utils'
+{command} = GrammarUtils = require '../grammar-utils'
 
 windows = GrammarUtils.OperatingSystem.isWindows()
 
@@ -22,9 +22,9 @@ module.exports =
       args: ({filepath}) -> [filepath]
 
   Reason:
-    'File Based':
-      command: if windows then 'cmd' else 'bash'
+    'File Based': {
+      command
       args: ({filename}) ->
-        progname = filename.replace /\.re$/, ''
-        command = "rebuild '#{progname}.native' && '#{progname}.native'"
-        if windows then ["/c #{command}"] else ['-c', command]
+        file = filename.replace /\.re$/, '.native'
+        GrammarUtils.formatArgs("rebuild '#{file}' && '#{file}'")
+    }

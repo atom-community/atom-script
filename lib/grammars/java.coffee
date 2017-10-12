@@ -1,39 +1,39 @@
-GrammarUtils = require '../grammar-utils'
+path = require 'path'
+{command} = GrammarUtils = require '../grammar-utils'
 
 windows = GrammarUtils.OperatingSystem.isWindows()
+
+args = (filepath, jar) ->
+  jar = (jar ? path.basename(filepath)).replace /\.kt$/, '.jar'
+  cmd = "kotlinc '#{filepath}' -include-runtime -d #{jar} && java -jar #{jar}"
+  return GrammarUtils.formatArgs(cmd)
 
 module.exports =
 
   Java:
     'File Based':
-      command: if windows then 'cmd' else 'bash'
+      command: 'bash'
       args: (context) ->
         className = GrammarUtils.Java.getClassName context
         classPackages = GrammarUtils.Java.getClassPackage context
         sourcePath = GrammarUtils.Java.getProjectPath context
         if windows
-          return ["/c javac -Xlint '#{context.filename}' && java #{className}"]
-        else ['-c', "javac -sourcepath #{sourcePath} -d /tmp '#{context.filepath}' && java -cp /tmp #{classPackages}#{className}"]
+          return ["/c javac -Xlint #{context.filename} && java #{className}"]
+        else ['-c', "javac -sourcepath '#{sourcePath}' -d /tmp '#{context.filepath}' && java -cp /tmp #{classPackages}#{className}"]
 
   Kotlin:
-    'Selection Based':
-      command: 'bash'
+    'Selection Based': {
+      command
       args: (context) ->
         code = context.getCode()
         tmpFile = GrammarUtils.createTempFileWithCode(code, '.kt')
-        jarName = tmpFile.replace /\.kt$/, '.jar'
-        return ['-c', "kotlinc #{tmpFile} -include-runtime -d #{jarName} && java -jar #{jarName}"]
-
-    'File Based':
-      command: 'bash'
-      args: ({filepath, filename}) ->
-        jarName = filename.replace /\.kt$/, '.jar'
-        return ['-c', "kotlinc '#{filepath}' -include-runtime -d /tmp/#{jarName} && java -jar /tmp/#{jarName}"]
-
+        return args(tmpFile)
+    }
+    'File Based': {
+      command
+      args: ({filepath, filename}) -> args(filepath, "/tmp/#{filename}")
+    }
   Processing:
     'File Based':
-      command: if windows then 'cmd' else 'bash'
-      args: ({filepath, filename}) ->
-        if windows
-          return ['/c processing-java --sketch=' + filepath.replace("\\#{filename}", '') + ' --run']
-        else ['-c', 'processing-java --sketch=' + filepath.replace("/#{filename}", '') + ' --run']
+      command: 'processing-java'
+      args: ({filepath}) -> ["--sketch='#{path.dirname(filepath)}'", '--run']
