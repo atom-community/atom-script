@@ -2,7 +2,7 @@
 # As well as any special setup for arguments.
 
 path = require 'path'
-{OperatingSystem} = GrammarUtils = require '../grammar-utils'
+{OperatingSystem, command} = GrammarUtils = require '../grammar-utils'
 
 os = OperatingSystem.platform()
 windows = OperatingSystem.isWindows()
@@ -162,6 +162,7 @@ module.exports =
     'Selection Based':
       command: 'bash'
       args: (context) -> ['-c', context.getCode()]
+
     'File Based':
       command: 'make'
       args: ({filepath}) -> ['-f', filepath]
@@ -172,10 +173,10 @@ module.exports =
       args: (context) ->
         code = context.getCode()
         tmpFile = GrammarUtils.MATLAB.createTempFileWithCode(code)
-        return ['-nodesktop', '-nosplash', '-r', "try, run('#{tmpFile}');while ~isempty(get(0,'Children')); pause(0.5); end; catch ME; disp(ME.message); exit(1); end; exit(0);"]
+        return ['-nodesktop', '-nosplash', '-r', "try, run('#{tmpFile}'); while ~isempty(get(0,'Children')); pause(0.5); end; catch ME; disp(ME.message); exit(1); end; exit(0);"]
     'File Based':
       command: 'matlab'
-      args: ({filepath}) -> ['-nodesktop', '-nosplash', '-r', "try run('#{filepath}');while ~isempty(get(0,'Children')); pause(0.5); end; catch ME; disp(ME.message); exit(1); end; exit(0);"]
+      args: ({filepath}) -> ['-nodesktop', '-nosplash', '-r', "try run('#{filepath}'); while ~isempty(get(0,'Children')); pause(0.5); end; catch ME; disp(ME.message); exit(1); end; exit(0);"]
 
   'MIPS Assembler':
     'File Based':
@@ -194,13 +195,14 @@ module.exports =
       args: ({filepath}) -> [filepath]
 
   Nim:
-    'File Based':
-      command: 'bash'
+    'File Based': {
+      command
       args: ({filepath}) ->
         file = GrammarUtils.Nim.findNimProjectFile(filepath)
-        path = GrammarUtils.Nim.projectDir(filepath)
-        return ['-c', "cd '#{path}' && nim c --hints:off --parallelBuild:1 -r '#{file}' 2>&1"]
-
+        dir = GrammarUtils.Nim.projectDir(filepath)
+        commands = "cd '#{dir}' && nim c --hints:off --parallelBuild:1 -r '#{file}' 2>&1"
+        return GrammarUtils.formatArgs(commands)
+    }
   NSIS:
     'Selection Based':
       command: 'makensis'
@@ -215,10 +217,12 @@ module.exports =
   Octave:
     'Selection Based':
       command: 'octave'
-      args: (context) -> ['-p', context.filepath.replace(/[^\/]*$/, ''), '--eval', context.getCode()]
+      args: (context) ->
+        dir = path.dirname(context.filepath)
+        return ['-p', path.dirname(context.filepath), '--eval', context.getCode()]
     'File Based':
       command: 'octave'
-      args: ({filepath}) -> ['-p', filepath.replace(/[^\/]*$/, ''), filepath]
+      args: ({filepath}) -> ['-p', path.dirname(filepath), filepath]
 
   Oz:
     'Selection Based':
@@ -243,18 +247,20 @@ module.exports =
       args: ({filepath}) -> [filepath]
 
   Prolog:
-    'File Based':
-      command: 'bash'
-      args: ({filepath}) -> ['-c', "cd '" + filepath.replace(/[^\/]*$/, '') + "'; swipl -f '#{filepath}' -t main --quiet"]
-
-  PureScript:
-    'File Based':
-      command: if windows then 'cmd' else 'bash'
+    'File Based': {
+      command
       args: ({filepath}) ->
-        filepath = filepath.replace(/[^\/]*$/, '')
-        command = "cd '#{filepath}' && pulp run"
-        if windows then ["/c #{command}"] else ['-c', command]
-
+        dir = path.dirname(filepath)
+        commands = "cd '#{dir}'; swipl -f '#{filepath}' -t main --quiet"
+        return GrammarUtils.formatArgs(commands)
+    }
+  PureScript:
+    'File Based': {
+      command
+      args: ({filepath}) ->
+        dir = path.dirname(filepath)
+        return GrammarUtils.formatArgs("cd '#{dir}' && pulp run")
+    }
   R:
     'Selection Based':
       command: 'Rscript'
@@ -285,14 +291,13 @@ module.exports =
       args: ({filepath}) -> [filepath]
 
   Rust:
-    'File Based':
-      command: if windows then 'cmd' else 'bash'
+    'File Based': {
+      command
       args: ({filepath, filename}) ->
-        progname = filename.replace /\.rs$/, ''
         if windows
-          return ["/c rustc #{filepath} && #{progname}.exe"]
+          return ["/c rustc #{filepath} && #{filename[..-4]}.exe"]
         else ['-c', "rustc '#{filepath}' -o /tmp/rs.out && /tmp/rs.out"]
-
+    }
   Scala:
     'Selection Based':
       command: 'scala'
