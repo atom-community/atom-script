@@ -11,8 +11,8 @@ args = (filepath, jar) ->
 module.exports =
 
   Java:
-    'File Based':
-      command: 'bash'
+    'File Based': {
+      command
       args: (context) ->
         className = GrammarUtils.Java.getClassName context
         classPackages = GrammarUtils.Java.getClassPackage context
@@ -20,7 +20,7 @@ module.exports =
         if windows
           return ["/c javac -Xlint #{context.filename} && java #{className}"]
         else ['-c', "javac -sourcepath '#{sourcePath}' -d /tmp '#{context.filepath}' && java -cp /tmp #{classPackages}#{className}"]
-
+    }
   Kotlin:
     'Selection Based': {
       command
