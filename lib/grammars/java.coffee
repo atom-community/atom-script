@@ -19,7 +19,7 @@ module.exports =
         sourcePath = GrammarUtils.Java.getProjectPath context
         if windows
           return ["/c javac -Xlint #{context.filename} && java #{className}"]
-        else ['-c', "javac -sourcepath '#{sourcePath}' -d /tmp '#{context.filepath}' && java -cp /tmp #{classPackages}#{className}"]
+        else ['-c', "javac -sourcepath '#{sourcePath}' -d /tmp '#{context.filepath}' && java -cp /tmp:$CLASSPATH #{classPackages}#{className}"]
     }
   Kotlin:
     'Selection Based': {
