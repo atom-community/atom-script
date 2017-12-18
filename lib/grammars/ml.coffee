@@ -1,5 +1,4 @@
 {command} = GrammarUtils = require '../grammar-utils'
-path = require 'path'
 
 windows = GrammarUtils.OperatingSystem.isWindows()
 
