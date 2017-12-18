@@ -3,5 +3,3 @@ npm-debug.log
 node_modules
 examples/test/
 .sass-cache/
-.idea
-*.iml
