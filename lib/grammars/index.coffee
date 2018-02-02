@@ -246,6 +246,14 @@ module.exports =
       command: 'fpc'
       args: ({filepath}) -> [filepath]
 
+  Povray:
+    'File Based': {
+      command
+      args: ({filepath}) ->
+        commands = if windows then 'pvengine /EXIT /RENDER ' else 'povray '
+        return GrammarUtils.formatArgs(commands+filepath)
+    }
+
   Prolog:
     'File Based': {
       command

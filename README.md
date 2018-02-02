@@ -81,6 +81,7 @@ Currently supported grammars are:
 | [Perl 6]                            | Yes        | Yes             |                               | `perl6`                   |                                                                                                                                                                                                                                                                 |
 | PHP                                 | Yes        | Yes             |                               |                           |                                                                                                                                                                                                                                                                 |
 | [PostgreSQL]                        | Yes        | Yes             | [language-pgsql]              | [`psql`]                  | Connects as user `PGUSER` to database `PGDATABASE`. Both default to your operating system's `USERNAME`, but can be set in the process environment or in Atom's [`init` file]: `process.env.PGUSER = {user name}` and `process.env.PGDATABASE = {database name}` |
+| [POV-Ray]                           | Yes        |                 | [atom-language-povray]        | `povengine`/`povray`      |                                                                                                                                                                                                                                                                 |
 | [PowerShell]                        | Yes        | Yes             | [language-powershell]         | `powershell`              |                                                                                                                                                                                                                                                                 |
 | [Processing]                        | Yes        |                 | [processing-language]         | `processing-java`         |                                                                                                                                                                                                                                                                 |
 | [Prolog]                            | Yes        |                 | [language-prolog]             | `swipl`                   | Scripts must contain a rule with the head `main` (e.g.`main:- parent(X,lucas),writeln(X).`). The script is executed with the goal `main` and exits after the first result is found. The output is produced by the `writeln/1` predicates.                       |
@@ -129,6 +130,7 @@ Currently supported grammars are:
 [atlilypond]:                   https://atom.io/packages/atlilypond
 [atom-fstar]:                   https://github.com/FStarLang/atom-fstar#readme
 [atom-language-io]:             https://atom.io/packages/atom-language-io
+[atom-language-povray]:         https://atom.io/packages/atom-language-povray
 [AutoHotKey]:                   https://autohotkey.com
 [babel]:                        https://babeljs.io
 [batch]:                        https://ss64.com/nt
@@ -261,6 +263,7 @@ Currently supported grammars are:
 [perl 6]:                       https://perl6.org
 [pascal]:                       https://freepascal.org
 [PostgreSQL]:                   https://postgresql.org
+[POV-Ray]:                      http://www.povray.org/
 [powershell]:                   https://docs.microsoft.com/powershell
 [processing-language]:          https://atom.io/packages/processing-language
 [processing]:                   https://processing.org
