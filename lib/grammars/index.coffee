@@ -237,13 +237,13 @@ module.exports =
 
   Pascal:
     'Selection Based':
-      command: 'fsc'
+      command: 'fpc'
       args: (context) ->
         code = context.getCode()
         tmpFile = GrammarUtils.createTempFileWithCode(code)
         return [tmpFile]
     'File Based':
-      command: 'fsc'
+      command: 'fpc'
       args: ({filepath}) -> [filepath]
 
   Prolog:
