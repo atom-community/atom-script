@@ -36,4 +36,4 @@ module.exports =
   Processing:
     'File Based':
       command: 'processing-java'
-      args: ({filepath}) -> ["--sketch='#{path.dirname(filepath)}'", '--run']
+      args: ({filepath}) -> ["--sketch=#{path.dirname(filepath)}", "--run"]
