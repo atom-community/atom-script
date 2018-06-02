@@ -2,6 +2,17 @@ GrammarUtils = require '../grammar-utils'
 
 #if GrammarUtils.OperatingSystem.isWindows()
 
+exports.AutoItv3 =
+  'Selection Based':
+    command: GrammarUtils.AutoItv3.getCommand() + "\\AutoIt3.exe"
+    args: (context) ->
+      code = context.getCode()
+      tmpFile = GrammarUtils.createTempFileWithCode(code)
+      return [tmpFile]
+  'File Based':
+    command: GrammarUtils.AutoItv3.getCommand() + "\\AutoIt3.exe"
+    args: ({filepath}) -> [GrammarUtils.AutoItv3.getCommand() + '\\SciTE\\AutoIt3Wrapper\\AutoIt3Wrapper.au3', '/run', '/prod', '/ErrorStdOut', '/in', filepath]
+
 exports.AutoHotKey =
   'Selection Based':
     command: 'AutoHotKey'
