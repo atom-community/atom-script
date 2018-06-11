@@ -4,6 +4,8 @@
 
 **Run code in Atom!**
 
+:warning: [We need maintainers and developers to keep atom script from growing stagnant! Please see #1550 for background](https://github.com/rgbkrk/atom-script/issues/1550) :warning:
+
 Run scripts based on file name, a selection of code, or by line number.
 
 ![](https://cloud.githubusercontent.com/assets/1694055/3226201/c458acbc-f067-11e3-84a0-da27fe334f5e.gif)
