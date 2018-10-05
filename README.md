@@ -14,6 +14,7 @@ Currently supported grammars are:
 
 | Grammar                             | File Based | Selection Based | Required Package              | Required in [`PATH`]      | Notes                                                                                                                                                                                                                                                           |
 |:------------------------------------|:-----------|:----------------|:------------------------------|:--------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Assembly (NASM)                     | Yes        | Yes             | [language-x86-64-assembly]    | [`nasm`], [`binutils`]    |                                                                                                                                                                                                                                                                 |
 | 1C (BSL)                            | Yes        |                 | [language-1c-bsl]             | [`oscript`]               |                                                                                                                                                                                                                                                                 |
 | [Ansible]                           | Yes        |                 | [language-ansible]            | `ansible-playbook`        |                                                                                                                                                                                                                                                                 |
 | [AutoHotKey]                        | Yes        | Yes             | [language-autohotkey]         | `AutoHotKey.exe`          |                                                                                                                                                                                                                                                                 |
@@ -113,11 +114,13 @@ Currently supported grammars are:
 
 [-wow]:                         https://atom.io/packages/language-lua-wow
 [#70]:                          https://github.com/rgbkrk/atom-script/pull/70
+[`binutils`]:                   https://www.gnu.org/software/binutils/
 [`gfortran`]:                   https://gcc.gnu.org/wiki/GFortran
 [`ghc`]:                        https://haskell.org/ghc
 [`guile`]:                      https://gnu.org/software/guile
 [`init` file]:                  http://flight-manual.atom.io/hacking-atom/sections/the-init-file
 [`latexmk`]:                    https://ctan.org/pkg/latexmk
+[`nasm`]:                       https://nasm.us/
 [`oscript`]:                    http://oscript.io
 [`panzer`]:                     https://github.com/msprev/panzer#readme
 [`PATH`]:                       https://en.wikipedia.org/wiki/PATH_(variable)
@@ -239,6 +242,7 @@ Currently supported grammars are:
 [language-swift]:               https://atom.io/packages/language-swift
 [language-tcltk]:               https://atom.io/packages/language-tcltk
 [language-vbscript]:            https://atom.io/packages/language-vbscript
+[language-x86-64-assembly]:     https://atom.io/packages/language-x86-64-assembly
 [latex]:                        https://latex-project.org
 [lein-exec]:                    https://github.com/kumarshantanu/lein-exec#readme
 [leiningen]:                    https://leiningen.org
