@@ -329,6 +329,8 @@ Make sure to run `atom` from the command line to get full access to your environ
 
 Also, in this dialog you can save options as a profile for future use. For example, you can add two profiles, one for `python2.7` and another for `python3` and run scripts with a specified profile, which will be more convinient than entering options every time you want to switch python versions.
 
+If you want to use Python3 by default, you can open Atom Settings, `Atom→Preferences→Open Config Folder`, and open`.atom/packages/script/lib/grammars/python.coffee`, Changing `python` to `python3` under `'Selection Based'` and `'File Based'`, saving it.
+
 **Script: Run with profile** allows you to run scripts with saved profiles. Profiles can be added in **Script: Run Options** dialog.
 
 **Script: Kill Process** will kill the process but leaves the pane open.
