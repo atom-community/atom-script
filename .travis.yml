@@ -28,10 +28,6 @@ notifications:
 git:
   depth: 10
 
-sudo: false
-
-dist: trusty
-
 addons:
   apt:
     packages:
