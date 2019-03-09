@@ -16,7 +16,7 @@ When reporting an issue include information such as:
 The more information available when we take a look at your issue the more likely we can deal with it in a quick manner.
 
 ## Developing
-We love pull requests! If you're reading this section thanks in advanced.
+We love pull requests! If you're reading this section thanks in advance.
 
 To help accelerate the review process:
 * Consider adding specs.
