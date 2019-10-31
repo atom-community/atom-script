@@ -376,8 +376,8 @@ This is an [Open Open Source Project](http://openopensource.org/), which means:
 
 > Individuals making significant and valuable contributions are given commit-access to the project to contribute as they see fit.
 
-As for coding and contributing, rely on the atom [contributing guidelines](https://atom.io/docs/latest/contributing).
-They're pretty sane.
+As for coding and contributing, rely on the atom [contributing guidelines](https://flight-manual.atom.io/hacking-atom/sections/contributing-to-official-atom-packages/).
+They're pretty solid.
 
 #### Quick and dirty setup
 
