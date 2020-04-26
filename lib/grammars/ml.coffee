@@ -28,3 +28,17 @@ module.exports =
         file = filename.replace /\.re$/, '.native'
         GrammarUtils.formatArgs("rebuild '#{file}' && '#{file}'")
     }
+
+  'Standard ML':
+    'File Based': {
+      command: 'sml'
+      args: ({filename}) -> return [filename];
+    }
+
+    'Selection Based': {
+      command: 'sml'
+      args: (context) ->
+        code = context.getCode()
+        tmpFile = GrammarUtils.createTempFileWithCode(code, '.sml')
+        return [tmpFile]
+    }

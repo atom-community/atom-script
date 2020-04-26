@@ -5,6 +5,7 @@ path = require 'path'
 {OperatingSystem, command} = GrammarUtils = require '../grammar-utils'
 
 os = OperatingSystem.platform()
+arch = OperatingSystem.architecture()
 windows = OperatingSystem.isWindows()
 
 module.exports =
@@ -237,14 +238,22 @@ module.exports =
 
   Pascal:
     'Selection Based':
-      command: 'fsc'
+      command: 'fpc'
       args: (context) ->
         code = context.getCode()
         tmpFile = GrammarUtils.createTempFileWithCode(code)
         return [tmpFile]
     'File Based':
-      command: 'fsc'
+      command: 'fpc'
       args: ({filepath}) -> [filepath]
+
+  Povray:
+    'File Based': {
+      command
+      args: ({filepath}) ->
+        commands = if windows then 'pvengine /EXIT /RENDER ' else 'povray '
+        return GrammarUtils.formatArgs(commands+filepath)
+    }
 
   Prolog:
     'File Based': {
@@ -318,3 +327,26 @@ module.exports =
     'File Based':
       command: 'turing'
       args: ({filepath}) -> ['-run', filepath]
+
+  "x86 and x86_64 Assembly":
+    'File Based':
+      command: 'bash'
+      args: ({filepath}) ->
+        args = switch arch
+          when 'x32'
+            "nasm -f elf '#{filepath}' -o /tmp/asm.out.o && ld -m elf_i386 /tmp/asm.out.o -o /tmp/asm.out && /tmp/asm.out"
+          when 'x64'
+            "nasm -f elf64 '#{filepath}' -o /tmp/asm.out.o && ld /tmp/asm.out.o -o /tmp/asm.out && /tmp/asm.out"
+        return ['-c', args]
+
+    'Selection Based':
+      command: 'bash'
+      args: (context) ->
+        code = context.getCode()
+        tmpFile = GrammarUtils.createTempFileWithCode(code, '.asm')
+        args = switch arch
+          when 'x32'
+            "nasm -f elf '#{tmpFile}' -o /tmp/asm.out.o && ld -m elf_i386 /tmp/asm.out.o -o /tmp/asm.out && /tmp/asm.out"
+          when 'x64'
+            "nasm -f elf64 '#{tmpFile}' -o /tmp/asm.out.o && ld /tmp/asm.out.o -o /tmp/asm.out && /tmp/asm.out"
+        return ['-c', args]

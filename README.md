@@ -4,6 +4,8 @@
 
 **Run code in Atom!**
 
+:warning: [We need maintainers and developers to keep atom script from growing stagnant! Please see #1550 for background](https://github.com/rgbkrk/atom-script/issues/1550) :warning:
+
 Run scripts based on file name, a selection of code, or by line number.
 
 ![](https://cloud.githubusercontent.com/assets/1694055/3226201/c458acbc-f067-11e3-84a0-da27fe334f5e.gif)
@@ -12,6 +14,7 @@ Currently supported grammars are:
 
 | Grammar                             | File Based | Selection Based | Required Package              | Required in [`PATH`]      | Notes                                                                                                                                                                                                                                                           |
 |:------------------------------------|:-----------|:----------------|:------------------------------|:--------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Assembly (NASM)                     | Yes        | Yes             | [language-x86-64-assembly]    | [`nasm`], [`binutils`]    |                                                                                                                                                                                                                                                                 |
 | 1C (BSL)                            | Yes        |                 | [language-1c-bsl]             | [`oscript`]               |                                                                                                                                                                                                                                                                 |
 | [Ansible]                           | Yes        |                 | [language-ansible]            | `ansible-playbook`        |                                                                                                                                                                                                                                                                 |
 | [AutoHotKey]                        | Yes        | Yes             | [language-autohotkey]         | `AutoHotKey.exe`          |                                                                                                                                                                                                                                                                 |
@@ -76,11 +79,12 @@ Currently supported grammars are:
 | [Octave]                            | Yes        | Yes             | [language-matlab]             | `octave`                  |                                                                                                                                                                                                                                                                 |
 | [Oz]                                | Yes        | Yes             | [language-oz]                 | `ozc`                     |                                                                                                                                                                                                                                                                 |
 | [Pandoc] Markdown                   | Yes        |                 | [language-pfm]                | [`panzer`]                |                                                                                                                                                                                                                                                                 |
-| [Pascal]                            | Yes        | Yes             | [language-pascal]             | `fsc`                     |                                                                                                                                                                                                                                                                 |
+| [Pascal]                            | Yes        | Yes             | [language-pascal]             | `fpc`                     |                                                                                                                                                                                                                                                                 |
 | Perl                                | Yes        | Yes             |                               |                           |                                                                                                                                                                                                                                                                 |
 | [Perl 6]                            | Yes        | Yes             |                               | `perl6`                   |                                                                                                                                                                                                                                                                 |
 | PHP                                 | Yes        | Yes             |                               |                           |                                                                                                                                                                                                                                                                 |
 | [PostgreSQL]                        | Yes        | Yes             | [language-pgsql]              | [`psql`]                  | Connects as user `PGUSER` to database `PGDATABASE`. Both default to your operating system's `USERNAME`, but can be set in the process environment or in Atom's [`init` file]: `process.env.PGUSER = {user name}` and `process.env.PGDATABASE = {database name}` |
+| [POV-Ray]                           | Yes        |                 | [atom-language-povray]        | `povengine`/`povray`      |                                                                                                                                                                                                                                                                 |
 | [PowerShell]                        | Yes        | Yes             | [language-powershell]         | `powershell`              |                                                                                                                                                                                                                                                                 |
 | [Processing]                        | Yes        |                 | [processing-language]         | `processing-java`         |                                                                                                                                                                                                                                                                 |
 | [Prolog]                            | Yes        |                 | [language-prolog]             | `swipl`                   | Scripts must contain a rule with the head `main` (e.g.`main:- parent(X,lucas),writeln(X).`). The script is executed with the goal `main` and exits after the first result is found. The output is produced by the `writeln/1` predicates.                       |
@@ -110,11 +114,13 @@ Currently supported grammars are:
 
 [-wow]:                         https://atom.io/packages/language-lua-wow
 [#70]:                          https://github.com/rgbkrk/atom-script/pull/70
+[`binutils`]:                   https://www.gnu.org/software/binutils/
 [`gfortran`]:                   https://gcc.gnu.org/wiki/GFortran
 [`ghc`]:                        https://haskell.org/ghc
 [`guile`]:                      https://gnu.org/software/guile
 [`init` file]:                  http://flight-manual.atom.io/hacking-atom/sections/the-init-file
 [`latexmk`]:                    https://ctan.org/pkg/latexmk
+[`nasm`]:                       https://nasm.us/
 [`oscript`]:                    http://oscript.io
 [`panzer`]:                     https://github.com/msprev/panzer#readme
 [`PATH`]:                       https://en.wikipedia.org/wiki/PATH_(variable)
@@ -129,6 +135,7 @@ Currently supported grammars are:
 [atlilypond]:                   https://atom.io/packages/atlilypond
 [atom-fstar]:                   https://github.com/FStarLang/atom-fstar#readme
 [atom-language-io]:             https://atom.io/packages/atom-language-io
+[atom-language-povray]:         https://atom.io/packages/atom-language-povray
 [AutoHotKey]:                   https://autohotkey.com
 [babel]:                        https://babeljs.io
 [batch]:                        https://ss64.com/nt
@@ -235,6 +242,7 @@ Currently supported grammars are:
 [language-swift]:               https://atom.io/packages/language-swift
 [language-tcltk]:               https://atom.io/packages/language-tcltk
 [language-vbscript]:            https://atom.io/packages/language-vbscript
+[language-x86-64-assembly]:     https://atom.io/packages/language-x86-64-assembly
 [latex]:                        https://latex-project.org
 [lein-exec]:                    https://github.com/kumarshantanu/lein-exec#readme
 [leiningen]:                    https://leiningen.org
@@ -261,6 +269,7 @@ Currently supported grammars are:
 [perl 6]:                       https://perl6.org
 [pascal]:                       https://freepascal.org
 [PostgreSQL]:                   https://postgresql.org
+[POV-Ray]:                      http://www.povray.org/
 [powershell]:                   https://docs.microsoft.com/powershell
 [processing-language]:          https://atom.io/packages/processing-language
 [processing]:                   https://processing.org
@@ -324,6 +333,8 @@ Make sure to run `atom` from the command line to get full access to your environ
 
 Also, in this dialog you can save options as a profile for future use. For example, you can add two profiles, one for `python2.7` and another for `python3` and run scripts with a specified profile, which will be more convinient than entering options every time you want to switch python versions.
 
+If you want to use Python3 by default, you can open Atom Settings, `Atom→Preferences→Open Config Folder`, and open`.atom/packages/script/lib/grammars/python.coffee`, Changing `python` to `python3` under `'Selection Based'` and `'File Based'`, saving it.
+
 **Script: Run with profile** allows you to run scripts with saved profiles. Profiles can be added in **Script: Run Options** dialog.
 
 **Script: Kill Process** will kill the process but leaves the pane open.
@@ -365,8 +376,8 @@ This is an [Open Open Source Project](http://openopensource.org/), which means:
 
 > Individuals making significant and valuable contributions are given commit-access to the project to contribute as they see fit.
 
-As for coding and contributing, rely on the atom [contributing guidelines](https://atom.io/docs/latest/contributing).
-They're pretty sane.
+As for coding and contributing, rely on the atom [contributing guidelines](https://flight-manual.atom.io/hacking-atom/sections/contributing-to-official-atom-packages/).
+They're pretty solid.
 
 #### Quick and dirty setup
 
