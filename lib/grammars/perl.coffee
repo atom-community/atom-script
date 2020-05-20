@@ -21,4 +21,4 @@ exports['Raku'] =
     command: 'raku'
     args: ({filepath}) -> [filepath]
 
-exports['Raku/Perl 6'] = exports['Raku']
+exports['Perl 6'] = exports['Raku']
