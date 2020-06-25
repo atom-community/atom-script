@@ -1,18 +1,18 @@
 GrammarUtils = require '../grammar-utils'
 
-exports.Python =
+exports.Python3 =
   'Selection Based':
-    command: 'python'
+    command: 'python3'
     args: (context) ->
       code = context.getCode()
       tmpFile = GrammarUtils.createTempFileWithCode(code)
       return ['-u', tmpFile]
 
   'File Based':
-    command: 'python'
+    command: 'python3'
     args: ({filepath}) -> ['-u', filepath]
 
-exports.MagicPython = exports.Python
+exports.MagicPython = exports.Python3
 
 exports.Sage =
   'Selection Based':
