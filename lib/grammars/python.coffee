@@ -2,14 +2,14 @@ GrammarUtils = require '../grammar-utils'
 
 exports.Python =
   'Selection Based':
-    command: 'python3'
+    command: 'python'
     args: (context) ->
       code = context.getCode()
       tmpFile = GrammarUtils.createTempFileWithCode(code)
       return ['-u', tmpFile]
 
   'File Based':
-    command: 'python3'
+    command: 'python'
     args: ({filepath}) -> ['-u', filepath]
 
 exports.MagicPython = exports.Python
