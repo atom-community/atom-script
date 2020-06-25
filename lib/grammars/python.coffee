@@ -1,6 +1,6 @@
 GrammarUtils = require '../grammar-utils'
 
-exports.Python3 =
+exports.Python =
   'Selection Based':
     command: 'python3'
     args: (context) ->
@@ -12,7 +12,7 @@ exports.Python3 =
     command: 'python3'
     args: ({filepath}) -> ['-u', filepath]
 
-exports.MagicPython = exports.Python3
+exports.MagicPython = exports.Python
 
 exports.Sage =
   'Selection Based':
