@@ -1,3 +1,10 @@
+## [3.27.1](https://github.com/atom-ide-community/atom-script/compare/v3.27.0...v3.27.1) (2020-12-29)
+
+
+### Bug Fixes
+
+* update uuid to v8 ([446e4bc](https://github.com/atom-ide-community/atom-script/commit/446e4bcf0ae4775077f9810952263277b4350770))
+
 ## 3.27.0
 * Renamed Perl6 to Raku
 * Support for ConTeXt MkIV and LMTX
