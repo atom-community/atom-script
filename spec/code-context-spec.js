@@ -19,12 +19,12 @@ describe('CodeContext', () => {
 
   describe('fileColonLine when lineNumber is not set', () => {
     it('returns the full filepath when fullPath is truthy', () => {
-      expect(this.codeContext.fileColonLine()).toMatch(testFilePath);
-      expect(this.codeContext.fileColonLine(true)).toMatch(testFilePath);
+      expect(this.codeContext.fileColonLine()).toEqual(testFilePath);
+      expect(this.codeContext.fileColonLine(true)).toEqual(testFilePath);
     });
 
     it('returns only the filename and line number when fullPath is falsy', () => {
-      expect(this.codeContext.fileColonLine(false)).toMatch(testFile);
+      expect(this.codeContext.fileColonLine(false)).toEqual(testFile);
     });
   });
 
