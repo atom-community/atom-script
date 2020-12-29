@@ -1,13 +1,20 @@
 'use babel';
 
+import tempy from 'tempy';
+import path from 'path';
+
 /* eslint-disable no-unused-vars, global-require, no-undef */
 import CodeContext from '../lib/code-context';
 import OperatingSystem from '../lib/grammar-utils/operating-system';
 import grammarMap from '../lib/grammars';
 
 describe('grammarMap', () => {
+  const testFile = 'test.txt';
+  let testFilePath;
+
   beforeEach(() => {
-    this.codeContext = new CodeContext('test.txt', '/tmp/test.txt', null);
+    testFilePath = path.join(tempy.directory(), testFile);
+    this.codeContext = new CodeContext(testFile, testFilePath, null);
     // TODO: Test using an actual editor or a selection?
     this.dummyTextSource = {};
     this.dummyTextSource.getText = () => '';

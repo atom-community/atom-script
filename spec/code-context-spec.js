@@ -1,10 +1,17 @@
 'use babel';
 
+import tempy from 'tempy';
+import path from 'path';
+
 import CodeContext from '../lib/code-context';
 
 describe('CodeContext', () => {
+  const testFile = 'test.txt';
+  let testFilePath;
+
   beforeEach(() => {
-    this.codeContext = new CodeContext('test.txt', '/tmp/test.txt', null);
+    testFilePath = path.join(tempy.directory(), testFile);
+    this.codeContext = new CodeContext(testFile, testFilePath, null);
     // TODO: Test using an actual editor or a selection?
     this.dummyTextSource = {};
     this.dummyTextSource.getText = () => "print 'hello world!'";
@@ -12,25 +19,25 @@ describe('CodeContext', () => {
 
   describe('fileColonLine when lineNumber is not set', () => {
     it('returns the full filepath when fullPath is truthy', () => {
-      expect(this.codeContext.fileColonLine()).toMatch('/tmp/test.txt');
-      expect(this.codeContext.fileColonLine(true)).toMatch('/tmp/test.txt');
+      expect(this.codeContext.fileColonLine()).toMatch(testFilePath);
+      expect(this.codeContext.fileColonLine(true)).toMatch(testFilePath);
     });
 
     it('returns only the filename and line number when fullPath is falsy', () => {
-      expect(this.codeContext.fileColonLine(false)).toMatch('test.txt');
+      expect(this.codeContext.fileColonLine(false)).toMatch(testFile);
     });
   });
 
   describe('fileColonLine when lineNumber is set', () => {
     it('returns the full filepath when fullPath is truthy', () => {
       this.codeContext.lineNumber = 42;
-      expect(this.codeContext.fileColonLine()).toMatch('/tmp/test.txt');
-      expect(this.codeContext.fileColonLine(true)).toMatch('/tmp/test.txt');
+      expect(this.codeContext.fileColonLine()).toMatch(testFilePath);
+      expect(this.codeContext.fileColonLine(true)).toMatch(testFilePath);
     });
 
     it('returns only the filename and line number when fullPath is falsy', () => {
       this.codeContext.lineNumber = 42;
-      expect(this.codeContext.fileColonLine(false)).toMatch('test.txt');
+      expect(this.codeContext.fileColonLine(false)).toMatch(testFile);
     });
   });
 
