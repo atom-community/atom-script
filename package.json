@@ -367,7 +367,7 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "apm test"
+    "test": "atom test --space"
   },
   "babel": {
     "presets": [
