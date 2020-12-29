@@ -3,3 +3,5 @@ npm-debug.log
 node_modules
 examples/test/
 .sass-cache/
+
+package-lock.json
