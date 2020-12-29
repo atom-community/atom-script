@@ -1,4 +1,4 @@
-## 3.16.0
+## 3.27.0
 * Renamed Perl6 to Raku
 * Support for ConTeXt MkIV and LMTX
 * Run the tests on all platforms
