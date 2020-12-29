@@ -12,13 +12,13 @@ exports.Perl =
     command: 'perl'
     args: ({filepath}) -> [filepath]
 
-exports['Perl 6'] =
+exports['Raku'] =
   'Selection Based':
-    command: 'perl6'
+    command: 'raku'
     args: (context) -> ['-e', context.getCode()]
 
   'File Based':
-    command: 'perl6'
+    command: 'raku'
     args: ({filepath}) -> [filepath]
 
-exports['Perl 6 FE'] = exports['Perl 6']
+exports['Perl 6'] = exports['Raku']
