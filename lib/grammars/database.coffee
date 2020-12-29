@@ -1,4 +1,4 @@
-message = "SQL requires setting 'Script: Run Options' directly. See https://github.com/rgbkrk/atom-script/tree/master/examples/hello.sql for further information."
+message = "SQL requires setting 'Script: Run Options' directly. See https://github.com/atom-ide-community/atom-script/tree/master/examples/hello.sql for further information."
 
 module.exports =
 

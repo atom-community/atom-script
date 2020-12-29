@@ -111,7 +111,7 @@ Currently supported grammars are:
 | [Zsh]                               | Yes        | Yes             |                               |                           | Runs if your `SHELL` or `#!` line is `zsh`.                                                                                                                                                                                                                     |
 
 [-wow]:                         https://atom.io/packages/language-lua-wow
-[#70]:                          https://github.com/rgbkrk/atom-script/pull/70
+[#70]:                          https://github.com/atom-ide-community/atom-script/pull/70
 [`binutils`]:                   https://www.gnu.org/software/binutils/
 [`gfortran`]:                   https://gcc.gnu.org/wiki/GFortran
 [`ghc`]:                        https://haskell.org/ghc
@@ -315,7 +315,7 @@ atom .
 
 to get it to run with the *current* directory as the default place to run scripts from.
 
-If you *really* wish to open atom from a launcher/icon, see [this issue for a variety of workarounds that have been suggested](https://github.com/rgbkrk/atom-script/issues/61#issuecomment-37337827).
+If you *really* wish to open atom from a launcher/icon, see [this issue for a variety of workarounds that have been suggested](https://github.com/atom-ide-community/atom-script/issues/61#issuecomment-37337827).
 
 ## Usage
 
