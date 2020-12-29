@@ -1,0 +1,64 @@
+name: Bump_Dependencies
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  Bump_Dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: "12"
+
+      - name: setup npm-check-updates
+        run: npm install -g npm-check-updates
+
+      - run: |
+          ncu -u --dep prod
+          npm install
+
+
+      - uses: tibdex/github-app-token@v1
+        id: generate-token
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+      - uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          commit-message: Update Dependencies
+          title: "fix: Update Dependencies"
+          labels: Dependencies
+          branch: "Bump_Dependencies"
+
+
+  Bump_devDependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: "12"
+
+      - name: setup npm-check-updates
+        run: npm install -g npm-check-updates
+
+      - run: |
+          ncu -u --dep dev
+          npm install
+
+      - uses: tibdex/github-app-token@v1
+        id: generate-token
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+      - uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          commit-message: Update devDependencies
+          title: "chore: Update devDependencies"
+          labels: Dependencies
+          branch: "Bump_devDependencies"
