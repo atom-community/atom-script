@@ -5,10 +5,116 @@
   "private": false,
   "description": "Run code in Atom!",
   "author": "Kyle Kelley <rgbkrk@gmail.com>",
+  "repository": "https://github.com/rgbkrk/atom-script",
+  "license": "Apache-2.0",
+  "engines": {
+    "atom": ">=0.174.0"
+  },
+  "activationCommands": {
+    "atom-text-editor": [
+      "script:run",
+      "script:run-by-line-number",
+      "script:run-options",
+      "script:run-with-profile"
+    ]
+  },
+  "dependencies": {
+    "ansi-to-html": "^0.4.2",
+    "atom-message-panel": "1.3.1",
+    "atom-space-pen-views": "^2.0.3",
+    "babel-preset-env": "^1.6.0",
+    "strip-ansi": "^3.0.0",
+    "underscore": "^1.8.3",
+    "uuid": "^3.0.1"
+  },
+  "optionalDependencies": {
+    "babel-cli": "^6.26.0",
+    "coffeescript": "^2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "eslint": "^4.18.2",
+    "eslint-config-airbnb-base": "^10.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "tempy": "^1.0.0"
+  },
+  "providedServices": {
+    "default-script-runtime": {
+      "description": "Provides default runtime that's configurable through Atom editor",
+      "versions": {
+        "0.1.0": "provideDefaultRuntime"
+      }
+    },
+    "provide-blank-runtime": {
+      "description": "Provides a Runtime instance that's intended to be more programatically configurable",
+      "versions": {
+        "0.1.0": "provideBlankRuntime"
+      }
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "atom test --space"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ]
+  },
+  "keywords": [
+    "script",
+    "runner",
+    "Bash",
+    "Behat Feature",
+    "Clojure",
+    "Coffeescript",
+    "CoffeeScript (Literate)",
+    "Cucumber (Gherkin)",
+    "Elixir",
+    "Erlang",
+    "F#",
+    "FSharp",
+    "F*",
+    "FStar",
+    "Go",
+    "Groovy",
+    "Haskell",
+    "Javascript",
+    "Julia",
+    "LaTeX",
+    "Lua",
+    "mongoDB",
+    "newLISP",
+    "Perl",
+    "PHP",
+    "PowerShell",
+    "Python",
+    "RSpec",
+    "Ruby",
+    "Ruby on Rails",
+    "Scala",
+    "Swift",
+    "run",
+    "Applescript",
+    "code",
+    "LAMMPS"
+  ],
   "contributors": [
     {
       "name": "Kyle Kelley",
       "email": "rgbkrk@gmail.com"
+    },
+    {
+      "name": "Amin Yahyaabadi",
+      "email": "aminyahyaabadi74@gmail.com"
     },
     {
       "name": "GeneLocklin",
@@ -278,107 +384,5 @@
       "name": "Bruno Durán",
       "email": "bruno.duran.rey@gmail.com"
     }
-  ],
-  "repository": "https://github.com/rgbkrk/atom-script",
-  "keywords": [
-    "script",
-    "runner",
-    "Bash",
-    "Behat Feature",
-    "Clojure",
-    "Coffeescript",
-    "CoffeeScript (Literate)",
-    "Cucumber (Gherkin)",
-    "Elixir",
-    "Erlang",
-    "F#",
-    "FSharp",
-    "F*",
-    "FStar",
-    "Go",
-    "Groovy",
-    "Haskell",
-    "Javascript",
-    "Julia",
-    "LaTeX",
-    "Lua",
-    "mongoDB",
-    "newLISP",
-    "Perl",
-    "PHP",
-    "PowerShell",
-    "Python",
-    "RSpec",
-    "Ruby",
-    "Ruby on Rails",
-    "Scala",
-    "Swift",
-    "run",
-    "Applescript",
-    "code",
-    "LAMMPS"
-  ],
-  "license": "Apache-2.0",
-  "engines": {
-    "atom": ">=0.174.0"
-  },
-  "activationCommands": {
-    "atom-text-editor": [
-      "script:run",
-      "script:run-by-line-number",
-      "script:run-options",
-      "script:run-with-profile"
-    ]
-  },
-  "dependencies": {
-    "ansi-to-html": "^0.4.2",
-    "atom-message-panel": "1.3.1",
-    "atom-space-pen-views": "^2.0.3",
-    "babel-preset-env": "^1.6.0",
-    "strip-ansi": "^3.0.0",
-    "underscore": "^1.8.3",
-    "uuid": "^3.0.1"
-  },
-  "optionalDependencies": {
-    "babel-cli": "^6.26.0",
-    "coffeescript": "^2"
-  },
-  "devDependencies": {
-    "babel-eslint": "^7.1.1",
-    "eslint": "^4.18.2",
-    "eslint-config-airbnb-base": "^10.0.1",
-    "eslint-plugin-import": "^2.2.0",
-    "tempy": "^1.0.0"
-  },
-  "providedServices": {
-    "default-script-runtime": {
-      "description": "Provides default runtime that's configurable through Atom editor",
-      "versions": {
-        "0.1.0": "provideDefaultRuntime"
-      }
-    },
-    "provide-blank-runtime": {
-      "description": "Provides a Runtime instance that's intended to be more programatically configurable",
-      "versions": {
-        "0.1.0": "provideBlankRuntime"
-      }
-    }
-  },
-  "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "test": "atom test --space"
-  },
-  "babel": {
-    "presets": [
-      [
-        "env",
-        {
-          "targets": {
-            "node": "current"
-          }
-        }
-      ]
-    ]
-  }
+  ]
 }
