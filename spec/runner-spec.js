@@ -25,7 +25,7 @@ describe('Runner', () => {
         this.runner.run(this.command, ['./spec/fixtures/outputTest.js'], {});
       });
 
-      waitsFor(() => this.output !== null, 'File should execute', 500);
+      waitsFor(() => this.output !== null, 'File should execute', 2000);
 
       runs(() => expect(this.output).toEqual({ message: 'hello\n' }));
     });
@@ -39,7 +39,7 @@ describe('Runner', () => {
         this.runner.run(this.command, ['./spec/fixtures/ioTest.js'], {}, 'hello');
       });
 
-      waitsFor(() => this.output !== null, 'File should execute', 500);
+      waitsFor(() => this.output !== null, 'File should execute', 2000);
 
       runs(() => expect(this.output).toEqual({ message: 'TEST: hello\n' }));
     });
@@ -53,7 +53,7 @@ describe('Runner', () => {
         this.runner.run(this.command, ['./spec/fixtures/outputTest.js'], {});
       });
 
-      waitsFor(() => this.exited, 'Should receive exit callback', 500);
+      waitsFor(() => this.exited, 'Should receive exit callback', 2000);
     });
 
     it('notifies about writing to stderr', () => {
@@ -65,7 +65,7 @@ describe('Runner', () => {
         this.runner.run(this.command, ['./spec/fixtures/throw.js'], {});
       });
 
-      waitsFor(() => this.failedEvent, 'Should receive failure callback', 500);
+      waitsFor(() => this.failedEvent, 'Should receive failure callback', 2000);
 
       runs(() => expect(this.failedEvent.message).toMatch(/kaboom/));
     });
@@ -79,7 +79,7 @@ describe('Runner', () => {
         this.runner.run(this.command, ['./spec/fixtures/stdinEndTest.js'], {}, 'unused input');
       });
 
-      waitsFor(() => this.output !== null, 'File should execute', 500);
+      waitsFor(() => this.output !== null, 'File should execute', 2000);
 
       runs(() => expect(this.output).toEqual({ message: 'stdin terminated\n' }));
     });
