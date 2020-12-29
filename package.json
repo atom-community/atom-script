@@ -55,7 +55,7 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "atom test --space"
+    "test": "atom --test spec"
   },
   "babel": {
     "presets": [
