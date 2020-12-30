@@ -1,3 +1,11 @@
+## [3.29.2](https://github.com/atom-ide-community/atom-script/compare/v3.29.1...v3.29.2) (2020-12-30)
+
+
+### Bug Fixes
+
+* eslint --fix ([095d03c](https://github.com/atom-ide-community/atom-script/commit/095d03c3cbe01370de7e04f83553e75aebc393ca))
+* update eslint ([5754954](https://github.com/atom-ide-community/atom-script/commit/5754954bab62c7b2ef2b57536bcbd2fdfa2549ff))
+
 ## [3.29.1](https://github.com/atom-ide-community/atom-script/compare/v3.29.0...v3.29.1) (2020-12-30)
 
 
