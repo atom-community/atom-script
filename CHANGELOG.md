@@ -1,3 +1,10 @@
+## [3.29.3](https://github.com/atom-ide-community/atom-script/compare/v3.29.2...v3.29.3) (2020-12-30)
+
+
+### Bug Fixes
+
+* add activation hook to defer the package's loading ([985bd4e](https://github.com/atom-ide-community/atom-script/commit/985bd4e5c7e83819dc81f7a10873691b756571ca))
+
 ## [3.29.2](https://github.com/atom-ide-community/atom-script/compare/v3.29.1...v3.29.2) (2020-12-30)
 
 
