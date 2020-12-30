@@ -66,14 +66,12 @@ describe('CodeContext', () => {
     });
   });
 
-  describe('shebangCommand when no shebang was found', () =>
-    it('returns undefined when no shebang is found', () => {
-      const lines = this.dummyTextSource.getText();
-      const firstLine = lines.split('\n')[0];
-      if (firstLine.match(/^#!/)) { this.codeContext.shebang = firstLine; }
-      expect(this.codeContext.shebangCommand()).toBe(null);
-    }),
-  );
+  describe('shebangCommand when no shebang was found', () => it('returns undefined when no shebang is found', () => {
+    const lines = this.dummyTextSource.getText();
+    const firstLine = lines.split('\n')[0];
+    if (firstLine.match(/^#!/)) { this.codeContext.shebang = firstLine; }
+    expect(this.codeContext.shebangCommand()).toBe(null);
+  }));
 
   describe('shebangCommand when a shebang was found', () => {
     it('returns the command from the shebang', () => {
@@ -98,14 +96,12 @@ describe('CodeContext', () => {
     });
   });
 
-  describe('shebangCommandArgs when no shebang was found', () =>
-    it('returns [] when no shebang is found', () => {
-      const lines = this.dummyTextSource.getText();
-      const firstLine = lines.split('\n')[0];
-      if (firstLine.match(/^#!/)) { this.codeContext.shebang = firstLine; }
-      expect(this.codeContext.shebangCommandArgs()).toMatch([]);
-    }),
-  );
+  describe('shebangCommandArgs when no shebang was found', () => it('returns [] when no shebang is found', () => {
+    const lines = this.dummyTextSource.getText();
+    const firstLine = lines.split('\n')[0];
+    if (firstLine.match(/^#!/)) { this.codeContext.shebang = firstLine; }
+    expect(this.codeContext.shebangCommandArgs()).toMatch([]);
+  }));
 
   describe('shebangCommandArgs when a shebang was found', () => {
     it('returns the command from the shebang', () => {
