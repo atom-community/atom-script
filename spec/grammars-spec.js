@@ -55,34 +55,30 @@ describe('grammarMap', () => {
       this.reloadGrammar();
     });
 
-    describe('C', () =>
-      it('returns the appropriate File Based runner on Mac OS X', () => {
-        OperatingSystem.platform = () => 'darwin';
-        this.reloadGrammar();
+    describe('C', () => it('returns the appropriate File Based runner on Mac OS X', () => {
+      OperatingSystem.platform = () => 'darwin';
+      this.reloadGrammar();
 
-        const grammar = this.grammarMap.C;
-        const fileBasedRunner = grammar['File Based'];
-        const args = fileBasedRunner.args(this.codeContext);
-        expect(fileBasedRunner.command).toEqual('bash');
-        expect(args[0]).toEqual('-c');
-        expect(args[1]).toMatch(/^xcrun clang/);
-      }),
-    );
+      const grammar = this.grammarMap.C;
+      const fileBasedRunner = grammar['File Based'];
+      const args = fileBasedRunner.args(this.codeContext);
+      expect(fileBasedRunner.command).toEqual('bash');
+      expect(args[0]).toEqual('-c');
+      expect(args[1]).toMatch(/^xcrun clang/);
+    }));
 
-    describe('C++', () =>
-      it('returns the appropriate File Based runner on Mac OS X', () => {
-        if (process.platform === 'win32') return;
-        OperatingSystem.platform = () => 'darwin';
-        this.reloadGrammar();
+    describe('C++', () => it('returns the appropriate File Based runner on Mac OS X', () => {
+      if (process.platform === 'win32') return;
+      OperatingSystem.platform = () => 'darwin';
+      this.reloadGrammar();
 
-        const grammar = this.grammarMap['C++'];
-        const fileBasedRunner = grammar['File Based'];
-        const args = fileBasedRunner.args(this.codeContext);
-        expect(fileBasedRunner.command).toEqual('bash');
-        expect(args[0]).toEqual('-c');
-        expect(args[1]).toMatch(/^xcrun clang\+\+/);
-      }),
-    );
+      const grammar = this.grammarMap['C++'];
+      const fileBasedRunner = grammar['File Based'];
+      const args = fileBasedRunner.args(this.codeContext);
+      expect(fileBasedRunner.command).toEqual('bash');
+      expect(args[0]).toEqual('-c');
+      expect(args[1]).toMatch(/^xcrun clang\+\+/);
+    }));
 
     describe('F#', () => {
       it('returns "fsi" as command for File Based runner on Windows', () => {
@@ -110,32 +106,28 @@ describe('grammarMap', () => {
       });
     });
 
-    describe('Objective-C', () =>
-      it('returns the appropriate File Based runner on Mac OS X', () => {
-        OperatingSystem.platform = () => 'darwin';
-        this.reloadGrammar();
+    describe('Objective-C', () => it('returns the appropriate File Based runner on Mac OS X', () => {
+      OperatingSystem.platform = () => 'darwin';
+      this.reloadGrammar();
 
-        const grammar = this.grammarMap['Objective-C'];
-        const fileBasedRunner = grammar['File Based'];
-        const args = fileBasedRunner.args(this.codeContext);
-        expect(fileBasedRunner.command).toEqual('bash');
-        expect(args[0]).toEqual('-c');
-        expect(args[1]).toMatch(/^xcrun clang/);
-      }),
-    );
+      const grammar = this.grammarMap['Objective-C'];
+      const fileBasedRunner = grammar['File Based'];
+      const args = fileBasedRunner.args(this.codeContext);
+      expect(fileBasedRunner.command).toEqual('bash');
+      expect(args[0]).toEqual('-c');
+      expect(args[1]).toMatch(/^xcrun clang/);
+    }));
 
-    describe('Objective-C++', () =>
-      it('returns the appropriate File Based runner on Mac OS X', () => {
-        OperatingSystem.platform = () => 'darwin';
-        this.reloadGrammar();
+    describe('Objective-C++', () => it('returns the appropriate File Based runner on Mac OS X', () => {
+      OperatingSystem.platform = () => 'darwin';
+      this.reloadGrammar();
 
-        const grammar = this.grammarMap['Objective-C++'];
-        const fileBasedRunner = grammar['File Based'];
-        const args = fileBasedRunner.args(this.codeContext);
-        expect(fileBasedRunner.command).toEqual('bash');
-        expect(args[0]).toEqual('-c');
-        expect(args[1]).toMatch(/^xcrun clang\+\+/);
-      }),
-    );
+      const grammar = this.grammarMap['Objective-C++'];
+      const fileBasedRunner = grammar['File Based'];
+      const args = fileBasedRunner.args(this.codeContext);
+      expect(fileBasedRunner.command).toEqual('bash');
+      expect(args[0]).toEqual('-c');
+      expect(args[1]).toMatch(/^xcrun clang\+\+/);
+    }));
   });
 });

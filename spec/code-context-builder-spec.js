@@ -30,8 +30,7 @@ describe('CodeContextBuilder', () => {
 
   describe('initCodeContext', () => {
     it('sets correct text source for empty selection', () => {
-      const selection =
-        { isEmpty() { return true; } };
+      const selection = { isEmpty() { return true; } };
       spyOn(this.editorMock, 'getLastSelection').andReturn(selection);
       const codeContext = this.codeContextBuilder.initCodeContext(this.editorMock);
       expect(codeContext.textSource).toEqual(this.editorMock);
@@ -40,8 +39,7 @@ describe('CodeContextBuilder', () => {
     });
 
     it('sets correct text source for non-empty selection', () => {
-      const selection =
-        { isEmpty() { return false; } };
+      const selection = { isEmpty() { return false; } };
       spyOn(this.editorMock, 'getLastSelection').andReturn(selection);
       const codeContext = this.codeContextBuilder.initCodeContext(this.editorMock);
       expect(codeContext.textSource).toEqual(selection);
@@ -54,16 +52,11 @@ describe('CodeContextBuilder', () => {
     });
   });
 
-  describe('buildCodeContext', () =>
-    ['Selection Based', 'Line Number Based'].map(argType =>
-      it(`sets lineNumber with screenRow + 1 when ${argType}`, () => {
-        const cursor =
-          { getScreenRow() { return 1; } };
-        spyOn(this.editorMock, 'getLastCursor').andReturn(cursor);
-        const codeContext = this.codeContextBuilder.buildCodeContext(this.editorMock, argType);
-        expect(codeContext.argType).toEqual(argType);
-        expect(codeContext.lineNumber).toEqual(2);
-      }),
-    ),
-  );
+  describe('buildCodeContext', () => ['Selection Based', 'Line Number Based'].map((argType) => it(`sets lineNumber with screenRow + 1 when ${argType}`, () => {
+    const cursor = { getScreenRow() { return 1; } };
+    spyOn(this.editorMock, 'getLastCursor').andReturn(cursor);
+    const codeContext = this.codeContextBuilder.buildCodeContext(this.editorMock, argType);
+    expect(codeContext.argType).toEqual(argType);
+    expect(codeContext.lineNumber).toEqual(2);
+  })));
 });
