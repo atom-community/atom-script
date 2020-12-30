@@ -19,3 +19,4 @@ rules:
   guard-for-in: [0]
   no-this-before-super: [0]
   prefer-rest-params: [0]
+  max-len: [0]
