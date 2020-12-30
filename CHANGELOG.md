@@ -1,3 +1,10 @@
+# [3.28.0](https://github.com/atom-ide-community/atom-script/compare/v3.27.1...v3.28.0) (2020-12-30)
+
+
+### Features
+
+* use atom-space-pen-views-plus ([f5042b8](https://github.com/atom-ide-community/atom-script/commit/f5042b8f00cbe088749a95a5add4054d0ad4ced5))
+
 ## [3.27.1](https://github.com/atom-ide-community/atom-script/compare/v3.27.0...v3.27.1) (2020-12-29)
 
 
