@@ -34,10 +34,10 @@
     "coffeescript": "^2"
   },
   "devDependencies": {
-    "babel-eslint": "^7.1.1",
-    "eslint": "^4.18.2",
-    "eslint-config-airbnb-base": "^10.0.1",
-    "eslint-plugin-import": "^2.2.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.16.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
     "tempy": "^1.0.0"
   },
   "providedServices": {
