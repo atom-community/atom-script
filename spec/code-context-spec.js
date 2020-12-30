@@ -85,8 +85,7 @@ describe('CodeContext', () => {
 
     it('returns /usr/bin/env as the command if applicable', () => {
       const lines = "#!/usr/bin/env ruby -w\nputs 'hello from ruby!'";
-      let firstLine = lines.split('\n')[0];
-      firstLine = lines.split('\n')[0];
+      const firstLine = lines.split('\n')[0];
       if (firstLine.match(/^#!/)) { this.codeContext.shebang = firstLine; }
       expect(this.codeContext.shebangCommand()).toMatch('env');
     });
@@ -118,8 +117,7 @@ describe('CodeContext', () => {
 
     it('returns the true command as the first argument when /usr/bin/env is used', () => {
       const lines = "#!/usr/bin/env ruby -w\nputs 'hello from ruby!'";
-      let firstLine = lines.split('\n')[0];
-      firstLine = lines.split('\n')[0];
+      const firstLine = lines.split('\n')[0];
       if (firstLine.match(/^#!/)) { this.codeContext.shebang = firstLine; }
       const args = this.codeContext.shebangCommandArgs();
       expect(args[0]).toMatch('ruby');
