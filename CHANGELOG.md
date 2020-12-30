@@ -1,3 +1,19 @@
+# [3.29.0](https://github.com/atom-ide-community/atom-script/compare/v3.28.0...v3.29.0) (2020-12-30)
+
+
+### Bug Fixes
+
+* add @babel/preset-react to support JSX ([4390c94](https://github.com/atom-ide-community/atom-script/commit/4390c94d143ad2ca4cb323e18f901beff4f216ca))
+* add babelConfig using @babel/preset-env ([c9f3aae](https://github.com/atom-ide-community/atom-script/commit/c9f3aae5cb4dc859db0554d0d67c8213574f4f48))
+* move [@babel](https://github.com/babel) packages to the deps ([e362aae](https://github.com/atom-ide-community/atom-script/commit/e362aaebfec6b8a93d4cd88cc45dc4e7183fdc89))
+* resolve to babel exe based on the OS ([2b8bcd0](https://github.com/atom-ide-community/atom-script/commit/2b8bcd0818b38592c3af3b9397136355f2aee08e))
+* use babel in coffeescript ([a7d48ff](https://github.com/atom-ide-community/atom-script/commit/a7d48ff34caaf5b7fdef9980404113b3fa0251c2))
+
+
+### Features
+
+* switch to `[@babel](https://github.com/babel)` packages ([88e8aef](https://github.com/atom-ide-community/atom-script/commit/88e8aefc7ddbb03bcbde834547cda94e0fbb9d12))
+
 # [3.28.0](https://github.com/atom-ide-community/atom-script/compare/v3.27.1...v3.28.0) (2020-12-30)
 
 
