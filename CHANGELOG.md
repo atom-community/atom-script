@@ -1,3 +1,10 @@
+## [3.29.1](https://github.com/atom-ide-community/atom-script/compare/v3.29.0...v3.29.1) (2020-12-30)
+
+
+### Bug Fixes
+
+* update dependencies ([c898a92](https://github.com/atom-ide-community/atom-script/commit/c898a929f64da2b20809f2f12ad37afe69a1ab63))
+
 # [3.29.0](https://github.com/atom-ide-community/atom-script/compare/v3.28.0...v3.29.0) (2020-12-30)
 
 
