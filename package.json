@@ -18,6 +18,9 @@
       "script:run-with-profile"
     ]
   },
+  "activationHooks": [
+    "core:loaded-shell-environment"
+  ],
   "dependencies": {
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
