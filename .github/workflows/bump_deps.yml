@@ -2,23 +2,27 @@ name: Bump_Dependencies
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "5 8 * * Sun" #  8:05 every Sunday
 
 jobs:
   Bump_Dependencies:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2-beta
+      - uses: actions/setup-node@v2
         with:
           node-version: "12"
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v1.2.2
+        with:
+          version: latest
 
       - name: setup npm-check-updates
-        run: npm install -g npm-check-updates
+        run: pnpm install -g npm-check-updates
 
       - run: |
           ncu -u --dep prod
-          npm install
+          pnpm install
 
 
       - uses: tibdex/github-app-token@v1
@@ -29,7 +33,7 @@ jobs:
       - uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ steps.generate-token.outputs.token }}
-          commit-message: Update Dependencies
+          commit-message: "chore: Update Dependencies"
           title: "fix: Update Dependencies"
           labels: Dependencies
           branch: "Bump_Dependencies"
@@ -39,16 +43,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2-beta
+      - uses: actions/setup-node@v2
         with:
           node-version: "12"
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v1.2.2
+        with:
+          version: latest
 
       - name: setup npm-check-updates
-        run: npm install -g npm-check-updates
+        run: pnpm install -g npm-check-updates
 
       - run: |
           ncu -u --dep dev
-          npm install
+          pnpm install
 
       - uses: tibdex/github-app-token@v1
         id: generate-token
@@ -58,7 +66,7 @@ jobs:
       - uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ steps.generate-token.outputs.token }}
-          commit-message: Update devDependencies
+          commit-message: "chore: Update devDependencies"
           title: "chore: Update devDependencies"
           labels: Dependencies
           branch: "Bump_devDependencies"
