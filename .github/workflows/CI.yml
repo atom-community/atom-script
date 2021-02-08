@@ -50,7 +50,7 @@ jobs:
           version: latest
 
       - name: Install dependencies
-        run: pnpm install --only=dev --ignore-scripts
+        run: pnpm install
 
       # - name: Format ✨
       #   run: pnpm test.format
