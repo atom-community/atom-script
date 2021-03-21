@@ -37,10 +37,8 @@
     "coffeescript": "^2"
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
     "eslint": "^7.22.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1",
+    "eslint-config-atomic": "^1.12.3",
     "tempy": "^1.0.1"
   },
   "providedServices": {
