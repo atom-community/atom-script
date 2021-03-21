@@ -1,5 +1,7 @@
 'use babel';
 
+/* eslint-disable no-invalid-this */ // TODO
+
 import Runner from '../lib/runner';
 import ScriptOptions from '../lib/script-options';
 
