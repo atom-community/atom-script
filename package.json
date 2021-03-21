@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "eslint": "^7.22.0",
-    "eslint-config-atomic": "^1.12.3",
+    "eslint-config-atomic": "^1.12.4",
     "tempy": "^1.0.1"
   },
   "providedServices": {
