@@ -64,18 +64,6 @@
     "test.lint": "eslint .",
     "test": "atom --test spec"
   },
-  "babel": {
-    "presets": [
-      [
-        "env",
-        {
-          "targets": {
-            "node": "current"
-          }
-        }
-      ]
-    ]
-  },
   "keywords": [
     "script",
     "runner",
