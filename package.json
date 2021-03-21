@@ -39,6 +39,8 @@
   "devDependencies": {
     "eslint": "^7.22.0",
     "eslint-config-atomic": "^1.12.4",
+    "prettier": "^2.2.1",
+    "prettier-config-atomic": "^1.0.1",
     "tempy": "^1.0.1"
   },
   "providedServices": {
@@ -55,6 +57,7 @@
       }
     }
   },
+  "prettier": "prettier-config-atomic",
   "scripts": {
     "format": "prettier --write .",
     "test.format": "prettier . --check",

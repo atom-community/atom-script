@@ -52,8 +52,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # - name: Format ✨
-      #   run: pnpm test.format
+      - name: Format ✨
+        run: pnpm test.format
 
       - name: Lint ✨
         run: pnpm test.lint
