@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: "12"
       - name: Setup PNPM
-        uses: pnpm/action-setup@v1.2.1
+        uses: pnpm/action-setup@master
         with:
           version: latest
 
@@ -24,7 +24,6 @@ jobs:
           ncu -u --dep prod
           pnpm install
 
-
       - uses: tibdex/github-app-token@v1
         id: generate-token
         with:
@@ -33,11 +32,10 @@ jobs:
       - uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ steps.generate-token.outputs.token }}
-          commit-message: "chore: Update Dependencies"
-          title: "fix: Update Dependencies"
+          commit-message: "fix: update Dependencies"
+          title: "fix: update Dependencies"
           labels: Dependencies
           branch: "Bump_Dependencies"
-
 
   Bump_devDependencies:
     runs-on: ubuntu-latest
@@ -47,7 +45,7 @@ jobs:
         with:
           node-version: "12"
       - name: Setup PNPM
-        uses: pnpm/action-setup@v1.2.1
+        uses: pnpm/action-setup@master
         with:
           version: latest
 
@@ -66,7 +64,7 @@ jobs:
       - uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ steps.generate-token.outputs.token }}
-          commit-message: "chore: Update devDependencies"
-          title: "chore: Update devDependencies"
+          commit-message: "chore: update devDependencies"
+          title: "chore: update devDependencies"
           labels: Dependencies
           branch: "Bump_devDependencies"
