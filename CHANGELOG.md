@@ -1,3 +1,13 @@
+## [3.29.6](https://github.com/atom-ide-community/atom-script/compare/v3.29.5...v3.29.6) (2021-03-21)
+
+
+### Bug Fixes
+
+* es6 export in garammars/javascript ([531a015](https://github.com/atom-ide-community/atom-script/commit/531a015f88714c167b3b1f524d696a7a3298d387))
+* eslint fix ([e5b807d](https://github.com/atom-ide-community/atom-script/commit/e5b807d91e47528f8d213d9db581123c3db7746a))
+* export entry functions directly ([9783277](https://github.com/atom-ide-community/atom-script/commit/97832771c6e3cf9a1f2943ba2e128d4c720bb067))
+* update dependencies ([7dc0e3d](https://github.com/atom-ide-community/atom-script/commit/7dc0e3d2cd6476fede46c436cb0f71ef180fa718))
+
 ## [3.29.5](https://github.com/atom-ide-community/atom-script/compare/v3.29.4...v3.29.5) (2021-03-21)
 
 
