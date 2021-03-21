@@ -22,26 +22,24 @@
     "core:loaded-shell-environment"
   ],
   "dependencies": {
-    "@babel/cli": "^7.12.10",
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "@babel/preset-react": "^7.12.10",
+    "@babel/cli": "^7.13.10",
+    "@babel/core": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "@babel/preset-react": "^7.12.13",
     "ansi-to-html": "^0.6.14",
     "atom-message-panel": "1.3.1",
     "atom-space-pen-views-plus": "^3.0.4",
     "strip-ansi": "^6.0.0",
-    "underscore": "^1.12.0",
+    "underscore": "^1.12.1",
     "uuid": "^8.3.2"
   },
   "optionalDependencies": {
     "coffeescript": "^2"
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.16.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1",
-    "tempy": "^1.0.0"
+    "eslint": "^7.22.0",
+    "eslint-config-atomic": "^1.12.4",
+    "tempy": "^1.0.1"
   },
   "providedServices": {
     "default-script-runtime": {
@@ -63,18 +61,6 @@
     "lint": "eslint . --fix",
     "test.lint": "eslint .",
     "test": "atom --test spec"
-  },
-  "babel": {
-    "presets": [
-      [
-        "env",
-        {
-          "targets": {
-            "node": "current"
-          }
-        }
-      ]
-    ]
   },
   "keywords": [
     "script",

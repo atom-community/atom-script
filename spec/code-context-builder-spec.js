@@ -1,5 +1,7 @@
 'use babel';
 
+/* eslint-disable no-invalid-this */ // TODO
+
 import CodeContextBuilder from '../lib/code-context-builder';
 
 describe('CodeContextBuilder', () => {

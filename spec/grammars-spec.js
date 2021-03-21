@@ -1,9 +1,10 @@
 'use babel';
 
+/* eslint-disable no-invalid-this */ // TODO
+
 import tempy from 'tempy';
 import path from 'path';
 
-/* eslint-disable no-unused-vars, global-require, no-undef */
 import CodeContext from '../lib/code-context';
 import OperatingSystem from '../lib/grammar-utils/operating-system';
 import grammarMap from '../lib/grammars';
@@ -30,7 +31,6 @@ describe('grammarMap', () => {
         if (process.platform === 'darwin') {
           expect(commandContext.command).toBeDefined();
         } else {
-          /* eslint-disable no-console */
           console.warn(`This test does not work on ${process.platform}`, commandContext.command);
         }
         const argList = commandContext.args(this.codeContext);
@@ -68,7 +68,7 @@ describe('grammarMap', () => {
     }));
 
     describe('C++', () => it('returns the appropriate File Based runner on Mac OS X', () => {
-      if (process.platform === 'win32') return;
+      if (process.platform === 'win32') {return;}
       OperatingSystem.platform = () => 'darwin';
       this.reloadGrammar();
 

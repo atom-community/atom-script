@@ -1,6 +1,6 @@
 'use babel';
+/* eslint-disable no-invalid-this */ // TODO
 
-/* eslint-disable no-underscore-dangle */
 import ScriptOptions from '../lib/script-options';
 
 describe('ScriptOptions', () => {

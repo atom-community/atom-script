@@ -1,5 +1,7 @@
 'use babel';
 
+/* eslint-disable no-invalid-this */ // TODO
+
 import tempy from 'tempy';
 import path from 'path';
 
