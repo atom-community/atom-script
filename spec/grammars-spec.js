@@ -68,7 +68,7 @@ describe('grammarMap', () => {
     }));
 
     describe('C++', () => it('returns the appropriate File Based runner on Mac OS X', () => {
-      if (process.platform === 'win32') return;
+      if (process.platform === 'win32') {return;}
       OperatingSystem.platform = () => 'darwin';
       this.reloadGrammar();
 
