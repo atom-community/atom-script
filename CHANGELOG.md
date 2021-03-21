@@ -1,3 +1,10 @@
+## [3.29.4](https://github.com/atom-ide-community/atom-script/compare/v3.29.3...v3.29.4) (2021-03-21)
+
+
+### Bug Fixes
+
+* if arg is not string assign it ([f7f591e](https://github.com/atom-ide-community/atom-script/commit/f7f591e2fc7c89bf63cd1bb9cdd01fb113bfbd59))
+
 ## [3.29.3](https://github.com/atom-ide-community/atom-script/compare/v3.29.2...v3.29.3) (2020-12-30)
 
 
