@@ -52,8 +52,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # - name: Format ✨
-      #   run: pnpm test.format
+      - name: Format ✨
+        run: pnpm test.format
 
       - name: Lint ✨
         run: pnpm test.lint
@@ -73,7 +73,7 @@ jobs:
         run: npm install
 
       # - name: Build and Commit
-        # run: npm run build-commit
+      # run: npm run build-commit
 
       - name: Release 🎉
         uses: cycjimmy/semantic-release-action@v2

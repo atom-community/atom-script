@@ -12,6 +12,8 @@ dependencies:
 devDependencies:
   eslint: 7.22.0
   eslint-config-atomic: 1.12.4_eslint@7.22.0
+  prettier: 2.2.1
+  prettier-config-atomic: 1.0.1
   tempy: 1.0.1
 lockfileVersion: 5.2
 optionalDependencies:
@@ -3892,6 +3894,12 @@ packages:
       node: '>= 0.8.0'
     resolution:
       integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
+  /prettier-config-atomic/1.0.1:
+    dependencies:
+      prettier: 2.2.1
+    dev: true
+    resolution:
+      integrity: sha512-bNW8oMkuuVZI0OXEwwfbGGpdh1Jv4QfOzSMnmueBkSCYcCAnA9iHy+wRVsAeVRZPfB1hjqB9UtxGTnrflITtyg==
   /prettier/2.2.1:
     dev: true
     engines:
@@ -4819,6 +4827,8 @@ specifiers:
   coffeescript: ^2
   eslint: ^7.22.0
   eslint-config-atomic: ^1.12.4
+  prettier: ^2.2.1
+  prettier-config-atomic: ^1.0.1
   strip-ansi: ^6.0.0
   tempy: ^1.0.1
   underscore: ^1.12.1
