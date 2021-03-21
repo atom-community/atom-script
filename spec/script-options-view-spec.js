@@ -1,6 +1,5 @@
 'use babel';
 
-/* eslint-disable no-underscore-dangle */
 import ScriptOptionsView from '../lib/script-options-view';
 
 describe('ScriptOptionsView', () => {
