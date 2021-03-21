@@ -1,3 +1,98 @@
+# [3.30.0](https://github.com/atom-ide-community/atom-script/compare/v3.29.6...v3.30.0) (2021-03-21)
+
+
+### Bug Fixes
+
+* remove unused variable ([822bfcb](https://github.com/atom-ide-community/atom-script/commit/822bfcbb696d44db9749dcc1ae60e8115bd9155c))
+* use multi-line literal instead of concatenation ([e23e2ab](https://github.com/atom-ide-community/atom-script/commit/e23e2abab02e62c1e66e233abccacd62ba1c49d2))
+* use parameters directly as config options ([e21cd59](https://github.com/atom-ide-community/atom-script/commit/e21cd5983d2a458c07b50106f95b5080ee7cae37))
+
+
+### Features
+
+* make position of output panel configurable ([004525a](https://github.com/atom-ide-community/atom-script/commit/004525a03a510046410ece45ec936abcf5f2ac2c))
+
+## [3.29.6](https://github.com/atom-ide-community/atom-script/compare/v3.29.5...v3.29.6) (2021-03-21)
+
+
+### Bug Fixes
+
+* es6 export in garammars/javascript ([531a015](https://github.com/atom-ide-community/atom-script/commit/531a015f88714c167b3b1f524d696a7a3298d387))
+* eslint fix ([e5b807d](https://github.com/atom-ide-community/atom-script/commit/e5b807d91e47528f8d213d9db581123c3db7746a))
+* export entry functions directly ([9783277](https://github.com/atom-ide-community/atom-script/commit/97832771c6e3cf9a1f2943ba2e128d4c720bb067))
+* update dependencies ([7dc0e3d](https://github.com/atom-ide-community/atom-script/commit/7dc0e3d2cd6476fede46c436cb0f71ef180fa718))
+
+## [3.29.5](https://github.com/atom-ide-community/atom-script/compare/v3.29.4...v3.29.5) (2021-03-21)
+
+
+### Bug Fixes
+
+* try catch toHtml ([b9cd891](https://github.com/atom-ide-community/atom-script/commit/b9cd89128dd207045b84461b01aaf663b03e4a5c))
+
+## [3.29.4](https://github.com/atom-ide-community/atom-script/compare/v3.29.3...v3.29.4) (2021-03-21)
+
+
+### Bug Fixes
+
+* if arg is not string assign it ([f7f591e](https://github.com/atom-ide-community/atom-script/commit/f7f591e2fc7c89bf63cd1bb9cdd01fb113bfbd59))
+
+## [3.29.3](https://github.com/atom-ide-community/atom-script/compare/v3.29.2...v3.29.3) (2020-12-30)
+
+
+### Bug Fixes
+
+* add activation hook to defer the package's loading ([985bd4e](https://github.com/atom-ide-community/atom-script/commit/985bd4e5c7e83819dc81f7a10873691b756571ca))
+
+## [3.29.2](https://github.com/atom-ide-community/atom-script/compare/v3.29.1...v3.29.2) (2020-12-30)
+
+
+### Bug Fixes
+
+* eslint --fix ([095d03c](https://github.com/atom-ide-community/atom-script/commit/095d03c3cbe01370de7e04f83553e75aebc393ca))
+* update eslint ([5754954](https://github.com/atom-ide-community/atom-script/commit/5754954bab62c7b2ef2b57536bcbd2fdfa2549ff))
+
+## [3.29.1](https://github.com/atom-ide-community/atom-script/compare/v3.29.0...v3.29.1) (2020-12-30)
+
+
+### Bug Fixes
+
+* update dependencies ([c898a92](https://github.com/atom-ide-community/atom-script/commit/c898a929f64da2b20809f2f12ad37afe69a1ab63))
+
+# [3.29.0](https://github.com/atom-ide-community/atom-script/compare/v3.28.0...v3.29.0) (2020-12-30)
+
+
+### Bug Fixes
+
+* add @babel/preset-react to support JSX ([4390c94](https://github.com/atom-ide-community/atom-script/commit/4390c94d143ad2ca4cb323e18f901beff4f216ca))
+* add babelConfig using @babel/preset-env ([c9f3aae](https://github.com/atom-ide-community/atom-script/commit/c9f3aae5cb4dc859db0554d0d67c8213574f4f48))
+* move [@babel](https://github.com/babel) packages to the deps ([e362aae](https://github.com/atom-ide-community/atom-script/commit/e362aaebfec6b8a93d4cd88cc45dc4e7183fdc89))
+* resolve to babel exe based on the OS ([2b8bcd0](https://github.com/atom-ide-community/atom-script/commit/2b8bcd0818b38592c3af3b9397136355f2aee08e))
+* use babel in coffeescript ([a7d48ff](https://github.com/atom-ide-community/atom-script/commit/a7d48ff34caaf5b7fdef9980404113b3fa0251c2))
+
+
+### Features
+
+* switch to `[@babel](https://github.com/babel)` packages ([88e8aef](https://github.com/atom-ide-community/atom-script/commit/88e8aefc7ddbb03bcbde834547cda94e0fbb9d12))
+
+# [3.28.0](https://github.com/atom-ide-community/atom-script/compare/v3.27.1...v3.28.0) (2020-12-30)
+
+
+### Features
+
+* use atom-space-pen-views-plus ([f5042b8](https://github.com/atom-ide-community/atom-script/commit/f5042b8f00cbe088749a95a5add4054d0ad4ced5))
+
+## [3.27.1](https://github.com/atom-ide-community/atom-script/compare/v3.27.0...v3.27.1) (2020-12-29)
+
+
+### Bug Fixes
+
+* update uuid to v8 ([446e4bc](https://github.com/atom-ide-community/atom-script/commit/446e4bcf0ae4775077f9810952263277b4350770))
+
+## 3.27.0
+* Renamed Perl6 to Raku
+* Support for ConTeXt MkIV and LMTX
+* Run the tests on all platforms
+
 ## 3.15.0
 
 * Improved documentation

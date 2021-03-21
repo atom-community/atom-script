@@ -11,7 +11,7 @@ Run scripts based on file name, a selection of code, or by line number.
 Currently supported grammars are:
 
 | Grammar                             | File Based | Selection Based | Required Package              | Required in [`PATH`]      | Notes                                                                                                                                                                                                                                                           |
-|:------------------------------------|:-----------|:----------------|:------------------------------|:--------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :---------------------------------- | :--------- | :-------------- | :---------------------------- | :------------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Assembly (NASM)                     | Yes        | Yes             | [language-x86-64-assembly]    | [`nasm`], [`binutils`]    |                                                                                                                                                                                                                                                                 |
 | 1C (BSL)                            | Yes        |                 | [language-1c-bsl]             | [`oscript`]               |                                                                                                                                                                                                                                                                 |
 | [Ansible]                           | Yes        |                 | [language-ansible]            | `ansible-playbook`        |                                                                                                                                                                                                                                                                 |
@@ -78,8 +78,7 @@ Currently supported grammars are:
 | [Oz]                                | Yes        | Yes             | [language-oz]                 | `ozc`                     |                                                                                                                                                                                                                                                                 |
 | [Pandoc] Markdown                   | Yes        |                 | [language-pfm]                | [`panzer`]                |                                                                                                                                                                                                                                                                 |
 | [Pascal]                            | Yes        | Yes             | [language-pascal]             | `fpc`                     |                                                                                                                                                                                                                                                                 |
-| Perl                                | Yes        | Yes             |                               |                           |                                                                                                                                                                                                                                                                 |
-| [Perl 6]                            | Yes        | Yes             |                               | `perl6`                   |                                                                                                                                                                                                                                                                 |
+| [Perl]                              | Yes        | Yes             |                               |                           |                                                                                                                                                                                                                                                                 |
 | PHP                                 | Yes        | Yes             |                               |                           |                                                                                                                                                                                                                                                                 |
 | [PostgreSQL]                        | Yes        | Yes             | [language-pgsql]              | [`psql`]                  | Connects as user `PGUSER` to database `PGDATABASE`. Both default to your operating system's `USERNAME`, but can be set in the process environment or in Atom's [`init` file]: `process.env.PGUSER = {user name}` and `process.env.PGDATABASE = {database name}` |
 | [POV-Ray]                           | Yes        |                 | [atom-language-povray]        | `povengine`/`povray`      |                                                                                                                                                                                                                                                                 |
@@ -90,6 +89,7 @@ Currently supported grammars are:
 | Python                              | Yes        | Yes             |                               |                           |                                                                                                                                                                                                                                                                 |
 | [R]                                 | Yes        | Yes             | [language-r]                  | `Rscript`                 |                                                                                                                                                                                                                                                                 |
 | [Racket]                            | Yes        | Yes             | [language-racket]             | `racket`                  |                                                                                                                                                                                                                                                                 |
+| [Raku]                              | Yes        | Yes             |                               | `raku`                    |                                                                                                                                                                                                                                                                 |
 | [Reason]                            | Yes        | Yes             | [language-reason]             | `rebuild`                 |                                                                                                                                                                                                                                                                 |
 | [Ren'Py]                            | Yes        | No              | [language-renpy]              | `renpy`                   | Runs your project at the root of the current file.                                                                                                                                                                                                              |
 | [Robot Framework]                   | Yes        | No              | [language-robot-framework]    | `robot`                   | The output location depends on the `CWD` behaviour which can be altered in settings.                                                                                                                                                                            |
@@ -110,188 +110,189 @@ Currently supported grammars are:
 | [VBScript]                          | Yes        | Yes             | [language-vbscript]           | `cscript`                 |                                                                                                                                                                                                                                                                 |
 | [Zsh]                               | Yes        | Yes             |                               |                           | Runs if your `SHELL` or `#!` line is `zsh`.                                                                                                                                                                                                                     |
 
-[-wow]:                         https://atom.io/packages/language-lua-wow
-[#70]:                          https://github.com/atom-ide-community/atom-script/pull/70
-[`binutils`]:                   https://www.gnu.org/software/binutils/
-[`gfortran`]:                   https://gcc.gnu.org/wiki/GFortran
-[`ghc`]:                        https://haskell.org/ghc
-[`guile`]:                      https://gnu.org/software/guile
-[`init` file]:                  http://flight-manual.atom.io/hacking-atom/sections/the-init-file
-[`latexmk`]:                    https://ctan.org/pkg/latexmk
-[`nasm`]:                       https://nasm.us/
-[`oscript`]:                    http://oscript.io
-[`panzer`]:                     https://github.com/msprev/panzer#readme
-[`PATH`]:                       https://en.wikipedia.org/wiki/PATH_(variable)
-[`psql`]:                       https://postgresql.org/docs/current/static/app-psql.html
-[`pulp`]:                       https://github.com/purescript-contrib/pulp#readme
-[`sbcl`]:                       http://sbcl.org
-[`scriptcs`]:                   http://scriptcs.net
-[`spim`]:                       http://spimsimulator.sourceforge.net
-[`ts-node`]:                    https://github.com/TypeStrong/ts-node#readme
-[Ansible]:                      https://ansible.com
-[AppleScript]:                  https://developer.apple.com/library/content/documentation/AppleScript/Conceptual/AppleScriptX/Concepts/ScriptingOnOSX.html#//apple_ref/doc/uid/20000032-BABEBGCF
-[atlilypond]:                   https://atom.io/packages/atlilypond
-[atom-fstar]:                   https://github.com/FStarLang/atom-fstar#readme
-[atom-language-io]:             https://atom.io/packages/atom-language-io
-[atom-language-povray]:         https://atom.io/packages/atom-language-povray
-[AutoHotKey]:                   https://autohotkey.com
-[babel]:                        https://babeljs.io
-[batch]:                        https://ss64.com/nt
-[bats]:                         https://github.com/sstephenson/bats#bats-bash-automated-testing-system#readme
-[behat-atom]:                   https://atom.io/packages/behat-atom
-[behat]:                        http://docs.behat.org/en/v2.5/guides/6.cli.html
-[bs-platform]:                  https://npm.im/package/bs-platform
-[bucklescript]:                 https://bucklescript.github.io/bucklescript
-[C# Script]:                    http://csscript.net
-[clojure]:                      https://clojure.org
-[coffeescript]:                 http://coffeescript.org
-[crystal]:                      https://crystal-lang.org
-[cucumber]:                     https://cucumber.io
-[D]:                            https://dlang.org
-[dart]:                         https://dartlang.org
-[dartlang]:                     https://atom.io/packages/dartlang
-[dot]:                          http://graphviz.org/content/dot-language
-[elixir]:                       https://elixir-lang.org
-[erlang]:                       https://erlang.org
-[ES6]:                          https://babeljs.io/learn-es2015
-[F*]:                           https://fstar-lang.org
-[F#]:                           http://fsharp.org
-[file]:                         https://atom.io/packages/language-batchfile
-[fish]:                         https://fishshell.com
-[forth]:                        https://gnu.org/software/gforth
-[fortran]:                      http://fortranwiki.org/fortran/show/Fortran
-[gherkin]:                      https://cucumber.io/docs/reference#gherkin
-[gnuplot]:                      http://gnuplot.info
-[go]:                           https://golang.org
-[graphviz]:                     http://graphviz.org
-[groovy]:                       http://groovy-lang.org
-[haskell]:                      https://haskell.org
-[hy]:                           http://hylang.org
-[icedcoffeescript]:             http://maxtaco.github.io/coffee-script
-[idris]:                        https://idris-lang.org
-[inno setup]:                   http://jrsoftware.org/isinfo.php
-[io]:                           http://iolanguage.org
-[jolie]:                        http://jolie-lang.org
-[julia]:                        https://julialang.org
-[jxa]:                          https://developer.apple.com/library/mac/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/Introduction.html
-[kotlin]:                       https://kotlinlang.org
-[LAMMPS]:                       http://lammps.sandia.gov
-[langauge-scheme]:              https://atom.io/packages/language-scheme
-[language-1c-bsl]:              https://atom.io/packages/language-1c-bsl
-[language-ansible]:             https://atom.io/packages/language-ansible
-[language-applescript]:         https://atom.io/packages/language-applescript
-[language-autohotkey]:          https://atom.io/packages/language-autohotkey
-[language-babel]:               https://atom.io/packages/language-babel
-[language-batch]:               https://atom.io/packages/language-batch
-[language-bats]:                https://atom.io/packages/language-bats
-[language-crystal-actual]:      https://atom.io/packages/language-crystal-actual
-[language-d]:                   https://atom.io/packages/language-d
-[language-dot]:                 https://atom.io/packages/language-dot
-[language-elixir]:              https://atom.io/packages/language-elixir
-[language-erlang]:              https://atom.io/packages/language-erlang
-[language-fish-shell]:          https://atom.io/packages/language-fish-shell
-[language-forth]:               https://atom.io/packages/language-forth
-[language-fortran]:             https://atom.io/packages/language-fortran
-[language-fsharp]:              https://atom.io/packages/language-fsharp
-[language-gherkin]:             https://atom.io/packages/language-gherkin
-[language-gnuplot-atom]:        https://atom.io/packages/language-gnuplot-atom
-[language-groovy]:              https://atom.io/packages/language-groovy
-[language-haskell]:             https://atom.io/packages/language-haskell
-[language-hy]:                  https://atom.io/packages/language-hy
-[language-iced-coffee-script]:  https://atom.io/packages/language-iced-coffee-script
-[language-idris]:               https://atom.io/packages/language-idris
-[language-innosetup]:           https://atom.io/packages/language-innosetup
-[language-javascript-jxa]:      https://atom.io/packages/language-javascript-jxa
-[language-jolie]:               https://atom.io/packages/language-jolie
-[language-julia]:               https://atom.io/packages/language-julia
-[language-kotlin]:              https://atom.io/packages/language-kotlin
-[language-lammps]:              https://atom.io/packages/language-lammps
-[language-latex]:               https://atom.io/packages/language-latex
-[language-lisp]:                https://atom.io/packages/language-lisp
-[language-livescript]:          https://atom.io/packages/language-livescript
-[language-lua]:                 https://atom.io/packages/language-lua
-[language-matlab]:              https://atom.io/packages/language-matlab
-[language-mips]:                https://atom.io/packages/language-mips
-[language-mongodb]:             https://atom.io/packages/language-mongodb
-[language-moonscript]:          https://atom.io/packages/language-moonscript
-[language-ncl]:                 https://atom.io/packages/language-ncl
-[language-newlisp]:             https://atom.io/packages/language-newlisp
-[language-nim]:                 https://atom.io/packages/language-nim
-[language-nsis]:                https://atom.io/packages/language-nsis
-[language-ocaml]:               https://atom.io/packages/language-ocaml
-[language-oz]:                  https://atom.io/packages/language-oz
-[language-pascal]:              https://atom.io/packages/language-pascal
-[language-pfm]:                 https://atom.io/packages/language-pfm
-[language-pgsql]:               https://atom.io/packages/language-pgsql
-[language-powershell]:          https://atom.io/packages/language-powershell
-[language-prolog]:              https://atom.io/packages/language-prolog
-[language-purescript]:          https://atom.io/packages/language-purescript
-[language-r]:                   https://atom.io/packages/language-r
-[language-racket]:              https://atom.io/packages/language-racket
-[language-reason]:              https://atom.io/packages/language-reason
-[language-renpy]:               https://atom.io/packages/language-renpy
-[language-robot-framework]:     https://atom.io/packages/language-robot-framework
-[language-rspec]:               https://atom.io/packages/language-rspec
-[language-rust]:                https://atom.io/packages/language-rust
-[language-sage]:                https://atom.io/packages/language-sage
-[language-scala]:               https://atom.io/packages/language-scala
-[language-sml]:                 https://atom.io/packages/language-sml
-[language-stata]:               https://atom.io/packages/language-stata
-[language-swift]:               https://atom.io/packages/language-swift
-[language-tcltk]:               https://atom.io/packages/language-tcltk
-[language-vbscript]:            https://atom.io/packages/language-vbscript
-[language-x86-64-assembly]:     https://atom.io/packages/language-x86-64-assembly
-[latex]:                        https://latex-project.org
-[lein-exec]:                    https://github.com/kumarshantanu/lein-exec#readme
-[leiningen]:                    https://leiningen.org
-[lilypond]:                     http://lilypond.org
-[lisp]:                         http://lisp-lang.org
-[lit-hskl]:                     https://wiki.haskell.org/Literate_programming#Haskell_and_literate_programming
-[literate]:                     http://coffeescript.org/#literate
-[livescript]:                   http://livescript.net
-[lua]:                          https://lua.org
-[make]:                         https://gnu.org/software/make/manual/make
-[MATLAB]:                       https://mathworks.com/products/matlab
-[mips]:                         https://imgtec.com/mips
-[mongodb]:                      https://mongodb.com
-[moonscript]:                   https://moonscript.org
-[NCL]:                          https://ncl.ucar.edu
-[newlisp]:                      http://newlisp.org
-[nim]:                          https://nim-lang.org
-[nimscript]:                    https://nim-lang.org/0.11.3/nims.html
-[NSIS]:                         http://nsis.sourceforge.net
-[ocaml]:                        https://ocaml.org
-[octave]:                       https://gnu.org/software/octave
-[oz]:                           https://mozart.github.io
-[pandoc]:                       https://pandoc.org
-[perl 6]:                       https://perl6.org
-[pascal]:                       https://freepascal.org
-[PostgreSQL]:                   https://postgresql.org
-[POV-Ray]:                      http://www.povray.org/
-[powershell]:                   https://docs.microsoft.com/powershell
-[processing-language]:          https://atom.io/packages/processing-language
-[processing]:                   https://processing.org
-[prolog]:                       http://swi-prolog.org
-[purescript]:                   http://purescript.org
-[R]:                            https://r-project.org
-[racket]:                       https://racket-lang.org
-[rails]:                        http://rubyonrails.org
-[reason]:                       https://reasonml.github.io
-[Ren'Py]:                       https://renpy.org
-[robot framework]:              http://robotframework.org
-[rspec]:                        http://rspec.info
-[rust]:                         https://rust-lang.org
-[sage]:                         https://sagemath.org
-[sass]:                         http://sass-lang.com
-[scala]:                        https://scala-lang.org
-[scheme]:                       http://scheme-reports.org
-[Standard ML]:                  http://sml-family.org
-[stata]:                        https://stata.com
-[swift]:                        https://swift.org
-[tcl]:                          https://tcl.tk
-[typescript]:                   https://typescriptlang.org
-[VBScript]:                     https://msdn.microsoft.com/library/t0aew7h6.aspx
-[zsh]:                          http://zsh.org
+[-wow]: https://atom.io/packages/language-lua-wow
+[#70]: https://github.com/atom-ide-community/atom-script/pull/70
+[`binutils`]: https://www.gnu.org/software/binutils/
+[`gfortran`]: https://gcc.gnu.org/wiki/GFortran
+[`ghc`]: https://haskell.org/ghc
+[`guile`]: https://gnu.org/software/guile
+[`init` file]: http://flight-manual.atom.io/hacking-atom/sections/the-init-file
+[`latexmk`]: https://ctan.org/pkg/latexmk
+[`nasm`]: https://nasm.us/
+[`oscript`]: http://oscript.io
+[`panzer`]: https://github.com/msprev/panzer#readme
+[`path`]: https://en.wikipedia.org/wiki/PATH_(variable)
+[`psql`]: https://postgresql.org/docs/current/static/app-psql.html
+[`pulp`]: https://github.com/purescript-contrib/pulp#readme
+[`sbcl`]: http://sbcl.org
+[`scriptcs`]: http://scriptcs.net
+[`spim`]: http://spimsimulator.sourceforge.net
+[`ts-node`]: https://github.com/TypeStrong/ts-node#readme
+[ansible]: https://ansible.com
+[applescript]: https://developer.apple.com/library/content/documentation/AppleScript/Conceptual/AppleScriptX/Concepts/ScriptingOnOSX.html#//apple_ref/doc/uid/20000032-BABEBGCF
+[atlilypond]: https://atom.io/packages/atlilypond
+[atom-fstar]: https://github.com/FStarLang/atom-fstar#readme
+[atom-language-io]: https://atom.io/packages/atom-language-io
+[atom-language-povray]: https://atom.io/packages/atom-language-povray
+[autohotkey]: https://autohotkey.com
+[babel]: https://babeljs.io
+[batch]: https://ss64.com/nt
+[bats]: https://github.com/sstephenson/bats#bats-bash-automated-testing-system#readme
+[behat-atom]: https://atom.io/packages/behat-atom
+[behat]: http://docs.behat.org/en/v2.5/guides/6.cli.html
+[bs-platform]: https://npm.im/package/bs-platform
+[bucklescript]: https://bucklescript.github.io/bucklescript
+[c# script]: http://csscript.net
+[clojure]: https://clojure.org
+[coffeescript]: http://coffeescript.org
+[crystal]: https://crystal-lang.org
+[cucumber]: https://cucumber.io
+[d]: https://dlang.org
+[dart]: https://dartlang.org
+[dartlang]: https://atom.io/packages/dartlang
+[dot]: http://graphviz.org/content/dot-language
+[elixir]: https://elixir-lang.org
+[erlang]: https://erlang.org
+[es6]: https://babeljs.io/learn-es2015
+[f*]: https://fstar-lang.org
+[f#]: http://fsharp.org
+[file]: https://atom.io/packages/language-batchfile
+[fish]: https://fishshell.com
+[forth]: https://gnu.org/software/gforth
+[fortran]: http://fortranwiki.org/fortran/show/Fortran
+[gherkin]: https://cucumber.io/docs/reference#gherkin
+[gnuplot]: http://gnuplot.info
+[go]: https://golang.org
+[graphviz]: http://graphviz.org
+[groovy]: http://groovy-lang.org
+[haskell]: https://haskell.org
+[hy]: http://hylang.org
+[icedcoffeescript]: http://maxtaco.github.io/coffee-script
+[idris]: https://idris-lang.org
+[inno setup]: http://jrsoftware.org/isinfo.php
+[io]: http://iolanguage.org
+[jolie]: http://jolie-lang.org
+[julia]: https://julialang.org
+[jxa]: https://developer.apple.com/library/mac/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/Introduction.html
+[kotlin]: https://kotlinlang.org
+[lammps]: http://lammps.sandia.gov
+[langauge-scheme]: https://atom.io/packages/language-scheme
+[language-1c-bsl]: https://atom.io/packages/language-1c-bsl
+[language-ansible]: https://atom.io/packages/language-ansible
+[language-applescript]: https://atom.io/packages/language-applescript
+[language-autohotkey]: https://atom.io/packages/language-autohotkey
+[language-babel]: https://atom.io/packages/language-babel
+[language-batch]: https://atom.io/packages/language-batch
+[language-bats]: https://atom.io/packages/language-bats
+[language-crystal-actual]: https://atom.io/packages/language-crystal-actual
+[language-d]: https://atom.io/packages/language-d
+[language-dot]: https://atom.io/packages/language-dot
+[language-elixir]: https://atom.io/packages/language-elixir
+[language-erlang]: https://atom.io/packages/language-erlang
+[language-fish-shell]: https://atom.io/packages/language-fish-shell
+[language-forth]: https://atom.io/packages/language-forth
+[language-fortran]: https://atom.io/packages/language-fortran
+[language-fsharp]: https://atom.io/packages/language-fsharp
+[language-gherkin]: https://atom.io/packages/language-gherkin
+[language-gnuplot-atom]: https://atom.io/packages/language-gnuplot-atom
+[language-groovy]: https://atom.io/packages/language-groovy
+[language-haskell]: https://atom.io/packages/language-haskell
+[language-hy]: https://atom.io/packages/language-hy
+[language-iced-coffee-script]: https://atom.io/packages/language-iced-coffee-script
+[language-idris]: https://atom.io/packages/language-idris
+[language-innosetup]: https://atom.io/packages/language-innosetup
+[language-javascript-jxa]: https://atom.io/packages/language-javascript-jxa
+[language-jolie]: https://atom.io/packages/language-jolie
+[language-julia]: https://atom.io/packages/language-julia
+[language-kotlin]: https://atom.io/packages/language-kotlin
+[language-lammps]: https://atom.io/packages/language-lammps
+[language-latex]: https://atom.io/packages/language-latex
+[language-lisp]: https://atom.io/packages/language-lisp
+[language-livescript]: https://atom.io/packages/language-livescript
+[language-lua]: https://atom.io/packages/language-lua
+[language-matlab]: https://atom.io/packages/language-matlab
+[language-mips]: https://atom.io/packages/language-mips
+[language-mongodb]: https://atom.io/packages/language-mongodb
+[language-moonscript]: https://atom.io/packages/language-moonscript
+[language-ncl]: https://atom.io/packages/language-ncl
+[language-newlisp]: https://atom.io/packages/language-newlisp
+[language-nim]: https://atom.io/packages/language-nim
+[language-nsis]: https://atom.io/packages/language-nsis
+[language-ocaml]: https://atom.io/packages/language-ocaml
+[language-oz]: https://atom.io/packages/language-oz
+[language-pascal]: https://atom.io/packages/language-pascal
+[language-pfm]: https://atom.io/packages/language-pfm
+[language-pgsql]: https://atom.io/packages/language-pgsql
+[language-powershell]: https://atom.io/packages/language-powershell
+[language-prolog]: https://atom.io/packages/language-prolog
+[language-purescript]: https://atom.io/packages/language-purescript
+[language-r]: https://atom.io/packages/language-r
+[language-racket]: https://atom.io/packages/language-racket
+[language-reason]: https://atom.io/packages/language-reason
+[language-renpy]: https://atom.io/packages/language-renpy
+[language-robot-framework]: https://atom.io/packages/language-robot-framework
+[language-rspec]: https://atom.io/packages/language-rspec
+[language-rust]: https://atom.io/packages/language-rust
+[language-sage]: https://atom.io/packages/language-sage
+[language-scala]: https://atom.io/packages/language-scala
+[language-sml]: https://atom.io/packages/language-sml
+[language-stata]: https://atom.io/packages/language-stata
+[language-swift]: https://atom.io/packages/language-swift
+[language-tcltk]: https://atom.io/packages/language-tcltk
+[language-vbscript]: https://atom.io/packages/language-vbscript
+[language-x86-64-assembly]: https://atom.io/packages/language-x86-64-assembly
+[latex]: https://latex-project.org
+[lein-exec]: https://github.com/kumarshantanu/lein-exec#readme
+[leiningen]: https://leiningen.org
+[lilypond]: http://lilypond.org
+[lisp]: http://lisp-lang.org
+[lit-hskl]: https://wiki.haskell.org/Literate_programming#Haskell_and_literate_programming
+[literate]: http://coffeescript.org/#literate
+[livescript]: http://livescript.net
+[lua]: https://lua.org
+[make]: https://gnu.org/software/make/manual/make
+[matlab]: https://mathworks.com/products/matlab
+[mips]: https://imgtec.com/mips
+[mongodb]: https://mongodb.com
+[moonscript]: https://moonscript.org
+[ncl]: https://ncl.ucar.edu
+[newlisp]: http://newlisp.org
+[nim]: https://nim-lang.org
+[nimscript]: https://nim-lang.org/0.11.3/nims.html
+[nsis]: http://nsis.sourceforge.net
+[ocaml]: https://ocaml.org
+[octave]: https://gnu.org/software/octave
+[oz]: https://mozart.github.io
+[pandoc]: https://pandoc.org
+[raku]: https://raku.org
+[pascal]: https://freepascal.org
+[perl]: https://www.perl.org/
+[postgresql]: https://postgresql.org
+[pov-ray]: http://www.povray.org/
+[powershell]: https://docs.microsoft.com/powershell
+[processing-language]: https://atom.io/packages/processing-language
+[processing]: https://processing.org
+[prolog]: http://swi-prolog.org
+[purescript]: http://purescript.org
+[r]: https://r-project.org
+[racket]: https://racket-lang.org
+[rails]: http://rubyonrails.org
+[reason]: https://reasonml.github.io
+[ren'py]: https://renpy.org
+[robot framework]: http://robotframework.org
+[rspec]: http://rspec.info
+[rust]: https://rust-lang.org
+[sage]: https://sagemath.org
+[sass]: http://sass-lang.com
+[scala]: https://scala-lang.org
+[scheme]: http://scheme-reports.org
+[standard ml]: http://sml-family.org
+[stata]: https://stata.com
+[swift]: https://swift.org
+[tcl]: https://tcl.tk
+[typescript]: https://typescriptlang.org
+[vbscript]: https://msdn.microsoft.com/library/t0aew7h6.aspx
+[zsh]: http://zsh.org
 
 **NOTE**: Some grammars may require you to install [a custom language package](https://atom.io/search?utf8=✓&q=language).
 
@@ -313,9 +314,9 @@ Make sure to launch Atom from the console/terminal. This gives atom all your use
 atom .
 ```
 
-to get it to run with the *current* directory as the default place to run scripts from.
+to get it to run with the _current_ directory as the default place to run scripts from.
 
-If you *really* wish to open atom from a launcher/icon, see [this issue for a variety of workarounds that have been suggested](https://github.com/atom-ide-community/atom-script/issues/61#issuecomment-37337827).
+If you _really_ wish to open atom from a launcher/icon, see [this issue for a variety of workarounds that have been suggested](https://github.com/atom-ide-community/atom-script/issues/61#issuecomment-37337827).
 
 ## Usage
 
@@ -348,7 +349,7 @@ clipboard, allowing you to paste it into the editor.
 ### Command and shortcut reference
 
 | Command                    | macOS                               | Linux/Windows               | Notes                                                                         |
-|:---------------------------|:------------------------------------|:----------------------------|:------------------------------------------------------------------------------|
+| :------------------------- | :---------------------------------- | :-------------------------- | :---------------------------------------------------------------------------- |
 | Script: Run                | <kbd>cmd-i</kbd>                    | <kbd>shift-ctrl-b</kbd>     | If text is selected a "Selection Based" is used instead of a "File Based" run |
 | Script: Run by Line Number | <kbd>shift-cmd-j</kbd>              | <kbd>shift-ctrl-j</kbd>     | If text is selected the line number will be the last                          |
 | Script: Run Options        | <kbd>shift-cmd-i</kbd>              | <kbd>shift-ctrl-alt-o</kbd> | Runs the selection or whole file with the given options                       |
@@ -360,11 +361,11 @@ clipboard, allowing you to paste it into the editor.
 
 The following parameters will be replaced in any entry in `args` (command and program arguments). They should all be enclosed in curly brackets `{}`
 
-  * `{FILE_ACTIVE}` - Full path to the currently active file in Atom. E.g. `/home/rgbkrk/atom-script/lib/script.coffee`
-  * `{FILE_ACTIVE_PATH}` - Full path to the folder where the currently active file is. E.g. `/home/rgbkrk/atom-script/lib`
-  * `{FILE_ACTIVE_NAME}` - Full name and extension of active file. E.g., `script.coffee`
-  * `{FILE_ACTIVE_NAME_BASE}` - Name of active file WITHOUT extension. E.g., `script`
-  * `{PROJECT_PATH}` - Full path to the root of the project. This is normally the path Atom has as root. E.g `/home/rgbkrk/atom-script`
+- `{FILE_ACTIVE}` - Full path to the currently active file in Atom. E.g. `/home/rgbkrk/atom-script/lib/script.coffee`
+- `{FILE_ACTIVE_PATH}` - Full path to the folder where the currently active file is. E.g. `/home/rgbkrk/atom-script/lib`
+- `{FILE_ACTIVE_NAME}` - Full name and extension of active file. E.g., `script.coffee`
+- `{FILE_ACTIVE_NAME_BASE}` - Name of active file WITHOUT extension. E.g., `script`
+- `{PROJECT_PATH}` - Full path to the root of the project. This is normally the path Atom has as root. E.g `/home/rgbkrk/atom-script`
 
 Parameters are compatible with `atom-build` package.
 

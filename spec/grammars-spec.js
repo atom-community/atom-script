@@ -1,141 +1,137 @@
-'use babel';
+"use babel" // TODO
 
-import tempy from 'tempy';
-import path from 'path';
+/* eslint-disable no-invalid-this */ import tempy from "tempy"
+import path from "path"
 
-/* eslint-disable no-unused-vars, global-require, no-undef */
-import CodeContext from '../lib/code-context';
-import OperatingSystem from '../lib/grammar-utils/operating-system';
-import grammarMap from '../lib/grammars';
+import CodeContext from "../lib/code-context"
+import OperatingSystem from "../lib/grammar-utils/operating-system"
+import grammarMap from "../lib/grammars"
 
-describe('grammarMap', () => {
-  const testFile = 'test.txt';
-  let testFilePath;
+describe("grammarMap", () => {
+  const testFile = "test.txt"
+  let testFilePath
 
   beforeEach(() => {
-    testFilePath = path.join(tempy.directory(), testFile);
-    this.codeContext = new CodeContext(testFile, testFilePath, null);
+    testFilePath = path.join(tempy.directory(), testFile)
+    this.codeContext = new CodeContext(testFile, testFilePath, null)
     // TODO: Test using an actual editor or a selection?
-    this.dummyTextSource = {};
-    this.dummyTextSource.getText = () => '';
-  });
+    this.dummyTextSource = {}
+    this.dummyTextSource.getText = () => ""
+  })
 
   it("has a command and an args function set for each grammar's mode", () => {
-    this.codeContext.textSource = this.dummyTextSource;
+    this.codeContext.textSource = this.dummyTextSource
     for (const lang in grammarMap) {
-      const modes = grammarMap[lang];
+      const modes = grammarMap[lang]
       for (const mode in modes) {
-        const commandContext = modes[mode];
+        const commandContext = modes[mode]
         // TODO: fix the test for linux and windows
-        if (process.platform === 'darwin') {
-          expect(commandContext.command).toBeDefined();
+        if (process.platform === "darwin") {
+          expect(commandContext.command).toBeDefined()
         } else {
-          /* eslint-disable no-console */
-          console.warn(`This test does not work on ${process.platform}`, commandContext.command);
+          console.warn(`This test does not work on ${process.platform}`, commandContext.command)
         }
-        const argList = commandContext.args(this.codeContext);
-        expect(argList).toBeDefined();
+        const argList = commandContext.args(this.codeContext)
+        expect(argList).toBeDefined()
       }
     }
-  });
+  })
 
-  describe('Operating system specific runners', () => {
+  describe("Operating system specific runners", () => {
     beforeEach(() => {
-      this.originalPlatform = OperatingSystem.platform;
+      this.originalPlatform = OperatingSystem.platform
       this.reloadGrammar = () => {
-        delete require.cache[require.resolve('../lib/grammars')];
-        delete require.cache[require.resolve('../lib/grammars/index')];
-        delete require.cache[require.resolve('../lib/grammars/c')];
-        this.grammarMap = require('../lib/grammars');
-      };
-    });
+        delete require.cache[require.resolve("../lib/grammars")]
+        delete require.cache[require.resolve("../lib/grammars/index")]
+        delete require.cache[require.resolve("../lib/grammars/c")]
+        this.grammarMap = require("../lib/grammars")
+      }
+    })
 
     afterEach(() => {
-      OperatingSystem.platform = this.originalPlatform;
-      this.reloadGrammar();
-    });
+      OperatingSystem.platform = this.originalPlatform
+      this.reloadGrammar()
+    })
 
-    describe('C', () =>
-      it('returns the appropriate File Based runner on Mac OS X', () => {
-        OperatingSystem.platform = () => 'darwin';
-        this.reloadGrammar();
+    describe("C", () =>
+      it("returns the appropriate File Based runner on Mac OS X", () => {
+        OperatingSystem.platform = () => "darwin"
+        this.reloadGrammar()
 
-        const grammar = this.grammarMap.C;
-        const fileBasedRunner = grammar['File Based'];
-        const args = fileBasedRunner.args(this.codeContext);
-        expect(fileBasedRunner.command).toEqual('bash');
-        expect(args[0]).toEqual('-c');
-        expect(args[1]).toMatch(/^xcrun clang/);
-      }),
-    );
+        const grammar = this.grammarMap.C
+        const fileBasedRunner = grammar["File Based"]
+        const args = fileBasedRunner.args(this.codeContext)
+        expect(fileBasedRunner.command).toEqual("bash")
+        expect(args[0]).toEqual("-c")
+        expect(args[1]).toMatch(/^xcrun clang/)
+      }))
 
-    describe('C++', () =>
-      it('returns the appropriate File Based runner on Mac OS X', () => {
-        if (process.platform === 'win32') return;
-        OperatingSystem.platform = () => 'darwin';
-        this.reloadGrammar();
+    describe("C++", () =>
+      it("returns the appropriate File Based runner on Mac OS X", () => {
+        if (process.platform === "win32") {
+          return
+        }
+        OperatingSystem.platform = () => "darwin"
+        this.reloadGrammar()
 
-        const grammar = this.grammarMap['C++'];
-        const fileBasedRunner = grammar['File Based'];
-        const args = fileBasedRunner.args(this.codeContext);
-        expect(fileBasedRunner.command).toEqual('bash');
-        expect(args[0]).toEqual('-c');
-        expect(args[1]).toMatch(/^xcrun clang\+\+/);
-      }),
-    );
+        const grammar = this.grammarMap["C++"]
+        const fileBasedRunner = grammar["File Based"]
+        const args = fileBasedRunner.args(this.codeContext)
+        expect(fileBasedRunner.command).toEqual("bash")
+        expect(args[0]).toEqual("-c")
+        expect(args[1]).toMatch(/^xcrun clang\+\+/)
+      }))
 
-    describe('F#', () => {
+    describe("F#", () => {
       it('returns "fsi" as command for File Based runner on Windows', () => {
-        OperatingSystem.platform = () => 'win32';
-        this.reloadGrammar();
+        OperatingSystem.platform = () => "win32"
+        this.reloadGrammar()
 
-        const grammar = this.grammarMap['F#'];
-        const fileBasedRunner = grammar['File Based'];
-        const args = fileBasedRunner.args(this.codeContext);
-        expect(fileBasedRunner.command).toEqual('fsi');
-        expect(args[0]).toEqual('--exec');
-        expect(args[1]).toEqual(this.codeContext.filepath);
-      });
+        const grammar = this.grammarMap["F#"]
+        const fileBasedRunner = grammar["File Based"]
+        const args = fileBasedRunner.args(this.codeContext)
+        expect(fileBasedRunner.command).toEqual("fsi")
+        expect(args[0]).toEqual("--exec")
+        expect(args[1]).toEqual(this.codeContext.filepath)
+      })
 
       it('returns "fsharpi" as command for File Based runner when platform is not Windows', () => {
-        OperatingSystem.platform = () => 'darwin';
-        this.reloadGrammar();
+        OperatingSystem.platform = () => "darwin"
+        this.reloadGrammar()
 
-        const grammar = this.grammarMap['F#'];
-        const fileBasedRunner = grammar['File Based'];
-        const args = fileBasedRunner.args(this.codeContext);
-        expect(fileBasedRunner.command).toEqual('fsharpi');
-        expect(args[0]).toEqual('--exec');
-        expect(args[1]).toEqual(this.codeContext.filepath);
-      });
-    });
+        const grammar = this.grammarMap["F#"]
+        const fileBasedRunner = grammar["File Based"]
+        const args = fileBasedRunner.args(this.codeContext)
+        expect(fileBasedRunner.command).toEqual("fsharpi")
+        expect(args[0]).toEqual("--exec")
+        expect(args[1]).toEqual(this.codeContext.filepath)
+      })
+    })
 
-    describe('Objective-C', () =>
-      it('returns the appropriate File Based runner on Mac OS X', () => {
-        OperatingSystem.platform = () => 'darwin';
-        this.reloadGrammar();
+    describe("Objective-C", () =>
+      it("returns the appropriate File Based runner on Mac OS X", () => {
+        OperatingSystem.platform = () => "darwin"
+        this.reloadGrammar()
 
-        const grammar = this.grammarMap['Objective-C'];
-        const fileBasedRunner = grammar['File Based'];
-        const args = fileBasedRunner.args(this.codeContext);
-        expect(fileBasedRunner.command).toEqual('bash');
-        expect(args[0]).toEqual('-c');
-        expect(args[1]).toMatch(/^xcrun clang/);
-      }),
-    );
+        const grammar = this.grammarMap["Objective-C"]
+        const fileBasedRunner = grammar["File Based"]
+        const args = fileBasedRunner.args(this.codeContext)
+        expect(fileBasedRunner.command).toEqual("bash")
+        expect(args[0]).toEqual("-c")
+        expect(args[1]).toMatch(/^xcrun clang/)
+      }))
 
-    describe('Objective-C++', () =>
-      it('returns the appropriate File Based runner on Mac OS X', () => {
-        OperatingSystem.platform = () => 'darwin';
-        this.reloadGrammar();
+    describe("Objective-C++", () =>
+      it("returns the appropriate File Based runner on Mac OS X", () => {
+        OperatingSystem.platform = () => "darwin"
+        this.reloadGrammar()
 
-        const grammar = this.grammarMap['Objective-C++'];
-        const fileBasedRunner = grammar['File Based'];
-        const args = fileBasedRunner.args(this.codeContext);
-        expect(fileBasedRunner.command).toEqual('bash');
-        expect(args[0]).toEqual('-c');
-        expect(args[1]).toMatch(/^xcrun clang\+\+/);
-      }),
-    );
-  });
-});
+        const grammar = this.grammarMap["Objective-C++"]
+        const fileBasedRunner = grammar["File Based"]
+        const args = fileBasedRunner.args(this.codeContext)
+        expect(fileBasedRunner.command).toEqual("bash")
+        expect(args[0]).toEqual("-c")
+        expect(args[1]).toMatch(/^xcrun clang\+\+/)
+      }))
+  })
+})

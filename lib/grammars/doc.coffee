@@ -44,6 +44,11 @@ exports.LaTeX =
   'File Based':
     command: 'latexmk'
     args: ({filepath}) -> ['-cd', '-quiet', '-pdf', '-pv', '-shell-escape', filepath]
+    
+exports.ConTeXt =
+  'File Based':
+    command: 'context'
+    args: ({filepath}) -> ['--autopdf','--nonstopmode', '--synctex','--noconsole',filepath]
 
 exports['LaTeX Beamer'] = exports.LaTeX
 

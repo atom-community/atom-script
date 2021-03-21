@@ -1,11 +1,11 @@
-let i = 1;
+let i = 1
 const run = setInterval(() => {
-  console.log(`line ${i}`);
-  i++;
+  console.log(`line ${i}`)
+  i++
   if (i === 20) {
-    stop();
+    stop()
   }
-}, 1000);
+}, 1000)
 function stop() {
-  clearInterval(run);
+  clearInterval(run)
 }

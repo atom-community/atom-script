@@ -4,9 +4,10 @@ path = require 'path'
 bin = path.join __dirname, '../..', 'node_modules', '.bin'
 coffee = path.join bin, 'coffee'
 babel = path.join bin, 'babel'
+babelConfig = path.join __dirname, 'babel.config.js'
 
 args = ({filepath}) ->
-  cmd = "'#{coffee}' -p '#{filepath}'|'#{babel}' --filename '#{bin}'| node"
+  cmd = "'#{coffee}' -p '#{filepath}'|'#{babel}' --filename '#{bin} --config-file #{babelConfig}'| node"
   return GrammarUtils.formatArgs(cmd)
 
 exports.CoffeeScript =
