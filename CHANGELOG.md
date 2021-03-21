@@ -1,3 +1,17 @@
+# [3.30.0](https://github.com/atom-ide-community/atom-script/compare/v3.29.6...v3.30.0) (2021-03-21)
+
+
+### Bug Fixes
+
+* remove unused variable ([822bfcb](https://github.com/atom-ide-community/atom-script/commit/822bfcbb696d44db9749dcc1ae60e8115bd9155c))
+* use multi-line literal instead of concatenation ([e23e2ab](https://github.com/atom-ide-community/atom-script/commit/e23e2abab02e62c1e66e233abccacd62ba1c49d2))
+* use parameters directly as config options ([e21cd59](https://github.com/atom-ide-community/atom-script/commit/e21cd5983d2a458c07b50106f95b5080ee7cae37))
+
+
+### Features
+
+* make position of output panel configurable ([004525a](https://github.com/atom-ide-community/atom-script/commit/004525a03a510046410ece45ec936abcf5f2ac2c))
+
 ## [3.29.6](https://github.com/atom-ide-community/atom-script/compare/v3.29.5...v3.29.6) (2021-03-21)
 
 
