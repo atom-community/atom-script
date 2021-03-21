@@ -10,17 +10,14 @@
   "engines": {
     "atom": ">=0.174.0"
   },
-  "activationCommands": {
-    "atom-text-editor": [
-      "script:run",
-      "script:run-by-line-number",
-      "script:run-options",
-      "script:run-with-profile"
-    ]
+  "prettier": "prettier-config-atomic",
+  "scripts": {
+    "format": "prettier --write .",
+    "test.format": "prettier . --check",
+    "lint": "eslint . --fix",
+    "test.lint": "eslint .",
+    "test": "atom --test spec"
   },
-  "activationHooks": [
-    "core:loaded-shell-environment"
-  ],
   "dependencies": {
     "@babel/cli": "^7.13.10",
     "@babel/core": "^7.13.10",
@@ -43,6 +40,17 @@
     "prettier-config-atomic": "^1.0.1",
     "tempy": "^1.0.1"
   },
+  "activationCommands": {
+    "atom-text-editor": [
+      "script:run",
+      "script:run-by-line-number",
+      "script:run-options",
+      "script:run-with-profile"
+    ]
+  },
+  "activationHooks": [
+    "core:loaded-shell-environment"
+  ],
   "providedServices": {
     "default-script-runtime": {
       "description": "Provides default runtime that's configurable through Atom editor",
@@ -56,14 +64,6 @@
         "0.1.0": "provideBlankRuntime"
       }
     }
-  },
-  "prettier": "prettier-config-atomic",
-  "scripts": {
-    "format": "prettier --write .",
-    "test.format": "prettier . --check",
-    "lint": "eslint . --fix",
-    "test.lint": "eslint .",
-    "test": "atom --test spec"
   },
   "keywords": [
     "script",
