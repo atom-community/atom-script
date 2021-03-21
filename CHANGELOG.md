@@ -1,3 +1,10 @@
+## [3.29.5](https://github.com/atom-ide-community/atom-script/compare/v3.29.4...v3.29.5) (2021-03-21)
+
+
+### Bug Fixes
+
+* try catch toHtml ([b9cd891](https://github.com/atom-ide-community/atom-script/commit/b9cd89128dd207045b84461b01aaf663b03e4a5c))
+
 ## [3.29.4](https://github.com/atom-ide-community/atom-script/compare/v3.29.3...v3.29.4) (2021-03-21)
 
 
