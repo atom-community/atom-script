@@ -61,7 +61,8 @@ jobs:
   Release:
     needs: [Test, Lint]
     if: github.ref == 'refs/heads/master' &&
-      github.event.repository.fork == false
+      github.event.repository.fork == false &&
+      !contains(github.event.head_commit.message, '[skip release]')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
