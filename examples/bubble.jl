@@ -1,5 +1,5 @@
 import Base.Sort
-immutable BubbleSortAlg <: Sort.Algorithm end
+struct BubbleSortAlg <: Sort.Algorithm end
 const BubbleSort = BubbleSortAlg()
 
 function Base.sort!(v::AbstractVector, lo::Int, hi::Int, ::BubbleSortAlg, o::Sort.Ordering)
@@ -15,3 +15,5 @@ while true
     end
     return v
 end
+
+println("Done!")
