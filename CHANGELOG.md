@@ -1,3 +1,31 @@
+# [3.31.0](https://github.com/atom-ide-community/atom-script/compare/v3.30.0...v3.31.0) (2021-03-22)
+
+
+### Bug Fixes
+
+* add use-babel ([cfe2bb2](https://github.com/atom-ide-community/atom-script/commit/cfe2bb21edc8a598c60c492e285ea647404410f0))
+* fix coffeescript ([18724f5](https://github.com/atom-ide-community/atom-script/commit/18724f542e549c084de645bcecd8434ef895b20b))
+* fix the C exports names ([2912212](https://github.com/atom-ide-community/atom-script/commit/29122127eed4c88ca2963597be0d07be8a874a7d))
+* fix the CoffeeScript exports ([da8cd28](https://github.com/atom-ide-community/atom-script/commit/da8cd2827598385d55a35d0cca272dee90943ae9))
+* fix the Doc exports ([49d165c](https://github.com/atom-ide-community/atom-script/commit/49d165c5844465a436fffa0d58cc3b7e9f9f0919))
+* fix the Fortran exports ([d4f1b58](https://github.com/atom-ide-community/atom-script/commit/d4f1b585ece6594905628403e4ef965f76c89972))
+* fix the Haskell exports ([6a64fff](https://github.com/atom-ide-community/atom-script/commit/6a64fffca11db8e699efe698479ca647bcb102a8))
+* fix the JavaScript exports ([1e7e9d8](https://github.com/atom-ide-community/atom-script/commit/1e7e9d85f8e43b3c9dd91c28eff0f590551a59a3))
+* fix the Lua exports ([c1db695](https://github.com/atom-ide-community/atom-script/commit/c1db695b208b3fb5cc1c562af97d759f66d2a102))
+* fix the Perl exports ([2affb98](https://github.com/atom-ide-community/atom-script/commit/2affb986b63433608719ff1a7ccd19218b68b7d2))
+* fix the Python exports ([2ace5e6](https://github.com/atom-ide-community/atom-script/commit/2ace5e65a2562fe0c6b7a10eea154e65f8bcece8))
+* fix the ShellGrammars exports ([a532457](https://github.com/atom-ide-community/atom-script/commit/a5324575938484486409e44a2ab799d84355a572))
+* fix the Windows exports ([7db731d](https://github.com/atom-ide-community/atom-script/commit/7db731d2a217c20ee20886a868d9a734bcc308c9))
+* in C - inline switch-case + add default case ([ff1fe86](https://github.com/atom-ide-community/atom-script/commit/ff1fe86f8e37cc544eb285fc8184ffbfac3ed056))
+* remove guards because of workingDirectory ([26b5e53](https://github.com/atom-ide-community/atom-script/commit/26b5e531fef5a63de3ebdb51bfb5cd94a3ac472b))
+* scopeName not defined ([45ed16d](https://github.com/atom-ide-community/atom-script/commit/45ed16de249abe58b0bfd9ba0f722b6ded621a2a))
+* the coffee file imports ([b746e93](https://github.com/atom-ide-community/atom-script/commit/b746e9352642d2bb6b127af949fb4a81f14d8394))
+
+
+### Features
+
+* decaffeinate ([2056c30](https://github.com/atom-ide-community/atom-script/commit/2056c30ba132efd4cb4d09acdb804f347482c480))
+
 # [3.30.0](https://github.com/atom-ide-community/atom-script/compare/v3.29.6...v3.30.0) (2021-03-21)
 
 
