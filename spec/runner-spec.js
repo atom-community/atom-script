@@ -2,6 +2,7 @@
 
 /* eslint-disable no-invalid-this */ import Runner from "../lib/runner"
 import ScriptOptions from "../lib/script-options"
+import path from "path"
 
 describe("Runner", () => {
   beforeEach(() => {
@@ -82,6 +83,34 @@ describe("Runner", () => {
       waitsFor(() => this.output !== null, "File should execute", 2000)
 
       runs(() => expect(this.output).toEqual({ message: "stdin terminated\n" }))
+    })
+
+    it("dirnameTest", () => {
+      runs(() => {
+        this.output = null
+        this.runner.onDidWriteToStdout((output) => {
+          this.output = output
+        })
+        this.runner.run(this.command, ["./spec/fixtures/dirnameTest.js"], {}, "unused input")
+      })
+
+      waitsFor(() => this.output !== null, "File should execute", 2000)
+
+      runs(() => expect(this.output).toEqual({ message: `__dirname ${path.resolve("./spec/fixtures")}\n` }))
+    })
+
+    it("folder with space", () => {
+      runs(() => {
+        this.output = null
+        this.runner.onDidWriteToStdout((output) => {
+          this.output = output
+        })
+        this.runner.run(this.command, ["./spec/fixtures/folder with space/test.js"], {}, "unused input")
+      })
+
+      waitsFor(() => this.output !== null, "File should execute", 2000)
+
+      runs(() => expect(this.output).toEqual({ message: `works\n` }))
     })
   })
 })
