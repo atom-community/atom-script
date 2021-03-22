@@ -25,6 +25,10 @@ describe("grammarMap", () => {
       const modes = grammarMap[lang]
       for (const mode in modes) {
         const commandContext = modes[mode]
+
+        // print more info to help testing
+        console.log({ lang, commandContext })
+
         // TODO: fix the test for linux and windows
         if (process.platform === "darwin") {
           expect(commandContext.command).toBeDefined()
