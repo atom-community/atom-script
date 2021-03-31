@@ -334,8 +334,6 @@ Also, in this dialog you can save options as a profile for future use. For examp
 
 **Change Default Language** by opening Atom Settings as follows: `Atom→Preferences→Open Config Folder`. Then, you can use the tree-view to navigate to and open `packages→script→lib→grammar→python.js` to make your edits. It is also possible to directly edit the code under `.atom/packages/script/lib/grammars/python.js`
 
-To make your edits (change default version of python) change the following: `command: "python"` to: `command: "python3"`. You will find this under the `'Selection Based'` and `'File Based'` rows. Save the changes, and you're set.
-
 **Script: Run With Profile** allows you to run scripts with saved profiles. Profiles can be added in **Script: Run Options** dialog.
 
 **Script: Kill Process** will kill the process but leaves the pane open.
