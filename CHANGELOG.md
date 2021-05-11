@@ -1,3 +1,61 @@
+## [3.31.2](https://github.com/atom-ide-community/atom-script/compare/v3.31.1...v3.31.2) (2021-05-11)
+
+
+### Bug Fixes
+
+* fix kotlin for newer Kotlin versions ([#2468](https://github.com/atom-ide-community/atom-script/issues/2468)) ([75bd9f5](https://github.com/atom-ide-community/atom-script/commit/75bd9f5b0d978aadf10c55c9c0a7759d970bd96d))
+* update dependencies ([16a07fd](https://github.com/atom-ide-community/atom-script/commit/16a07fdd44f1ad5499092ac444fef01c88d184ee))
+
+## [3.31.1](https://github.com/atom-ide-community/atom-script/compare/v3.31.0...v3.31.1) (2021-03-23)
+
+
+### Bug Fixes
+
+* createTempFolder ([b96d7f5](https://github.com/atom-ide-community/atom-script/commit/b96d7f5632c2c17579428811309b078072dfad20))
+* detect literate coffee ([b298ac0](https://github.com/atom-ide-community/atom-script/commit/b298ac0cd69f7338cea7c988889a3535448f20b1))
+* fix eslint errors in KotlinArgs ([34b592a](https://github.com/atom-ide-community/atom-script/commit/34b592a4d2ce41b9c69a9f3aa1a7841b28457848))
+* make sure temp directory exists ([256b8bb](https://github.com/atom-ide-community/atom-script/commit/256b8bb2501366a6fab34e7ba630854af9098df2))
+* simplify workingDirectory ([f35783c](https://github.com/atom-ide-community/atom-script/commit/f35783cb3f4f04aafd33178148fca1690387c718))
+* use babel-node for CoffeeScript ([3466e03](https://github.com/atom-ide-community/atom-script/commit/3466e03248643e3bbb4c57dc80e9e9d9dab34e51))
+* use babel-node for JavaScript ([8581f8e](https://github.com/atom-ide-community/atom-script/commit/8581f8ef63cf385bbccde3b25fff6a5a031e8999))
+* use createTempFolder in Kotlin ([5516681](https://github.com/atom-ide-community/atom-script/commit/5516681d8470f1bffa161ac9c47e3dce9bf029a5))
+* use createTempPath for Asm ([82f708a](https://github.com/atom-ide-community/atom-script/commit/82f708a632022071e0a9ea4426a9365a3b881b4a))
+* use createTempPath for Rust ([bb74d13](https://github.com/atom-ide-community/atom-script/commit/bb74d13010f260509ca6a5ef345b9bcd12ade23c))
+* use createTempPath in C grammar ([49d62d3](https://github.com/atom-ide-community/atom-script/commit/49d62d36c5a68260715b4aa08d1b5a45293c12ab))
+* use createTempPath in Cpp grammar ([6db2dfa](https://github.com/atom-ide-community/atom-script/commit/6db2dfa5089d02ec62f1dd18a434598776536bbf))
+* use createTempPath in fortran grammar ([5b10e3b](https://github.com/atom-ide-community/atom-script/commit/5b10e3b6c12b56abe6c86b194c6710d8463daef3))
+* use createTempPath in Obj-c and Obj-cpp grammar ([c61bb75](https://github.com/atom-ide-community/atom-script/commit/c61bb75220110925aeaea5d2c34d44901952a09a))
+* use rimraf for deleting the temp folder ([00cd789](https://github.com/atom-ide-community/atom-script/commit/00cd789e629ae0556f8912750bec04c6baeb6f38))
+* use temp in grammar-utils ([ccea0bf](https://github.com/atom-ide-community/atom-script/commit/ccea0bf375a4861d0fa90b669414d1177d0146ce))
+
+# [3.31.0](https://github.com/atom-ide-community/atom-script/compare/v3.30.0...v3.31.0) (2021-03-22)
+
+
+### Bug Fixes
+
+* add use-babel ([cfe2bb2](https://github.com/atom-ide-community/atom-script/commit/cfe2bb21edc8a598c60c492e285ea647404410f0))
+* fix coffeescript ([18724f5](https://github.com/atom-ide-community/atom-script/commit/18724f542e549c084de645bcecd8434ef895b20b))
+* fix the C exports names ([2912212](https://github.com/atom-ide-community/atom-script/commit/29122127eed4c88ca2963597be0d07be8a874a7d))
+* fix the CoffeeScript exports ([da8cd28](https://github.com/atom-ide-community/atom-script/commit/da8cd2827598385d55a35d0cca272dee90943ae9))
+* fix the Doc exports ([49d165c](https://github.com/atom-ide-community/atom-script/commit/49d165c5844465a436fffa0d58cc3b7e9f9f0919))
+* fix the Fortran exports ([d4f1b58](https://github.com/atom-ide-community/atom-script/commit/d4f1b585ece6594905628403e4ef965f76c89972))
+* fix the Haskell exports ([6a64fff](https://github.com/atom-ide-community/atom-script/commit/6a64fffca11db8e699efe698479ca647bcb102a8))
+* fix the JavaScript exports ([1e7e9d8](https://github.com/atom-ide-community/atom-script/commit/1e7e9d85f8e43b3c9dd91c28eff0f590551a59a3))
+* fix the Lua exports ([c1db695](https://github.com/atom-ide-community/atom-script/commit/c1db695b208b3fb5cc1c562af97d759f66d2a102))
+* fix the Perl exports ([2affb98](https://github.com/atom-ide-community/atom-script/commit/2affb986b63433608719ff1a7ccd19218b68b7d2))
+* fix the Python exports ([2ace5e6](https://github.com/atom-ide-community/atom-script/commit/2ace5e65a2562fe0c6b7a10eea154e65f8bcece8))
+* fix the ShellGrammars exports ([a532457](https://github.com/atom-ide-community/atom-script/commit/a5324575938484486409e44a2ab799d84355a572))
+* fix the Windows exports ([7db731d](https://github.com/atom-ide-community/atom-script/commit/7db731d2a217c20ee20886a868d9a734bcc308c9))
+* in C - inline switch-case + add default case ([ff1fe86](https://github.com/atom-ide-community/atom-script/commit/ff1fe86f8e37cc544eb285fc8184ffbfac3ed056))
+* remove guards because of workingDirectory ([26b5e53](https://github.com/atom-ide-community/atom-script/commit/26b5e531fef5a63de3ebdb51bfb5cd94a3ac472b))
+* scopeName not defined ([45ed16d](https://github.com/atom-ide-community/atom-script/commit/45ed16de249abe58b0bfd9ba0f722b6ded621a2a))
+* the coffee file imports ([b746e93](https://github.com/atom-ide-community/atom-script/commit/b746e9352642d2bb6b127af949fb4a81f14d8394))
+
+
+### Features
+
+* decaffeinate ([2056c30](https://github.com/atom-ide-community/atom-script/commit/2056c30ba132efd4cb4d09acdb804f347482c480))
+
 # [3.30.0](https://github.com/atom-ide-community/atom-script/compare/v3.29.6...v3.30.0) (2021-03-21)
 
 

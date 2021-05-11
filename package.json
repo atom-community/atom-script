@@ -1,7 +1,7 @@
 {
   "name": "script",
   "main": "./lib/script",
-  "version": "3.30.0",
+  "version": "3.31.2",
   "private": false,
   "description": "Run code in Atom!",
   "author": "Kyle Kelley <rgbkrk@gmail.com>",
@@ -19,26 +19,32 @@
     "test": "atom --test spec"
   },
   "dependencies": {
-    "@babel/cli": "^7.13.10",
-    "@babel/core": "^7.13.10",
-    "@babel/preset-env": "^7.13.10",
-    "@babel/preset-react": "^7.12.13",
+    "@babel/core": "^7.14.0",
+    "@babel/node": "^7.13.13",
+    "@babel/preset-env": "^7.14.1",
+    "@babel/preset-react": "^7.13.13",
     "ansi-to-html": "^0.6.14",
     "atom-message-panel": "1.3.1",
     "atom-space-pen-views-plus": "^3.0.4",
-    "strip-ansi": "^6.0.0",
-    "underscore": "^1.12.1",
+    "rimraf": "^3.0.2",
+    "strip-ansi": "<7.0.0",
+    "temp": "^0.9.4",
+    "underscore": "^1.13.1",
     "uuid": "^8.3.2"
   },
   "optionalDependencies": {
     "coffeescript": "^2"
   },
   "devDependencies": {
-    "eslint": "^7.22.0",
-    "eslint-config-atomic": "^1.12.4",
-    "prettier": "^2.2.1",
-    "prettier-config-atomic": "^1.0.1",
-    "tempy": "^1.0.1"
+    "@types/atom": "^1.40.10",
+    "@types/jasmine": "^3.7.2",
+    "@types/node": "^15.0.2",
+    "@types/rimraf": "^3.0.0",
+    "@types/temp": "^0.9.0",
+    "@types/underscore": "^1.11.2",
+    "@types/uuid": "^8.3.0",
+    "eslint-config-atomic": "^1.14.4",
+    "prettier-config-atomic": "^2.0.4"
   },
   "activationCommands": {
     "atom-text-editor": [

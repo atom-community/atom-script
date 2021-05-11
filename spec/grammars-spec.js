@@ -1,7 +1,9 @@
 "use babel" // TODO
 
-/* eslint-disable no-invalid-this */ import tempy from "tempy"
+/* eslint-disable no-invalid-this */
 import path from "path"
+import temp from "temp"
+temp.track()
 
 import CodeContext from "../lib/code-context"
 import OperatingSystem from "../lib/grammar-utils/operating-system"
@@ -12,7 +14,7 @@ describe("grammarMap", () => {
   let testFilePath
 
   beforeEach(() => {
-    testFilePath = path.join(tempy.directory(), testFile)
+    testFilePath = path.join(temp.mkdirSync(""), testFile)
     this.codeContext = new CodeContext(testFile, testFilePath, null)
     // TODO: Test using an actual editor or a selection?
     this.dummyTextSource = {}
@@ -25,6 +27,10 @@ describe("grammarMap", () => {
       const modes = grammarMap[lang]
       for (const mode in modes) {
         const commandContext = modes[mode]
+
+        // print more info to help testing
+        console.log({ lang, commandContext })
+
         // TODO: fix the test for linux and windows
         if (process.platform === "darwin") {
           expect(commandContext.command).toBeDefined()
