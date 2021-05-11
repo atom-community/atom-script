@@ -16,9 +16,7 @@ specifiers:
   atom-message-panel: 1.3.1
   atom-space-pen-views-plus: ^3.0.4
   coffeescript: ^2
-  eslint: ^7.26.0
   eslint-config-atomic: ^1.14.4
-  prettier: ^2.3.0
   prettier-config-atomic: ^2.0.4
   rimraf: ^3.0.2
   strip-ansi: ^6.0.0
@@ -51,9 +49,7 @@ devDependencies:
   '@types/temp': 0.9.0
   '@types/underscore': 1.11.2
   '@types/uuid': 8.3.0
-  eslint: 7.26.0
   eslint-config-atomic: 1.14.4
-  prettier: 2.3.0
   prettier-config-atomic: 2.0.4
 
 packages:
