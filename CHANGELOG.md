@@ -1,3 +1,10 @@
+## [3.31.3](https://github.com/atom-ide-community/atom-script/compare/v3.31.2...v3.31.3) (2021-05-11)
+
+
+### Bug Fixes
+
+* set utf-8 encoding for Python ([eb4700d](https://github.com/atom-ide-community/atom-script/commit/eb4700d08d085dec678e94ae9add0afe738f17b4))
+
 ## [3.31.2](https://github.com/atom-ide-community/atom-script/compare/v3.31.1...v3.31.2) (2021-05-11)
 
 
