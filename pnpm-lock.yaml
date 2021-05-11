@@ -19,7 +19,7 @@ specifiers:
   eslint-config-atomic: ^1.14.4
   prettier-config-atomic: ^2.0.4
   rimraf: ^3.0.2
-  strip-ansi: ^6.0.0
+  strip-ansi: <7.0.0
   temp: ^0.9.4
   underscore: ^1.13.1
   uuid: ^8.3.2
