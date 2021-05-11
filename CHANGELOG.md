@@ -1,3 +1,11 @@
+## [3.31.2](https://github.com/atom-ide-community/atom-script/compare/v3.31.1...v3.31.2) (2021-05-11)
+
+
+### Bug Fixes
+
+* fix kotlin for newer Kotlin versions ([#2468](https://github.com/atom-ide-community/atom-script/issues/2468)) ([75bd9f5](https://github.com/atom-ide-community/atom-script/commit/75bd9f5b0d978aadf10c55c9c0a7759d970bd96d))
+* update dependencies ([16a07fd](https://github.com/atom-ide-community/atom-script/commit/16a07fdd44f1ad5499092ac444fef01c88d184ee))
+
 ## [3.31.1](https://github.com/atom-ide-community/atom-script/compare/v3.31.0...v3.31.1) (2021-03-23)
 
 
