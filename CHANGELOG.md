@@ -1,3 +1,15 @@
+# [3.32.0](https://github.com/atom-ide-community/atom-script/compare/v3.31.3...v3.32.0) (2021-05-12)
+
+
+### Bug Fixes
+
+* fix execution of Java files + support UTF-8 encoding ([d73f270](https://github.com/atom-ide-community/atom-script/commit/d73f270b098d0c22144ec9b59c983bf62428f995))
+
+
+### Features
+
+* add selection based Java support ([8515200](https://github.com/atom-ide-community/atom-script/commit/85152009948648b8cc702f6d0fd0369f6851b8b4))
+
 ## [3.31.3](https://github.com/atom-ide-community/atom-script/compare/v3.31.2...v3.31.3) (2021-05-11)
 
 
