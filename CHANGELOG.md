@@ -1,3 +1,10 @@
+## [3.32.1](https://github.com/atom-ide-community/atom-script/compare/v3.32.0...v3.32.1) (2021-05-13)
+
+
+### Bug Fixes
+
+* add xlint and file.encoding to Java ([#2471](https://github.com/atom-ide-community/atom-script/issues/2471)) ([e730f08](https://github.com/atom-ide-community/atom-script/commit/e730f08d2cc8954a6562fef4e905776585074b63)), closes [#1166](https://github.com/atom-ide-community/atom-script/issues/1166)
+
 # [3.32.0](https://github.com/atom-ide-community/atom-script/compare/v3.31.3...v3.32.0) (2021-05-12)
 
 
