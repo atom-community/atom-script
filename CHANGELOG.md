@@ -1,3 +1,11 @@
+## [3.32.2](https://github.com/atom-ide-community/atom-script/compare/v3.32.1...v3.32.2) (2021-05-15)
+
+
+### Bug Fixes
+
+* export gnuplot ([51132f0](https://github.com/atom-ide-community/atom-script/commit/51132f06e2f4811e1a4aba226f0b400780043042))
+* fix gnuplot command was not exported ([#2474](https://github.com/atom-ide-community/atom-script/issues/2474)) ([3f3cc10](https://github.com/atom-ide-community/atom-script/commit/3f3cc1036a18e729593b5b39b27feabed54db90f))
+
 ## [3.32.1](https://github.com/atom-ide-community/atom-script/compare/v3.32.0...v3.32.1) (2021-05-13)
 
 
