@@ -36,15 +36,15 @@
     "coffeescript": "^2"
   },
   "devDependencies": {
-    "@types/atom": "^1.40.10",
-    "@types/jasmine": "^3.7.2",
-    "@types/node": "^15.0.2",
-    "@types/rimraf": "^3.0.0",
-    "@types/temp": "^0.9.0",
-    "@types/underscore": "^1.11.2",
-    "@types/uuid": "^8.3.0",
-    "eslint-config-atomic": "^1.14.4",
-    "prettier-config-atomic": "^2.0.4"
+    "@types/atom": "^1.40.11",
+    "@types/jasmine": "^3.8.1",
+    "@types/node": "^16.3.3",
+    "@types/rimraf": "^3.0.1",
+    "@types/temp": "^0.9.1",
+    "@types/underscore": "^1.11.3",
+    "@types/uuid": "^8.3.1",
+    "eslint-config-atomic": "^1.16.2",
+    "prettier-config-atomic": "^2.0.5"
   },
   "activationCommands": {
     "atom-text-editor": [
