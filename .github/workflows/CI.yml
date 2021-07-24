@@ -41,7 +41,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Commit lint ✨
-        uses: wagoid/commitlint-github-action@v2
+        uses: wagoid/commitlint-github-action@v4
 
       - name: Install dependencies
         run: npm install
