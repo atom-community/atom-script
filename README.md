@@ -320,7 +320,7 @@ If you _really_ wish to open atom from a launcher/icon, see [this issue for a va
 
 ## Usage
 
-Make sure to run `atom` from the command line to get full access to your environment variables. Running Atom from the icon will launch using launchctl's environment.
+Make sure to run `atom` from the command line to get full access to your environment variables. On macOS, running Atom from the icon will launch using launchctl's environment.
 
 **Script: Run** will perform a "File Based" run when no text is selected (default).
 
@@ -328,7 +328,7 @@ Make sure to run `atom` from the command line to get full access to your environ
 
 **Script: Run by Line Number** to run using the specified line number. **Note** that if you select an entire line this number could be off by one due to the way Atom detects numbers while text is selected.
 
-**Script: Configure Script** should be used to configure command options, program arguments, and environment variables overrides. Environment variables may be input into the options view in the form `VARIABLE_NAME_ONE=value;VARIABLE_NAME_TWO="other value";VARIABLE_NAME_3='test'`.
+**Script: Run Options** should be used to configure command options, program arguments, and environment variables overrides. Environment variables may be input into the options view in the form `VARIABLE_NAME_ONE=value;VARIABLE_NAME_TWO="other value";VARIABLE_NAME_3='test'`.
 
 Also, in this dialog you can save options as a profile for future use. For example, you can add two profiles, one for `python2.7` and another for `python3` and run scripts with a specified profile, which will be more convinient than entering options every time you want to switch python versions.
 
