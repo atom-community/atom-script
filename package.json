@@ -71,6 +71,38 @@
       }
     }
   },
+  "consumedServices": {
+    "runInTerminal": {
+      "description": "Allow to run commands in platformio-ide-terminal.",
+      "versions": {
+        "0.14.5": "consumeTerminal"
+      }
+    },
+    "platformioIDETerminal": {
+      "description": "Allow to run commands in platformio-ide-terminal.",
+      "versions": {
+        "^1.1.0": "consumeTerminal"
+      }
+    },
+    "terminusTerminal": {
+      "description": "Allow to run commands in terminus.",
+      "versions": {
+        "^1.1.1": "consumeTerminal"
+      }
+    },
+    "terminationTerminal": {
+      "description": "Allow to run commands in termination.",
+      "versions": {
+        "^1.1.0": "consumeTerminal"
+      }
+    },
+    "terminal": {
+      "description": "Allow to run commands in terminal.",
+      "versions": {
+        "^1.0.0": "consumeTerminal"
+      }
+    }
+  },
   "keywords": [
     "script",
     "runner",
