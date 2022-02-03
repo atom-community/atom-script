@@ -320,7 +320,7 @@ If you _really_ wish to open atom from a launcher/icon, see [this issue for a va
 
 ## Usage
 
-Make sure to run `atom` from the command line to get full access to your environment variables. Running Atom from the icon will launch using launchctl's environment.
+Make sure to run `atom` from the command line to get full access to your environment variables. On macOS, running Atom from the icon will launch using launchctl's environment.
 
 **Script: Run** will perform a "File Based" run when no text is selected (default).
 
