@@ -38,6 +38,7 @@ Currently supported grammars are:
 | [Erlang]                            |            | Yes             | [language-erlang]             | `erl`                     | Limited selection based runs only (see [#70]).                                                                                                                                                                                                                  |
 | [F*]                                | Yes        |                 | [atom-fstar]                  | `fstar`                   |                                                                                                                                                                                                                                                                 |
 | [F#]                                | Yes        |                 | [language-fsharp]             | `fsharpi`/`fsi.exe`       |                                                                                                                                                                                                                                                                 |
+| [Factor]                            | Yes        |                 | [language-factor]             | `factor`                    |                                                                                                                                                                                                                                                                 |
 | [Fish]                              | Yes        | Yes             | [language-fish-shell]         | `fish`                    |                                                                                                                                                                                                                                                                 |
 | [Forth]                             | Yes        |                 | [language-forth]              | `gforth`                  |                                                                                                                                                                                                                                                                 |
 | [Fortran]                           | Yes        |                 | [language-fortran]            | [`gfortran`]              |                                                                                                                                                                                                                                                                 |
@@ -156,6 +157,7 @@ Currently supported grammars are:
 [es6]: https://babeljs.io/learn-es2015
 [f*]: https://fstar-lang.org
 [f#]: http://fsharp.org
+[factor]: https://factorcode.org/
 [file]: https://atom.io/packages/language-batchfile
 [fish]: https://fishshell.com
 [forth]: https://gnu.org/software/gforth
@@ -189,6 +191,7 @@ Currently supported grammars are:
 [language-dot]: https://atom.io/packages/language-dot
 [language-elixir]: https://atom.io/packages/language-elixir
 [language-erlang]: https://atom.io/packages/language-erlang
+[language-factor]: https://atom.io/packages/language-factor
 [language-fish-shell]: https://atom.io/packages/language-fish-shell
 [language-forth]: https://atom.io/packages/language-forth
 [language-fortran]: https://atom.io/packages/language-fortran
