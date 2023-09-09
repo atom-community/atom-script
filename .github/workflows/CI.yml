@@ -17,7 +17,7 @@ jobs:
           - windows-latest
         atom_channel: [stable, beta]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: UziTech/action-setup-atom@v1
         with:
           channel: ${{ matrix.atom_channel }}
@@ -37,7 +37,7 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Commit lint ✨
@@ -59,7 +59,7 @@ jobs:
       !contains(github.event.head_commit.message, '[skip release]')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: UziTech/action-setup-atom@v1
       - uses: actions/setup-node@v2
         with:
